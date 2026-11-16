@@ -1,0 +1,347 @@
+---
+import { stories } from '../data/stories';
+import { places } from '../data/places';
+import PlaceCard from './PlaceCard.astro';
+
+// 빠른 ID 매핑 딕셔너리 생성
+const placesMap = new Map(places.map(p => [p.id, p]));
+---
+
+<div class="stories-view">
+  <!-- 상단 챕터 네비게이션 칩 바 (가로 스크롤 가능) -->
+  <nav class="chapter-chips-bar" aria-label="챕터 바로가기">
+    <div class="chips-scroll-container">
+      {stories.map((ch) => (
+        <a href={`#story-${ch.id}`} class="chapter-chip">
+          <span class="chip-num">{ch.number}</span>
+          <span class="chip-title">{ch.title.split(':')[0]}</span>
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  <!-- 각 챕터별 마스터 스토리 아크 -->
+  <div class="chapters-container">
+    {stories.map((ch) => {
+      const featuredPlaces = ch.featuredPlaceIds
+        .map(id => placesMap.get(id))
+        .filter(Boolean);
+
+      return (
+        <article class="story-chapter-card" id={`story-${ch.id}`}>
+          <!-- 챕터 헤더 -->
+          <header class="chapter-header">
+            <div class="ch-badge-row">
+              <span class="stamp-badge">{ch.number}</span>
+              <span class="period-tag">{ch.period}</span>
+            </div>
+            <h3 class="ch-title">{ch.title}</h3>
+            <h4 class="ch-subtitle">{ch.subtitle}</h4>
+          </header>
+
+          <!-- 리드 문단 -->
+          <div class="ch-lead-box">
+            <p class="ch-lead-text">{ch.lead}</p>
+          </div>
+
+          <!-- 본문 문단들 -->
+          <div class="ch-paragraphs">
+            {ch.content.map((p) => (
+              <p class="story-para">{p}</p>
+            ))}
+          </div>
+
+          <!-- 인용구 박스 -->
+          {ch.quote && (
+            <blockquote class="ch-quote-box">
+              <span class="quote-mark">“</span>
+              <p class="quote-text">{ch.quote.text}</p>
+              <cite class="quote-author">— {ch.quote.author}</cite>
+            </blockquote>
+          )}
+
+          <!-- 챕터 말미 관련 장소 카드 덱 -->
+          {featuredPlaces.length > 0 && (
+            <section class="chapter-places-deck">
+              <div class="deck-header">
+                <span class="deck-badge">관련 명소</span>
+                <h5 class="deck-title">이 이야기 속에 등장한 오사카의 가게</h5>
+              </div>
+              <div class="deck-grid">
+                {featuredPlaces.map((place) => (
+                  <PlaceCard place={place} compact={true} />
+                ))}
+              </div>
+            </section>
+          )}
+
+          <div class="seigaiha-divider"></div>
+        </article>
+      );
+    })}
+  </div>
+</div>
+
+<style>
+  .stories-view {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 40px;
+  }
+
+  /* 상단 챕터 칩 바 */
+  .chapter-chips-bar {
+    position: sticky;
+    top: 60px;
+    z-index: 35;
+    background: rgba(251, 248, 243, 0.95);
+    backdrop-filter: blur(8px);
+    margin: -12px -16px 8px -16px;
+    padding: 10px 16px;
+    border-bottom: 1px solid #E2E8F0;
+  }
+
+  @media (min-width: 768px) {
+    .chapter-chips-bar {
+      top: 130px;
+      margin: -12px 0 16px 0;
+      padding: 10px 0;
+      border-radius: 8px;
+    }
+  }
+
+  .chips-scroll-container {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .chips-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chapter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    color: #334155;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .chapter-chip:hover {
+    border-color: var(--color-vermilion);
+    color: var(--color-vermilion-text);
+    background: #FFF5F5;
+  }
+
+  .chip-num {
+    font-weight: 800;
+    color: var(--color-vermilion-text);
+  }
+
+  .chip-title {
+    font-weight: 500;
+  }
+
+  /* 챕터 카드 */
+  .chapters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .story-chapter-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  }
+
+  @media (min-width: 768px) {
+    .story-chapter-card {
+      padding: 36px 32px;
+    }
+  }
+
+  .chapter-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .ch-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .period-tag {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #64748B;
+    background: #F1F5F9;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .ch-title {
+    font-family: var(--font-serif);
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.35;
+    letter-spacing: -0.3px;
+  }
+
+  .ch-subtitle {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-vermilion-text);
+    line-height: 1.4;
+  }
+
+  @media (min-width: 768px) {
+    .ch-title {
+      font-size: 1.85rem;
+    }
+    .ch-subtitle {
+      font-size: 1.1rem;
+    }
+  }
+
+  .ch-lead-box {
+    background: #F8FAFC;
+    border-left: 4px solid var(--color-wood-dark);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 20px;
+  }
+
+  .ch-lead-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #334155;
+    line-height: 1.65;
+  }
+
+  .ch-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .story-para {
+    font-size: 0.94rem;
+    color: #1E293B;
+    line-height: 1.8;
+  }
+
+  @media (min-width: 768px) {
+    .story-para {
+      font-size: 1.02rem;
+    }
+  }
+
+  /* 인용구 박스 */
+  .ch-quote-box {
+    position: relative;
+    background: #FFFDF9;
+    border: 1px solid #EAD8C3;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    box-shadow: inset 0 2px 4px rgba(184, 134, 11, 0.05);
+  }
+
+  .quote-mark {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    color: #EAD8C3;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #785204;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-author {
+    display: block;
+    font-size: 0.82rem;
+    color: #92400E;
+    text-align: right;
+    font-style: normal;
+  }
+
+  /* 챕터 말미 카드 덱 */
+  .chapter-places-deck {
+    margin-top: 28px;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 20px 16px;
+  }
+
+  .deck-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .deck-badge {
+    background: var(--color-vermilion);
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .deck-title {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .deck-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 640px) {
+    .deck-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .deck-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

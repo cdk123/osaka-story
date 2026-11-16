@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="20" fill="#1E293B"/>
+  <!-- 붉은 초롱불 본체 -->
+  <path d="M50 12 L30 26 C24 38 24 62 30 74 L50 88 L70 74 C76 62 76 38 70 26 Z" fill="#D63B22" stroke="#B8860B" stroke-width="2"/>
+  <!-- 초롱 테두리 및 뼈대 -->
+  <line x1="30" y1="36" x2="70" y2="36" stroke="#991B1B" stroke-width="2"/>
+  <line x1="26" y1="50" x2="74" y2="50" stroke="#991B1B" stroke-width="2"/>
+  <line x1="30" y1="64" x2="70" y2="64" stroke="#991B1B" stroke-width="2"/>
+  <!-- 초롱 위아래 검은 뚜껑 -->
+  <rect x="36" y="10" width="28" height="6" rx="2" fill="#0F172A" stroke="#B8860B" stroke-width="1"/>
+  <rect x="38" y="84" width="24" height="6" rx="2" fill="#0F172A" stroke="#B8860B" stroke-width="1"/>
+  <!-- 중앙 한자 '阪' (오사카) -->
+  <text x="50" y="58" font-family="'Noto Serif JP', 'Shippori Mincho', serif" font-weight="900" font-size="28" fill="#FBF8F3" text-anchor="middle" dominant-baseline="middle">阪</text>
+  <!-- 아래 달린 술 -->
+  <line x1="50" y1="90" x2="50" y2="98" stroke="#D63B22" stroke-width="3"/>
+</svg>

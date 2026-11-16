@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Navigation from '../components/Navigation.astro';
+import OverviewTab from '../components/OverviewTab.astro';
+import StoriesTab from '../components/StoriesTab.astro';
+import ExploreTab from '../components/ExploreTab.astro';
+import SurvivalTab from '../components/SurvivalTab.astro';
+import PicksTab from '../components/PicksTab.astro';
+import ShowDriverModal from '../components/ShowDriverModal.astro';
+---
+
+<Layout title="알면 맛있는 오사카 — 음식·역사·골목 스마트 가이드북">
+  <!-- 남색 노렌 헤더 -->
+  <Header />
+
+  <!-- 나무 명패 탭바 & 모바일 하단바 -->
+  <Navigation />
+
+  <!-- 메인 5대 탭 패널 컨테이너 -->
+  <main class="main-content-wrap">
+    <div class="container main-container">
+      <!-- 1. 오사카 한눈에 -->
+      <section id="panel-overview" class="tab-panel" role="tabpanel" aria-labelledby="tab-overview">
+        <OverviewTab />
+      </section>
+
+      <!-- 2. 미식·역사 이야기 -->
+      <section id="panel-stories" class="tab-panel hidden-panel" hidden role="tabpanel" aria-labelledby="tab-stories">
+        <StoriesTab />
+      </section>
+
+      <!-- 3. 맛집·명소 찾기 -->
+      <section id="panel-explore" class="tab-panel hidden-panel" hidden role="tabpanel" aria-labelledby="tab-explore">
+        <ExploreTab />
+      </section>
+
+      <!-- 4. 초보 생존·사투리 -->
+      <section id="panel-survival" class="tab-panel hidden-panel" hidden role="tabpanel" aria-labelledby="tab-survival">
+        <SurvivalTab />
+      </section>
+
+      <!-- 5. 내 찜 바구니 -->
+      <section id="panel-picks" class="tab-panel hidden-panel" hidden role="tabpanel" aria-labelledby="tab-picks">
+        <PicksTab />
+      </section>
+    </div>
+  </main>
+
+  <!-- 하단 푸터 -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="footer-lantern">🏮</span>
+        <strong class="footer-title">알면 맛있는 오사카 (osaka-story)</strong>
+      </div>
+      <p class="footer-desc">
+        친구처럼 들려주는 오사카 음식·역사·골목 이야기 및 범용 웹 가이드북 · 순정 Astro 정적 웹사이트
+      </p>
+      <div class="footer-badges">
+        <span class="stamp-badge">浪華現代</span>
+        <span class="stamp-badge">天下の台所</span>
+      </div>
+      <small class="footer-copy">© 2026 알면 맛있는 오사카. All Rights Reserved.</small>
+    </div>
+  </footer>
+
+  <!-- 기사님·직원 보여주기 풀스크린 모달 -->
+  <ShowDriverModal />
+</Layout>
+
+<style>
+  .main-content-wrap {
+    min-height: calc(100vh - 180px);
+    padding: 16px 0 60px 0;
+  }
+
+  @media (min-width: 768px) {
+    .main-content-wrap {
+      padding: 24px 0 80px 0;
+    }
+  }
+
+  .main-container {
+    position: relative;
+  }
+
+  .tab-panel {
+    display: block;
+    animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .tab-panel.hidden-panel {
+    display: none !important;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 사이트 푸터 */
+  .site-footer {
+    background: #1E293B;
+    color: #94A3B8;
+    padding: 36px 0 70px 0;
+    border-top: 4px solid var(--color-vermilion);
+  }
+
+  @media (min-width: 768px) {
+    .site-footer {
+      padding: 48px 0 40px 0;
+    }
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-lantern {
+    font-size: 1.5rem;
+  }
+
+  .footer-title {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: #FFFFFF;
+  }
+
+  .footer-desc {
+    font-size: 0.84rem;
+    max-width: 500px;
+    line-height: 1.55;
+    color: #CBD5E1;
+  }
+
+  .footer-badges {
+    display: flex;
+    gap: 6px;
+    margin: 4px 0;
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: #64748B;
+  }
+</style>

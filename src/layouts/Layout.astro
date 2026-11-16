@@ -1,0 +1,190 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "알면 맛있는 오사카 — 친구처럼 들려주는 오사카 음식·역사·골목 이야기",
+  description = "오사카·일본 여행 초보부터 가족 여행자까지! 400년 음식 역사 스토리텔링, 50+ 엄선 맛집·명소, 초보 생존 가이드와 스마트 찜 바구니"
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#1E293B" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Open Graph / Meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/favicon.svg" />
+    
+    <!-- Google Fonts: Shippori Mincho & Noto Serif JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <style is:global>
+      :root {
+        --color-bg: #FBF8F3;
+        --color-card: #FFFFFF;
+        --color-text: #1E293B;
+        --color-text-muted: #64748B;
+        --color-noren: #1E293B;
+        --color-vermilion: #D63B22;
+        --color-vermilion-text: #B52812;
+        --color-gold: #B8860B;
+        --color-gold-text: #785204;
+        --color-border: #E2E8F0;
+        --color-wood: #D4A373;
+        --color-wood-dark: #8C531B;
+        
+        --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+        --font-serif: 'Shippori Mincho', 'Noto Serif JP', 'Batang', serif;
+        
+        --font-scale: 100%;
+      }
+
+      html.large-text {
+        --font-scale: 112.5%;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        font-size: var(--font-scale);
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.65;
+        word-break: keep-all;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      /* 배경 잔잔한 질감 */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        opacity: 0.025;
+        pointer-events: none;
+        background-image: radial-gradient(#1e293b 1px, transparent 1px);
+        background-size: 16px 16px;
+        z-index: 999;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        background: none;
+      }
+
+      /* 스위스 그리드 및 컨테이너 */
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          padding: 0 24px;
+        }
+      }
+
+      /* 붉은 낙관 배지 (元祖, 名物, 老舗, 匠人) */
+      .stamp-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-serif);
+        font-weight: 800;
+        font-size: 0.75rem;
+        line-height: 1;
+        padding: 3px 6px;
+        color: #D63B22;
+        border: 1.5px solid #D63B22;
+        border-radius: 4px;
+        background: rgba(214, 59, 34, 0.05);
+        box-shadow: inset 0 0 2px rgba(214, 59, 34, 0.2);
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+
+      /* 파도(청해파) 디바이더 */
+      .seigaiha-divider {
+        height: 12px;
+        background-image: radial-gradient(circle at 10px 0, transparent 8px, #D4A373 8px, #D4A373 9.5px, transparent 10px);
+        background-size: 20px 12px;
+        opacity: 0.4;
+        margin: 24px 0;
+      }
+
+      /* 큰 글씨 토글 */
+      .large-text-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.82rem;
+        padding: 4px 10px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: #FFFFFF;
+        background: rgba(255, 255, 255, 0.12);
+        transition: all 0.2s ease;
+      }
+      .large-text-btn.active {
+        background: var(--color-vermilion);
+        border-color: var(--color-vermilion);
+        font-weight: 700;
+      }
+
+      /* 모달 열렸을 때 스크롤 잠금 */
+      body.modal-open {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <slot />
+
+    <!-- PWA Service Worker Registration Script -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(err => {
+            console.log('SW registration failed: ', err);
+          });
+        });
+      }
+
+      // 큰 글씨 모드 복원
+      const savedLargeText = localStorage.getItem('osaka_large_text');
+      if (savedLargeText === 'true') {
+        document.documentElement.classList.add('large-text');
+      }
+    </script>
+  </body>
+</html>

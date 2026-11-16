@@ -1,0 +1,917 @@
+---
+import { airportRoutes, transitTips, signboards, etiquetteRules } from '../data/survival';
+import { dialects } from '../data/dialect';
+import { mediaWorks, photoSpots, specialThemes } from '../data/media';
+---
+
+<div class="survival-view">
+  <!-- 1. 간사이 공항 → 시내 이동 3대장 -->
+  <section class="survival-section">
+    <div class="sec-title-wrap">
+      <span class="stamp-badge">공항 입국</span>
+      <h3 class="sec-title">간사이 공항에서 시내 들어가는 3대 방법</h3>
+      <p class="sec-sub">숙소 위치와 동행자(가족 수)에 맞춰 가장 편한 이동 수단을 선택하세요.</p>
+    </div>
+
+    <div class="airport-grid">
+      {airportRoutes.map((route) => (
+        <div class="airport-card">
+          <header class="air-header">
+            <h4 class="air-name">{route.nameKo}</h4>
+            <span class="air-dest">목적지: {route.targetDestination}</span>
+          </header>
+          <div class="air-meta">
+            <span class="meta-tag">⏱️ {route.duration}</span>
+            <span class="meta-tag">💰 {route.price}</span>
+          </div>
+          <ul class="air-features">
+            {route.features.map((f) => (
+              <li>{f}</li>
+            ))}
+          </ul>
+          <div class="air-recommend">
+            <strong class="rec-label">추천:</strong>
+            <span class="rec-text">{route.recommendFor}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="seigaiha-divider"></div>
+
+  <!-- 2. 대중교통 탑승 꿀팁 & 택시 4인 제한 경고 -->
+  <section class="survival-section">
+    <div class="sec-title-wrap">
+      <span class="stamp-badge">교통 백과</span>
+      <h3 class="sec-title">지하철 · 버스 · 택시 이용 꿀팁</h3>
+      <p class="sec-sub">신용카드 컨택리스 탑승부터 일본 택시 자동문과 승차 정원 규칙까지</p>
+    </div>
+
+    <div class="transit-grid">
+      {transitTips.map((cat) => (
+        <div class="transit-card">
+          <h4 class="trans-cat-title">{cat.titleKo}</h4>
+          <div class="trans-tips-list">
+            {cat.tips.map((t) => (
+              <div class={`trans-tip-item ${t.warning ? 'warning-item' : ''}`}>
+                <strong class="tip-t">{t.title}</strong>
+                <p class="tip-d">{t.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="seigaiha-divider"></div>
+
+  <!-- 3. 길거리 표지판 & 노렌 해독법 -->
+  <section class="survival-section">
+    <div class="sec-title-wrap">
+      <span class="stamp-badge">간판 해독</span>
+      <h3 class="sec-title">거리 표지판 & 식당 앞 노렌(暖簾) 해독법</h3>
+      <p class="sec-sub">가게 앞 천 커튼이 걸려 있으면 영업 중! 헷갈리는 한자 간판을 한눈에 정리했습니다.</p>
+    </div>
+
+    <div class="signboards-grid">
+      {signboards.map((s) => (
+        <div class={`sign-card sign-${s.colorType}`}>
+          <div class="sign-top">
+            <span class="sign-kanji">{s.kanji}</span>
+            <span class="sign-kana">{s.kana}</span>
+          </div>
+          <div class="sign-meaning">
+            <strong class="meaning-text">{s.meaningKo}</strong>
+            <span class="pronounce-text">[{s.pronounceKo}]</span>
+          </div>
+          <p class="sign-usage">{s.usageContext}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="seigaiha-divider"></div>
+
+  <!-- 4. 식당 & 거리 예절 6계명 -->
+  <section class="survival-section">
+    <div class="sec-title-wrap">
+      <span class="stamp-badge">현지 문화</span>
+      <h3 class="sec-title">오사카 식당 & 거리 예절 6계명</h3>
+      <p class="sec-sub">도쿄와 달리 에스컬레이터는 ‘오른쪽 서기’! 현지인들에게 환영받는 여행자 매너</p>
+    </div>
+
+    <div class="etiquette-grid">
+      {etiquetteRules.map((rule) => (
+        <div class="etiquette-card">
+          <div class="eti-num-col">
+            <span class="eti-icon">{rule.icon}</span>
+            <span class="eti-num">0{rule.num}</span>
+          </div>
+          <div class="eti-body">
+            <h4 class="eti-title">{rule.titleKo}</h4>
+            {rule.ruleJa && <span class="eti-ja">{rule.ruleJa}</span>}
+            <p class="eti-summary">{rule.summary}</p>
+            <p class="eti-detail">{rule.detailedGuide}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="seigaiha-divider"></div>
+
+  <!-- 5. 실전 오사카 사투리 10선 플립 카드 + Web Speech API 발음 듣기 -->
+  <section class="survival-section" id="dialect-section">
+    <div class="sec-title-wrap">
+      <span class="stamp-badge">오사카벤</span>
+      <h3 class="sec-title">실전 오사카 사투리 10선 & 원어민 발음 듣기</h3>
+      <p class="sec-sub">
+        ‘오오키니~’ 한마디에 식당 주인의 얼굴에 환한 미소가 번집니다. [🔊 발음 듣기]를 눌러 억양을 들어보세요!
+      </p>
+    </div>
+
+    <div class="dialects-grid">
+      {dialects.map((d) => (
+        <div class="dialect-card" data-speech-text={d.phraseJa}>
+          <div class="dia-header">
+            <span class="dia-tag">{d.tag}</span>
+            <button
+              type="button"
+              class="btn-speak-dialect"
+              data-speak={d.phraseJa}
+              aria-label={`${d.phraseJa} 일본어 발음 듣기`}
+            >
+              🔊 발음 듣기
+            </button>
+          </div>
+
+          <div class="dia-phrase-group">
+            <span class="dia-ja">{d.phraseJa}</span>
+            <span class="dia-pronounce">{d.pronounceKo}</span>
+          </div>
+
+          <div class="dia-meaning-box">
+            <strong class="dia-meaning">{d.meaningKo}</strong>
+          </div>
+
+          <p class="dia-origin">{d.originKo}</p>
+
+          <div class="dia-example-box">
+            <span class="ex-label">실전 사용</span>
+            <p class="ex-ja">{d.exampleJa}</p>
+            <p class="ex-ko">{d.exampleKo}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="seigaiha-divider"></div>
+
+  <!-- 6. 오사카 배경 영화·애니·소설 4선 -->
+  <section class="survival-section">
+    <div class="sec-title-wrap">
+      <span class="stamp-badge">명작의 무대</span>
+      <h3 class="sec-title">오사카가 배경인 영화 · 애니메이션 · 소설 4선</h3>
+      <p class="sec-sub">호젠지 요코초의 단팥죽 소설부터 코난의 오사카 사건부까지</p>
+    </div>
+
+    <div class="media-grid">
+      {mediaWorks.map((work) => (
+        <div class="media-card">
+          <header class="media-header">
+            <span class="media-cat-badge">{work.category}</span>
+            <h4 class="media-title">{work.titleKo}</h4>
+            <span class="media-orig">{work.titleJa} ({work.releaseYear})</span>
+          </header>
+          <div class="media-author">
+            <span class="author-label">창작자:</span> {work.authorOrDirector}
+          </div>
+          <div class="media-loc">
+            <span class="loc-pin">📍</span> {work.locationKo}
+          </div>
+          <p class="media-desc">{work.description}</p>
+          <blockquote class="media-quote">
+            <p>{work.quoteOrScene}</p>
+          </blockquote>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="seigaiha-divider"></div>
+
+  <!-- 7. 인생샷 포토 스팟 5선 -->
+  <section class="survival-section">
+    <div class="sec-title-wrap">
+      <span class="stamp-badge">인생 사진</span>
+      <h3 class="sec-title">흔하지 않은 오사카 인생샷 포토존 5선</h3>
+      <p class="sec-sub">관광객 인파 없이 가족·연인과 고즈넉한 추억을 남기는 감성 촬영지</p>
+    </div>
+
+    <div class="photospot-grid">
+      {photoSpots.map((spot, idx) => (
+        <div class="photo-card">
+          <div class="photo-num-badge">SPOT 0{idx + 1}</div>
+          <h4 class="photo-title">{spot.titleKo}</h4>
+          <div class="photo-meta">
+            <span>📍 {spot.locationKo}</span>
+            <span>⏰ 추천 시간: {spot.bestTime}</span>
+          </div>
+          <p class="photo-scene">{spot.sceneDesc}</p>
+          <div class="photo-tip-box">
+            <strong class="ptip-label">📸 촬영 팁:</strong>
+            <span class="ptip-text">{spot.tip}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="seigaiha-divider"></div>
+
+  <!-- 8. 놓치면 아쉬운 알짜 테마 4선 -->
+  <section class="survival-section">
+    <div class="sec-title-wrap">
+      <span class="stamp-badge">심층 탐구</span>
+      <h3 class="sec-title">놓치면 아쉬운 오사카 미식·문화 알짜 테마</h3>
+      <p class="sec-sub">회전초밥 발상지, 베이커리 수도 간사이, 소라니와 온천 병우유, 편의점 돈베이 W 야식학</p>
+    </div>
+
+    <div class="themes-grid">
+      {specialThemes.map((thm) => (
+        <div class="theme-card">
+          <h4 class="thm-title">{thm.titleKo}</h4>
+          <span class="thm-sub">{thm.subtitle}</span>
+          <p class="thm-desc">{thm.content}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</div>
+
+<style>
+  .survival-view {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-bottom: 50px;
+  }
+
+  .survival-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sec-title-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .sec-title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .sec-sub {
+    font-size: 0.86rem;
+    color: #64748B;
+  }
+
+  @media (min-width: 768px) {
+    .sec-title {
+      font-size: 1.65rem;
+    }
+    .sec-sub {
+      font-size: 0.95rem;
+    }
+  }
+
+  /* 공항 3대장 */
+  .airport-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .airport-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .airport-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  }
+
+  .air-header {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .air-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .air-dest {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-vermilion-text);
+  }
+
+  .air-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.78rem;
+    color: #475569;
+    background: #F8FAFC;
+    padding: 8px 10px;
+    border-radius: 6px;
+  }
+
+  .air-features {
+    list-style: square inside;
+    font-size: 0.82rem;
+    color: #334155;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .air-recommend {
+    background: #FFFBEB;
+    border-left: 3px solid #F59E0B;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    color: #78350F;
+    margin-top: auto;
+  }
+
+  /* 대중교통 그리드 */
+  .transit-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .transit-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .transit-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .trans-cat-title {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0F172A;
+    border-bottom: 2px solid #F1F5F9;
+    padding-bottom: 8px;
+  }
+
+  .trans-tips-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .trans-tip-item {
+    background: #F8FAFC;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .trans-tip-item.warning-item {
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+  }
+
+  .tip-t {
+    font-size: 0.85rem;
+    color: #0F172A;
+  }
+
+  .warning-item .tip-t {
+    color: #991B1B;
+  }
+
+  .tip-d {
+    font-size: 0.8rem;
+    color: #475569;
+    line-height: 1.5;
+  }
+
+  /* 표지판 그리드 */
+  .signboards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  @media (min-width: 640px) {
+    .signboards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .signboards-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .sign-card {
+    background: #FFFFFF;
+    border: 1.5px solid #CBD5E1;
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sign-blue { border-color: #93C5FD; background: #F8FAFC; }
+  .sign-green { border-color: #86EFAC; background: #F0FDF4; }
+  .sign-yellow { border-color: #FDE047; background: #FEFCE8; }
+  .sign-red { border-color: #FCA5A5; background: #FEF2F2; }
+
+  .sign-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .sign-kanji {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #000000;
+  }
+
+  .sign-kana {
+    font-size: 0.78rem;
+    color: #64748B;
+  }
+
+  .sign-meaning {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .meaning-text {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #1E293B;
+  }
+
+  .pronounce-text {
+    font-size: 0.8rem;
+    color: #2563EB;
+  }
+
+  .sign-usage {
+    font-size: 0.8rem;
+    color: #475569;
+    line-height: 1.45;
+  }
+
+  /* 식당 예절 그리드 */
+  .etiquette-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  @media (min-width: 768px) {
+    .etiquette-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .etiquette-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    gap: 14px;
+  }
+
+  .eti-num-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .eti-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+
+  .eti-num {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--color-vermilion-text);
+  }
+
+  .eti-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .eti-title {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .eti-ja {
+    font-size: 0.78rem;
+    color: #64748B;
+  }
+
+  .eti-summary {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-vermilion-text);
+  }
+
+  .eti-detail {
+    font-size: 0.8rem;
+    color: #475569;
+    line-height: 1.55;
+  }
+
+  /* 사투리 10선 그리드 */
+  .dialects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 640px) {
+    .dialects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .dialect-card {
+    background: #FFFFFF;
+    border: 1.5px solid #CBD5E1;
+    border-radius: 12px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .dia-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .dia-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #475569;
+    background: #F1F5F9;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .btn-speak-dialect {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    background: #1E293B;
+    padding: 4px 10px;
+    border-radius: 16px;
+    transition: all 0.15s ease;
+  }
+
+  .btn-speak-dialect:hover {
+    background: var(--color-vermilion);
+  }
+
+  .dia-phrase-group {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .dia-ja {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #0F172A;
+    letter-spacing: -0.5px;
+  }
+
+  .dia-pronounce {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-vermilion-text);
+  }
+
+  .dia-meaning-box {
+    background: #FFF5F5;
+    border-left: 3px solid var(--color-vermilion);
+    padding: 6px 10px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .dia-meaning {
+    font-size: 0.95rem;
+    color: #991B1B;
+  }
+
+  .dia-origin {
+    font-size: 0.8rem;
+    color: #475569;
+    line-height: 1.5;
+  }
+
+  .dia-example-box {
+    background: #F8FAFC;
+    border: 1px dashed #CBD5E1;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 0.78rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: auto;
+  }
+
+  .ex-label {
+    font-weight: 700;
+    color: #64748B;
+    font-size: 0.7rem;
+  }
+
+  .ex-ja {
+    font-family: var(--font-serif);
+    color: #0F172A;
+    font-weight: 700;
+  }
+
+  .ex-ko {
+    color: #475569;
+  }
+
+  /* 미디어 4선 */
+  .media-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .media-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .media-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .media-header {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .media-cat-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #B45309;
+    background: #FEF3C7;
+    padding: 2px 6px;
+    border-radius: 4px;
+    align-self: flex-start;
+  }
+
+  .media-title {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .media-orig {
+    font-size: 0.78rem;
+    color: #64748B;
+  }
+
+  .media-author, .media-loc {
+    font-size: 0.8rem;
+    color: #475569;
+  }
+
+  .media-desc {
+    font-size: 0.84rem;
+    color: #334155;
+    line-height: 1.55;
+  }
+
+  .media-quote {
+    background: #FFFDF9;
+    border-left: 3px solid var(--color-wood-dark);
+    padding: 8px 12px;
+    font-family: var(--font-serif);
+    font-size: 0.84rem;
+    color: #78350F;
+    line-height: 1.5;
+    margin-top: auto;
+  }
+
+  /* 포토존 그리드 */
+  .photospot-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .photospot-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .photo-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .photo-num-badge {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--color-vermilion-text);
+  }
+
+  .photo-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .photo-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.78rem;
+    color: #64748B;
+  }
+
+  .photo-scene {
+    font-size: 0.82rem;
+    color: #334155;
+    line-height: 1.5;
+  }
+
+  .photo-tip-box {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 0.78rem;
+    color: #166534;
+    line-height: 1.45;
+    margin-top: auto;
+  }
+
+  .ptip-label {
+    font-weight: 700;
+    display: inline-block;
+    margin-right: 4px;
+  }
+
+  /* 알짜 테마 그리드 */
+  .themes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  @media (min-width: 768px) {
+    .themes-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .theme-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .thm-title {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .thm-sub {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-vermilion-text);
+  }
+
+  .thm-desc {
+    font-size: 0.82rem;
+    color: #475569;
+    line-height: 1.6;
+  }
+</style>
+
+<script is:inline>
+  // Web Speech API (ja-JP) 발음 듣기 스크립트
+  document.addEventListener('click', (e) => {
+    const speakBtn = e.target.closest('[data-speak]');
+    if (speakBtn) {
+      e.preventDefault();
+      const text = speakBtn.getAttribute('data-speak');
+      if (!text) return;
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // 이전 재생 취소
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'ja-JP';
+        utterance.rate = 0.9; // 약간 또박또박한 속도
+
+        const origText = speakBtn.innerHTML;
+        speakBtn.textContent = '🔊 재생 중...';
+        utterance.onend = () => {
+          speakBtn.innerHTML = origText;
+        };
+        utterance.onerror = () => {
+          speakBtn.innerHTML = origText;
+        };
+
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert('이 브라우저는 음성 재생을 지원하지 않습니다.');
+      }
+    }
+  });
+</script>

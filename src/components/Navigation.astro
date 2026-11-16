@@ -1,0 +1,314 @@
+---
+const tabs = [
+  { id: 'overview', label: '오사카 한눈에', icon: '🗺️', sub: '부산비교·6대구역·시장' },
+  { id: 'stories', label: '미식·역사 이야기', icon: '📖', sub: '프롤로그~6장 스토리북' },
+  { id: 'explore', label: '맛집·명소 찾기', icon: '🔍', sub: '50+곳·3중필터·치트키' },
+  { id: 'survival', label: '초보 생존·사투리', icon: '🚇', sub: '공항·교통·예절·방언' },
+  { id: 'picks', label: '내 찜 바구니', icon: '♥', sub: '동선정리·카톡공유', badge: true }
+];
+---
+
+<!-- 데스크톱 상단 나무 명패(木札) 탭바 -->
+<nav class="desktop-nav" aria-label="메인 네비게이션">
+  <div class="container">
+    <div class="kifuda-tab-bar" role="tablist">
+      {tabs.map((tab) => (
+        <button
+          type="button"
+          role="tab"
+          data-tab={tab.id}
+          class={`kifuda-tab ${tab.id === 'overview' ? 'active' : ''}`}
+          aria-selected={tab.id === 'overview'}
+          aria-controls={`panel-${tab.id}`}
+        >
+          <span class="kifuda-wood-texture"></span>
+          <span class="tab-icon">{tab.icon}</span>
+          <div class="tab-label-group">
+            <strong class="tab-title">{tab.label}</strong>
+            <span class="tab-sub">{tab.sub}</span>
+          </div>
+          {tab.badge && <span class="picks-counter-badge" id="desktop-picks-counter">0</span>}
+        </button>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<!-- 모바일 하단 고정 탭바 -->
+<nav class="mobile-bottom-nav" aria-label="모바일 하단 네비게이션">
+  <div class="mobile-tabs-wrap" role="tablist">
+    {tabs.map((tab) => (
+      <button
+        type="button"
+        role="tab"
+        data-tab={tab.id}
+        class={`mobile-tab-btn ${tab.id === 'overview' ? 'active' : ''}`}
+        aria-selected={tab.id === 'overview'}
+        aria-controls={`panel-${tab.id}`}
+      >
+        <span class="m-icon">{tab.icon}</span>
+        <span class="m-label">{tab.label.split(' ')[0]}</span>
+        {tab.badge && <span class="picks-counter-badge mobile" id="mobile-picks-counter">0</span>}
+      </button>
+    ))}
+  </div>
+</nav>
+
+<style>
+  /* 데스크톱 나무 명패 (키후다) 탭바 */
+  .desktop-nav {
+    display: none;
+    background: #EFE8DA;
+    border-bottom: 2px solid #D6C7B2;
+    padding: 8px 0;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  @media (min-width: 768px) {
+    .desktop-nav {
+      display: block;
+      position: sticky;
+      top: 65px;
+      z-index: 40;
+    }
+  }
+
+  .kifuda-tab-bar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+
+  .kifuda-tab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #F7EFE3;
+    border: 1.5px solid #C8B297;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(140, 83, 27, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    color: #4A3B32;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    text-align: left;
+  }
+
+  .kifuda-tab:hover {
+    background: #FAF4EB;
+    border-color: var(--color-wood-dark);
+    transform: translateY(-1px);
+  }
+
+  .kifuda-tab.active {
+    background: #FFFFFF;
+    border-color: var(--color-vermilion);
+    box-shadow: 0 4px 12px rgba(214, 59, 34, 0.15), inset 0 2px 0 var(--color-vermilion);
+    color: var(--color-vermilion-text);
+  }
+
+  .tab-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .tab-label-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .tab-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tab-sub {
+    font-size: 0.72rem;
+    color: #78716C;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .kifuda-tab.active .tab-sub {
+    color: #B52812;
+    opacity: 0.85;
+  }
+
+  .picks-counter-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--color-vermilion);
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 800;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  /* 모바일 하단 고정 탭바 */
+  .mobile-bottom-nav {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #E2E8F0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  @media (min-width: 768px) {
+    .mobile-bottom-nav {
+      display: none;
+    }
+  }
+
+  .mobile-tabs-wrap {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 56px;
+  }
+
+  .mobile-tab-btn {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    color: #64748B;
+    transition: all 0.15s ease;
+  }
+
+  .mobile-tab-btn.active {
+    color: var(--color-vermilion);
+    font-weight: 700;
+  }
+
+  .m-icon {
+    font-size: 1.15rem;
+    line-height: 1;
+  }
+
+  .m-label {
+    font-size: 0.68rem;
+    letter-spacing: -0.3px;
+  }
+
+  .picks-counter-badge.mobile {
+    top: 4px;
+    right: calc(50% - 18px);
+    font-size: 0.65rem;
+    min-width: 16px;
+    height: 16px;
+  }
+</style>
+
+<script is:inline>
+  // 5대 탭 전환 및 스크롤 위치 보존 SPA 제어
+  (function() {
+    const scrollPositions = {};
+    let currentTab = 'overview';
+
+    function initTabFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const tabParam = urlParams.get('tab');
+      const validTabs = ['overview', 'stories', 'explore', 'survival', 'picks'];
+      if (tabParam && validTabs.includes(tabParam)) {
+        return tabParam;
+      }
+      return 'overview';
+    }
+
+    function switchTab(targetTabId, updateHistory = true) {
+      if (!targetTabId) return;
+
+      // 1. 현재 탭 스크롤 위치 저장
+      scrollPositions[currentTab] = window.scrollY;
+
+      // 2. 탭 패널 표시/숨김 토글
+      const panels = document.querySelectorAll('.tab-panel');
+      panels.forEach(panel => {
+        if (panel.id === `panel-${targetTabId}`) {
+          panel.classList.remove('hidden-panel');
+          panel.removeAttribute('hidden');
+        } else {
+          panel.classList.add('hidden-panel');
+          panel.setAttribute('hidden', 'true');
+        }
+      });
+
+      // 3. 네비게이션 버튼 활성화 클래스 토글
+      const navButtons = document.querySelectorAll('[data-tab]');
+      navButtons.forEach(btn => {
+        const matches = btn.getAttribute('data-tab') === targetTabId;
+        btn.classList.toggle('active', matches);
+        btn.setAttribute('aria-selected', matches ? 'true' : 'false');
+      });
+
+      currentTab = targetTabId;
+
+      // 4. URL 업데이트 (?tab=)
+      if (updateHistory) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('tab', targetTabId);
+        window.history.pushState({ tab: targetTabId }, '', url.toString());
+      }
+
+      // 5. 스크롤 위치 복원
+      const savedY = scrollPositions[targetTabId] ?? 0;
+      window.scrollTo({
+        top: savedY,
+        behavior: 'instant'
+      });
+
+      // 탭 변경 이벤트 디스패치 (각 탭 컴포넌트 반응용)
+      window.dispatchEvent(new CustomEvent('osaka_tab_change', { detail: { tab: targetTabId } }));
+    }
+
+    // 클릭 리스너 바인딩
+    document.addEventListener('DOMContentLoaded', () => {
+      const navButtons = document.querySelectorAll('[data-tab]');
+      navButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetTab = btn.getAttribute('data-tab');
+          if (targetTab && targetTab !== currentTab) {
+            switchTab(targetTab);
+          }
+        });
+      });
+
+      // 초기 탭 로드
+      const initialTab = initTabFromUrl();
+      switchTab(initialTab, false);
+    });
+
+    // 뒤로가기/앞으로가기 (popstate) 처리
+    window.addEventListener('popstate', (e) => {
+      const stateTab = e.state?.tab || initTabFromUrl();
+      switchTab(stateTab, false);
+    });
+
+    // 전역 함수로 공개
+    window.osakaSwitchTab = switchTab;
+  })();
+</script>

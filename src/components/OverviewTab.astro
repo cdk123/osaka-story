@@ -1,0 +1,523 @@
+---
+import { busanComparison, districts, markets, specialties } from '../data/city';
+---
+
+<div class="overview-view">
+  <!-- 히어로 배너: 오사카 도시 인포그래픽 -->
+  <section class="city-hero-card">
+    <div class="hero-header">
+      <span class="stamp-badge">浪華百科</span>
+      <h2 class="hero-title">부산과 비교해서 3배 압축된 미식의 수도</h2>
+      <p class="hero-lead">
+        부산의 1/3 크기 평지에 촘촘히 모여 있어, 지하철 10~20분이면 전 세계 최고 수준의 맛집과 골목에 닿습니다.
+      </p>
+    </div>
+
+    <!-- 부산 비교 3대 지표 카드 -->
+    <div class="stats-grid">
+      {busanComparison.stats.map((stat) => (
+        <div class="stat-card">
+          <span class="stat-label">{stat.label}</span>
+          <div class="stat-main">{stat.osakaCity}</div>
+          <div class="stat-compare">{stat.busanCompare}</div>
+          <p class="stat-note">{stat.note}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 6대 구역 인터랙티브 가이드 -->
+  <section class="districts-section">
+    <div class="section-title-wrap">
+      <span class="section-badge">구역별 가이드</span>
+      <h3 class="section-heading">오사카 핵심 6대 구역 한눈에 읽기</h3>
+      <p class="section-sub">북쪽의 비즈니스·백화점 우메다(키타)부터 남쪽의 불야성 도톤보리(미나미)까지</p>
+    </div>
+
+    <div class="districts-grid">
+      {districts.map((d) => (
+        <article class="district-card" id={`district-${d.id}`}>
+          <div class="district-top" style={`border-top-color: ${d.color};`}>
+            <div class="d-names">
+              <h4 class="d-name-ko">{d.nameKo}</h4>
+              <span class="d-name-ja">{d.nameJa}</span>
+            </div>
+          </div>
+          <p class="d-character">{d.characterKo}</p>
+          <p class="d-desc">{d.description}</p>
+          
+          <div class="d-highlights-wrap">
+            <strong class="d-sub-title">핵심 랜드마크</strong>
+            <ul class="d-pill-list">
+              {d.highlights.map((h) => (
+                <li class="d-pill">{h}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="d-stations">
+            <span class="station-icon">🚇</span>
+            <span class="stations-text">{d.subwayStations.join(' · ')}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <div class="seigaiha-divider"></div>
+
+  <!-- 오사카 3대 전통 시장 -->
+  <section class="markets-section">
+    <div class="section-title-wrap">
+      <span class="section-badge">식자재의 보물창고</span>
+      <h3 class="section-heading">오사카 3대 전통 시장</h3>
+      <p class="section-sub">190년 어시장부터 2.6km 일본 최장 아케이드까지</p>
+    </div>
+
+    <div class="markets-grid">
+      {markets.map((m) => (
+        <div class="market-card">
+          <header class="m-card-header">
+            <h4 class="m-name">{m.nameKo}</h4>
+            <span class="m-name-ja">{m.nameJa}</span>
+          </header>
+          <div class="m-history">
+            <span class="m-hist-badge">역사</span>
+            <span>{m.historyKo}</span>
+          </div>
+          <p class="m-features">{m.featuresKo}</p>
+          <div class="m-food-box">
+            <strong class="food-label">현장 대표 먹거리:</strong>
+            <span class="food-items">{m.signatureFoods.join(', ')}</span>
+          </div>
+          <div class="m-access">
+            <span class="access-icon">📍</span>
+            <span>{m.access}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <div class="seigaiha-divider"></div>
+
+  <!-- 대표 특산물 5선 -->
+  <section class="specialties-section">
+    <div class="section-title-wrap">
+      <span class="section-badge">나니와 명물</span>
+      <h3 class="section-heading">오사카만의 풍토가 빚어낸 5대 특산물</h3>
+      <p class="section-sub">사과처럼 생으로 먹는 물가지부터 600년 전통의 프로 셰프 칼까지</p>
+    </div>
+
+    <div class="specialties-grid">
+      {specialties.map((item) => (
+        <div class="specialty-card">
+          <div class="spec-head">
+            <div class="spec-titles">
+              <h4 class="spec-ko">{item.nameKo}</h4>
+              <span class="spec-ja">{item.nameJa}</span>
+            </div>
+            <span class="spec-cat">{item.category}</span>
+          </div>
+          <span class="spec-origin">산지: {item.originArea}</span>
+          <p class="spec-desc">{item.descriptionKo}</p>
+          <div class="spec-tip">
+            <strong class="tip-badge">맛보기 팁</strong>
+            <span>{item.tip}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</div>
+
+<style>
+  .overview-view {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-bottom: 40px;
+  }
+
+  .city-hero-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  }
+
+  .hero-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.3;
+  }
+
+  .hero-lead {
+    font-size: 0.92rem;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 1.85rem;
+    }
+    .hero-lead {
+      font-size: 1.05rem;
+    }
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  @media (min-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .stat-card {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-vermilion-text);
+  }
+
+  .stat-main {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .stat-compare {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2563EB;
+  }
+
+  .stat-note {
+    font-size: 0.78rem;
+    color: #64748B;
+    line-height: 1.45;
+    margin-top: auto;
+  }
+
+  /* 섹션 공통 헤더 */
+  .section-title-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+
+  .section-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-vermilion-text);
+    background: rgba(214, 59, 34, 0.08);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .section-heading {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .section-sub {
+    font-size: 0.86rem;
+    color: #64748B;
+  }
+
+  /* 6대 구역 그리드 */
+  .districts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .districts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .districts-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .district-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 4px solid var(--color-vermilion);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  }
+
+  .d-names {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .d-name-ko {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .d-name-ja {
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    color: #64748B;
+  }
+
+  .d-character {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #D63B22;
+    line-height: 1.4;
+  }
+
+  .d-desc {
+    font-size: 0.82rem;
+    color: #475569;
+    line-height: 1.55;
+  }
+
+  .d-highlights-wrap {
+    background: #F8FAFC;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .d-sub-title {
+    font-size: 0.72rem;
+    color: #64748B;
+  }
+
+  .d-pill-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .d-pill {
+    background: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #334155;
+    padding: 2px 6px;
+  }
+
+  .d-stations {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    color: #64748B;
+    margin-top: auto;
+    padding-top: 4px;
+  }
+
+  /* 3대 시장 그리드 */
+  .markets-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .markets-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .market-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .m-card-header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .m-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .m-name-ja {
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    color: #64748B;
+  }
+
+  .m-history {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: #475569;
+    line-height: 1.45;
+  }
+
+  .m-hist-badge {
+    background: #FEF3C7;
+    color: #92400E;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .m-features {
+    font-size: 0.82rem;
+    color: #334155;
+    line-height: 1.55;
+  }
+
+  .m-food-box {
+    background: #FFFBEB;
+    border-left: 3px solid #F59E0B;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    color: #78350F;
+  }
+
+  .food-label {
+    font-weight: 700;
+  }
+
+  .m-access {
+    font-size: 0.76rem;
+    color: #64748B;
+    margin-top: auto;
+    display: flex;
+    gap: 4px;
+  }
+
+  /* 특산물 그리드 */
+  .specialties-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  @media (min-width: 768px) {
+    .specialties-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .specialty-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .spec-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .spec-ko {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .spec-ja {
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    color: #64748B;
+  }
+
+  .spec-cat {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #2563EB;
+    background: #EFF6FF;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .spec-origin {
+    font-size: 0.78rem;
+    color: #64748B;
+  }
+
+  .spec-desc {
+    font-size: 0.84rem;
+    color: #334155;
+    line-height: 1.55;
+  }
+
+  .spec-tip {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 0.78rem;
+    color: #166534;
+    line-height: 1.45;
+  }
+
+  .tip-badge {
+    font-weight: 700;
+    display: inline-block;
+    margin-right: 4px;
+  }
+</style>

@@ -1,0 +1,426 @@
+---
+import { places } from '../data/places';
+import PlaceCard from './PlaceCard.astro';
+
+const areaOptions = [
+  { value: 'all', label: '권역 전체' },
+  { value: 'namba', label: '난바·도톤보리' },
+  { value: 'shinsaibashi', label: '신사이바시' },
+  { value: 'umeda', label: '우메다' },
+  { value: 'other', label: '기타 (중앙/센슈 등)' }
+];
+
+const categoryOptions = [
+  { value: 'all', label: '종류 전체' },
+  { value: 'beef', label: '와규·고기' },
+  { value: 'curry', label: '카레·경양식' },
+  { value: 'noodle', label: '우동·초밥·장어' },
+  { value: 'bento', label: '도시락·만두' },
+  { value: 'cafe', label: '찻집·빵·디저트' },
+  { value: 'spot', label: '로컬명소·온천' },
+  { value: 'craft', label: '장인명품·기념품' }
+];
+
+const companionOptions = [
+  { value: 'all', label: '동행자 전체' },
+  { value: 'family', label: '👨‍👩‍👧‍👦 부모님·대가족(룸/테이블)' },
+  { value: 'youth', label: '✨ 1020·동생 원픽' },
+  { value: 'adult', label: '🍶 어른들의 술자리' },
+  { value: 'solo', label: '⚡ 혼밥·빠른 한 끼' }
+];
+---
+
+<div class="explore-view">
+  <!-- 스마트 3중 필터 바 (상단 Sticky 축소 바) -->
+  <section class="filter-sticky-bar" id="explore-filter-bar">
+    <div class="filter-header-row">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input
+          type="search"
+          id="explore-search-input"
+          placeholder="가게명, 일본어 상호, 메뉴 검색..."
+          class="search-input"
+          autocomplete="off"
+        />
+        <button type="button" id="btn-clear-search" class="btn-clear-search" aria-label="검색어 지우기" hidden>
+          ✕
+        </button>
+      </div>
+
+      <div class="results-count-wrap">
+        <span class="count-badge" id="matching-count">{places.length}</span>
+        <span class="count-label">곳 매칭</span>
+      </div>
+    </div>
+
+    <!-- 3중 선택 드롭다운/버튼 -->
+    <div class="filter-selects-grid">
+      <!-- 1. 권역 -->
+      <div class="select-group">
+        <label for="filter-area" class="filter-label">권역</label>
+        <select id="filter-area" class="filter-select">
+          {areaOptions.map(opt => (
+            <option value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
+
+      <!-- 2. 카테고리 -->
+      <div class="select-group">
+        <label for="filter-category" class="filter-label">음식·명소 종류</label>
+        <select id="filter-category" class="filter-select">
+          {categoryOptions.map(opt => (
+            <option value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
+
+      <!-- 3. 동행자 -->
+      <div class="select-group">
+        <label for="filter-companion" class="filter-label">동행자 맞춤</label>
+        <select id="filter-companion" class="filter-select">
+          {companionOptions.map(opt => (
+            <option value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
+
+      <button type="button" id="btn-reset-filters" class="btn-reset-filters" title="필터 초기화">
+        🔄 초기화
+      </button>
+    </div>
+  </section>
+
+  <!-- 장소 카드 그리드 (50+곳) -->
+  <section class="places-grid-section">
+    <div class="places-grid" id="explore-places-grid">
+      {places.map((place) => (
+        <PlaceCard place={place} />
+      ))}
+    </div>
+
+    <!-- 검색 결과 없을 때 -->
+    <div id="no-results-box" class="no-results-box" hidden>
+      <span class="no-res-icon">🏮</span>
+      <h4 class="no-res-title">조건에 맞는 장소를 찾지 못했습니다.</h4>
+      <p class="no-res-desc">선택한 필터를 변경하거나 검색어를 비워보세요.</p>
+      <button type="button" id="btn-reset-filters-empty" class="btn-reset-filters large">
+        모든 필터 초기화하기
+      </button>
+    </div>
+  </section>
+</div>
+
+<style>
+  .explore-view {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 50px;
+  }
+
+  /* 스마트 필터 바 (Sticky) */
+  .filter-sticky-bar {
+    position: sticky;
+    top: 60px;
+    z-index: 30;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.2s ease;
+  }
+
+  @media (min-width: 768px) {
+    .filter-sticky-bar {
+      top: 130px;
+    }
+  }
+
+  .filter-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .search-input-wrap {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    font-size: 1rem;
+    color: #94A3B8;
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 9px 36px 9px 36px;
+    background: #F1F5F9;
+    border: 1px solid #CBD5E1;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #0F172A;
+    outline: none;
+    transition: all 0.15s ease;
+  }
+
+  .search-input:focus {
+    background: #FFFFFF;
+    border-color: var(--color-vermilion);
+    box-shadow: 0 0 0 3px rgba(214, 59, 34, 0.12);
+  }
+
+  .btn-clear-search {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #CBD5E1;
+    color: #334155;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .results-count-wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .count-badge {
+    background: var(--color-vermilion);
+    color: #FFFFFF;
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 12px;
+  }
+
+  .count-label {
+    font-size: 0.8rem;
+    color: #64748B;
+  }
+
+  .filter-selects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  @media (min-width: 640px) {
+    .filter-selects-grid {
+      grid-template-columns: repeat(3, 1fr) auto;
+    }
+  }
+
+  .select-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .filter-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #64748B;
+    margin-left: 2px;
+  }
+
+  .filter-select {
+    padding: 7px 10px;
+    background: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #1E293B;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .filter-select:focus {
+    border-color: var(--color-vermilion);
+  }
+
+  .btn-reset-filters {
+    align-self: flex-end;
+    padding: 7px 12px;
+    background: #F1F5F9;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+
+  .btn-reset-filters:hover {
+    background: #E2E8F0;
+    color: #0F172A;
+  }
+
+  .btn-reset-filters.large {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    background: var(--color-vermilion);
+    color: #FFFFFF;
+    border: none;
+    margin-top: 8px;
+  }
+
+  /* 장소 그리드 */
+  .places-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media (min-width: 640px) {
+    .places-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .places-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* 검색 결과 없음 */
+  .no-results-box {
+    background: #FFFFFF;
+    border: 1px dashed #CBD5E1;
+    border-radius: 16px;
+    padding: 48px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .no-results-box[hidden] {
+    display: none !important;
+  }
+
+  .no-res-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .no-res-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .no-res-desc {
+    font-size: 0.88rem;
+    color: #64748B;
+  }
+</style>
+
+<script is:inline>
+  // 3중 필터링 및 실시간 검색 제어 스크립트
+  (function() {
+    const searchInput = document.getElementById('explore-search-input');
+    const clearSearchBtn = document.getElementById('btn-clear-search');
+    const areaSelect = document.getElementById('filter-area');
+    const categorySelect = document.getElementById('filter-category');
+    const companionSelect = document.getElementById('filter-companion');
+    const resetBtn = document.getElementById('btn-reset-filters');
+    const resetEmptyBtn = document.getElementById('btn-reset-filters-empty');
+    const matchingCountEl = document.getElementById('matching-count');
+    const noResultsBox = document.getElementById('no-results-box');
+    const grid = document.getElementById('explore-places-grid');
+
+    function applyFilters() {
+      if (!grid) return;
+      const cards = grid.querySelectorAll('.place-card');
+      const query = (searchInput.value || '').trim().toLowerCase();
+      const area = areaSelect.value;
+      const cat = categorySelect.value;
+      const comp = companionSelect.value;
+
+      clearSearchBtn.hidden = !query;
+
+      let matchedCount = 0;
+
+      cards.forEach(card => {
+        const cardArea = card.getAttribute('data-area') || '';
+        const cardCat = card.getAttribute('data-category') || '';
+        const cardComps = (card.getAttribute('data-companions') || '').split(',');
+        const textContent = card.textContent.toLowerCase();
+
+        // 1. 권역 체크
+        const matchArea = area === 'all' || cardArea === area;
+        // 2. 카테고리 체크
+        const matchCat = cat === 'all' || cardCat === cat;
+        // 3. 동행자 체크
+        const matchComp = comp === 'all' || cardComps.includes(comp);
+        // 4. 검색어 체크
+        const matchQuery = !query || textContent.includes(query);
+
+        const visible = matchArea && matchCat && matchComp && matchQuery;
+        if (visible) {
+          card.style.display = '';
+          matchedCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (matchingCountEl) matchingCountEl.textContent = matchedCount;
+      if (noResultsBox) {
+        if (matchedCount === 0) {
+          noResultsBox.removeAttribute('hidden');
+        } else {
+          noResultsBox.setAttribute('hidden', 'true');
+        }
+      }
+    }
+
+    function resetAll() {
+      if (searchInput) searchInput.value = '';
+      if (areaSelect) areaSelect.value = 'all';
+      if (categorySelect) categorySelect.value = 'all';
+      if (companionSelect) companionSelect.value = 'all';
+      applyFilters();
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', applyFilters);
+    }
+    if (clearSearchBtn) {
+      clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchInput.focus();
+        applyFilters();
+      });
+    }
+    if (areaSelect) areaSelect.addEventListener('change', applyFilters);
+    if (categorySelect) categorySelect.addEventListener('change', applyFilters);
+    if (companionSelect) companionSelect.addEventListener('change', applyFilters);
+    if (resetBtn) resetBtn.addEventListener('click', resetAll);
+    if (resetEmptyBtn) resetEmptyBtn.addEventListener('click', resetAll);
+  })();
+</script>

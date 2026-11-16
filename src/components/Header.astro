@@ -1,0 +1,192 @@
+---
+---
+
+<header class="noren-header">
+  <div class="noren-curtain">
+    <div class="container header-container">
+      <div class="header-brand">
+        <a href="?tab=overview" class="logo-link">
+          <span class="lantern-icon">🏮</span>
+          <div class="brand-text">
+            <span class="sub-title">친구처럼 들려주는 오사카 음식·역사·골목</span>
+            <h1 class="main-title">알면 맛있는 오사카</h1>
+          </div>
+        </a>
+      </div>
+
+      <div class="header-actions">
+        <button id="toggle-large-text" class="large-text-btn" aria-label="큰 글씨 토글">
+          <span class="btn-icon">가+</span>
+          <span class="btn-label">큰 글씨</span>
+        </button>
+
+        <button id="btn-share-app" class="share-btn" aria-label="링크 공유">
+          <span>공유</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 노렌 천 커튼 하단 슬릿 포인트 (전통 천 분할 연출) -->
+  <div class="noren-slits" aria-hidden="true">
+    <span class="slit-panel"></span>
+    <span class="slit-panel"></span>
+    <span class="slit-panel"></span>
+    <span class="slit-panel"></span>
+    <span class="slit-panel"></span>
+  </div>
+</header>
+
+<style>
+  .noren-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: var(--color-noren);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.15);
+  }
+
+  .noren-curtain {
+    padding: 12px 0 10px 0;
+    border-bottom: 2px solid #0F172A;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .header-brand {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .lantern-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(214, 59, 34, 0.5));
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .sub-title {
+    font-size: 0.72rem;
+    color: #94A3B8;
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .main-title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .sub-title {
+      font-size: 0.8rem;
+    }
+    .main-title {
+      font-size: 1.5rem;
+    }
+    .noren-curtain {
+      padding: 16px 0 12px 0;
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #F8FAFC;
+    background: rgba(255, 255, 255, 0.08);
+    transition: all 0.2s ease;
+  }
+
+  .share-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  /* 노렌 하단 슬릿 (천 조각 분할) */
+  .noren-slits {
+    display: flex;
+    height: 6px;
+    background-color: var(--color-noren);
+    padding: 0 4px;
+    gap: 6px;
+  }
+
+  .slit-panel {
+    flex: 1;
+    background-color: #0F172A;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+</style>
+
+<script is:inline>
+  // 큰 글씨 토글 로직
+  const toggleBtn = document.getElementById('toggle-large-text');
+  if (toggleBtn) {
+    const isLarge = document.documentElement.classList.contains('large-text');
+    if (isLarge) toggleBtn.classList.add('active');
+
+    toggleBtn.addEventListener('click', () => {
+      const currentlyLarge = document.documentElement.classList.toggle('large-text');
+      toggleBtn.classList.toggle('active', currentlyLarge);
+      localStorage.setItem('osaka_large_text', currentlyLarge ? 'true' : 'false');
+    });
+  }
+
+  // 앱 공유 버튼 로직
+  const shareBtn = document.getElementById('btn-share-app');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async () => {
+      const shareData = {
+        title: '《알면 맛있는 오사카》',
+        text: '친구처럼 들려주는 오사카 음식·역사·골목 이야기 & 스마트 가이드',
+        url: window.location.href
+      };
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (e) {
+          // 취소 무시
+        }
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        alert('주소가 클립보드에 복사되었습니다! 카톡이나 메모장에 붙여넣으세요.');
+      }
+    });
+  }
+</script>
