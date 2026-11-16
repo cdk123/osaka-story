@@ -31,7 +31,8 @@ export const places: Place[] = [
     phone: '06-6211-2917',
     openHours: '12:00~15:00 / 17:00~23:00',
     googleQuery: '松阪牛焼肉 M 法善寺横丁店',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.matsusaka-projects.com/',
+    image: '/images/places/matsusakagyu-m.jpg',
     taxiNote: '法善寺横丁は歩行者専用のため、御堂筋「難波」交差点付近で下車してください。',
     fingerOrderItems: [
       { nameJa: '松阪牛 盛り合わせ (5人前)', nameKo: '마츠사카규 모둠 구이 (5인분)' },
@@ -68,7 +69,8 @@ export const places: Place[] = [
     phone: '06-6211-7777',
     openHours: '11:30~21:30 (화요일 정기휴무)',
     googleQuery: 'はり重 道頓堀本店',
-    image: 'https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.harijyu.co.jp/',
+    image: '/images/places/harijyu.jpg',
     taxiNote: '御堂筋の道頓堀橋南詰交差点付近でおろしてください。',
     fingerOrderItems: [
       { nameJa: 'すき焼きコース (雪 / 月)', nameKo: '스키야키 코스 (유키/츠키)' },
@@ -105,7 +107,8 @@ export const places: Place[] = [
     phone: '06-6643-3313',
     openHours: '11:00~22:00',
     googleQuery: '牛かつ もと村 難波店',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.gyukatsu-motomura.com/',
+    image: '/images/places/gyukatsu-motomura.jpg',
     fingerOrderItems: [
       { nameJa: '牛かつ定食 (小鉢・とろろ付き)', nameKo: '규카츠 정식 (마 세트 포함)' },
       { nameJa: 'お肉 1.5枚 (195g)', nameKo: '고기 1.5장 (195g 추천)' }
@@ -139,7 +142,8 @@ export const places: Place[] = [
     phone: '06-6241-1129',
     openHours: '11:30~21:00',
     googleQuery: '浪漫亭 心斎橋本店',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://okayama-food.co.jp/romantei/',
+    image: '/images/places/romantei.jpg',
     fingerOrderItems: [
       { nameJa: '黒毛和牛ひつまぶし (特上)', nameKo: '흑우 와규 히츠마부시 (특상)' },
       { nameJa: 'だしのおかわりをお願いします', nameKo: '육수(다시) 리필 부탁드립니다' }
@@ -177,7 +181,7 @@ export const places: Place[] = [
     phone: '06-6633-6861',
     openHours: '10:30~14:30 (화요일 휴무, 재료 소진 시 마감)',
     googleQuery: '千とせ 本店',
-    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80',
+    image: '/images/places/chitose.jpg',
     fingerOrderItems: [
       { nameJa: '肉吸い (豆腐入り)', nameKo: '니쿠스이 (두부 추가)' },
       { nameJa: '小玉 (たまごかけご飯)', nameKo: '코다마 (날계란 비빔밥)' }
@@ -212,7 +216,8 @@ export const places: Place[] = [
     phone: '06-6211-7829',
     openHours: '11:30~21:30',
     googleQuery: '北極星 心斎橋本店',
-    image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://hokkyokusei.jp/',
+    image: '/images/places/hokkyokusei.jpg',
     fingerOrderItems: [
       { nameJa: '元祖チキンオムライス', nameKo: '원조 치킨 오므라이스' },
       { nameJa: 'ビーフオムライス & エビフライセット', nameKo: '비프 오므라이스 & 새우튀김 세트' }
@@ -246,7 +251,8 @@ export const places: Place[] = [
     phone: '06-6631-5664',
     openHours: '11:20~20:00 (월요일 휴무)',
     googleQuery: '自由軒 難波本店',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.jiyuken.co.jp/',
+    image: '/images/places/jiyuken.jpg',
     fingerOrderItems: [
       { nameJa: '名物カレー (生卵付き)', nameKo: '명물 카레 (날계란 포함)' },
       { nameJa: 'ハイシライス (ハヤシライス)', nameKo: '하이시라이스 (하야시라이스)' }
@@ -281,7 +287,8 @@ export const places: Place[] = [
     phone: '06-6372-8813',
     openHours: '10:00~22:00',
     googleQuery: 'インデアンカレー 阪急三番街店',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.indiancurry.jp/',
+    image: '/images/places/indian-curry.jpg',
     fingerOrderItems: [
       { nameJa: 'インデアンカレー (タマゴ入り)', nameKo: '인디안 카레 (계란 노른자 추가)' },
       { nameJa: 'ピクルス大盛り', nameKo: '수제 양배추 피클 곱빼기' }
@@ -316,7 +323,8 @@ export const places: Place[] = [
     phone: '06-6313-1470',
     openHours: '11:00~22:00',
     googleQuery: 'グリルキャピタル東洋亭 阪急うめだ本店',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.touyoutei.co.jp/',
+    image: '/images/places/touyou-tei.jpg',
     fingerOrderItems: [
       { nameJa: '東洋亭ハンバーグステーキ (Aランチ)', nameKo: '동양정 함박스테이크 (토마토 샐러드 세트)' },
       { nameJa: '百年プリン', nameKo: '100년 전통 커스터드 푸딩' }
@@ -353,7 +361,8 @@ export const places: Place[] = [
     phone: '06-6211-0319',
     openHours: '11:00~22:00 (수요일 휴무)',
     googleQuery: '道頓堀 今井 本店',
-    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.d-imai.com/',
+    image: '/images/places/dotonbori-imai.jpg',
     fingerOrderItems: [
       { nameJa: 'きつねうどん', nameKo: '키츠네 우동 (유부 우동)' },
       { nameJa: '親子丼 (おやこどん)', nameKo: '오야코동 (닭고기 달걀 덮밥)' },
@@ -389,7 +398,8 @@ export const places: Place[] = [
     phone: '06-6231-7181',
     openHours: '09:00~17:00 (토·일 휴무)',
     googleQuery: '吉野鮨 本店',
-    image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.yoshino-sushi.co.jp/',
+    image: '/images/places/yoshino-sushi.jpg',
     fingerOrderItems: [
       { nameJa: '箱寿司 (二段折)', nameKo: '하코즈시 (2단 상자 초밥)' }
     ]
@@ -423,7 +433,8 @@ export const places: Place[] = [
     phone: '06-6231-4810',
     openHours: '11:00~14:30 / 17:00~21:00 (일·공휴일 휴무)',
     googleQuery: '本家柴藤',
-    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.shibato.net/',
+    image: '/images/places/honke-shibato.jpg',
     fingerOrderItems: [
       { nameJa: '柴藤流 おひつまむし', nameKo: '시바토류 오히츠마무시' },
       { nameJa: 'まむし (特上)', nameKo: '마무시 장어덮밥 (특상)' }
@@ -458,7 +469,7 @@ export const places: Place[] = [
     phone: '06-6151-2531',
     openHours: '11:00~23:00',
     googleQuery: 'いづも ルクア大阪',
-    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80',
+    image: '/images/places/izumo-lucua.jpg',
     fingerOrderItems: [
       { nameJa: '鰻玉丼 (うなたまどん)', nameKo: '우나타마동 (장어 계란말이 덮밥)' },
       { nameJa: '残りを持ち帰り用おにぎりにしてください', nameKo: '남은 밥은 포장 주먹밥으로 부탁합니다' }
@@ -493,7 +504,8 @@ export const places: Place[] = [
     phone: '06-6485-7168',
     openHours: '11:00~23:00',
     googleQuery: '函太郎 グランフロント大阪店',
-    image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.hk-r.jp/shop/g_kantaro/',
+    image: '/images/places/hakodate-kantaro.jpg',
     fingerOrderItems: [
       { nameJa: '北海道三昧 (ウニ・イクラ・ホタテ)', nameKo: '홋카이도 삼매 (우니·이쿠라·가리비)' },
       { nameJa: '本マグロ三昧', nameKo: '참다랑어 3종 세트' }
@@ -527,7 +539,8 @@ export const places: Place[] = [
     phone: '06-6214-1001',
     openHours: '11:00~22:30',
     googleQuery: '大起水産回転寿司 道頓堀店',
-    image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.daiki-suisan.co.jp/',
+    image: '/images/places/daiki-suisan.jpg',
     fingerOrderItems: [
       { nameJa: '本まぐろづくし', nameKo: '생참다랑어 모둠 초밥' },
       { nameJa: 'サーモン三昧', nameKo: '연어 3종 초밥' }
@@ -561,7 +574,8 @@ export const places: Place[] = [
     phone: '06-6458-5518',
     openHours: '11:00~15:00 / 17:30~20:00 (수요일 휴무)',
     googleQuery: 'うどん棒 大阪本店',
-    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.udonbo.co.jp/',
+    image: '/images/places/udon-bo.jpg',
     fingerOrderItems: [
       { nameJa: 'ちく玉天ぶっかけ (冷)', nameKo: '치쿠타마텐 붓카케 우동 (차갑게)' }
     ]
@@ -595,7 +609,8 @@ export const places: Place[] = [
     phone: '06-6213-9444',
     openHours: '12:00~15:00 / 16:00~22:30',
     googleQuery: '玄品 法善寺総本店',
-    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.tettiri.com/',
+    image: '/images/places/genpin-fugu.jpg',
     fingerOrderItems: [
       { nameJa: '玄コース (てっさ・てっちり・雑炊)', nameKo: '겐 코스 (복어회·전골·복어죽)' },
       { nameJa: 'ふぐの唐揚げ', nameKo: '복어 순살 가라아게 (튀김)' }
@@ -630,7 +645,8 @@ export const places: Place[] = [
     phone: '06-6211-8975',
     openHours: '11:00~22:00',
     googleQuery: 'かに道楽 道頓堀本店',
-    image: 'https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://douraku.co.jp/',
+    image: '/images/places/kani-doraku.jpg',
     fingerOrderItems: [
       { nameJa: 'かに会席 (ランチ会席)', nameKo: '대게 가이세키 (런치 코스)' },
       { nameJa: 'かに炭火焼き', nameKo: '대게 숯불구이' }
@@ -667,7 +683,8 @@ export const places: Place[] = [
     phone: '06-6641-0551',
     openHours: '10:00~21:30 (화요일 휴무)',
     googleQuery: '551蓬莱 本店',
-    image: 'https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.551horai.co.jp/',
+    image: '/images/places/horai-551.jpg',
     fingerOrderItems: [
       { nameJa: '豚まん (4個入り)', nameKo: '부타만 (돼지고기 왕만두 4개들이)' },
       { nameJa: 'エビ焼売 (12個入り)', nameKo: '새우 슈마이 (12개들이)' }
@@ -702,7 +719,8 @@ export const places: Place[] = [
     phone: '06-6211-8180',
     openHours: '11:30~22:30',
     googleQuery: '串かつだるま 法善寺店',
-    image: 'https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.kushikatu-daruma.com/',
+    image: '/images/places/kushikatsu-daruma.jpg',
     fingerOrderItems: [
       { nameJa: '法善寺セット (串かつ盛り合わせ)', nameKo: '호젠지 세트 (인기 꼬치튀김 모둠)' },
       { nameJa: 'どて焼き (牛すじ煮込み)', nameKo: '도테야키 (소힘줄 된장조림)' },
@@ -738,7 +756,8 @@ export const places: Place[] = [
     phone: '06-6212-6360',
     openHours: '11:00~22:00',
     googleQuery: '美津の 道頓堀',
-    image: 'https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.mizuno-osaka.com/',
+    image: '/images/places/mizuno.jpg',
     fingerOrderItems: [
       { nameJa: '山芋焼 (海老・豚・貝柱入り)', nameKo: '야마이모야키 (마 100% 오코노미야키)' },
       { nameJa: '美津の焼 (ミックス)', nameKo: '미즈노야키 (전통 믹스)' }
@@ -773,7 +792,8 @@ export const places: Place[] = [
     phone: '06-6131-0118',
     openHours: '11:30~22:00',
     googleQuery: 'ねぎ焼やまもと 梅田エスト店',
-    image: 'https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.negiyaki-yamamoto.com/',
+    image: '/images/places/negiyaki-yamamoto.jpg',
     fingerOrderItems: [
       { nameJa: 'すじねぎ焼 (特製しょうゆ味)', nameKo: '스지 네기야키 (소힘줄 파전)' },
       { nameJa: 'ハイボール', nameKo: '산토리 가쿠 하이볼' }
@@ -808,7 +828,8 @@ export const places: Place[] = [
     phone: '06-6631-0127',
     openHours: '10:00~22:00',
     googleQuery: 'たこ焼道楽 わなか 千日前本店',
-    image: 'https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'http://takoyaki-wanaka.com/',
+    image: '/images/places/takoyaki-wanaka.jpg',
     fingerOrderItems: [
       { nameJa: 'おおいり (4種の味盛り合わせ)', nameKo: '오이리 (4가지 맛 세트)' },
       { nameJa: 'たこせん (たこ焼き2個挟み)', nameKo: '타코센 (전병 사이에 타코야키 샌드)' }
@@ -843,7 +864,7 @@ export const places: Place[] = [
     phone: '06-6373-3563',
     openHours: '10:30~22:00',
     googleQuery: 'ぶぶ亭 阪急三番街店',
-    image: 'https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=800&q=80',
+    image: '/images/places/bubutei.jpg',
     fingerOrderItems: [
       { nameJa: '明石焼き (だし汁付き)', nameKo: '아카시야키 (가쓰오 육수 세트)' }
     ]
@@ -877,7 +898,8 @@ export const places: Place[] = [
     phone: '06-6345-1201',
     openHours: '10:00~20:00',
     googleQuery: '阪神名物 いか焼き',
-    image: 'https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.hanshin-dept.jp/',
+    image: '/images/places/hanshin-ikayaki.jpg',
     fingerOrderItems: [
       { nameJa: 'いか焼き (定番)', nameKo: '원조 이카야키' },
       { nameJa: 'デラパンス (玉子入り)', nameKo: '데라판 (달걀 추가 버전)' }
@@ -912,7 +934,8 @@ export const places: Place[] = [
     phone: '-',
     openHours: '08:00~22:00 (점포별 상이)',
     googleQuery: 'ほっともっと 大阪',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.hottomotto.com/',
+    image: '/images/places/hotto-motto-kamadoya.jpg',
     fingerOrderItems: [
       { nameJa: '特のりタル弁当', nameKo: '특 노리 타르타르 벤또' },
       { nameJa: 'から揚弁当 (4個入り)', nameKo: '가라아게 도시락' }
@@ -947,7 +970,8 @@ export const places: Place[] = [
     phone: '06-6631-1101',
     openHours: '10:00~20:00',
     googleQuery: '髙島屋 大阪店 デパ地下',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.takashimaya.co.jp/osaka/',
+    image: '/images/places/depachika-bento.jpg',
     fingerOrderItems: [
       { nameJa: 'はり重 すき焼き弁当', nameKo: '하리쥬 스키야키 도시락' },
       { nameJa: '特上海鮮ちらし寿司', nameKo: '특상 해선 지라시스시 도시락' }
@@ -982,7 +1006,8 @@ export const places: Place[] = [
     phone: '06-6631-0007',
     openHours: '09:00~18:00 (가게별 상이)',
     googleQuery: '黒門市場',
-    image: 'https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://kuromon.com/',
+    image: '/images/places/kuromon-market.jpg',
     fingerOrderItems: [
       { nameJa: 'ホタテ貝柱 バター醤油焼き', nameKo: '통가리비 버터간장 구이' },
       { nameJa: '生ウニ (その場で殻割り)', nameKo: '생성게알 즉석 시식' }
@@ -1017,7 +1042,8 @@ export const places: Place[] = [
     phone: '06-6641-7776',
     openHours: '16:00~23:30',
     googleQuery: '炉ばた焼 力丸 なんば',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.rikimaru-group.com/',
+    image: '/images/places/rikimaru-robatayaki.jpg',
     fingerOrderItems: [
       { nameJa: 'ホタテバター焼き', nameKo: '가리비 버터구이' },
       { nameJa: '焼き鳥盛り合わせ', nameKo: '야키토리 모둠' }
@@ -1054,7 +1080,8 @@ export const places: Place[] = [
     phone: '0120-57-2132',
     openHours: '09:00~20:00',
     googleQuery: 'りくろーおじさんの店 なんば本店',
-    image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.rikuro.co.jp/',
+    image: '/images/places/rikuro-ojisan.jpg',
     fingerOrderItems: [
       { nameJa: '焼きたてチーズケーキ (ホール)', nameKo: '갓 구운 치즈케이크 1홀' },
       { nameJa: 'あらかじめ焼かれたチーズケーキ', nameKo: '미리 구워진 치즈케이크 (바로 구매)' }
@@ -1089,7 +1116,8 @@ export const places: Place[] = [
     phone: '06-6211-3474',
     openHours: '08:00~23:00',
     googleQuery: '丸福珈琲店 千日前本店',
-    image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://marufukucoffeeten.com/',
+    image: '/images/places/marufuku-coffee.jpg',
     fingerOrderItems: [
       { nameJa: 'ホットケーキ (ハチミツ添え)', nameKo: '핫케이크 (꿀 시럽 세트)' },
       { nameJa: 'ブレンド珈琲 (濃い口)', nameKo: '마루후쿠 블렌드 짙은 융드립 커피' },
@@ -1126,7 +1154,7 @@ export const places: Place[] = [
     phone: '06-6211-6455',
     openHours: '10:00~22:00',
     googleQuery: '夫婦善哉 法善寺横丁',
-    image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80',
+    image: '/images/places/meoto-zenzai.jpg',
     fingerOrderItems: [
       { nameJa: '夫婦善哉 (温かいぜんざい)', nameKo: '따뜻한 메오토 젠자이 (2그릇 세트)' },
       { nameJa: '冷やし善哉', nameKo: '차가운 젠자이 (여름 한정)' }
@@ -1161,7 +1189,8 @@ export const places: Place[] = [
     phone: '06-6361-1381',
     openHours: '10:00~20:00',
     googleQuery: '喜八洲総本舗 阪急うめだ本店',
-    image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.kiyasu.com/',
+    image: '/images/places/kiyasu-sohonpo.jpg',
     fingerOrderItems: [
       { nameJa: 'みたらし団子 (5本入り・焦げ目多め)', nameKo: '미타라시단고 5개 (불향 바짝 구움)' }
     ]
@@ -1195,7 +1224,8 @@ export const places: Place[] = [
     phone: '06-6361-1381',
     openHours: '10:00~20:00',
     googleQuery: 'たねや 阪急うめだ本店',
-    image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://taneya.jp/',
+    image: '/images/places/taneya.jpg',
     fingerOrderItems: [
       { nameJa: 'ふくみ天平 (6個入り箱)', nameKo: '후쿠미텐빈 수제 모나카 (6개 상자)' }
     ]
@@ -1229,7 +1259,8 @@ export const places: Place[] = [
     phone: '06-6271-1231',
     openHours: '10:00~20:00',
     googleQuery: '五條堂 大丸心斎橋店',
-    image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://gojodo.jp/',
+    image: '/images/places/gojodo.jpg',
     fingerOrderItems: [
       { nameJa: '鴻池花火 (4個入り)', nameKo: '코노이케 하나비 불꽃 다이후쿠 (4개입)' }
     ]
@@ -1263,7 +1294,8 @@ export const places: Place[] = [
     phone: '06-6136-8003',
     openHours: '10:00~19:00',
     googleQuery: 'パティスリー モンシェール 堂島本店',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.mon-cher.com/',
+    image: '/images/places/moncher-dojima.jpg',
     fingerOrderItems: [
       { nameJa: '堂島ロール (1本)', nameKo: '도지마롤 (1줄 완제품)' },
       { nameJa: '季節の堂島ロール (カット)', nameKo: '계절 과일 도지마롤 (조각)' }
@@ -1298,7 +1330,8 @@ export const places: Place[] = [
     phone: '06-4706-5160',
     openHours: '10:00~19:00',
     googleQuery: '五感 北浜本館',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.patisserie-gokan.co.jp/',
+    image: '/images/places/gokan-kitahama.jpg',
     fingerOrderItems: [
       { nameJa: 'ええもんちぃ (10個入り箱)', nameKo: '에에몬치이 검은콩 마들렌 (10개 상자)' },
       { nameJa: '季節のショートケーキセット', nameKo: '계절 쇼트케이크 & 티 세트' }
@@ -1333,7 +1366,8 @@ export const places: Place[] = [
     phone: '06-4704-1800',
     openHours: '12:00~19:00',
     googleQuery: 'wad omotenashi cafe',
-    image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://wad-cafe.com/',
+    image: '/images/places/wad-cafe.jpg',
     fingerOrderItems: [
       { nameJa: '焼き餅セット (醤油・海苔)', nameKo: '야키모찌 화로 구이 세트' },
       { nameJa: '特選 宇治抹茶 & ほうじ茶', nameKo: '특선 우지 말차 & 호지차' }
@@ -1368,7 +1402,8 @@ export const places: Place[] = [
     phone: '06-6361-1381',
     openHours: '10:00~20:00',
     googleQuery: '辻利兵衛本店 阪急うめだ本店',
-    image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.tsujirihei.co.jp/',
+    image: '/images/places/tsujirihei.jpg',
     fingerOrderItems: [
       { nameJa: 'お濃い茶パフェ', nameKo: '진한 말차 파르페' },
       { nameJa: '抹茶ソフトクリーム', nameKo: '우지 말차 소프트아이스크림' }
@@ -1403,7 +1438,8 @@ export const places: Place[] = [
     phone: '06-6211-1250',
     openHours: '09:00~21:00',
     googleQuery: 'ル・クロワッサン 心斎橋店',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.le-cro.com/',
+    image: '/images/places/le-croissant.jpg',
     fingerOrderItems: [
       { nameJa: 'プチクロ (ミニクロワッサン 10個)', nameKo: '미니 크루아상 10개입' },
       { nameJa: '明太フランス', nameKo: '명란 프랑스 바게트' }
@@ -1438,7 +1474,8 @@ export const places: Place[] = [
     phone: '06-6360-6180',
     openHours: '10:00~20:00',
     googleQuery: 'Grenier 梅田',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://patisserie-grenier.com/',
+    image: '/images/places/grenier.jpg',
     fingerOrderItems: [
       { nameJa: 'ブリュレミルフィーユ', nameKo: '브륄레 밀푀유' },
       { nameJa: '季節のフルーツミルフィーユ', nameKo: '계절 과일 밀푀유' }
@@ -1475,7 +1512,8 @@ export const places: Place[] = [
     phone: '06-7670-5126',
     openHours: '11:00~23:00 (입장 마감 22:00)',
     googleQuery: '空庭温泉 OSAKA BAY TOWER',
-    image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://solaniwa.com/',
+    image: '/images/places/soraniwa-onsen.jpg',
     fingerOrderItems: [
       { nameJa: '入館料 (大人5名)', nameKo: '입관료 (성인 5인)' },
       { nameJa: 'ビン牛乳 (コーヒー / フルーツ)', nameKo: '유리병 우유 (커피우유 / 과일우유)' }
@@ -1510,7 +1548,8 @@ export const places: Place[] = [
     phone: '072-721-3014',
     openHours: '상시 개방',
     googleQuery: '箕面大滝',
-    image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.mino-park.jp/',
+    image: '/images/places/minoh-waterfall.jpg',
     fingerOrderItems: [
       { nameJa: 'もみじの天ぷら (大袋)', nameKo: '모미지 덴푸라 (단풍잎 튀김 큰 봉지)' }
     ]
@@ -1544,7 +1583,7 @@ export const places: Place[] = [
     phone: '-',
     openHours: '상점가 12:00~19:00',
     googleQuery: '中崎町 カフェ',
-    image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80',
+    image: '/images/places/nakazakicho.jpg',
     fingerOrderItems: [
       { nameJa: 'ドリップコーヒー & チーズケーキ', nameKo: '핸드드립 커피 & 수제 치즈케이크' }
     ]
@@ -1578,7 +1617,8 @@ export const places: Place[] = [
     phone: '06-6208-2002',
     openHours: '09:30~21:30',
     googleQuery: '大阪市中央公会堂',
-    image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.moco.or.jp/',
+    image: '/images/places/nakanoshima-culture.jpg',
     fingerOrderItems: [
       { nameJa: '観覧券 (大人5名)', nameKo: '전시 관람권 (성인 5인)' }
     ]
@@ -1612,7 +1652,8 @@ export const places: Place[] = [
     phone: '06-4304-8077',
     openHours: '11:00~19:00 (수요일 휴무)',
     googleQuery: 'エクチュア からほり「蔵」本店',
-    image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://len21.com/',
+    image: '/images/places/karahori-len.jpg',
     fingerOrderItems: [
       { nameJa: '塩チョコレート & ホットチョコレート', nameKo: '소금 초콜릿 & 진한 핫쇼콜라 세트' }
     ]
@@ -1646,7 +1687,8 @@ export const places: Place[] = [
     phone: '06-6644-8833',
     openHours: '11:00~15:00 / 17:00~21:30',
     googleQuery: '梅の花 なんば',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://umenohana-restaurant.co.jp/',
+    image: '/images/places/umeno-hana.jpg',
     fingerOrderItems: [
       { nameJa: '梅の花膳 (極み)', nameKo: '우메노하나젠 (키와미 코스)' },
       { nameJa: '引き上げ湯葉', nameKo: '즉석 걷어먹는 유바' }
@@ -1681,7 +1723,8 @@ export const places: Place[] = [
     phone: '06-6630-6230',
     openHours: '11:00~21:30',
     googleQuery: '天ぷら まきの 難波千日前店',
-    image: 'https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.toridoll.com/shop/makino/',
+    image: '/images/places/tempura-makino.jpg',
     fingerOrderItems: [
       { nameJa: 'まきの定食 (玉子天付き)', nameKo: '마키노 정식 (반숙란 튀김 포함)' }
     ]
@@ -1715,7 +1758,7 @@ export const places: Place[] = [
     phone: '06-6347-6262',
     openHours: '11:00~15:00 / 18:00~21:00 (일요일 휴무)',
     googleQuery: 'epais 北新地',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    image: '/images/places/epais-kitashinchi.jpg',
     fingerOrderItems: [
       { nameJa: '山形豚 特選ヒレカツ定食', nameKo: '야마가타 돼지 특선 히레카츠 정식' }
     ]
@@ -1751,7 +1794,8 @@ export const places: Place[] = [
     phone: '06-6634-2165',
     openHours: '10:00~18:00',
     googleQuery: 'Tower Knives Osaka',
-    image: 'https://images.unsplash.com/photo-1593618998160-e34014e67546?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.towerknives.com/',
+    image: '/images/places/sakai-knives.jpg',
     fingerOrderItems: [
       { nameJa: '三徳包丁 (サントク、家庭用万能)', nameKo: '산토쿠 다목적 가정용 주방칼' },
       { nameJa: '名入れをお願いします', nameKo: '칼날에 이름 각인 부탁드립니다' }
@@ -1786,7 +1830,8 @@ export const places: Place[] = [
     phone: '06-6633-1423',
     openHours: '10:00~18:00',
     googleQuery: '千日前道具屋筋商店街',
-    image: 'https://images.unsplash.com/photo-1593618998160-e34014e67546?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.doguyasuji.or.jp/',
+    image: '/images/places/doguyasuji-street.jpg',
     fingerOrderItems: [
       { nameJa: '食品サンプルのお土産', nameKo: '정밀 음식 모형 기념품' },
       { nameJa: 'たこ焼き器 (南部鉄器)', nameKo: '타코야키 주물 철판' }
@@ -1821,7 +1866,8 @@ export const places: Place[] = [
     phone: '06-6361-1381',
     openHours: '10:00~20:00',
     googleQuery: '大阪浪華錫器 阪急うめだ本店',
-    image: 'https://images.unsplash.com/photo-1593618998160-e34014e67546?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.osakasuzuki.co.jp/',
+    image: '/images/places/naniwa-suzuki.jpg',
     fingerOrderItems: [
       { nameJa: '錫製 ビアタンブラー', nameKo: '주석 맥주 텀블러' },
       { nameJa: 'ぐい呑み (冷酒用)', nameKo: '주석 사케잔' }
@@ -1855,7 +1901,8 @@ export const places: Place[] = [
     phone: '06-6882-6288',
     openHours: '10:00~18:00',
     googleQuery: '天満切子 ギャラリー',
-    image: 'https://images.unsplash.com/photo-1593618998160-e34014e67546?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://tenmakiriko.com/',
+    image: '/images/places/tenma-kiriko.jpg',
     fingerOrderItems: [
       { nameJa: '天満切子 ロックグラス', nameKo: '덴마 키리코 온더락 크리스탈 잔' }
     ]
@@ -1889,7 +1936,7 @@ export const places: Place[] = [
     phone: '06-6631-1101',
     openHours: '10:00~20:00',
     googleQuery: '泉州タオル 髙島屋大阪店',
-    image: 'https://images.unsplash.com/photo-1593618998160-e34014e67546?auto=format&fit=crop&w=800&q=80',
+    image: '/images/places/senshu-towel.jpg',
     fingerOrderItems: [
       { nameJa: '後晒しフェイスタオル (3枚セット)', nameKo: '아토자라시 세안 수건 (3장 세트)' }
     ]
@@ -1923,7 +1970,8 @@ export const places: Place[] = [
     phone: '0120-917-111',
     openHours: '10:00~20:00',
     googleQuery: 'バトンドール 阪急うめだ本店',
-    image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://www.glico.com/jp/shopservice/batondor/',
+    image: '/images/places/baton-dor.jpg',
     fingerOrderItems: [
       { nameJa: 'シュガーバター (一番人気)', nameKo: '슈가 버터 (베스트셀러 1위)' },
       { nameJa: '宇治抹茶 / ミルクショコラ', nameKo: '우지 말차 / 밀크 쇼콜라' }
@@ -1958,7 +2006,8 @@ export const places: Place[] = [
     phone: '06-6251-0326',
     openHours: '09:00~18:00',
     googleQuery: '小倉屋山本 本店',
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
+    officialUrl: 'https://ogurayayamamoto.co.jp/',
+    image: '/images/places/oguraya-yamamoto.jpg',
     fingerOrderItems: [
       { nameJa: 'えびすめ (木箱入り・ご贈答)', nameKo: '에비스메 원조 시오콘부 (목함 선물세트)' },
       { nameJa: 'おだしパック (家庭用)', nameKo: '천연 다시마 육수팩 (가정용)' }
@@ -1993,7 +2042,7 @@ export const places: Place[] = [
     phone: '06-6631-1101',
     openHours: '10:00~20:00',
     googleQuery: '髙島屋 大阪店 和酒',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    image: '/images/places/osaka-sake-jizake.jpg',
     fingerOrderItems: [
       { nameJa: '呉春 特吟 (720ml)', nameKo: '고슈 특긴조 (720ml)' },
       { nameJa: '秋鹿 純米大吟醸 (720ml)', nameKo: '아키시카 준마이다이긴조 (720ml)' }
@@ -2028,7 +2077,7 @@ export const places: Place[] = [
     phone: '06-6634-1111',
     openHours: '10:00~21:00',
     googleQuery: 'ビックカメラ なんば店 お酒',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    image: '/images/places/mugi-shochu.jpg',
     fingerOrderItems: [
       { nameJa: '麦焼酎 兼八 (720ml)', nameKo: '보리소주 카네하치 (720ml)' },
       { nameJa: '中々 (720ml)', nameKo: '보리소주 나카나카 (720ml)' }

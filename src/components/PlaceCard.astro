@@ -8,19 +8,28 @@ interface Props {
 
 const { place, compact = false } = Astro.props;
 
-// 구글 지도 길찾기 Universal Link 쿼리 생성
-const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.googleQuery || (place.nameJa + ' ' + place.branchJa))}`;
+// 구글 공식 로컬 매장 정보 (Google Business Profile / Maps Place Info: 실제 사진·리뷰·영업시간·메뉴·개요) 직결 URL
+const googleLocalInfoUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.googleQuery || (place.nameJa + ' ' + place.branchJa + ' ' + place.addressJa))}`;
 ---
 
 <article class={`place-card ${compact ? 'compact' : ''}`} id={`card-${place.id}`} data-place-id={place.id} data-area={place.area} data-category={place.category} data-companions={place.companions.join(',')}>
-  <!-- 카드 썸네일 & 상단 오버레이 -->
+  <!-- 카드 썸네일 & 상단 오버레이 (클릭 시 구글 공식 로컬 매장정보·실제사진 열람) -->
   <div class="card-media">
-    <img
-      src={place.image}
-      alt={`${place.nameKo} 대표 이미지`}
-      loading="lazy"
-      class="place-img"
-    />
+    <a
+      href={googleLocalInfoUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="media-photo-link"
+      title={`${place.nameKo} — 구글 공식 로컬 매장 정보 및 실제 사진 보기`}
+    >
+      <img
+        src={place.image}
+        alt={`${place.nameKo} (${place.nameJa}) 공식·현지 대표 사진`}
+        loading="lazy"
+        class="place-img"
+      />
+      <span class="media-local-badge">🔍 구글 공식 매장정보 · 사진 ↗</span>
+    </a>
     <div class="media-overlay-top">
       <span class="area-chip">{place.areaLabel}</span>
       <div class="stamp-group">
@@ -45,10 +54,18 @@ const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
     <header class="place-header">
       <div class="title-row">
         <h3 class="place-name-ko">
-          {place.nameKo}
-          {place.branchKo && <span class="branch-ko">({place.branchKo})</span>}
+          <a
+            href={googleLocalInfoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="title-local-link"
+            title={`${place.nameKo} 구글 공식 로컬 정보 보기`}
+          >
+            {place.nameKo}
+            {place.branchKo && <span class="branch-ko">({place.branchKo})</span>}
+          </a>
         </h3>
-        <div class="rating-badge" title={`평점 ${place.rating}`}>
+        <div class="rating-badge" title={`구글 로컬 평점 ${place.rating}`}>
           <span class="star">★</span>
           <span class="rate-val">{place.rating.toFixed(1)}</span>
         </div>
@@ -56,6 +73,17 @@ const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
       <div class="place-name-ja-row">
         <span class="place-name-ja">{place.nameJa} {place.branchJa}</span>
         <span class="place-name-kana">[{place.nameKana}]</span>
+        {place.officialUrl && (
+          <a
+            href={place.officialUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="official-site-chip"
+            title={`${place.nameKo} 공식 홈페이지 열기`}
+          >
+            🌐 공식 홈페이지 ↗
+          </a>
+        )}
       </div>
       <div class="station-walk">
         <span class="pin-icon">🚇</span>
@@ -104,13 +132,14 @@ const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
       </button>
 
       <a
-        href={googleMapsUrl}
+        href={googleLocalInfoUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="action-btn btn-google-map"
+        title={`${place.nameKo} 구글 공식 로컬 매장정보 · 사진 · 리뷰 보기`}
       >
-        <span class="action-icon">📍</span>
-        <span class="action-text">구글지도 길찾기</span>
+        <span class="action-icon">🏪</span>
+        <span class="action-text">구글 공식 로컬 정보</span>
       </a>
     </footer>
   </div>
@@ -144,6 +173,57 @@ const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeU
     height: 190px;
     background: #E2E8F0;
     overflow: hidden;
+  }
+
+  .media-photo-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .media-local-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: rgba(15, 23, 42, 0.82);
+    color: #FFFFFF;
+    backdrop-filter: blur(4px);
+    z-index: 2;
+    transition: background 0.15s ease;
+  }
+
+  .media-photo-link:hover .media-local-badge {
+    background: var(--color-vermilion);
+  }
+
+  .title-local-link:hover {
+    color: var(--color-vermilion-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .official-site-chip {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: #F1F5F9;
+    color: #0F172A;
+    border: 1px solid #CBD5E1;
+    transition: all 0.15s ease;
+  }
+
+  .official-site-chip:hover {
+    background: #1E293B;
+    color: #FFFFFF;
+    border-color: #1E293B;
   }
 
   .place-img {

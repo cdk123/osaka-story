@@ -11,7 +11,7 @@ export const mediaWorks: MediaWork[] = [
     locationKo: '난바 호젠지 요코초 단팥죽집 〈메오토 젠자이〉',
     description: '1930년대 오사카 상인 거리의 게이샤 나비와 부잣집 탕아 류키치의 미운 정 고운 정을 생생한 오사카 사투리로 그려낸 무뢰파 문학의 금자탑입니다.',
     quoteOrScene: '“혼자서 큰 그릇 하나를 먹는 것보다, 둘이서 두 그릇에 나누어 먹는 쪽이 훨씬 양도 많아 보이고 맛있는 법이제.”',
-    image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80'
+    image: '/images/places/meoto-zenzai.jpg'
   },
   {
     id: 'josee-tiger-fish',
@@ -23,7 +23,7 @@ export const mediaWorks: MediaWork[] = [
     locationKo: '가라호리 언덕길, 다니마치 연립주택, 가이유칸 수족관',
     description: '오사카 출신의 소설가 다나베 세이코의 단편을 영화화한 청춘 멜로의 걸작입니다. 츠네오가 유모차를 밀고 내려가던 비탈길과 오사카의 서정적인 골목 풍경이 고스란히 담겨 있습니다.',
     quoteOrScene: '세상에서 가장 무서운 호랑이와, 깊고 어두운 바닷속 물고기를 보러 가던 두 청춘의 눈부신 오사카 계절.',
-    image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80'
+    image: '/images/places/karahori-len.jpg'
   },
   {
     id: 'conan-osaka',
@@ -35,7 +35,7 @@ export const mediaWorks: MediaWork[] = [
     locationKo: '도톤보리 에비스바시, 츠텐카쿠, 미노오 폭포 단풍길',
     description: '오사카의 열혈 고등학생 명탐정 핫토리 헤이지(하인성)가 코난을 데리고 오코노미야키, 타코야키 맛집을 누비는 무대입니다. 극장판에서는 붉게 물든 미노오 폭포와 백인일수 전통 가루타 승부가 펼쳐집니다.',
     quoteOrScene: '“오사카에 왔으면 배 터지게 먹고 가는 기라! 이 국물 맛은 도쿄 촌놈들은 절대 흉내 못 낸데이!”',
-    image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80'
+    image: '/images/places/minoh-waterfall.jpg'
   },
   {
     id: 'black-rain',
@@ -47,7 +47,7 @@ export const mediaWorks: MediaWork[] = [
     locationKo: '비에 젖은 도톤보리 강변 네온사인, 한큐 우메다역 광장',
     description: '사이버펑크의 거장 리들리 스콧이 오사카의 밤거리를 무대로 연출한 스타일리시한 네오 누아르 영화입니다. 물에 반사되는 거대한 네온 간판과 젖은 골목의 질감이 오사카의 밤을 신비롭게 포착했습니다.',
     quoteOrScene: '비 내리는 도톤보리 다리 위에서 모터사이클 라이트가 번쩍이며 강물에 오색 네온이 춤추는 전설적인 오프닝 시퀀스.',
-    image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80'
+    image: '/images/places/kani-doraku.jpg'
   }
 ];
 
@@ -59,7 +59,7 @@ export const photoSpots: PhotoSpot[] = [
     bestTime: '해 질 녘 17:30 ~ 19:00 (가게들이 초롱불을 켤 때)',
     tip: '호젠지 절 이끼 불상(미즈카케 후도묘오)에 국자로 물을 끼얹은 뒤, 물기가 반짝이는 돌바닥 위에 선 가족의 뒷모습을 초롱불과 함께 담으세요.',
     sceneDesc: '시끌벅적한 도톤보리에서 한 발짝만 들어서면 마법처럼 조용해지는 100년 돌바닥 골목입니다. 주황빛 초롱과 어우러져 가장 일본다운 서정을 선사합니다.',
-    image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80'
+    image: '/images/places/meoto-zenzai.jpg'
   },
   {
     id: 'spot-nakazakicho',
@@ -68,7 +68,7 @@ export const photoSpots: PhotoSpot[] = [
     bestTime: '오후 13:00 ~ 15:00 (자연 채광이 목조 결에 부드럽게 닿을 때)',
     tip: '나무 미닫이문 옆 초록 화분과 붉은 옛 우체통 사이에 인물을 세우고, 골목 소음 예절을 지키며 필름 감성으로 찰칵!',
     sceneDesc: '빌딩 숲 우메다 옆에서 전쟁을 피해 살아남은 기적의 1920년대 목조건축 골목입니다.',
-    image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80'
+    image: '/images/places/nakazakicho.jpg'
   },
   {
     id: 'spot-minoh',
@@ -77,7 +77,7 @@ export const photoSpots: PhotoSpot[] = [
     bestTime: '오전 10:00 ~ 12:00 (폭포에 무지개가 뜨는 시간)',
     tip: '노란 단풍잎 튀김 봉투를 한 손에 들고, 주홍빛 단풍교 난간에서 시원하게 쏟아지는 폭포를 배경으로 전신사진을 찍어보세요.',
     sceneDesc: '1,300년 전 수련승들이 튀겨내던 세계 유일의 단풍잎 튀김과 웅장한 계곡 폭포가 어우러진 비경입니다.',
-    image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80'
+    image: '/images/places/minoh-waterfall.jpg'
   },
   {
     id: 'spot-nakanoshima',
@@ -86,7 +86,7 @@ export const photoSpots: PhotoSpot[] = [
     bestTime: '일몰 직후 매직아워 18:30 ~ 20:00',
     tip: '강 건너편 산책로 난간에 스마트폰을 올려놓고, 강물 위에 반사되는 중앙공회당의 붉은 벽돌 네오르네상스 조명을 담으면 유럽 부럽지 않은 야경이 완성됩니다.',
     sceneDesc: '1918년 오사카 시민을 위해 한 상인의 기부로 세워진 장엄한 근대 건축물입니다.',
-    image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80'
+    image: '/images/places/nakanoshima-culture.jpg'
   },
   {
     id: 'spot-table',
@@ -95,7 +95,7 @@ export const photoSpots: PhotoSpot[] = [
     bestTime: '식사 중 요리가 서빙되는 결정적 순간',
     tip: '호쿄쿠세이에서는 식사 후 중정 정원 마루에 걸터앉아 가족사진을 남기고, 리키마루에서는 요리사가 2m 나무 주걱으로 가리비를 건네줄 때 순간 포착 동영상을 찍으세요!',
     sceneDesc: '단순한 풍경을 넘어 살아 숨 쉬는 식문화 체험의 결정적 순간을 포착합니다.',
-    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80'
+    image: '/images/places/hokkyokusei.jpg'
   }
 ];
 

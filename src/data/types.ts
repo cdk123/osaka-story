@@ -39,8 +39,9 @@ export interface Place {
   addressKo: string;
   phone: string;
   openHours: string;
-  googleQuery: string; // 구글 지도 검색어
-  image: string; // 고화질 이미지 URL
+  googleQuery: string; // 구글 로컬 공식 정보 검색어
+  officialUrl?: string; // 공식 홈페이지 URL
+  image: string; // 공식 홈페이지·구글 로컬 실사 이미지 경로
   taxiNote?: string; // 기사님 안내 추가 메모
   fingerOrderItems?: { nameJa: string; nameKo: string; price?: string }[];
 }
