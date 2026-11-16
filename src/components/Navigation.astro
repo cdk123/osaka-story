@@ -273,12 +273,14 @@ const tabs = [
         window.history.pushState({ tab: targetTabId }, '', url.toString());
       }
 
-      // 5. 스크롤 위치 복원
-      const savedY = scrollPositions[targetTabId] ?? 0;
+      // 5. 새 탭 이동 시 항상 페이지 최상단(0px)으로 즉시 이동
       window.scrollTo({
-        top: savedY,
+        top: 0,
+        left: 0,
         behavior: 'instant'
       });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
 
       // 탭 변경 이벤트 디스패치 (각 탭 컴포넌트 반응용)
       window.dispatchEvent(new CustomEvent('osaka_tab_change', { detail: { tab: targetTabId } }));
@@ -291,7 +293,7 @@ const tabs = [
         btn.addEventListener('click', (e) => {
           e.preventDefault();
           const targetTab = btn.getAttribute('data-tab');
-          if (targetTab && targetTab !== currentTab) {
+          if (targetTab) {
             switchTab(targetTab);
           }
         });

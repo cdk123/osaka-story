@@ -393,11 +393,9 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
       });
 
       if (scrollToReader) {
-        const navEl = document.querySelector('.chapter-tabs-nav');
-        if (navEl) {
-          const topY = navEl.getBoundingClientRect().top + window.scrollY - 70;
-          window.scrollTo({ top: Math.max(0, topY), behavior: 'smooth' });
-        }
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
       }
     }
 

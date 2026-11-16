@@ -773,6 +773,9 @@ const categorySections = [
         if (categorySelect) {
           categorySelect.value = val;
           applyFilters();
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
         }
       });
     });
@@ -785,10 +788,10 @@ const categorySections = [
         applyFilters();
       });
     }
-    if (areaSelect) areaSelect.addEventListener('change', applyFilters);
-    if (categorySelect) categorySelect.addEventListener('change', applyFilters);
-    if (companionSelect) companionSelect.addEventListener('change', applyFilters);
-    if (resetBtn) resetBtn.addEventListener('click', resetAll);
-    if (resetEmptyBtn) resetEmptyBtn.addEventListener('click', resetAll);
+    if (areaSelect) areaSelect.addEventListener('change', () => { applyFilters(); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); });
+    if (categorySelect) categorySelect.addEventListener('change', () => { applyFilters(); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); });
+    if (companionSelect) companionSelect.addEventListener('change', () => { applyFilters(); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); });
+    if (resetBtn) resetBtn.addEventListener('click', () => { resetAll(); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); });
+    if (resetEmptyBtn) resetEmptyBtn.addEventListener('click', () => { resetAll(); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); });
   })();
 </script>
