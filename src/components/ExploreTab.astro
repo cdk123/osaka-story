@@ -6,40 +6,150 @@ const areaOptions = [
   { value: 'all', label: '권역 전체' },
   { value: 'namba', label: '난바·도톤보리' },
   { value: 'shinsaibashi', label: '신사이바시' },
-  { value: 'umeda', label: '우메다' },
-  { value: 'other', label: '기타 (중앙/센슈 등)' }
-];
-
-const categoryOptions = [
-  { value: 'all', label: '종류 전체' },
-  { value: 'beef', label: '와규·고기' },
-  { value: 'curry', label: '카레·경양식' },
-  { value: 'noodle', label: '우동·초밥·장어' },
-  { value: 'bento', label: '도시락·만두' },
-  { value: 'cafe', label: '찻집·빵·디저트' },
-  { value: 'spot', label: '로컬명소·온천' },
-  { value: 'craft', label: '장인명품·기념품' }
+  { value: 'umeda', label: '우메다 (키타)' },
+  { value: 'other', label: '기타 (오사카성/미노오/베이 등)' }
 ];
 
 const companionOptions = [
   { value: 'all', label: '동행자 전체' },
-  { value: 'family', label: '👨‍👩‍👧‍👦 부모님·대가족(룸/테이블)' },
-  { value: 'youth', label: '✨ 1020·동생 원픽' },
-  { value: 'adult', label: '🍶 어른들의 술자리' },
+  { value: 'family', label: '👨‍👩‍👧‍👦 부모님·5인 대가족(룸/테이블)' },
+  { value: 'youth', label: '✨ 1020·동생 취향저격' },
+  { value: 'adult', label: '🍶 어른들의 술자리·미식' },
   { value: 'solo', label: '⚡ 혼밥·빠른 한 끼' }
+];
+
+// 7대 카테고리 마스터 정의 및 카테고리별 상세 해설
+const categorySections = [
+  {
+    id: 'beef',
+    num: '01',
+    icon: '🥩',
+    titleKo: '와규 · 스키야키 · 고기 요리',
+    titleJa: '和牛・すき焼き・肉料理',
+    subtitle: '일본 3대 와규 마츠사카규 구이부터 100년 전통 암소 스키야키, 미니화로 규카츠와 해장 고기국물 니쿠스이까지',
+    description: '오사카의 고기 문화는 화려함보다 ‘부위별 최상의 감칠맛과 실속’에 집중합니다. 5인 가족이 다다미 룸에서 부위별 명패를 보며 구워 먹는 마츠사카규, 기모노 서버가 처음부터 끝까지 구워주는 1919년 창업 스키야키, 1020 동생들이 열광하는 1인 화로 규카츠, 그리고 개그맨의 숙취 해장국으로 탄생한 오사카 로컬 명물 ‘니쿠스이(고기국물)’를 엄선했습니다.',
+    tip: '💡 저녁 메인 와규·스키야키 노포(야키니쿠 M, 하리쥬)는 최소 2주 전 사전 예약을 권장하며, 치토세(니쿠스이)는 낮 14:30에 영업이 끝나므로 반드시 아침·점심 코스로 넣으세요.'
+  },
+  {
+    id: 'curry',
+    num: '02',
+    icon: '🍛',
+    titleKo: '오사카 유래 카레 · 근대 경양식 (요쇼쿠)',
+    titleJa: '大阪スパイスカレー・老舗洋食',
+    subtitle: '1920년대 ‘대오사카 시대’가 탄생시킨 세계 최초의 오므라이스, 달고 매운 오사카식 카레, 호일 함박스테이크',
+    description: '도쿄를 제치고 일본 경제 1위를 기록했던 1920년대 오사카는 서양 요리를 일본식 정(情)으로 재해석한 ‘요쇼쿠(경양식)’의 발상지입니다. 위장 약한 단골을 위해 탄생한 전 세계 오므라이스의 시초(호쿄쿠세이, 1922), 밥에 카레를 미리 비벼 날계란을 얹는 원조 명물 카레(지유켄, 1910), 첫입은 과일처럼 달고 뒷맛은 강렬하게 매운 오사카식 카레(인디안 카레, 1947), 그리고 부풀어 오른 은박지를 찢어 먹는 1897년 전통 함박스테이크(동양정)를 만나보세요.',
+    tip: '💡 동양정(토요테이)은 백화점 도착 즉시 매장 앞 기계(AirWAIT)에서 대기 번호표부터 뽑고 쇼핑하시는 것이 시간을 아끼는 최고 비결입니다.'
+  },
+  {
+    id: 'noodle',
+    num: '03',
+    icon: '🍜',
+    titleKo: '우동 · 상자초밥 · 마무시 장어 · 복어 · 대게',
+    titleJa: 'きつねうどん・箱寿司・まむし鰻・てっちり・蟹',
+    subtitle: '홋카이도 다시마 황금빛 육수, 나무틀 상자초밥과 숯불 마무시 장어, 일본 소비량 1위 참복과 대게 풀코스',
+    description: '에도 시대 북방 무역선이 실어 나른 최상급 홋카이도 다시마는 오사카 국물 문화의 심장입니다. 맑고 깊은 국물에 달콤한 유부를 얹은 오사카식 키츠네 우동, 바쁜 상인들이 나무틀에 눌러 담아 보석처럼 썰어낸 전통 상자초밥(하코즈시), 장어를 찌지 않고 생으로 숯불에 바삭하게 구워 뜨거운 밥 사이에 묻어 뜸 들이는 오사카식 ‘마무시 장어’, 그리고 일본 전국 소비량의 60%를 차지하는 복어 샤브샤브(테치리)와 대게 요리의 진수입니다.',
+    tip: '💡 오사카는 1958년 세계 최초로 ‘회전초밥’을 발명한 도시이기도 합니다. 부모님과 함께라면 정갈한 정통 일식당(이마이·시바토·겐핀·카니도라쿠)이나 프리미엄 회전초밥(하코다테 칸타로) 모두 후회 없는 선택입니다.'
+  },
+  {
+    id: 'bento',
+    num: '04',
+    icon: '🥟',
+    titleKo: '오사카 코나몬(밀가루 명물) · 왕만두 · 도시락 · 로바타야키',
+    titleJa: '粉もん・豚まん・名物弁当・炉ばた焼',
+    subtitle: '파 폭탄 네기야키, 국물에 적셔 먹는 원조 아카시야키, 쿠시카츠, 551 부타만, 그리고 따끈한 일본 도시락과 화로구이',
+    description: '오사카 서민들의 활력이 응축된 ‘코나몬(밀가루 요리)’과 길거리·야식 문화입니다. 양배추 대신 대파와 소힘줄을 듬뿍 넣은 원조 네기야키, 타코야키의 할머니 격인 계란 푸딩 식감의 아카시야키, 두 번 찍기 금지 쿠시카츠, 하루 1만 장 팔리는 한신 이카야키, 퇴근길 아버지의 선물 551 호라이 부타만(돼지고기 왕만두), 2m 거대 나무 주걱으로 건네주는 로바타야키(화로구이), 그리고 주문 즉시 햅쌀밥에 반찬을 튀겨 올리는 동네 도시락과 백화점 데파치카 명품 벤또를 모았습니다.',
+    tip: '💡 551 호라이 부타만(만두)은 육가공품 검역 규정상 한국으로 반입할 수 없으므로 반드시 오사카 호텔 야식이나 귀국 전 공항에서 따뜻할 때 다 드시고 오세요!'
+  },
+  {
+    id: 'cafe',
+    num: '05',
+    icon: '🍵',
+    titleKo: '전통 화과자 · 다실 · 레트로 킷사텐 · 간사이 베이커리',
+    titleJa: '和菓子・日本茶カフェ・純喫茶・関西ベーカリー',
+    subtitle: '갓 구운 구름 치즈케이크와 1883년 부부 단팥죽, 1934년 클래식 다방 핫케이크, 작가 다기 다실과 명물 빵집',
+    description: '식후의 여운을 완성하는 오사카의 달콤한 휴식처입니다. 종소리와 함께 갓 구워내는 리쿠로 오지상 치즈케이크, 소설 《부부 단팥죽》의 실제 배경인 호젠지 요코초의 메오토 젠자이, 원통형 떡을 직화로 구워 조청에 적시는 미타라시단고, 직접 고른 도예가의 찻잔에 우지 말차를 우려 마시는 현대 다실(와드 카페), 1934년 창업한 레트로 다방(마루후쿠 커피점)의 동판 핫케이크, 그리고 ‘일본 제빵의 수도’ 간사이가 자랑하는 갓 구운 크루아상과 브륄레 밀푀유입니다.',
+    tip: '💡 리쿠로 오지상 난바 본점은 줄이 2개입니다! 바로 드실 게 아니라 호텔에 가져가실 거라면 ‘미리 구워 식힌 케이크 줄’에 서시면 대기 없이 1~3분 만에 구매할 수 있습니다.'
+  },
+  {
+    id: 'spot',
+    num: '06',
+    icon: '🍁',
+    titleKo: '숨은 로컬 명소 · 단풍 폭포 · 천공 온천 · 명문 가이세키',
+    titleJa: 'ローカル名所・箕面大滝・空庭温泉・懐石',
+    subtitle: '한국인 인파에 치이지 않는 1,300년 단풍잎 튀김 계곡, 1920년대 목조 골목, 국보급 도자 미술관과 정통 가이세키',
+    description: '북적이는 번화가에서 한 걸음만 벗어나면 만날 수 있는 오사카의 깊은 시간과 자연, 그리고 정갈한 미식 공간입니다. 1년간 절인 진짜 단풍잎을 튀겨 파는 세계 유일의 미노오 폭포 산책길, 전쟁 대공습 때 기적적으로 불타지 않고 살아남은 1920년대 목조 주택 골목 나카자키초, 1918년 붉은 벽돌 중앙공회당과 세계 최고 수준의 한국 고려청자·조선백자 컬렉션을 소장한 나카노시마, 100년 언덕길 가라호리 상점가, 유카타를 입고 거니는 소라니와 온천, 그리고 부모님과 조용히 즐기는 두부 가이세키·미슐랭 돈카츠입니다.',
+    tip: '💡 오전에는 미노오 폭포나 나카자키초 목조 골목을 산책하고, 해 질 녘 나카노시마 강변이나 소라니와 온천을 방문하면 가장 여유롭고 품격 있는 가족 인생샷 코스가 완성됩니다.'
+  },
+  {
+    id: 'craft',
+    num: '07',
+    icon: '🔪',
+    titleKo: '600년 장인의 평생 명품 · 백화점 한정 기념품 · 전통 명주',
+    titleJa: '大阪伝統工芸・デパ地下限定土産・地酒と麦焼酎',
+    subtitle: '이름을 각인해 주는 사카이 수제 주방칼, 술맛을 바꾸는 주석잔·덴마 키리코, 1초 흡수 센슈 타올과 로컬 사케·보리소주',
+    description: '흔한 드럭스토어 공산품 대신, 여행이 끝난 뒤에도 평생 식탁과 일상에서 오사카를 떠올리게 해 줄 진짜 명품들입니다. 프로 셰프의 90%가 쓰며 그 자리에서 가족 이름을 새겨주는 600년 전통 사카이 수제 식도, 요리 도구 장인 거리 도구야스지, 물과 술의 쓴맛을 없애주는 국가 지정 전통공예 나니와 주석 술잔, 술을 따르면 만화경처럼 빛나는 덴마 키리코 컷글라스, 1초 만에 물기를 흡수하는 센슈 타올, 백화점 한정 발효버터 스틱 과자 바통도르·수제 모나카·시오콘부, 그리고 오사카 로컬 명주(아키시카·고슈)와 구수한 프리미엄 보리소주(카네하치·나카나카)입니다.',
+    tip: '💡 사카이 수제 주방칼은 기내 휴대 반입이 절대 불가하므로 출국 시 반드시 부치는 짐(위탁수하물 캐리어)에 넣으셔야 합니다!'
+  }
 ];
 ---
 
 <div class="explore-view">
-  <!-- 스마트 3중 필터 바 (상단 Sticky 축소 바) -->
+  <!-- 1. 상단 페이지 안내 및 큐레이션 가이드 배너 -->
+  <section class="explore-intro-banner">
+    <div class="intro-top-row">
+      <span class="stamp-badge">厳選五十八選 · 엄선 58선</span>
+      <span class="intro-sub-pill">광구성 맛집 제외 · 100% 로컬 정본</span>
+    </div>
+    <h2 class="explore-page-title">
+      오사카에서 유래한 원조 명물부터 100년 노포·장인 명품까지
+    </h2>
+    <p class="explore-page-desc">
+      단순히 유명한 식당을 나열하지 않고, <strong>‘왜 오사카에서 이 음식과 장소를 경험해야 하는가’</strong>를 기준으로 <strong>7대 카테고리 총 {places.length}곳</strong>을 분류했습니다. 아래 카테고리별 해설을 읽으며 우리 가족·일행에게 딱 맞는 코스를 골라보세요.
+    </p>
+
+    <div class="explore-usage-guide">
+      <div class="usage-item">
+        <span class="usage-icon">📸</span>
+        <span><strong>사진·상호 클릭:</strong> 구글 공식 로컬 매장정보 & 실제 리뷰 사진 열람</span>
+      </div>
+      <div class="usage-item">
+        <span class="usage-icon">🚕</span>
+        <span><strong>기사님·직원 버튼:</strong> 택시 일본어 주소·5인석 문의·손가락 주문판</span>
+      </div>
+      <div class="usage-item">
+        <span class="usage-icon">♥</span>
+        <span><strong>하트(찜) 버튼:</strong> 내 찜 바구니에 권역별 동선으로 자동 분류</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 스마트 필터 & 카테고리 바로가기 바 (Sticky) -->
   <section class="filter-sticky-bar" id="explore-filter-bar">
-    <div class="filter-header-row">
+    <!-- 카테고리 원터치 칩 레일 -->
+    <div class="cat-chips-rail" aria-label="카테고리 선택">
+      <button type="button" class="cat-quick-chip active" data-cat-chip="all">
+        <span>전체 7대 카테고리</span>
+        <span class="chip-cnt">{places.length}</span>
+      </button>
+      {categorySections.map((sec) => {
+        const cnt = places.filter(p => p.category === sec.id).length;
+        return (
+          <button type="button" class="cat-quick-chip" data-cat-chip={sec.id}>
+            <span>{sec.icon} {sec.titleKo.split(' · ')[0]}</span>
+            <span class="chip-cnt">{cnt}</span>
+          </button>
+        );
+      })}
+    </div>
+
+    <!-- 검색창 & 권역/동행자 상세 필터 -->
+    <div class="filter-controls-row">
       <div class="search-input-wrap">
         <span class="search-icon">🔍</span>
         <input
           type="search"
           id="explore-search-input"
-          placeholder="가게명, 일본어 상호, 메뉴 검색..."
+          placeholder="가게명, 일본어 상호, 대표 메뉴 검색..."
           class="search-input"
           autocomplete="off"
         />
@@ -48,106 +158,264 @@ const companionOptions = [
         </button>
       </div>
 
-      <div class="results-count-wrap">
-        <span class="count-badge" id="matching-count">{places.length}</span>
-        <span class="count-label">곳 매칭</span>
-      </div>
-    </div>
-
-    <!-- 3중 선택 드롭다운/버튼 -->
-    <div class="filter-selects-grid">
-      <!-- 1. 권역 -->
-      <div class="select-group">
-        <label for="filter-area" class="filter-label">권역</label>
-        <select id="filter-area" class="filter-select">
+      <div class="filter-selects-wrap">
+        <select id="filter-area" class="filter-select" aria-label="권역 선택">
           {areaOptions.map(opt => (
             <option value={opt.value}>{opt.label}</option>
           ))}
         </select>
-      </div>
 
-      <!-- 2. 카테고리 -->
-      <div class="select-group">
-        <label for="filter-category" class="filter-label">음식·명소 종류</label>
-        <select id="filter-category" class="filter-select">
-          {categoryOptions.map(opt => (
-            <option value={opt.value}>{opt.label}</option>
+        <!-- 기존 스크립트 호환용 카테고리 select (칩과 양방향 동기화) -->
+        <select id="filter-category" class="filter-select" aria-label="카테고리 선택">
+          <option value="all">카테고리 전체 (7종)</option>
+          {categorySections.map(sec => (
+            <option value={sec.id}>{sec.icon} {sec.titleKo}</option>
           ))}
         </select>
-      </div>
 
-      <!-- 3. 동행자 -->
-      <div class="select-group">
-        <label for="filter-companion" class="filter-label">동행자 맞춤</label>
-        <select id="filter-companion" class="filter-select">
+        <select id="filter-companion" class="filter-select" aria-label="동행자 맞춤 선택">
           {companionOptions.map(opt => (
             <option value={opt.value}>{opt.label}</option>
           ))}
         </select>
-      </div>
 
-      <button type="button" id="btn-reset-filters" class="btn-reset-filters" title="필터 초기화">
-        🔄 초기화
-      </button>
+        <button type="button" id="btn-reset-filters" class="btn-reset-filters" title="필터 초기화">
+          🔄 초기화 (<span id="matching-count">{places.length}</span>곳)
+        </button>
+      </div>
     </div>
   </section>
 
-  <!-- 장소 카드 그리드 (50+곳) -->
-  <section class="places-grid-section">
-    <div class="places-grid" id="explore-places-grid">
-      {places.map((place) => (
-        <PlaceCard place={place} />
-      ))}
-    </div>
+  <!-- 3. 7대 카테고리별 섹션 & 카테고리 해설 + 장소 카드 그리드 -->
+  <div class="category-sections-container" id="explore-places-grid">
+    {categorySections.map((sec) => {
+      const secPlaces = places.filter(p => p.category === sec.id);
+      return (
+        <section class="category-section-block" id={`cat-sec-${sec.id}`} data-category-section={sec.id}>
+          <!-- 카테고리 설명 헤더 카드 -->
+          <header class="cat-section-header">
+            <div class="cat-header-top">
+              <div class="cat-title-wrap">
+                <span class="cat-num-badge">CATEGORY {sec.num}</span>
+                <h3 class="cat-main-title">
+                  <span class="cat-icon">{sec.icon}</span>
+                  <span>{sec.titleKo}</span>
+                </h3>
+                <span class="cat-title-ja">{sec.titleJa}</span>
+              </div>
+              <span class="cat-count-pill">
+                총 <strong class="sec-match-count" data-sec-count={sec.id}>{secPlaces.length}</strong>곳
+              </span>
+            </div>
 
-    <!-- 검색 결과 없을 때 -->
+            <p class="cat-subtitle">{sec.subtitle}</p>
+            <p class="cat-desc">{sec.description}</p>
+            <div class="cat-tip-bar">
+              <span>{sec.tip}</span>
+            </div>
+          </header>
+
+          <!-- 해당 카테고리에 속한 장소 카드 그리드 -->
+          <div class="places-grid">
+            {secPlaces.map((place) => (
+              <PlaceCard place={place} />
+            ))}
+          </div>
+        </section>
+      );
+    })}
+
+    <!-- 검색/필터 결과 없을 때 -->
     <div id="no-results-box" class="no-results-box" hidden>
       <span class="no-res-icon">🏮</span>
-      <h4 class="no-res-title">조건에 맞는 장소를 찾지 못했습니다.</h4>
-      <p class="no-res-desc">선택한 필터를 변경하거나 검색어를 비워보세요.</p>
+      <h4 class="no-res-title">선택하신 조건에 맞는 장소를 찾지 못했습니다.</h4>
+      <p class="no-res-desc">권역이나 동행자 필터를 ‘전체’로 완화하거나 검색어를 비워보세요.</p>
       <button type="button" id="btn-reset-filters-empty" class="btn-reset-filters large">
-        모든 필터 초기화하기
+        🔄 모든 필터 초기화하고 전체 58곳 보기
       </button>
     </div>
-  </section>
+  </div>
 </div>
 
 <style>
   .explore-view {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding-bottom: 50px;
+    gap: 24px;
+    padding-bottom: 56px;
   }
 
-  /* 스마트 필터 바 (Sticky) */
+  /* 1. 상단 페이지 안내 배너 */
+  .explore-intro-banner {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-top: 4px solid #1E293B;
+    border-radius: 16px;
+    padding: 22px 20px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media (min-width: 768px) {
+    .explore-intro-banner {
+      padding: 28px 28px;
+    }
+  }
+
+  .intro-top-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .intro-sub-pill {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #475569;
+    background: #F1F5F9;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .explore-page-title {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.35;
+  }
+
+  @media (min-width: 768px) {
+    .explore-page-title {
+      font-size: 1.75rem;
+    }
+  }
+
+  .explore-page-desc {
+    font-size: 0.92rem;
+    color: #334155;
+    line-height: 1.65;
+  }
+
+  .explore-usage-guide {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 6px;
+    padding: 12px 14px;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+  }
+
+  @media (min-width: 768px) {
+    .explore-usage-guide {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .usage-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #334155;
+    line-height: 1.4;
+  }
+
+  .usage-icon {
+    font-size: 1.05rem;
+    flex-shrink: 0;
+  }
+
+  /* 2. 스마트 필터 & 카테고리 칩 바 (Sticky) */
   .filter-sticky-bar {
     position: sticky;
-    top: 60px;
+    top: 58px;
     z-index: 30;
-    background: rgba(255, 255, 255, 0.96);
+    background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(10px);
     border: 1px solid var(--color-border);
     border-radius: 14px;
-    padding: 14px 16px;
+    padding: 12px 14px;
     box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    transition: all 0.2s ease;
+    gap: 10px;
   }
 
   @media (min-width: 768px) {
     .filter-sticky-bar {
-      top: 130px;
+      top: 128px;
+      padding: 14px 18px;
     }
   }
 
-  .filter-header-row {
+  .cat-chips-rail {
     display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+
+  .cat-chips-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cat-quick-chip {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid #CBD5E1;
+    background: #F8FAFC;
+    color: #334155;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+
+  .cat-quick-chip:hover {
+    border-color: var(--color-vermilion);
+    color: #0F172A;
+  }
+
+  .cat-quick-chip.active {
+    background: #1E293B;
+    border-color: #1E293B;
+    color: #FFFFFF;
+  }
+
+  .chip-cnt {
+    font-size: 0.72rem;
+    background: rgba(15, 23, 42, 0.08);
+    padding: 1px 6px;
+    border-radius: 10px;
+  }
+
+  .cat-quick-chip.active .chip-cnt {
+    background: var(--color-vermilion);
+    color: #FFFFFF;
+  }
+
+  .filter-controls-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  @media (min-width: 900px) {
+    .filter-controls-row {
+      flex-direction: row;
+      align-items: center;
+    }
   }
 
   .search-input-wrap {
@@ -160,116 +428,74 @@ const companionOptions = [
   .search-icon {
     position: absolute;
     left: 12px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #94A3B8;
     pointer-events: none;
   }
 
   .search-input {
     width: 100%;
-    padding: 9px 36px 9px 36px;
+    padding: 8px 32px 8px 34px;
     background: #F1F5F9;
     border: 1px solid #CBD5E1;
     border-radius: 8px;
-    font-size: 0.9rem;
+    font-size: 0.86rem;
     color: #0F172A;
     outline: none;
-    transition: all 0.15s ease;
   }
 
   .search-input:focus {
     background: #FFFFFF;
     border-color: var(--color-vermilion);
-    box-shadow: 0 0 0 3px rgba(214, 59, 34, 0.12);
   }
 
   .btn-clear-search {
     position: absolute;
-    right: 10px;
+    right: 8px;
     width: 20px;
     height: 20px;
     border-radius: 50%;
     background: #CBD5E1;
     color: #334155;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .results-count-wrap {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    white-space: nowrap;
-  }
-
-  .count-badge {
-    background: var(--color-vermilion);
-    color: #FFFFFF;
-    font-size: 0.85rem;
-    font-weight: 800;
-    padding: 2px 8px;
-    border-radius: 12px;
-  }
-
-  .count-label {
-    font-size: 0.8rem;
-    color: #64748B;
-  }
-
-  .filter-selects-grid {
+  .filter-selects-wrap {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 8px;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
   }
 
   @media (min-width: 640px) {
-    .filter-selects-grid {
+    .filter-selects-wrap {
       grid-template-columns: repeat(3, 1fr) auto;
     }
-  }
-
-  .select-group {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .filter-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: #64748B;
-    margin-left: 2px;
   }
 
   .filter-select {
     padding: 7px 10px;
     background: #FFFFFF;
     border: 1px solid #CBD5E1;
-    border-radius: 6px;
-    font-size: 0.82rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
     font-weight: 600;
     color: #1E293B;
     outline: none;
     cursor: pointer;
   }
 
-  .filter-select:focus {
-    border-color: var(--color-vermilion);
-  }
-
   .btn-reset-filters {
-    align-self: flex-end;
     padding: 7px 12px;
     background: #F1F5F9;
     border: 1px solid #CBD5E1;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #475569;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #334155;
     white-space: nowrap;
-    transition: all 0.15s ease;
   }
 
   .btn-reset-filters:hover {
@@ -284,6 +510,120 @@ const companionOptions = [
     color: #FFFFFF;
     border: none;
     margin-top: 8px;
+  }
+
+  /* 3. 카테고리별 독립 섹션 & 해설 헤더 */
+  .category-sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+
+  .category-section-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    scroll-margin-top: 190px;
+  }
+
+  .category-section-block[hidden] {
+    display: none !important;
+  }
+
+  .cat-section-header {
+    background: #FFFFFF;
+    border: 1px solid #E2DDD3;
+    border-left: 6px solid var(--color-vermilion);
+    border-radius: 14px;
+    padding: 20px 20px;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media (min-width: 768px) {
+    .cat-section-header {
+      padding: 24px 28px;
+    }
+  }
+
+  .cat-header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .cat-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .cat-num-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-vermilion-text);
+    letter-spacing: 0.6px;
+  }
+
+  .cat-main-title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0F172A;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.3;
+  }
+
+  @media (min-width: 768px) {
+    .cat-main-title {
+      font-size: 1.6rem;
+    }
+  }
+
+  .cat-title-ja {
+    font-family: var(--font-serif);
+    font-size: 0.84rem;
+    color: #64748B;
+    font-weight: 600;
+  }
+
+  .cat-count-pill {
+    background: #1E293B;
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .cat-subtitle {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #785204;
+    line-height: 1.45;
+  }
+
+  .cat-desc {
+    font-size: 0.88rem;
+    color: #334155;
+    line-height: 1.7;
+  }
+
+  .cat-tip-bar {
+    background: #FFFBEB;
+    border: 1px dashed #FCD34D;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    color: #78350F;
+    font-weight: 600;
+    line-height: 1.5;
   }
 
   /* 장소 그리드 */
@@ -340,58 +680,78 @@ const companionOptions = [
 </style>
 
 <script is:inline>
-  // 3중 필터링 및 실시간 검색 제어 스크립트
+  // 카테고리 섹션별 3중 필터링 및 칩 동기화 스크립트
   (function() {
     const searchInput = document.getElementById('explore-search-input');
     const clearSearchBtn = document.getElementById('btn-clear-search');
     const areaSelect = document.getElementById('filter-area');
     const categorySelect = document.getElementById('filter-category');
     const companionSelect = document.getElementById('filter-companion');
+    const catChips = document.querySelectorAll('[data-cat-chip]');
     const resetBtn = document.getElementById('btn-reset-filters');
     const resetEmptyBtn = document.getElementById('btn-reset-filters-empty');
     const matchingCountEl = document.getElementById('matching-count');
     const noResultsBox = document.getElementById('no-results-box');
-    const grid = document.getElementById('explore-places-grid');
+    const catSections = document.querySelectorAll('[data-category-section]');
+
+    function syncCatChips(selectedCat) {
+      catChips.forEach(chip => {
+        const val = chip.getAttribute('data-cat-chip');
+        chip.classList.toggle('active', val === selectedCat);
+      });
+    }
 
     function applyFilters() {
-      if (!grid) return;
-      const cards = grid.querySelectorAll('.place-card');
-      const query = (searchInput.value || '').trim().toLowerCase();
-      const area = areaSelect.value;
-      const cat = categorySelect.value;
-      const comp = companionSelect.value;
+      const query = (searchInput?.value || '').trim().toLowerCase();
+      const area = areaSelect?.value || 'all';
+      const cat = categorySelect?.value || 'all';
+      const comp = companionSelect?.value || 'all';
 
-      clearSearchBtn.hidden = !query;
+      if (clearSearchBtn) clearSearchBtn.hidden = !query;
+      syncCatChips(cat);
 
-      let matchedCount = 0;
+      let totalMatched = 0;
 
-      cards.forEach(card => {
-        const cardArea = card.getAttribute('data-area') || '';
-        const cardCat = card.getAttribute('data-category') || '';
-        const cardComps = (card.getAttribute('data-companions') || '').split(',');
-        const textContent = card.textContent.toLowerCase();
+      catSections.forEach(sec => {
+        const secId = sec.getAttribute('data-category-section') || '';
+        const cards = sec.querySelectorAll('.place-card');
+        let secMatched = 0;
 
-        // 1. 권역 체크
-        const matchArea = area === 'all' || cardArea === area;
-        // 2. 카테고리 체크
-        const matchCat = cat === 'all' || cardCat === cat;
-        // 3. 동행자 체크
-        const matchComp = comp === 'all' || cardComps.includes(comp);
-        // 4. 검색어 체크
-        const matchQuery = !query || textContent.includes(query);
+        cards.forEach(card => {
+          const cardArea = card.getAttribute('data-area') || '';
+          const cardCat = card.getAttribute('data-category') || '';
+          const cardComps = (card.getAttribute('data-companions') || '').split(',');
+          const textContent = card.textContent.toLowerCase();
 
-        const visible = matchArea && matchCat && matchComp && matchQuery;
-        if (visible) {
-          card.style.display = '';
-          matchedCount++;
+          const matchArea = area === 'all' || cardArea === area;
+          const matchCat = cat === 'all' || cardCat === cat;
+          const matchComp = comp === 'all' || cardComps.includes(comp);
+          const matchQuery = !query || textContent.includes(query);
+
+          const visible = matchArea && matchCat && matchComp && matchQuery;
+          if (visible) {
+            card.style.display = '';
+            secMatched++;
+            totalMatched++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // 해당 카테고리 섹션 내에 표시할 카드가 있으면 섹션 노출, 0개면 섹션 전체 숨김
+        const secCountEl = sec.querySelector(`[data-sec-count="${secId}"]`);
+        if (secCountEl) secCountEl.textContent = secMatched;
+
+        if (secMatched > 0) {
+          sec.removeAttribute('hidden');
         } else {
-          card.style.display = 'none';
+          sec.setAttribute('hidden', 'true');
         }
       });
 
-      if (matchingCountEl) matchingCountEl.textContent = matchedCount;
+      if (matchingCountEl) matchingCountEl.textContent = totalMatched;
       if (noResultsBox) {
-        if (matchedCount === 0) {
+        if (totalMatched === 0) {
           noResultsBox.removeAttribute('hidden');
         } else {
           noResultsBox.setAttribute('hidden', 'true');
@@ -407,9 +767,17 @@ const companionOptions = [
       applyFilters();
     }
 
-    if (searchInput) {
-      searchInput.addEventListener('input', applyFilters);
-    }
+    catChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const val = chip.getAttribute('data-cat-chip') || 'all';
+        if (categorySelect) {
+          categorySelect.value = val;
+          applyFilters();
+        }
+      });
+    });
+
+    if (searchInput) searchInput.addEventListener('input', applyFilters);
     if (clearSearchBtn) {
       clearSearchBtn.addEventListener('click', () => {
         searchInput.value = '';

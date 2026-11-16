@@ -1,215 +1,705 @@
 ---
 import { stories } from '../data/stories';
 import { places } from '../data/places';
-import PlaceCard from './PlaceCard.astro';
+import { specialThemes } from '../data/media';
 
 // 빠른 ID 매핑 딕셔너리 생성
 const placesMap = new Map(places.map(p => [p.id, p]));
+
+// 각 챕터별 짧은 탭 이름 & 문단별 소제목 매핑 (가독성 극대화)
+const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadings: string[] }> = {
+  'prologue': {
+    shortTab: '프롤로그 · 천하의 부엌',
+    heroImg: '/images/city/hero-osaka.jpg',
+    subheadings: [
+      '“먹다가 집안이 거덜 난다” — 쿠이다오레(食い倒れ)의 탄생',
+      '400년 전 전국의 산해진미가 모인 물길, 천하의 부엌',
+      '체면의 도쿄 무사(사무라이) vs 실속의 오사카 상인(초닌)',
+      '내 혀가 납득하는 진짜 맛에만 지갑을 여는 실리주의'
+    ]
+  },
+  'chapter-1': {
+    shortTab: '1장 · 에도 시대 상인',
+    heroImg: '/images/places/dotonbori-imai.jpg',
+    subheadings: [
+      '도쿄의 진간장 국물 vs 오사카의 맑은 홋카이도 다시마 국물',
+      '400년 다시마 육수의 정수, 도톤보리 이마이의 키츠네 우동',
+      '바쁜 상인의 지혜: 네모난 상자초밥(하코즈시)과 숯불 마무시 장어',
+      '협상 뒤의 달콤한 여운: 부부 단팥죽·미타라시단고·오사카 명주'
+    ]
+  },
+  'chapter-2': {
+    shortTab: '2장 · 1920년대 경양식',
+    heroImg: '/images/places/hokkyokusei.jpg',
+    subheadings: [
+      '도쿄를 제치고 일본 인구·경제 1위에 오른 ‘대오사카 시대’',
+      '서양 요리에 오사카의 정을 입힌 ‘요쇼쿠(일본식 경양식)’',
+      '1922년 위장 약한 단골을 위한 배려, 세계 최초 오므라이스의 탄생',
+      '날계란 비빔 카레·암소 와규 스키야키·호일 함박·클래식 킷사텐'
+    ]
+  },
+  'chapter-3': {
+    shortTab: '3장 · 전후 서민 소울푸드',
+    heroImg: '/images/places/chitose.jpg',
+    subheadings: [
+      '잿더미 속에서 다시 피어난 만자이(만담) 극장가의 웃음과 연기',
+      '“아지매, 우동 면 빼고 고기 국물만 주이소!” — 해장국 니쿠스이',
+      '대파 폭탄 네기야키, 노동자의 쿠시카츠, 아버지의 선물 551 부타만',
+      '참복 요리의 대중화와 도톤보리 움직이는 대게 간판의 쇼맨십'
+    ]
+  },
+  'chapter-4': {
+    shortTab: '4장 · 현대 핫플 & 야식학',
+    heroImg: '/images/places/gyukatsu-motomura.jpg',
+    subheadings: [
+      '1958년 맥주 공장 컨베이어 벨트에서 발명된 ‘세계 최초 회전초밥’',
+      '미니 화로 규카츠, 폭탄 장어계란덮밥, 2m 거대 주걱 화로구이',
+      '편의점 컵라면 ‘닛신 돈베이’ 옆면의 비밀: 서일본(W) vs 동일본(E)',
+      '오하요 브륄레 아이스크림·모찌롤과 천공 정원 온천 후 병우유 한 잔'
+    ]
+  },
+  'chapter-5': {
+    shortTab: '5장 · 숨은 로컬 골목',
+    heroImg: '/images/places/minoh-waterfall.jpg',
+    subheadings: [
+      '화려한 네온사인 뒤편에 숨은 오사카의 고즈넉한 시간과 자연',
+      '1,300년 전 수련승의 간식 ‘단풍잎 튀김’을 파는 미노오 폭포 산책길',
+      '전쟁의 화마를 기적처럼 피한 1920년대 목조 골목, 나카자키초',
+      '붉은 벽돌 중앙공회당·세계 최고 고려청자 미술관·가라호리 고택'
+    ]
+  },
+  'chapter-6': {
+    shortTab: '6장 · 600년 장인 명품',
+    heroImg: '/images/places/sakai-knives.jpg',
+    subheadings: [
+      '전국시대 조총과 일본도를 벼리던 대장장이 도시, 사카이(堺)의 식도',
+      '술맛을 부드럽게 바꾸는 나니와 주석 술잔·덴마 키리코·센슈 타올',
+      '백화점 지하의 품격: 발효버터 바통도르·수제 모나카·시오콘부'
+    ]
+  }
+};
 ---
 
 <div class="stories-view">
-  <!-- 상단 챕터 네비게이션 칩 바 (가로 스크롤 가능) -->
-  <nav class="chapter-chips-bar" aria-label="챕터 바로가기">
-    <div class="chips-scroll-container">
-      {stories.map((ch) => (
-        <a href={`#story-${ch.id}`} class="chapter-chip">
-          <span class="chip-num">{ch.number}</span>
-          <span class="chip-title">{ch.title.split(':')[0]}</span>
-        </a>
-      ))}
+  <!-- 상단 인트로 & 뷰 모드 컨트롤 -->
+  <section class="stories-intro-bar">
+    <div class="intro-left">
+      <span class="stamp-badge">飲食歷史</span>
+      <div class="intro-texts">
+        <h2 class="intro-title">알고 먹으면 두 배 맛있는 오사카 400년 이야기</h2>
+        <p class="intro-desc">원하는 시대를 눌러 한 장씩 책장 넘기듯 편하게 읽어보세요.</p>
+      </div>
+    </div>
+    <button type="button" id="btn-toggle-all-chapters" class="btn-view-mode" data-mode="single">
+      📖 전체 장 한꺼번에 펼치기
+    </button>
+  </section>
+
+  <!-- 상단 챕터 선택 탭 바 (Sticky, 한 번에 1장씩 깔끔하게 전환) -->
+  <nav class="chapter-tabs-nav" aria-label="미식 역사 챕터 선택">
+    <div class="chapter-tabs-scroll">
+      {stories.map((ch, idx) => {
+        const meta = chapterMeta[ch.id];
+        return (
+          <button
+            type="button"
+            class={`chapter-tab-btn ${idx === 0 ? 'active' : ''}`}
+            data-story-target={ch.id}
+            data-story-index={idx}
+          >
+            <span class="tab-idx">{idx === 0 ? '序' : `${idx}장`}</span>
+            <span class="tab-label">{meta ? meta.shortTab.split(' · ')[1] : ch.number}</span>
+          </button>
+        );
+      })}
+      <button
+        type="button"
+        class="chapter-tab-btn"
+        data-story-target="special-appendix"
+        data-story-index={stories.length}
+      >
+        <span class="tab-idx">別冊</span>
+        <span class="tab-label">4대 알짜 테마</span>
+      </button>
     </div>
   </nav>
 
-  <!-- 각 챕터별 마스터 스토리 아크 -->
-  <div class="chapters-container">
-    {stories.map((ch) => {
+  <!-- 각 챕터 본문 리더 컨테이너 -->
+  <div class="chapters-reader-container" id="chapters-reader-container">
+    {stories.map((ch, idx) => {
+      const meta = chapterMeta[ch.id];
       const featuredPlaces = ch.featuredPlaceIds
         .map(id => placesMap.get(id))
         .filter(Boolean);
+      const prevCh = idx > 0 ? stories[idx - 1] : null;
+      const nextCh = idx < stories.length - 1 ? stories[idx + 1] : null;
 
       return (
-        <article class="story-chapter-card" id={`story-${ch.id}`}>
-          <!-- 챕터 헤더 -->
-          <header class="chapter-header">
-            <div class="ch-badge-row">
-              <span class="stamp-badge">{ch.number}</span>
-              <span class="period-tag">{ch.period}</span>
+        <article
+          class={`story-chapter-panel ${idx === 0 ? 'active-chapter' : 'hidden-chapter'}`}
+          id={`story-panel-${ch.id}`}
+          data-chapter-panel={ch.id}
+          data-chapter-idx={idx}
+        >
+          <!-- 챕터 상단 비주얼 배너 -->
+          <div class="ch-hero-banner">
+            <img
+              src={meta?.heroImg || '/images/city/hero-osaka.jpg'}
+              alt={ch.title}
+              loading={idx === 0 ? 'eager' : 'lazy'}
+              class="ch-hero-img"
+            />
+            <div class="ch-hero-overlay">
+              <div class="ch-badge-row">
+                <span class="ch-num-pill">{ch.number}</span>
+                <span class="ch-period-pill">{ch.period}</span>
+              </div>
+              <h3 class="ch-title">{ch.title}</h3>
+              <p class="ch-subtitle">{ch.subtitle}</p>
             </div>
-            <h3 class="ch-title">{ch.title}</h3>
-            <h4 class="ch-subtitle">{ch.subtitle}</h4>
-          </header>
-
-          <!-- 리드 문단 -->
-          <div class="ch-lead-box">
-            <p class="ch-lead-text">{ch.lead}</p>
           </div>
 
-          <!-- 본문 문단들 -->
-          <div class="ch-paragraphs">
-            {ch.content.map((p) => (
-              <p class="story-para">{p}</p>
-            ))}
+          <div class="ch-body-inner">
+            <!-- 3초 핵심 요약 리드박스 -->
+            <div class="ch-lead-box">
+              <span class="lead-kicker">💡 핵심 요약</span>
+              <p class="ch-lead-text">{ch.lead}</p>
+            </div>
+
+            <!-- 가독성 극대화: 소제목 + 단락 카드 구조 -->
+            <div class="ch-paragraphs-list">
+              {ch.content.map((p, pIdx) => {
+                const subhead = meta?.subheadings?.[pIdx];
+                return (
+                  <div class="story-block">
+                    {subhead && (
+                      <h4 class="story-subhead">
+                        <span class="subhead-num">0{pIdx + 1}</span>
+                        <span>{subhead}</span>
+                      </h4>
+                    )}
+                    <p class="story-para">{p}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            <!-- 시대 명언 인용구 박스 -->
+            {ch.quote && (
+              <blockquote class="ch-quote-box">
+                <span class="quote-mark">“</span>
+                <p class="quote-text">{ch.quote.text}</p>
+                <cite class="quote-author">— {ch.quote.author}</cite>
+              </blockquote>
+            )}
+
+            <!-- 컴팩트 슬림 명소 리스트 (페이지 길이를 늘리지 않고 핵심만 한눈에!) -->
+            {featuredPlaces.length > 0 && (
+              <section class="chapter-compact-places">
+                <div class="deck-header">
+                  <div class="deck-title-group">
+                    <span class="deck-badge">등장 명소 {featuredPlaces.length}곳</span>
+                    <h5 class="deck-title">이 이야기 속에 등장하는 오사카 대표 가게</h5>
+                  </div>
+                  <span class="deck-hint">사진·이름 클릭 시 구글 공식 매장정보 열림</span>
+                </div>
+
+                <div class="slim-places-grid">
+                  {featuredPlaces.map((place) => {
+                    if (!place) return null;
+                    const googleLocalInfoUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.googleQuery || (place.nameJa + ' ' + place.branchJa + ' ' + place.addressJa))}`;
+                    return (
+                      <div class="slim-place-card">
+                        <a
+                          href={googleLocalInfoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="slim-thumb-wrap"
+                          title={`${place.nameKo} 구글 공식 로컬 정보 보기`}
+                        >
+                          <img src={place.image} alt={place.nameKo} loading="lazy" class="slim-thumb" />
+                        </a>
+
+                        <div class="slim-info">
+                          <div class="slim-top-row">
+                            <a
+                              href={googleLocalInfoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="slim-name-ko"
+                            >
+                              {place.nameKo}
+                            </a>
+                            <button
+                              type="button"
+                              class="slim-pick-btn btn-pick"
+                              data-pick-toggle={place.id}
+                              aria-label={`${place.nameKo} 찜하기`}
+                            >
+                              <span class="heart-icon">♥</span>
+                            </button>
+                          </div>
+                          <span class="slim-name-ja">{place.nameJa} {place.branchJa}</span>
+                          <p class="slim-menu">{place.signatureMenu}</p>
+
+                          <div class="slim-actions">
+                            <a
+                              href={googleLocalInfoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="slim-btn slim-btn-local"
+                            >
+                              🏪 구글 공식 정보 ↗
+                            </a>
+                            <button
+                              type="button"
+                              class="slim-btn slim-btn-driver"
+                              data-open-driver-modal={place.id}
+                            >
+                              🚕 기사님·직원
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
+
+            <!-- 하단 책장 넘기기 (이전 장 / 다음 장 네비게이션) -->
+            <footer class="chapter-pager">
+              {prevCh ? (
+                <button
+                  type="button"
+                  class="pager-btn pager-prev"
+                  data-story-target={prevCh.id}
+                >
+                  <span class="pager-dir">← 이전 이야기</span>
+                  <strong class="pager-title">{prevCh.number}: {prevCh.title}</strong>
+                </button>
+              ) : (
+                <div class="pager-spacer"></div>
+              )}
+
+              {nextCh ? (
+                <button
+                  type="button"
+                  class="pager-btn pager-next"
+                  data-story-target={nextCh.id}
+                >
+                  <span class="pager-dir">다음 이야기 →</span>
+                  <strong class="pager-title">{nextCh.number}: {nextCh.title}</strong>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  class="pager-btn pager-next"
+                  data-story-target="special-appendix"
+                >
+                  <span class="pager-dir">다음 이야기 →</span>
+                  <strong class="pager-title">별책부록: 놓치면 아쉬운 오사카 4대 알짜 테마</strong>
+                </button>
+              )}
+            </footer>
           </div>
-
-          <!-- 인용구 박스 -->
-          {ch.quote && (
-            <blockquote class="ch-quote-box">
-              <span class="quote-mark">“</span>
-              <p class="quote-text">{ch.quote.text}</p>
-              <cite class="quote-author">— {ch.quote.author}</cite>
-            </blockquote>
-          )}
-
-          <!-- 챕터 말미 관련 장소 카드 덱 -->
-          {featuredPlaces.length > 0 && (
-            <section class="chapter-places-deck">
-              <div class="deck-header">
-                <span class="deck-badge">관련 명소</span>
-                <h5 class="deck-title">이 이야기 속에 등장한 오사카의 가게</h5>
-              </div>
-              <div class="deck-grid">
-                {featuredPlaces.map((place) => (
-                  <PlaceCard place={place} compact={true} />
-                ))}
-              </div>
-            </section>
-          )}
-
-          <div class="seigaiha-divider"></div>
         </article>
       );
     })}
+
+    <!-- 별책부록: 4대 알짜 테마 패널 -->
+    <article
+      class="story-chapter-panel hidden-chapter"
+      id="story-panel-special-appendix"
+      data-chapter-panel="special-appendix"
+      data-chapter-idx={stories.length}
+    >
+      <div class="ch-hero-banner">
+        <img src="/images/places/soraniwa-onsen.jpg" alt="오사카 알짜 테마" loading="lazy" class="ch-hero-img" />
+        <div class="ch-hero-overlay">
+          <div class="ch-badge-row">
+            <span class="ch-num-pill">별책부록</span>
+            <span class="ch-period-pill">알면 아는 척하기 딱 좋은 비하인드</span>
+          </div>
+          <h3 class="ch-title">놓치면 아쉬운 오사카 4대 알짜 미식·문화 테마</h3>
+          <p class="ch-subtitle">회전초밥 발상지 비화 · 제빵의 수도 간사이 · 에도 거리 온천 · 편의점 동서 국물 전쟁</p>
+        </div>
+      </div>
+
+      <div class="ch-body-inner">
+        <div class="special-themes-grid">
+          {specialThemes.map((t, tIdx) => (
+            <div class="special-theme-card">
+              <span class="theme-num">THEME 0{tIdx + 1}</span>
+              <h4 class="theme-title">{t.titleKo}</h4>
+              <p class="theme-sub">{t.subtitle}</p>
+              <p class="theme-body">{t.content}</p>
+            </div>
+          ))}
+        </div>
+
+        <footer class="chapter-pager">
+          <button
+            type="button"
+            class="pager-btn pager-prev"
+            data-story-target={stories[stories.length - 1].id}
+          >
+            <span class="pager-dir">← 이전 이야기</span>
+            <strong class="pager-title">제6장: 손끝에 깃든 혼, 장인의 명품</strong>
+          </button>
+          <button
+            type="button"
+            class="pager-btn pager-next"
+            id="btn-story-to-explore"
+          >
+            <span class="pager-dir">이야기에 나온 가게 둘러보기 →</span>
+            <strong class="pager-title">🔍 카테고리별 맛집·명소 58선 보러가기</strong>
+          </button>
+        </footer>
+      </div>
+    </article>
   </div>
 </div>
+
+<script is:inline>
+  (function() {
+    const tabBtns = document.querySelectorAll('.chapter-tab-btn');
+    const panels = document.querySelectorAll('.story-chapter-panel');
+    const toggleAllBtn = document.getElementById('btn-toggle-all-chapters');
+    const toExploreBtn = document.getElementById('btn-story-to-explore');
+    let isAllExpanded = false;
+
+    function selectChapter(targetId, scrollToReader = true) {
+      if (isAllExpanded) {
+        const targetEl = document.getElementById(`story-panel-${targetId}`);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        return;
+      }
+
+      tabBtns.forEach(btn => {
+        const active = btn.getAttribute('data-story-target') === targetId;
+        btn.classList.toggle('active', active);
+        if (active) {
+          btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      });
+
+      panels.forEach(panel => {
+        const match = panel.getAttribute('data-chapter-panel') === targetId;
+        panel.classList.toggle('active-chapter', match);
+        panel.classList.toggle('hidden-chapter', !match);
+      });
+
+      if (scrollToReader) {
+        const navEl = document.querySelector('.chapter-tabs-nav');
+        if (navEl) {
+          const topY = navEl.getBoundingClientRect().top + window.scrollY - 70;
+          window.scrollTo({ top: Math.max(0, topY), behavior: 'smooth' });
+        }
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      const targetBtn = e.target.closest('[data-story-target]');
+      if (targetBtn) {
+        const targetId = targetBtn.getAttribute('data-story-target');
+        if (targetId) selectChapter(targetId, true);
+      }
+    });
+
+    if (toggleAllBtn) {
+      toggleAllBtn.addEventListener('click', () => {
+        isAllExpanded = !isAllExpanded;
+        if (isAllExpanded) {
+          panels.forEach(p => {
+            p.classList.add('active-chapter');
+            p.classList.remove('hidden-chapter');
+          });
+          toggleAllBtn.textContent = '📕 한 장씩 책장 넘겨보기 모드로 전환';
+          toggleAllBtn.classList.add('expanded');
+        } else {
+          toggleAllBtn.textContent = '📖 전체 장 한꺼번에 펼치기';
+          toggleAllBtn.classList.remove('expanded');
+          const currentActive = document.querySelector('.chapter-tab-btn.active')?.getAttribute('data-story-target') || 'prologue';
+          selectChapter(currentActive, false);
+        }
+      });
+    }
+
+    if (toExploreBtn) {
+      toExploreBtn.addEventListener('click', () => {
+        if (window.osakaSwitchTab) window.osakaSwitchTab('explore');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  })();
+</script>
 
 <style>
   .stories-view {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    padding-bottom: 40px;
+    gap: 16px;
+    padding-bottom: 48px;
+    max-width: 920px;
+    margin: 0 auto;
   }
 
-  /* 상단 챕터 칩 바 */
-  .chapter-chips-bar {
-    position: sticky;
-    top: 60px;
-    z-index: 35;
-    background: rgba(251, 248, 243, 0.95);
-    backdrop-filter: blur(8px);
-    margin: -12px -16px 8px -16px;
-    padding: 10px 16px;
-    border-bottom: 1px solid #E2E8F0;
+  /* 상단 인트로 바 */
+  .stories-intro-bar {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
   }
 
-  @media (min-width: 768px) {
-    .chapter-chips-bar {
-      top: 130px;
-      margin: -12px 0 16px 0;
-      padding: 10px 0;
-      border-radius: 8px;
+  @media (min-width: 640px) {
+    .stories-intro-bar {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
     }
   }
 
-  .chips-scroll-container {
+  .intro-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .intro-title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.3;
+  }
+
+  .intro-desc {
+    font-size: 0.84rem;
+    color: #64748B;
+    margin-top: 2px;
+  }
+
+  .btn-view-mode {
+    align-self: flex-start;
+    background: #F1F5F9;
+    border: 1px solid #CBD5E1;
+    color: #1E293B;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+
+  @media (min-width: 640px) {
+    .btn-view-mode {
+      align-self: center;
+    }
+  }
+
+  .btn-view-mode:hover,
+  .btn-view-mode.expanded {
+    background: #1E293B;
+    color: #FFFFFF;
+    border-color: #1E293B;
+  }
+
+  /* 상단 챕터 선택 탭 바 */
+  .chapter-tabs-nav {
+    position: sticky;
+    top: 58px;
+    z-index: 35;
+    background: rgba(251, 248, 243, 0.96);
+    backdrop-filter: blur(10px);
+    padding: 10px 0;
+    border-bottom: 2px solid #E2E8F0;
+  }
+
+  @media (min-width: 768px) {
+    .chapter-tabs-nav {
+      top: 128px;
+    }
+  }
+
+  .chapter-tabs-scroll {
     display: flex;
     gap: 8px;
     overflow-x: auto;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+    padding: 2px 2px;
   }
 
-  .chips-scroll-container::-webkit-scrollbar {
+  .chapter-tabs-scroll::-webkit-scrollbar {
     display: none;
   }
 
-  .chapter-chip {
+  .chapter-tab-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     background: #FFFFFF;
-    border: 1px solid #CBD5E1;
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 0.82rem;
+    border: 1.5px solid #CBD5E1;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 0.84rem;
     color: #334155;
     white-space: nowrap;
     transition: all 0.15s ease;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   }
 
-  .chapter-chip:hover {
+  .chapter-tab-btn:hover {
     border-color: var(--color-vermilion);
-    color: var(--color-vermilion-text);
-    background: #FFF5F5;
+    color: #0F172A;
   }
 
-  .chip-num {
+  .chapter-tab-btn.active {
+    background: #1E293B;
+    border-color: #1E293B;
+    color: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(30, 41, 59, 0.22);
+  }
+
+  .tab-idx {
+    font-family: var(--font-serif);
     font-weight: 800;
+    font-size: 0.76rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(214, 59, 34, 0.12);
     color: var(--color-vermilion-text);
   }
 
-  .chip-title {
-    font-weight: 500;
+  .chapter-tab-btn.active .tab-idx {
+    background: var(--color-vermilion);
+    color: #FFFFFF;
   }
 
-  /* 챕터 카드 */
-  .chapters-container {
+  .tab-label {
+    font-weight: 700;
+  }
+
+  /* 챕터 리더 패널 */
+  .chapters-reader-container {
     display: flex;
     flex-direction: column;
-    gap: 36px;
+    gap: 32px;
   }
 
-  .story-chapter-card {
+  .story-chapter-panel {
     background: #FFFFFF;
     border: 1px solid var(--color-border);
-    border-radius: 16px;
-    padding: 24px 20px;
-    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(15, 23, 42, 0.06);
+    animation: chapterFadeIn 0.22s ease-out;
   }
 
-  @media (min-width: 768px) {
-    .story-chapter-card {
-      padding: 36px 32px;
+  .story-chapter-panel.hidden-chapter {
+    display: none !important;
+  }
+
+  @keyframes chapterFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
-  .chapter-header {
+  /* 챕터 히어로 배너 */
+  .ch-hero-banner {
+    position: relative;
+    width: 100%;
+    min-height: 220px;
+    max-height: 300px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .ch-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ch-hero-overlay {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 28px 20px 22px 20px;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.94) 15%, rgba(15, 23, 42, 0.6) 65%, rgba(15, 23, 42, 0.2) 100%);
+    color: #FFFFFF;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .ch-hero-banner {
+      min-height: 260px;
+    }
+    .ch-hero-overlay {
+      padding: 36px 36px 28px 36px;
+    }
   }
 
   .ch-badge-row {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 8px;
   }
 
-  .period-tag {
+  .ch-num-pill {
+    background: var(--color-vermilion);
+    color: #FFFFFF;
+    font-family: var(--font-serif);
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+
+  .ch-period-pill {
+    background: rgba(255, 255, 255, 0.18);
+    color: #F8FAFC;
     font-size: 0.78rem;
     font-weight: 600;
-    color: #64748B;
-    background: #F1F5F9;
-    padding: 2px 8px;
+    padding: 3px 10px;
     border-radius: 4px;
+    backdrop-filter: blur(4px);
   }
 
   .ch-title {
     font-family: var(--font-serif);
     font-size: 1.45rem;
     font-weight: 800;
-    color: #0F172A;
+    color: #FFFFFF;
     line-height: 1.35;
-    letter-spacing: -0.3px;
   }
 
   .ch-subtitle {
-    font-size: 0.95rem;
+    font-size: 0.94rem;
+    color: #FCD34D;
     font-weight: 600;
-    color: var(--color-vermilion-text);
-    line-height: 1.4;
+    line-height: 1.45;
   }
 
   @media (min-width: 768px) {
@@ -217,41 +707,110 @@ const placesMap = new Map(places.map(p => [p.id, p]));
       font-size: 1.85rem;
     }
     .ch-subtitle {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
   }
 
-  .ch-lead-box {
-    background: #F8FAFC;
-    border-left: 4px solid var(--color-wood-dark);
-    padding: 12px 16px;
-    border-radius: 0 8px 8px 0;
-    margin-bottom: 20px;
-  }
-
-  .ch-lead-text {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #334155;
-    line-height: 1.65;
-  }
-
-  .ch-paragraphs {
+  .ch-body-inner {
+    padding: 24px 20px 28px 20px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-
-  .story-para {
-    font-size: 0.94rem;
-    color: #1E293B;
-    line-height: 1.8;
+    gap: 24px;
   }
 
   @media (min-width: 768px) {
+    .ch-body-inner {
+      padding: 32px 40px 36px 40px;
+      gap: 28px;
+    }
+  }
+
+  /* 핵심 요약 리드박스 */
+  .ch-lead-box {
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-left: 5px solid var(--color-vermilion);
+    padding: 16px 18px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .lead-kicker {
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: var(--color-vermilion-text);
+    letter-spacing: 0.3px;
+  }
+
+  .ch-lead-text {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #1E293B;
+    line-height: 1.65;
+  }
+
+  /* 소제목 + 단락 블록 (가독성 핵심) */
+  .ch-paragraphs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .story-block {
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #E2E8F0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .story-block:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .story-subhead {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-serif);
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.4;
+  }
+
+  .subhead-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background: #1E293B;
+    color: #FFFFFF;
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .story-para {
+    font-size: 0.98rem;
+    color: #1E293B;
+    line-height: 1.88;
+    letter-spacing: -0.01em;
+  }
+
+  @media (min-width: 768px) {
+    .story-subhead {
+      font-size: 1.2rem;
+    }
     .story-para {
-      font-size: 1.02rem;
+      font-size: 1.05rem;
+      line-height: 1.92;
     }
   }
 
@@ -259,19 +818,18 @@ const placesMap = new Map(places.map(p => [p.id, p]));
   .ch-quote-box {
     position: relative;
     background: #FFFDF9;
-    border: 1px solid #EAD8C3;
+    border: 1.5px solid #EAD8C3;
     border-radius: 12px;
     padding: 20px 24px;
-    margin: 24px 0;
     box-shadow: inset 0 2px 4px rgba(184, 134, 11, 0.05);
   }
 
   .quote-mark {
     position: absolute;
-    top: 8px;
+    top: 6px;
     left: 12px;
     font-family: var(--font-serif);
-    font-size: 3rem;
+    font-size: 2.8rem;
     color: #EAD8C3;
     line-height: 1;
   }
@@ -281,8 +839,8 @@ const placesMap = new Map(places.map(p => [p.id, p]));
     font-size: 1.05rem;
     font-weight: 700;
     color: #785204;
-    line-height: 1.6;
-    margin-bottom: 8px;
+    line-height: 1.65;
+    margin-bottom: 6px;
     position: relative;
     z-index: 1;
   }
@@ -295,20 +853,35 @@ const placesMap = new Map(places.map(p => [p.id, p]));
     font-style: normal;
   }
 
-  /* 챕터 말미 카드 덱 */
-  .chapter-places-deck {
-    margin-top: 28px;
+  /* 컴팩트 슬림 명소 리스트 */
+  .chapter-compact-places {
     background: #F8FAFC;
     border: 1px solid #E2E8F0;
-    border-radius: 12px;
-    padding: 20px 16px;
+    border-radius: 14px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
   }
 
   .deck-header {
     display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  @media (min-width: 640px) {
+    .deck-header {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .deck-title-group {
+    display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 16px;
   }
 
   .deck-badge {
@@ -316,8 +889,9 @@ const placesMap = new Map(places.map(p => [p.id, p]));
     color: #FFFFFF;
     font-size: 0.72rem;
     font-weight: 700;
-    padding: 2px 6px;
+    padding: 3px 8px;
     border-radius: 4px;
+    white-space: nowrap;
   }
 
   .deck-title {
@@ -327,21 +901,260 @@ const placesMap = new Map(places.map(p => [p.id, p]));
     color: #0F172A;
   }
 
-  .deck-grid {
+  .deck-hint {
+    font-size: 0.75rem;
+    color: #64748B;
+  }
+
+  .slim-places-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  @media (min-width: 640px) {
+    .slim-places-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .slim-place-card {
+    background: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .slim-place-card:hover {
+    border-color: var(--color-vermilion);
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06);
+  }
+
+  .slim-thumb-wrap {
+    width: 82px;
+    height: 82px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #E2E8F0;
+    display: block;
+  }
+
+  .slim-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .slim-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .slim-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .slim-name-ko {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #0F172A;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .slim-name-ko:hover {
+    color: var(--color-vermilion-text);
+    text-decoration: underline;
+  }
+
+  .slim-pick-btn {
+    font-size: 1rem;
+    color: #94A3B8;
+    padding: 2px 4px;
+    flex-shrink: 0;
+  }
+
+  .slim-pick-btn.picked {
+    color: #D63B22;
+  }
+
+  .slim-name-ja {
+    font-family: var(--font-serif);
+    font-size: 0.76rem;
+    color: #64748B;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .slim-menu {
+    font-size: 0.78rem;
+    color: #334155;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .slim-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .slim-btn {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+
+  .slim-btn-local {
+    background: #F1F5F9;
+    color: #1E293B;
+    border: 1px solid #CBD5E1;
+  }
+
+  .slim-btn-local:hover {
+    background: #E2E8F0;
+  }
+
+  .slim-btn-driver {
+    background: #1E293B;
+    color: #FFFFFF;
+  }
+
+  .slim-btn-driver:hover {
+    background: var(--color-vermilion);
+  }
+
+  /* 별책부록 4대 테마 그리드 */
+  .special-themes-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
   }
 
   @media (min-width: 640px) {
-    .deck-grid {
+    .special-themes-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media (min-width: 1024px) {
-    .deck-grid {
-      grid-template-columns: repeat(3, 1fr);
+  .special-theme-card {
+    background: #F8FAFC;
+    border: 1px solid #CBD5E1;
+    border-top: 4px solid var(--color-vermilion);
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .theme-num {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-vermilion-text);
+  }
+
+  .theme-title {
+    font-family: var(--font-serif);
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .theme-sub {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #785204;
+  }
+
+  .theme-body {
+    font-size: 0.88rem;
+    color: #334155;
+    line-height: 1.72;
+  }
+
+  /* 하단 책장 넘기기 페이저 */
+  .chapter-pager {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 2px solid #E2E8F0;
+  }
+
+  @media (min-width: 640px) {
+    .chapter-pager {
+      grid-template-columns: 1fr 1fr;
     }
+  }
+
+  .pager-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1.5px solid #CBD5E1;
+    background: #FFFFFF;
+    text-align: left;
+    transition: all 0.15s ease;
+  }
+
+  .pager-btn:hover {
+    border-color: var(--color-vermilion);
+    background: #FFFDF9;
+    transform: translateY(-1px);
+  }
+
+  .pager-next {
+    background: #1E293B;
+    border-color: #1E293B;
+    color: #FFFFFF;
+  }
+
+  @media (min-width: 640px) {
+    .pager-next {
+      text-align: right;
+      align-items: flex-end;
+    }
+  }
+
+  .pager-next:hover {
+    background: var(--color-vermilion);
+    border-color: var(--color-vermilion);
+    color: #FFFFFF;
+  }
+
+  .pager-dir {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #64748B;
+  }
+
+  .pager-next .pager-dir {
+    color: #FCD34D;
+  }
+
+  .pager-title {
+    font-size: 0.92rem;
+    font-weight: 800;
+    line-height: 1.35;
   }
 </style>
