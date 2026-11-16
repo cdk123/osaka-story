@@ -334,7 +334,7 @@ const categorySections = [
   /* 2. 스마트 필터 & 카테고리 칩 바 (Sticky) */
   .filter-sticky-bar {
     position: sticky;
-    top: 58px;
+    top: var(--sticky-sub-top);
     z-index: 30;
     background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(10px);
@@ -349,7 +349,6 @@ const categorySections = [
 
   @media (min-width: 768px) {
     .filter-sticky-bar {
-      top: 128px;
       padding: 14px 18px;
     }
   }
@@ -630,18 +629,18 @@ const categorySections = [
   .places-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: var(--card-gap);
   }
 
   @media (min-width: 640px) {
     .places-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
   @media (min-width: 1024px) {
     .places-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 

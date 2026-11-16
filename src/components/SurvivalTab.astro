@@ -181,21 +181,26 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
     <div class="media-grid">
       {mediaWorks.map((work) => (
         <div class="media-card">
-          <header class="media-header">
+          <div class="media-thumb-wrap">
+            <img src={work.image} alt={work.titleKo} loading="lazy" class="media-thumb-img" />
             <span class="media-cat-badge">{work.category}</span>
-            <h4 class="media-title">{work.titleKo}</h4>
-            <span class="media-orig">{work.titleJa} ({work.releaseYear})</span>
-          </header>
-          <div class="media-author">
-            <span class="author-label">창작자:</span> {work.authorOrDirector}
           </div>
-          <div class="media-loc">
-            <span class="loc-pin">📍</span> {work.locationKo}
+          <div class="media-body-inner">
+            <header class="media-header">
+              <h4 class="media-title">{work.titleKo}</h4>
+              <span class="media-orig">{work.titleJa} ({work.releaseYear})</span>
+            </header>
+            <div class="media-author">
+              <span class="author-label">창작자:</span> {work.authorOrDirector}
+            </div>
+            <div class="media-loc">
+              <span class="loc-pin">📍</span> {work.locationKo}
+            </div>
+            <p class="media-desc">{work.description}</p>
+            <blockquote class="media-quote">
+              <p>{work.quoteOrScene}</p>
+            </blockquote>
           </div>
-          <p class="media-desc">{work.description}</p>
-          <blockquote class="media-quote">
-            <p>{work.quoteOrScene}</p>
-          </blockquote>
         </div>
       ))}
     </div>
@@ -214,16 +219,21 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
     <div class="photospot-grid">
       {photoSpots.map((spot, idx) => (
         <div class="photo-card">
-          <div class="photo-num-badge">SPOT 0{idx + 1}</div>
-          <h4 class="photo-title">{spot.titleKo}</h4>
-          <div class="photo-meta">
-            <span>📍 {spot.locationKo}</span>
-            <span>⏰ 추천 시간: {spot.bestTime}</span>
+          <div class="photo-thumb-wrap">
+            <img src={spot.image} alt={spot.titleKo} loading="lazy" class="photo-thumb-img" />
+            <div class="photo-num-badge">SPOT 0{idx + 1}</div>
           </div>
-          <p class="photo-scene">{spot.sceneDesc}</p>
-          <div class="photo-tip-box">
-            <strong class="ptip-label">📸 촬영 팁:</strong>
-            <span class="ptip-text">{spot.tip}</span>
+          <div class="photo-body-inner">
+            <h4 class="photo-title">{spot.titleKo}</h4>
+            <div class="photo-meta">
+              <span>📍 {spot.locationKo}</span>
+              <span>⏰ 추천 시간: {spot.bestTime}</span>
+            </div>
+            <p class="photo-scene">{spot.sceneDesc}</p>
+            <div class="photo-tip-box">
+              <strong class="ptip-label">📸 촬영 팁:</strong>
+              <span class="ptip-text">{spot.tip}</span>
+            </div>
           </div>
         </div>
       ))}
@@ -294,16 +304,22 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
     }
   }
 
-  /* 공항 3대장 */
+  /* 공항 3대장 (태블릿 2단 -> 데스크톱 3단) */
   .airport-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: var(--card-gap);
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     .airport-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .airport-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
@@ -366,16 +382,22 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
     margin-top: auto;
   }
 
-  /* 대중교통 그리드 */
+  /* 대중교통 그리드 (태블릿 2단 -> 데스크톱 3단) */
   .transit-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: var(--card-gap);
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     .transit-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .transit-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
@@ -705,23 +727,55 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
   .media-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: var(--card-gap);
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     .media-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
   .media-card {
     background: #FFFFFF;
     border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: 18px 16px;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
+  }
+
+  .media-thumb-wrap,
+  .photo-thumb-wrap {
+    position: relative;
+    width: 100%;
+    height: 185px;
+    background: #E2E8F0;
+    overflow: hidden;
+  }
+
+  .media-thumb-img,
+  .photo-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .media-card:hover .media-thumb-img,
+  .photo-card:hover .photo-thumb-img {
+    transform: scale(1.04);
+  }
+
+  .media-body-inner,
+  .photo-body-inner {
+    padding: 18px 18px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    flex: 1;
   }
 
   .media-header {
@@ -731,13 +785,16 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
   }
 
   .media-cat-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
     font-size: 0.72rem;
-    font-weight: 700;
-    color: #B45309;
-    background: #FEF3C7;
-    padding: 2px 6px;
-    border-radius: 4px;
-    align-self: flex-start;
+    font-weight: 800;
+    color: #FFFFFF;
+    background: rgba(30, 41, 59, 0.88);
+    padding: 3px 8px;
+    border-radius: 5px;
+    backdrop-filter: blur(4px);
   }
 
   .media-title {
@@ -760,7 +817,7 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
   .media-desc {
     font-size: 0.84rem;
     color: #334155;
-    line-height: 1.55;
+    line-height: 1.6;
   }
 
   .media-quote {
@@ -778,29 +835,42 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
   .photospot-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: var(--card-gap);
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     .photospot-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .photospot-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
   .photo-card {
     background: #FFFFFF;
     border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: 16px;
+    border-radius: 14px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
   }
 
   .photo-num-badge {
-    font-size: 0.75rem;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 0.74rem;
     font-weight: 800;
-    color: var(--color-vermilion-text);
+    color: #FFFFFF;
+    background: var(--color-vermilion);
+    padding: 3px 9px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   }
 
   .photo-title {

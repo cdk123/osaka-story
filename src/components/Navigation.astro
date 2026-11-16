@@ -1,14 +1,14 @@
 ---
 const tabs = [
-  { id: 'overview', label: '오사카 한눈에', icon: '🗺️', sub: '부산비교·6대구역·시장' },
-  { id: 'stories', label: '미식·역사 이야기', icon: '📖', sub: '프롤로그~6장 스토리북' },
-  { id: 'explore', label: '맛집·명소 찾기', icon: '🔍', sub: '50+곳·3중필터·치트키' },
-  { id: 'survival', label: '초보 생존·사투리', icon: '🚇', sub: '공항·교통·예절·방언' },
-  { id: 'picks', label: '내 찜 바구니', icon: '♥', sub: '동선정리·카톡공유', badge: true }
+  { id: 'overview', label: '오사카 한눈에', shortLabel: '한눈에', icon: '🗺️', sub: '부산비교·6대구역·시장' },
+  { id: 'stories', label: '미식·역사 이야기', shortLabel: '역사이야기', icon: '📖', sub: '프롤로그~6장 스토리북' },
+  { id: 'explore', label: '맛집·명소 찾기', shortLabel: '맛집·명소', icon: '🔍', sub: '58곳·7대카테고리·해설' },
+  { id: 'survival', label: '초보 생존·사투리', shortLabel: '생존·사투리', icon: '🚇', sub: '공항·교통·예절·방언' },
+  { id: 'picks', label: '내 찜 바구니', shortLabel: '내 찜', icon: '♥', sub: '권역동선·카톡공유', badge: true }
 ];
 ---
 
-<!-- 데스크톱 상단 나무 명패(木札) 탭바 -->
+<!-- 태블릿 & 데스크톱 상단 나무 명패(木札) 탭바 -->
 <nav class="desktop-nav" aria-label="메인 네비게이션">
   <div class="container">
     <div class="kifuda-tab-bar" role="tablist">
@@ -21,7 +21,6 @@ const tabs = [
           aria-selected={tab.id === 'overview'}
           aria-controls={`panel-${tab.id}`}
         >
-          <span class="kifuda-wood-texture"></span>
           <span class="tab-icon">{tab.icon}</span>
           <div class="tab-label-group">
             <strong class="tab-title">{tab.label}</strong>
@@ -47,7 +46,7 @@ const tabs = [
         aria-controls={`panel-${tab.id}`}
       >
         <span class="m-icon">{tab.icon}</span>
-        <span class="m-label">{tab.label.split(' ')[0]}</span>
+        <span class="m-label">{tab.shortLabel}</span>
         {tab.badge && <span class="picks-counter-badge mobile" id="mobile-picks-counter">0</span>}
       </button>
     ))}
@@ -55,7 +54,7 @@ const tabs = [
 </nav>
 
 <style>
-  /* 데스크톱 나무 명패 (키후다) 탭바 */
+  /* 태블릿 & 데스크톱 나무 명패 (키후다) 탭바 */
   .desktop-nav {
     display: none;
     background: #EFE8DA;
@@ -68,31 +67,50 @@ const tabs = [
     .desktop-nav {
       display: block;
       position: sticky;
-      top: 65px;
+      top: 64px;
       z-index: 40;
     }
   }
 
   .kifuda-tab-bar {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 8px;
   }
 
+  @media (min-width: 1100px) {
+    .kifuda-tab-bar {
+      gap: 12px;
+    }
+  }
+
+  /* 태블릿(768px~1099px): 세로 중앙 정렬로 글자 잘림 없이 쾌적하게 표시 */
   .kifuda-tab {
     position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px 6px;
     background: #F7EFE3;
     border: 1.5px solid #C8B297;
-    border-radius: 6px;
+    border-radius: 8px;
     box-shadow: 0 2px 4px rgba(140, 83, 27, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
     color: #4A3B32;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    overflow: hidden;
-    text-align: left;
+    text-align: center;
+  }
+
+  /* 데스크톱(1100px~): 가로 명패 레이아웃 + 부제(sub) 노출 */
+  @media (min-width: 1100px) {
+    .kifuda-tab {
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      text-align: left;
+    }
   }
 
   .kifuda-tab:hover {
@@ -109,8 +127,15 @@ const tabs = [
   }
 
   .tab-icon {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    line-height: 1;
     flex-shrink: 0;
+  }
+
+  @media (min-width: 1100px) {
+    .tab-icon {
+      font-size: 1.35rem;
+    }
   }
 
   .tab-label-group {
@@ -120,21 +145,33 @@ const tabs = [
   }
 
   .tab-title {
-    font-size: 0.92rem;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: 0.84rem;
+    font-weight: 800;
+    line-height: 1.25;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
+  @media (min-width: 1100px) {
+    .tab-title {
+      font-size: 0.94rem;
+    }
+  }
+
+  /* 태블릿에서는 부제 숨김(글자 잘림 방지), 데스크톱에서만 노출 */
   .tab-sub {
+    display: none;
     font-size: 0.72rem;
     color: #78716C;
     margin-top: 2px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  @media (min-width: 1100px) {
+    .tab-sub {
+      display: block;
+    }
   }
 
   .kifuda-tab.active .tab-sub {
@@ -144,11 +181,11 @@ const tabs = [
 
   .picks-counter-badge {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 6px;
+    right: 6px;
     background: var(--color-vermilion);
     color: #FFFFFF;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 800;
     min-width: 18px;
     height: 18px;
@@ -156,7 +193,7 @@ const tabs = [
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 4px;
+    padding: 0 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 
@@ -168,10 +205,10 @@ const tabs = [
     left: 0;
     right: 0;
     z-index: 50;
-    background: rgba(255, 255, 255, 0.96);
+    background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(10px);
-    border-top: 1px solid #E2E8F0;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    border-top: 1px solid #E2DDD3;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
@@ -184,7 +221,7 @@ const tabs = [
   .mobile-tabs-wrap {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    height: 56px;
+    height: 60px;
   }
 
   .mobile-tab-btn {
@@ -193,29 +230,30 @@ const tabs = [
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2px;
+    gap: 3px;
     color: #64748B;
     transition: all 0.15s ease;
   }
 
   .mobile-tab-btn.active {
     color: var(--color-vermilion);
-    font-weight: 700;
+    font-weight: 800;
   }
 
   .m-icon {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     line-height: 1;
   }
 
   .m-label {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     letter-spacing: -0.3px;
+    white-space: nowrap;
   }
 
   .picks-counter-badge.mobile {
     top: 4px;
-    right: calc(50% - 18px);
+    right: calc(50% - 20px);
     font-size: 0.65rem;
     min-width: 16px;
     height: 16px;
@@ -223,9 +261,8 @@ const tabs = [
 </style>
 
 <script is:inline>
-  // 5대 탭 전환 및 스크롤 위치 보존 SPA 제어
+  // 5대 탭 전환 및 새 탭 상단 즉시 이동 제어
   (function() {
-    const scrollPositions = {};
     let currentTab = 'overview';
 
     function initTabFromUrl() {
@@ -241,10 +278,7 @@ const tabs = [
     function switchTab(targetTabId, updateHistory = true) {
       if (!targetTabId) return;
 
-      // 1. 현재 탭 스크롤 위치 저장
-      scrollPositions[currentTab] = window.scrollY;
-
-      // 2. 탭 패널 표시/숨김 토글
+      // 1. 탭 패널 표시/숨김 토글
       const panels = document.querySelectorAll('.tab-panel');
       panels.forEach(panel => {
         if (panel.id === `panel-${targetTabId}`) {
@@ -256,7 +290,7 @@ const tabs = [
         }
       });
 
-      // 3. 네비게이션 버튼 활성화 클래스 토글
+      // 2. 네비게이션 버튼 활성화 클래스 토글
       const navButtons = document.querySelectorAll('[data-tab]');
       navButtons.forEach(btn => {
         const matches = btn.getAttribute('data-tab') === targetTabId;
@@ -266,14 +300,14 @@ const tabs = [
 
       currentTab = targetTabId;
 
-      // 4. URL 업데이트 (?tab=)
+      // 3. URL 업데이트 (?tab=)
       if (updateHistory) {
         const url = new URL(window.location.href);
         url.searchParams.set('tab', targetTabId);
         window.history.pushState({ tab: targetTabId }, '', url.toString());
       }
 
-      // 5. 새 탭 이동 시 항상 페이지 최상단(0px)으로 즉시 이동
+      // 4. 새 탭 이동 시 항상 페이지 최상단(0px)으로 즉시 이동
       window.scrollTo({
         top: 0,
         left: 0,
@@ -282,11 +316,10 @@ const tabs = [
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
 
-      // 탭 변경 이벤트 디스패치 (각 탭 컴포넌트 반응용)
+      // 탭 변경 이벤트 디스패치
       window.dispatchEvent(new CustomEvent('osaka_tab_change', { detail: { tab: targetTabId } }));
     }
 
-    // 클릭 리스너 바인딩
     document.addEventListener('DOMContentLoaded', () => {
       const navButtons = document.querySelectorAll('[data-tab]');
       navButtons.forEach(btn => {
@@ -299,18 +332,15 @@ const tabs = [
         });
       });
 
-      // 초기 탭 로드
       const initialTab = initTabFromUrl();
       switchTab(initialTab, false);
     });
 
-    // 뒤로가기/앞으로가기 (popstate) 처리
     window.addEventListener('popstate', (e) => {
       const stateTab = e.state?.tab || initTabFromUrl();
       switchTab(stateTab, false);
     });
 
-    // 전역 함수로 공개
     window.osakaSwitchTab = switchTab;
   })();
 </script>
