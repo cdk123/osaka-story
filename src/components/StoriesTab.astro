@@ -6,8 +6,13 @@ import { specialThemes } from '../data/media';
 // 빠른 ID 매핑 딕셔너리 생성
 const placesMap = new Map(places.map(p => [p.id, p]));
 
-// 각 챕터별 짧은 탭 이름 & 문단별 소제목 매핑 (가독성 극대화)
-const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadings: string[] }> = {
+// 각 챕터별 짧은 탭 이름 & 문단별 소제목·단락별 스토리 화보 사진 매핑
+const chapterMeta: Record<string, {
+  shortTab: string;
+  heroImg: string;
+  subheadings: string[];
+  paraPhotos: { img: string; caption: string }[];
+}> = {
   'prologue': {
     shortTab: '프롤로그 · 천하의 부엌',
     heroImg: '/images/city/hero-osaka.jpg',
@@ -16,6 +21,12 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
       '400년 전 전국의 산해진미가 모인 물길, 천하의 부엌',
       '체면의 도쿄 무사(사무라이) vs 실속의 오사카 상인(초닌)',
       '내 혀가 납득하는 진짜 맛에만 지갑을 여는 실리주의'
+    ],
+    paraPhotos: [
+      { img: '/images/city/district-minami.jpg', caption: '400년 전 운하 개척으로 시작되어 오늘날까지 불야성을 이루는 미식의 심장 도톤보리' },
+      { img: '/images/city/district-chuo.jpg', caption: '도요토미 히데요시가 세운 오사카성과 사통팔달의 수로가 만든 ‘천하의 부엌’' },
+      { img: '/images/places/kuromon-market.jpg', caption: '체면보다 재료 본연의 신선함과 실속을 최우선으로 여기는 오사카 상인들의 시장 문화' },
+      { img: '/images/places/harijyu.jpg', caption: '큰 거래를 성사시키고 하루의 노고를 위로하던 오사카 상인들의 최고급 전골 요리' }
     ]
   },
   'chapter-1': {
@@ -23,9 +34,15 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     heroImg: '/images/places/dotonbori-imai.jpg',
     subheadings: [
       '도쿄의 진간장 국물 vs 오사카의 맑은 홋카이도 다시마 국물',
-      '400년 다시마 육수의 정수, 도톤보리 이마이의 키츠네 우동',
-      '바쁜 상인의 지혜: 네모난 상자초밥(하코즈시)과 숯불 마무시 장어',
-      '협상 뒤의 달콤한 여운: 부부 단팥죽·미타라시단고·오사카 명주'
+      '1893년 키츠네 우동의 탄생과 180년 씨육수 관서풍 오뎅',
+      '바쁜 상인의 지혜: 네모난 판초밥(하코즈시·바테라)과 숯불 마무시 장어',
+      '다도 성인 센노 리큐의 차(茶)와 340년 양갱·부부 단팥죽·명주'
+    ],
+    paraPhotos: [
+      { img: '/images/places/oguraya-yamamoto.jpg', caption: '북방 무역선(키타마에부네)이 오사카 항구로 실어 나른 최상급 홋카이도 천연 다시마' },
+      { img: '/images/places/matsubaya.jpg', caption: '달콤한 유부를 우동 위에 얹어 먹기 시작한 세계 최초의 키츠네 우동과 황금빛 다시 국물' },
+      { img: '/images/places/sushiman.jpg', caption: '나무틀에 도미·새우·붕장어·고등어를 눌러 담아 모자이크 보석처럼 썰어낸 오사카 판초밥(하코즈시)' },
+      { img: '/images/places/tsuboichi-tea.jpg', caption: '오사카 사카이 상인 출신 다성(茶聖) 센노 리큐의 정신을 잇는 다도와 전통 화과자·양갱' }
     ]
   },
   'chapter-2': {
@@ -36,6 +53,12 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
       '서양 요리에 오사카의 정을 입힌 ‘요쇼쿠(일본식 경양식)’',
       '1922년 위장 약한 단골을 위한 배려, 세계 최초 오므라이스의 탄생',
       '날계란 비빔 카레·암소 와규 스키야키·호일 함박·클래식 킷사텐'
+    ],
+    paraPhotos: [
+      { img: '/images/places/nakanoshima-culture.jpg', caption: '1920년대 도쿄를 추월해 세계 6대 대도시로 도약했던 ‘대오사카(大大阪) 시대’의 나카노시마 중앙공회당' },
+      { img: '/images/places/touyou-tei.jpg', caption: '서양의 스테이크와 스튜를 일본인의 입맛에 맞게 재해석한 은박지 호일 함박스테이크' },
+      { img: '/images/places/hokkyokusei.jpg', caption: '위장이 약해 밥과 계란만 먹던 단골손님을 위해 1922년 탄생한 세계 최초의 오므라이스' },
+      { img: '/images/places/jiyuken.jpg', caption: '식지 않도록 밥에 카레를 미리 비벼 내고 날계란을 얹어준 1910년 창업 원조 명물 카레' }
     ]
   },
   'chapter-3': {
@@ -44,37 +67,62 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     subheadings: [
       '잿더미 속에서 다시 피어난 만자이(만담) 극장가의 웃음과 연기',
       '“아지매, 우동 면 빼고 고기 국물만 주이소!” — 해장국 니쿠스이',
-      '대파 폭탄 네기야키, 노동자의 쿠시카츠, 오사카의 명물 551 부타만',
+      '모던야키와 마요네즈 혁명, 소 곱창 튀김 카스 우동, 쿠시카츠와 551 만두',
       '참복 요리의 대중화와 도톤보리 움직이는 대게 간판의 쇼맨십'
+    ],
+    paraPhotos: [
+      { img: '/images/city/district-tennoji.jpg', caption: '전후 폐허 속에서 서민들의 유머와 활력으로 다시 일어난 난바·신세카이 골목' },
+      { img: '/images/places/chitose.jpg', caption: '숙취에 시달리던 만담 개그맨의 한마디로 탄생해 오사카의 영혼이 된 고기국물 ‘니쿠스이’' },
+      { img: '/images/places/botejyu-honten.jpg', caption: '배고픈 종업원 식사에서 탄생한 ‘모던야키(야키소바 넣은 오코노미야키)’와 화이트 마요네즈의 혁명' },
+      { img: '/images/places/kani-doraku.jpg', caption: '오사카 특유의 유쾌한 쇼맨십과 미식 문화를 상징하는 도톤보리의 움직이는 대게 간판과 복어 요리' }
     ]
   },
   'chapter-4': {
-    shortTab: '4장 · 현대 핫플 & 야식학',
+    shortTab: '4장 · 현대 미식 & 야식학',
     heroImg: '/images/places/gyukatsu-motomura.jpg',
     subheadings: [
       '1958년 맥주 공장 컨베이어 벨트에서 발명된 ‘세계 최초 회전초밥’',
-      '미니 화로 규카츠, 폭탄 장어계란덮밥, 2m 거대 주걱 화로구이',
+      '미니 화로 규카츠, 프렌치 셰프의 배추 라멘, 2m 거대 주걱 화로구이',
       '편의점 컵라면 ‘닛신 돈베이’ 옆면의 비밀: 서일본(W) vs 동일본(E)',
-      '오하요 브륄레 아이스크림·모찌롤과 천공 정원 온천 후 병우유 한 잔'
+      '12월 겨울 한정 맥도날드 ‘그라코로’와 천공 정원 온천 후 병우유 한 잔'
+    ],
+    paraPhotos: [
+      { img: '/images/places/hakodate-kantaro.jpg', caption: '1958년 아사히 맥주 공장의 컨베이어 벨트에서 영감을 얻어 오사카에서 세계 최초로 발명된 회전초밥' },
+      { img: '/images/places/kamukura-ramen.jpg', caption: '프렌치 콘소메 기법으로 배추의 달큰한 감칠맛을 뽑아낸 오사카 소울 라멘과 1인 미니화로 규카츠' },
+      { img: '/images/places/rikuro-ojisan.jpg', caption: '종소리와 함께 갓 구워져 나오는 구름 치즈케이크와 간사이 한정 먹거리' },
+      { img: '/images/places/soraniwa-onsen.jpg', caption: '16세기 오사카 거리를 재현한 천공 정원 온천과 목욕 후 마시는 차가운 유리병 우유의 로망' }
     ]
   },
   'chapter-5': {
-    shortTab: '5장 · 숨은 로컬 골목',
+    shortTab: '5장 · 숨은 골목 & 축제',
     heroImg: '/images/places/minoh-waterfall.jpg',
     subheadings: [
       '화려한 네온사인 뒤편에 숨은 오사카의 고즈넉한 시간과 자연',
       '1,300년 전 수련승의 간식 ‘단풍잎 튀김’을 파는 미노오 폭포 산책길',
       '전쟁의 화마를 기적처럼 피한 1920년대 목조 골목, 나카자키초',
-      '붉은 벽돌 중앙공회당·세계 최고 고려청자 미술관·가라호리 고택'
+      '고려청자 미술관 나카노시마와 1,800년 역사의 스미요시 신년 축제'
+    ],
+    paraPhotos: [
+      { img: '/images/places/karahori-len.jpg', caption: '오사카 원래의 언덕 지형과 100년 전 목조 가옥이 그대로 살아 숨 쉬는 골목 풍경' },
+      { img: '/images/places/minoh-waterfall.jpg', caption: '1년간 소금에 절인 진짜 단풍잎을 달콤한 반죽에 튀겨 파는 세계 유일의 미노오 폭포 계곡길' },
+      { img: '/images/places/nakazakicho.jpg', caption: '제2차 세계대전 공습에서 기적적으로 살아남아 공방과 레트로 카페가 된 1920년대 목조 마을 나카자키초' },
+      { img: '/images/places/sumiyoshi-taisha-hatsumode.jpg', caption: '연말연시 230만 명이 찾아 새해 소원을 빌고 수백 개 포장마차가 열리는 1,800년 고찰 스미요시 타이샤' }
     ]
   },
   'chapter-6': {
-    shortTab: '6장 · 600년 장인 명품',
+    shortTab: '6장 · 장인 명품 & 로컬 브랜드',
     heroImg: '/images/places/sakai-knives.jpg',
     subheadings: [
-      '전국시대 조총과 일본도를 벼리던 대장장이 도시, 사카이(堺)의 식도',
-      '술맛을 부드럽게 바꾸는 나니와 주석 술잔·덴마 키리코·센슈 타올',
-      '백화점 지하의 품격: 발효버터 바통도르·수제 모나카·시오콘부'
+      '전국시대 조총과 일본도를 벼리던 대장장이 도시, 사카이(堺)의 주방칼',
+      '뚜껑이 스스로 닫히는 나니와 주석 차통·술잔·덴마 키리코·센슈 타올',
+      'Made in Osaka 로컬 가방(마스터피스)·수제 가죽지갑(무네카와)·140년 문구',
+      '“집안을 일으킨다(興す)” 220년 전통과자 오코시·G20 와교·백화점 명과'
+    ],
+    paraPhotos: [
+      { img: '/images/places/sakai-knives.jpg', caption: '일본 프로 셰프의 90%가 사용하며 그 자리에서 이름을 새겨주는 600년 전통 사카이 수제 식도' },
+      { img: '/images/places/osaka-tea-ware.jpg', caption: '손을 대지 않아도 뚜껑의 무게만으로 스르륵 닫히며 공기를 밀폐하는 국가 지정 전통공예 나니와 주석 차통' },
+      { img: '/images/places/masterpiece-osaka.jpg', caption: '오사카 자체 공방 장인들이 만드는 로컬 가방 브랜드 마스터피스와 수제 가죽지갑·140년 만년필 문구' },
+      { img: '/images/places/amidaike-daikoku.jpg', caption: '출세와 번창을 기원하며 1805년부터 선물하던 오사카 전통 쌀강정 오코시와 G20 공식 선물 와교' }
     ]
   }
 };
@@ -84,18 +132,20 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
   <!-- 상단 인트로 & 뷰 모드 컨트롤 -->
   <section class="stories-intro-bar">
     <div class="intro-left">
-      <span class="stamp-badge">飲食歷史</span>
+      <span class="stamp-badge">大阪物語 · 스토리 매거진</span>
       <div class="intro-texts">
-        <h2 class="intro-title">알고 먹으면 두 배 맛있는 오사카 400년 이야기</h2>
-        <p class="intro-desc">원하는 시대를 눌러 한 장씩 책장 넘기듯 편하게 읽어보세요.</p>
+        <h2 class="intro-title">스토리를 먼저 읽고 찾아가는 오사카 400년 미식·장인 이야기</h2>
+        <p class="intro-desc">
+          가게 이름만 외워서 가는 여행 대신, 그 음식과 물건이 왜 오사카에서 탄생했는지 이야기와 사진으로 먼저 만나보세요. 이야기 하단의 가게 버튼을 누르면 해당 매장 상세 정보로 바로 연결됩니다.
+        </p>
       </div>
     </div>
     <button type="button" id="btn-toggle-all-chapters" class="btn-view-mode" data-mode="single">
-      📖 전체 장 한꺼번에 펼치기
+      📖 7개 장 전체 한꺼번에 펼치기
     </button>
   </section>
 
-  <!-- 상단 챕터 선택 탭 바 (Sticky, 한 번에 1장씩 깔끔하게 전환) -->
+  <!-- 상단 챕터 선택 탭 바 -->
   <nav class="chapter-tabs-nav" aria-label="미식 역사 챕터 선택">
     <div class="chapter-tabs-scroll">
       {stories.map((ch, idx) => {
@@ -119,7 +169,7 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
         data-story-index={stories.length}
       >
         <span class="tab-idx">別冊</span>
-        <span class="tab-label">4대 알짜 테마</span>
+        <span class="tab-label">4대 알짜 비화</span>
       </button>
     </div>
   </nav>
@@ -162,23 +212,35 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
           <div class="ch-body-inner">
             <!-- 3초 핵심 요약 리드박스 -->
             <div class="ch-lead-box">
-              <span class="lead-kicker">💡 핵심 요약</span>
+              <span class="lead-kicker">💡 이 장의 핵심 이야기</span>
               <p class="ch-lead-text">{ch.lead}</p>
             </div>
 
-            <!-- 가독성 극대화: 소제목 + 단락 카드 구조 -->
+            <!-- 단락별 소제목 + 깊이 있는 스토리 + 스토리 전용 사진 화보 결합! -->
             <div class="ch-paragraphs-list">
               {ch.content.map((p, pIdx) => {
                 const subhead = meta?.subheadings?.[pIdx];
+                const photoObj = meta?.paraPhotos?.[pIdx];
                 return (
                   <div class="story-block">
-                    {subhead && (
-                      <h4 class="story-subhead">
-                        <span class="subhead-num">0{pIdx + 1}</span>
-                        <span>{subhead}</span>
-                      </h4>
+                    <div class="story-text-col">
+                      {subhead && (
+                        <h4 class="story-subhead">
+                          <span class="subhead-num">0{pIdx + 1}</span>
+                          <span>{subhead}</span>
+                        </h4>
+                      )}
+                      <p class="story-para">{p}</p>
+                    </div>
+
+                    {photoObj && (
+                      <figure class="story-figure">
+                        <div class="figure-img-wrap">
+                          <img src={photoObj.img} alt={photoObj.caption} loading="lazy" class="figure-img" />
+                        </div>
+                        <figcaption class="figure-caption">📸 {photoObj.caption}</figcaption>
+                      </figure>
                     )}
-                    <p class="story-para">{p}</p>
                   </div>
                 );
               })}
@@ -193,74 +255,39 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
               </blockquote>
             )}
 
-            <!-- 컴팩트 슬림 명소 리스트 (페이지 길이를 늘리지 않고 핵심만 한눈에!) -->
+            <!-- 이 이야기에 등장한 가게 바로가기 링크 칩 (무거운 카드 중복을 없애고 원클릭 점프!) -->
             {featuredPlaces.length > 0 && (
-              <section class="chapter-compact-places">
+              <section class="chapter-jump-places">
                 <div class="deck-header">
                   <div class="deck-title-group">
-                    <span class="deck-badge">등장 명소 {featuredPlaces.length}곳</span>
-                    <h5 class="deck-title">이 이야기 속에 등장하는 오사카 대표 가게</h5>
+                    <span class="deck-badge">이야기 속 명소 {featuredPlaces.length}곳</span>
+                    <h5 class="deck-title">이 이야기의 주인공들을 실제로 만나러 가볼까요?</h5>
                   </div>
-                  <span class="deck-hint">사진·이름 클릭 시 구글 공식 매장정보 열림</span>
+                  <span class="deck-hint">누르면 해당 가게 상세 카드로 즉시 이동합니다</span>
                 </div>
 
-                <div class="slim-places-grid">
+                <div class="jump-chips-grid">
                   {featuredPlaces.map((place) => {
                     if (!place) return null;
-                    const googleLocalInfoUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.googleQuery || (place.nameJa + ' ' + place.branchJa + ' ' + place.addressJa))}`;
                     return (
-                      <div class="slim-place-card">
-                        <a
-                          href={googleLocalInfoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="slim-thumb-wrap"
-                          title={`${place.nameKo} 구글 공식 로컬 정보 보기`}
-                        >
-                          <img src={place.image} alt={place.nameKo} loading="lazy" class="slim-thumb" />
-                        </a>
-
-                        <div class="slim-info">
-                          <div class="slim-top-row">
-                            <a
-                              href={googleLocalInfoUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              class="slim-name-ko"
-                            >
-                              {place.nameKo}
-                            </a>
-                            <button
-                              type="button"
-                              class="slim-pick-btn btn-pick"
-                              data-pick-toggle={place.id}
-                              aria-label={`${place.nameKo} 찜하기`}
-                            >
-                              <span class="heart-icon">♥</span>
-                            </button>
-                          </div>
-                          <span class="slim-name-ja">{place.nameJa} {place.branchJa}</span>
-                          <p class="slim-menu">{place.signatureMenu}</p>
-
-                          <div class="slim-actions">
-                            <a
-                              href={googleLocalInfoUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              class="slim-btn slim-btn-local"
-                            >
-                              🏪 구글 공식 정보 ↗
-                            </a>
-                            <button
-                              type="button"
-                              class="slim-btn slim-btn-driver"
-                              data-open-driver-modal={place.id}
-                            >
-                              🚕 기사님·직원
-                            </button>
-                          </div>
+                      <button
+                        type="button"
+                        class="jump-place-card"
+                        data-jump-place={place.id}
+                      >
+                        <div class="jp-thumb">
+                          <img src={place.image} alt={place.nameKo} loading="lazy" />
                         </div>
-                      </div>
+                        <div class="jp-info">
+                          <div class="jp-top">
+                            <strong class="jp-ko">{place.nameKo}</strong>
+                            <span class="jp-area">{place.areaLabel}</span>
+                          </div>
+                          <span class="jp-ja">{place.nameJa}</span>
+                          <span class="jp-menu">{place.signatureMenu}</span>
+                        </div>
+                        <span class="jp-arrow">상세 →</span>
+                      </button>
                     );
                   })}
                 </div>
@@ -298,7 +325,7 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
                   data-story-target="special-appendix"
                 >
                   <span class="pager-dir">다음 이야기 →</span>
-                  <strong class="pager-title">별책부록: 놓치면 아쉬운 오사카 4대 알짜 테마</strong>
+                  <strong class="pager-title">별책부록: 놓치면 아쉬운 오사카 4대 알짜 비화</strong>
                 </button>
               )}
             </footer>
@@ -321,7 +348,7 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
             <span class="ch-num-pill">별책부록</span>
             <span class="ch-period-pill">알면 아는 척하기 딱 좋은 비하인드</span>
           </div>
-          <h3 class="ch-title">놓치면 아쉬운 오사카 4대 알짜 미식·문화 테마</h3>
+          <h3 class="ch-title">놓치면 아쉬운 오사카 4대 알짜 미식·문화 비화</h3>
           <p class="ch-subtitle">회전초밥 발상지 비화 · 제빵의 수도 간사이 · 에도 거리 온천 · 편의점 동서 국물 전쟁</p>
         </div>
       </div>
@@ -330,7 +357,7 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
         <div class="special-themes-grid">
           {specialThemes.map((t, tIdx) => (
             <div class="special-theme-card">
-              <span class="theme-num">THEME 0{tIdx + 1}</span>
+              <span class="theme-num">STORY THEME 0{tIdx + 1}</span>
               <h4 class="theme-title">{t.titleKo}</h4>
               <p class="theme-sub">{t.subtitle}</p>
               <p class="theme-body">{t.content}</p>
@@ -350,10 +377,10 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
           <button
             type="button"
             class="pager-btn pager-next"
-            id="btn-story-to-explore"
+            data-tab="december"
           >
-            <span class="pager-dir">이야기에 나온 가게 둘러보기 →</span>
-            <strong class="pager-title">🔍 카테고리별 맛집·명소 58선 보러가기</strong>
+            <span class="pager-dir">12월 특별 이야기 보러가기 →</span>
+            <strong class="pager-title">🎄 12월 31일 연말연시 & 맥도날드 그라코로 이야기</strong>
           </button>
         </footer>
       </div>
@@ -366,7 +393,6 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     const tabBtns = document.querySelectorAll('.chapter-tab-btn');
     const panels = document.querySelectorAll('.story-chapter-panel');
     const toggleAllBtn = document.getElementById('btn-toggle-all-chapters');
-    const toExploreBtn = document.getElementById('btn-story-to-explore');
     let isAllExpanded = false;
 
     function selectChapter(targetId, scrollToReader = true) {
@@ -418,7 +444,7 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
           toggleAllBtn.textContent = '📕 한 장씩 책장 넘겨보기 모드로 전환';
           toggleAllBtn.classList.add('expanded');
         } else {
-          toggleAllBtn.textContent = '📖 전체 장 한꺼번에 펼치기';
+          toggleAllBtn.textContent = '📖 7개 장 전체 한꺼번에 펼치기';
           toggleAllBtn.classList.remove('expanded');
           const currentActive = document.querySelector('.chapter-tab-btn.active')?.getAttribute('data-story-target') || 'prologue';
           selectChapter(currentActive, false);
@@ -426,12 +452,7 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
       });
     }
 
-    if (toExploreBtn) {
-      toExploreBtn.addEventListener('click', () => {
-        if (window.osakaSwitchTab) window.osakaSwitchTab('explore');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    }
+    window.osakaSelectStoryChapter = selectChapter;
   })();
 </script>
 
@@ -444,7 +465,6 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     width: 100%;
   }
 
-  /* 상단 인트로 바 */
   .stories-intro-bar {
     background: #FFFFFF;
     border: 1px solid var(--color-border);
@@ -480,8 +500,9 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
 
   .intro-desc {
     font-size: 0.88rem;
-    color: #64748B;
-    margin-top: 2px;
+    color: #475569;
+    margin-top: 4px;
+    line-height: 1.55;
   }
 
   .btn-view-mode {
@@ -510,7 +531,6 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     border-color: #1E293B;
   }
 
-  /* 상단 챕터 선택 탭 바 (이중 Sticky 제거 — 상단 메뉴와 겹침 없이 깔끔한 북마크 바) */
   .chapter-tabs-nav {
     background: #FFFFFF;
     border: 1px solid var(--color-border);
@@ -536,7 +556,7 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: #FFFFFF;
+    background: #F8FAFC;
     border: 1.5px solid #CBD5E1;
     border-radius: 10px;
     padding: 8px 14px;
@@ -544,7 +564,6 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     color: #334155;
     white-space: nowrap;
     transition: all 0.15s ease;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   }
 
   .chapter-tab-btn:hover {
@@ -578,7 +597,6 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     font-weight: 700;
   }
 
-  /* 챕터 리더 패널 */
   .chapters-reader-container {
     display: flex;
     flex-direction: column;
@@ -609,12 +627,11 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     }
   }
 
-  /* 챕터 히어로 배너 */
   .ch-hero-banner {
     position: relative;
     width: 100%;
-    min-height: 220px;
-    max-height: 300px;
+    min-height: 230px;
+    max-height: 310px;
     overflow: hidden;
     display: flex;
     align-items: flex-end;
@@ -632,21 +649,12 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     position: relative;
     z-index: 2;
     width: 100%;
-    padding: 28px 20px 22px 20px;
+    padding: clamp(24px, 3.5vw, 36px);
     background: linear-gradient(to top, rgba(15, 23, 42, 0.94) 15%, rgba(15, 23, 42, 0.6) 65%, rgba(15, 23, 42, 0.2) 100%);
     color: #FFFFFF;
     display: flex;
     flex-direction: column;
     gap: 8px;
-  }
-
-  @media (min-width: 768px) {
-    .ch-hero-banner {
-      min-height: 260px;
-    }
-    .ch-hero-overlay {
-      padding: 36px 36px 28px 36px;
-    }
   }
 
   .ch-badge-row {
@@ -678,48 +686,31 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
 
   .ch-title {
     font-family: var(--font-serif);
-    font-size: 1.45rem;
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
     font-weight: 800;
     color: #FFFFFF;
     line-height: 1.35;
   }
 
   .ch-subtitle {
-    font-size: 0.94rem;
+    font-size: clamp(0.92rem, 1.5vw, 1.05rem);
     color: #FCD34D;
     font-weight: 600;
     line-height: 1.45;
   }
 
-  @media (min-width: 768px) {
-    .ch-title {
-      font-size: 1.85rem;
-    }
-    .ch-subtitle {
-      font-size: 1.05rem;
-    }
-  }
-
   .ch-body-inner {
-    padding: 24px 20px 28px 20px;
+    padding: clamp(22px, 3.5vw, 38px);
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 28px;
   }
 
-  @media (min-width: 768px) {
-    .ch-body-inner {
-      padding: 32px 40px 36px 40px;
-      gap: 28px;
-    }
-  }
-
-  /* 핵심 요약 리드박스 */
   .ch-lead-box {
     background: #FFFBEB;
     border: 1px solid #FDE68A;
     border-left: 5px solid var(--color-vermilion);
-    padding: 16px 18px;
+    padding: 16px 20px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -730,29 +721,42 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     font-size: 0.76rem;
     font-weight: 800;
     color: var(--color-vermilion-text);
-    letter-spacing: 0.3px;
   }
 
   .ch-lead-text {
-    font-size: 0.98rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #1E293B;
-    line-height: 1.65;
+    line-height: 1.68;
   }
 
-  /* 소제목 + 단락 블록 (가독성 핵심) */
+  /* 단락별 스토리 + 스토리 화보 사진 2단 조판 */
   .ch-paragraphs-list {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 28px;
   }
 
   .story-block {
-    padding-bottom: 20px;
-    border-bottom: 1px dashed #E2E8F0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    padding-bottom: 28px;
+    border-bottom: 1px dashed #CBD5E1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .story-block {
+      grid-template-columns: 1.35fr 0.95fr;
+      gap: 28px;
+    }
+    .story-block:nth-child(even) .story-text-col {
+      order: 2;
+    }
+    .story-block:nth-child(even) .story-figure {
+      order: 1;
+    }
   }
 
   .story-block:last-child {
@@ -760,12 +764,18 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     padding-bottom: 0;
   }
 
+  .story-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
   .story-subhead {
     display: flex;
     align-items: center;
     gap: 10px;
     font-family: var(--font-serif);
-    font-size: 1.12rem;
+    font-size: clamp(1.1rem, 1.9vw, 1.25rem);
     font-weight: 800;
     color: #0F172A;
     line-height: 1.4;
@@ -775,32 +785,57 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     border-radius: 6px;
     background: #1E293B;
     color: #FFFFFF;
     font-family: var(--font-sans);
-    font-size: 0.76rem;
+    font-size: 0.78rem;
     font-weight: 800;
     flex-shrink: 0;
   }
 
   .story-para {
-    font-size: 0.98rem;
+    font-size: clamp(0.96rem, 1.3vw, 1.04rem);
     color: #1E293B;
-    line-height: 1.88;
-    letter-spacing: -0.01em;
+    line-height: 1.9;
   }
 
-  @media (min-width: 768px) {
-    .story-subhead {
-      font-size: 1.2rem;
-    }
-    .story-para {
-      font-size: 1.05rem;
-      line-height: 1.92;
-    }
+  .story-figure {
+    background: #F8FAFC;
+    border: 1px solid #E2DDD3;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.05);
+  }
+
+  .figure-img-wrap {
+    width: 100%;
+    height: 210px;
+    background: #E2E8F0;
+    overflow: hidden;
+  }
+
+  .figure-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .story-figure:hover .figure-img {
+    transform: scale(1.03);
+  }
+
+  .figure-caption {
+    padding: 9px 12px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #475569;
+    background: #FFFFFF;
+    line-height: 1.45;
   }
 
   /* 인용구 박스 */
@@ -842,12 +877,12 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     font-style: normal;
   }
 
-  /* 컴팩트 슬림 명소 리스트 */
-  .chapter-compact-places {
+  /* 이야기 속 가게 원클릭 점프 섹션 (중복 카드 배제!) */
+  .chapter-jump-places {
     background: #F8FAFC;
-    border: 1px solid #E2E8F0;
+    border: 1px solid #CBD5E1;
     border-radius: 14px;
-    padding: 18px 16px;
+    padding: 18px;
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -891,72 +926,80 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
   }
 
   .deck-hint {
-    font-size: 0.75rem;
+    font-size: 0.76rem;
     color: #64748B;
+    font-weight: 600;
   }
 
-  .slim-places-grid {
+  .jump-chips-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
   }
 
   @media (min-width: 640px) {
-    .slim-places-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .jump-chips-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
-  .slim-place-card {
+  @media (min-width: 1024px) {
+    .jump-chips-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .jump-place-card {
     background: #FFFFFF;
     border: 1px solid #CBD5E1;
     border-radius: 10px;
-    padding: 10px;
+    padding: 8px 12px 8px 8px;
     display: flex;
-    gap: 12px;
     align-items: center;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    gap: 10px;
+    text-align: left;
+    transition: all 0.15s ease;
   }
 
-  .slim-place-card:hover {
+  .jump-place-card:hover {
     border-color: var(--color-vermilion);
-    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06);
+    background: #FFF5F5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(214, 59, 34, 0.1);
   }
 
-  .slim-thumb-wrap {
-    width: 82px;
-    height: 82px;
+  .jp-thumb {
+    width: 54px;
+    height: 54px;
     border-radius: 8px;
     overflow: hidden;
     flex-shrink: 0;
     background: #E2E8F0;
-    display: block;
   }
 
-  .slim-thumb {
+  .jp-thumb img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  .slim-info {
+  .jp-info {
     flex: 1;
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 2px;
   }
 
-  .slim-top-row {
+  .jp-top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 6px;
   }
 
-  .slim-name-ko {
-    font-size: 0.95rem;
+  .jp-ko {
+    font-size: 0.88rem;
     font-weight: 800;
     color: #0F172A;
     white-space: nowrap;
@@ -964,73 +1007,40 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     text-overflow: ellipsis;
   }
 
-  .slim-name-ko:hover {
-    color: var(--color-vermilion-text);
-    text-decoration: underline;
-  }
-
-  .slim-pick-btn {
-    font-size: 1rem;
-    color: #94A3B8;
-    padding: 2px 4px;
+  .jp-area {
+    font-size: 0.66rem;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background: #F1F5F9;
+    color: #475569;
     flex-shrink: 0;
   }
 
-  .slim-pick-btn.picked {
-    color: #D63B22;
-  }
-
-  .slim-name-ja {
+  .jp-ja {
     font-family: var(--font-serif);
-    font-size: 0.76rem;
+    font-size: 0.72rem;
     color: #64748B;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .slim-menu {
-    font-size: 0.78rem;
+  .jp-menu {
+    font-size: 0.74rem;
     color: #334155;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .slim-actions {
-    display: flex;
-    gap: 6px;
-    margin-top: 4px;
+  .jp-arrow {
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: var(--color-vermilion-text);
+    flex-shrink: 0;
   }
 
-  .slim-btn {
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 4px 8px;
-    border-radius: 5px;
-    white-space: nowrap;
-  }
-
-  .slim-btn-local {
-    background: #F1F5F9;
-    color: #1E293B;
-    border: 1px solid #CBD5E1;
-  }
-
-  .slim-btn-local:hover {
-    background: #E2E8F0;
-  }
-
-  .slim-btn-driver {
-    background: #1E293B;
-    color: #FFFFFF;
-  }
-
-  .slim-btn-driver:hover {
-    background: var(--color-vermilion);
-  }
-
-  /* 별책부록 4대 테마 그리드 */
   .special-themes-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -1079,7 +1089,6 @@ const chapterMeta: Record<string, { shortTab: string; heroImg: string; subheadin
     line-height: 1.72;
   }
 
-  /* 하단 책장 넘기기 페이저 */
   .chapter-pager {
     display: grid;
     grid-template-columns: 1fr;

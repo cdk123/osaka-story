@@ -20,56 +20,71 @@ const companionOptions = [
   { value: 'solo', label: '⚡ 혼밥·빠른 한 끼' }
 ];
 
-// 5대 순수 미식·찻집 카테고리 마스터 정의 및 카테고리별 상세 해설
+// 5대 순수 미식·찻집 카테고리 마스터 정의 및 카테고리별 스토리·화보 해설
 const categorySections = [
   {
     id: 'beef',
     num: '01',
     icon: '🥩',
+    storyChapterId: 'ch1-beef',
+    storyImage: '/images/places/hariju.jpg',
+    storyCaption: '1919년 창업 〈하리쥬 도톤보리 본점〉의 구로게와규 암소 스키야키와 천하의 부엌 고기 문화',
     titleKo: '와규 · 스키야키 · 고기 요리',
     titleJa: '和牛・すき焼き・肉料理',
     subtitle: '일본 3대 와규 마츠사카규 구이부터 100년 전통 암소 스키야키, 미니화로 규카츠와 해장 고기국물 니쿠스이까지',
-    description: '오사카의 고기 문화는 화려함보다 ‘부위별 최상의 감칠맛과 실속’에 집중합니다. 다다미 룸에서 부위별 명패를 보며 구워 먹는 마츠사카규, 기모노 서버가 처음부터 끝까지 구워주는 1919년 창업 스키야키, 자기 앞 미니 화로에 구워 먹는 규카츠, 그리고 개그맨의 숙취 해장국으로 탄생한 오사카 로컬 명물 ‘니쿠스이(고기국물)’를 엄선했습니다.',
+    description: '오사카의 고기 문화는 화려한 허례허식보다 ‘부위별 최상의 감칠맛과 실속’에 집중합니다. 1919년 도톤보리에서 문을 연 〈하리쥬〉가 오직 처녀 암소(메스우시)만을 고집해 입안에서 눈처럼 녹는 관서풍 스키야키의 기준을 세웠다면, 난바 골목의 〈치토세〉는 1980년대 요시모토 신희극 원로 배우의 숙취 해장 주문에서 비롯된 ‘니쿠스이(우동 면을 뺀 소고기 다시 국물)’로 오사카 소울푸드 신화를 썼습니다.',
     tip: '💡 저녁 메인 와규·스키야키 노포(야키니쿠 M, 하리쥬)는 최소 2주 전 사전 예약을 권장하며, 치토세(니쿠스이)는 낮 14:30에 영업이 끝나므로 반드시 아침·점심 코스로 넣으세요.'
   },
   {
     id: 'curry',
     num: '02',
     icon: '🍛',
+    storyChapterId: 'ch2-yoshoku',
+    storyImage: '/images/places/hokkyokusei.jpg',
+    storyCaption: '1922년 위장 약한 단골을 위해 세계 최초의 오므라이스를 탄생시킨 〈호쿄쿠세이 신사이바시 본점〉',
     titleKo: '오사카 유래 카레 · 근대 경양식 · 정식 체인',
     titleJa: '大阪スパイスカレー・老舗洋食・定食',
     subtitle: '1920년대 ‘대오사카 시대’가 탄생시킨 세계 최초의 오므라이스, 달고 매운 오사카식 카레, 호일 함박과 일본 정식 체인',
-    description: '도쿄를 제치고 일본 경제 1위를 기록했던 1920년대 오사카는 서양 요리를 일본식 정(情)으로 재해석한 ‘요쇼쿠(경양식)’의 발상지입니다. 위장 약한 단골을 위해 탄생한 전 세계 오므라이스의 시초(호쿄쿠세이, 1922), 밥에 카레를 미리 비벼 날계란을 얹는 원조 명물 카레(지유켄, 1910), 첫입은 과일처럼 달고 뒷맛은 강렬하게 매운 오사카식 카레(인디안 카레, 1947), 부풀어 오른 은박지를 찢어 먹는 함박스테이크(동양정), 그리고 햅쌀밥·다시 육수가 무한 리필되는 정식 체인 야요이켄과 1965년 오사카 탄생 돈카츠 KYK입니다.',
+    description: '도쿄를 제치고 일본 경제·인구 1위를 기록했던 1920년대 ‘대오사카(大大阪) 시대’는 서양 요리를 일본식 쌀밥과 정(情)으로 재해석한 ‘요쇼쿠(경양식)’의 황금기였습니다. 매일 흰 죽만 찾던 단골손님을 위해 케첩 볶음밥을 얇은 지단으로 감싼 세계 최초의 오므라이스(호쿄쿠세이, 1922), 보온 기구가 없던 시절 뜨거운 카레와 밥을 미리 비벼 내고 날계란을 얹은 명물 카레(지유켄, 1910), 첫입은 과일처럼 달고 삼키는 순간 향신료가 폭발하는 오사카식 카레(인디안 카레, 1947), 그리고 부풀어 오른 은박지를 찢어 먹는 호일 함박(동양정)과 한국 미진출 정식 명가 야요이켄·돈카츠 KYK까지 모두 살아 있는 역사입니다.',
     tip: '💡 동양정(토요테이)은 백화점 도착 즉시 매장 앞 기계(AirWAIT)에서 대기 번호표부터 뽑고 쇼핑하시는 것이 시간을 아끼는 최고 비결입니다.'
   },
   {
     id: 'noodle',
     num: '03',
     icon: '🍜',
+    storyChapterId: 'ch3-dashi',
+    storyImage: '/images/places/sushiman.jpg',
+    storyCaption: '에도 시대 북방 무역선이 실어 나른 다시마 육수와 1653년 창업 〈스시만〉의 370년 오사카 전통 판초밥(하코즈시)',
     titleKo: '키츠네·카스 우동 · 판초밥(하코즈시·바테라) · 마무시 장어 · 복어 · 대게',
     titleJa: 'きつね・かすうどん・箱寿司・バッテラ・まむし鰻・てっちり・蟹',
     subtitle: '1893년 원조 키츠네 우동과 소 곱창 튀김 카스 우동, 370년 전통 판초밥(하코즈시·바테라)과 유부초밥, 숯불 마무시 장어와 참복·대게·배추라멘',
-    description: '에도 시대 북방 무역선이 실어 나른 최상급 홋카이도 다시마는 오사카 국물 문화의 심장입니다. 달콤한 유부를 얹은 키츠네 우동(1893년 원조 마츠바야 & 도톤보리 이마이), 바삭하게 튀긴 소 곱창(아부라카스)에서 고소한 육즙이 우러나는 오사카 남부 향토 명물 카스 우동(카스야 & 류노스), 나무틀에 도미·새우·붕장어·고등어를 눌러 담아 보석처럼 썰어낸 오사카 전통 판초밥(1653년 창업 스시만 & 1831년 창업 타코타케 & 원형 유래 요시노 스시), 다시 국물을 머금은 오사카 유부초밥(마메다), 생장어를 숯불에 바삭하게 구워 밥 사이에 묻는 마무시 장어(본가 시바토), 오사카 발상 배추 콘소메 라멘(카무쿠라), 그리고 복어·대게 풀코스입니다.',
+    description: '에도 시대 홋카이도에서 오사카로 직항하던 북방 무역선 ‘키타마에부네’는 최상급 다시마를 실어 날랐고, 이는 황금빛 ‘나니와 다시(육수)’ 문화를 꽃피웠습니다. 우동 곁들이 유부를 손님들이 국물에 얹어 먹는 것을 보고 탄생한 원조 키츠네 우동(마츠바야, 1893), 소 곱창을 저온에서 바삭하게 튀겨 고소한 육즙을 우려내는 오사카 남부 향토 명물 카스 우동(카스야 & 류노스), 나무 상자에 초밥과 도미·새우·붕장어를 눌러 담아 모자이크 보석처럼 썰어내는 370년 전통 판초밥 하코즈시(스시만·타코타케·요시노 스시), 그리고 밥 사이에 숯불 장어를 묻어 뜸 들이는 관서식 마무시 장어(본가 시바토)가 오사카 미식의 정수를 보여줍니다.',
     tip: '💡 오사카 판초밥(하코즈시)의 역사적 원형인 〈요시노 스시 본점〉은 현재 휴업 중이므로, 실제 식사나 테이크아웃은 현역 성업 중인 370년 전통 〈스시만(한신·타카시마야)〉 또는 195년 전통 〈타코타케(마츠야마치 본점)〉를 방문하세요!'
   },
   {
     id: 'bento',
     num: '04',
     icon: '🥟',
+    storyChapterId: 'ch4-konamon',
+    storyImage: '/images/places/takoume-honten.jpg',
+    storyCaption: '1844년 창업해 180년간 황금빛 씨육수를 지켜온 일본 최고령 관서풍 오뎅 노포 〈타코우메 본점〉',
     titleKo: '오사카 코나몬(모던야키·네기야키) · 180년 오뎅·도테야키 · 만두 · 도시락',
     titleJa: '粉もん・モダン焼き・関東煮おでん・どて焼き・豚まん・名物弁当',
     subtitle: '마요네즈와 야키소바를 넣은 모던야키 원조, 180년 씨육수 관서풍 오뎅과 백된장 도테야키, 파 폭탄 네기야키, 551 부타만과 오사카 오쇼 교자',
-    description: '오사카 서민들의 활력이 응축된 철판·분식·야식 문화입니다. 1946년 세계 최초로 화이트 마요네즈와 야키소바 면을 넣은 모던야키를 탄생시킨 원조(보테쥬 총본점 & 치보), 1844년 창업해 180년간 씨육수를 이어온 일본 최고령 관서풍 다시 오뎅과 백된장 소힘줄 조림 도테야키(타코우메 본점 & 하나쿠지라), 대파 폭탄 네기야키(야마모토)와 산마 100% 오코노미야키(미즈노), 국물 타코야키 아카시야키, 쿠시카츠 다루마, 551 호라이 부타만과 오사카 오쇼 도톤보리 본점(야키교자·텐신항), 일본 맥도날드 겨울 한정 그라코로, 2m 거대 주걱 화로구이와 백화점 데파치카 명품 벤또를 모았습니다.',
+    description: '오사카 서민들의 유머와 에너지가 가장 뜨겁게 응축된 장르입니다. 1946년 전후 부흥기에 배고픈 노동자들을 위해 오코노미야키에 야키소바 면을 넣어 푸짐하게 구워내고 화이트 마요네즈를 처음 도입한 모던야키 원조(보테쥬 & 치보), 1844년 창업 이래 고래 혀(사에즈리)와 참문어로 180년간 씨육수를 이어온 관서풍 다시 오뎅(타코우메 본점 & 하나쿠지라), 학교 마치고 돌아온 자녀들의 간식으로 탄생한 대파 폭탄 네기야키(야마모토), 밀가루 없이 참마 100%로 굽는 오코노미야키(미즈노), 그리고 창업주 전화번호 끝자리에서 이름을 딴 551 호라이 부타만과 오사카 오쇼 도톤보리 본점의 군만두까지 한 끼도 놓칠 수 없습니다.',
     tip: '💡 551 호라이 부타만(만두)은 육가공품 검역 규정상 한국으로 반입할 수 없으므로 반드시 오사카 호텔 야식이나 귀국 전 공항에서 따뜻할 때 다 드시고 오세요!'
   },
   {
     id: 'cafe',
     num: '05',
     icon: '🍵',
+    storyChapterId: 'ch5-kissaten',
+    storyImage: '/images/places/tsuboichi-sakai.jpg',
+    storyCaption: '다도(茶道)의 성인 센노 리큐의 고향 사카이에서 1850년 문을 연 제차 명가 〈츠보이치 제차 본포〉',
     titleKo: '정통 차·다실 · 340년 양갱·화과자 · 레트로 킷사텐 · 베이커리',
     titleJa: '日本茶茶寮・老舗羊羹・和菓子・純喫茶・関西ベーカリー',
     subtitle: '다도 성인 센노 리큐 고향의 1850년 제차 명가, 340년 오사카 양갱 총본산과 황실 양갱, 1883년 부부 단팥죽과 1934년 킷사텐·모닝구 다방',
-    description: '일본 다도(茶道)를 완성한 다성(茶聖) 센노 리큐가 오사카 사카이 상인 출신이었던 만큼, 오사카의 차와 다식(양갱·화과자) 문화는 깊이가 남다릅니다. 1850년 사카이에서 창업한 차 명가(츠보이치 제차 본포)와 작가의 도자기 다완에 차를 우려 마시는 현대 다실(와드 카페), 340년 계보를 잇는 오사카 정통 양갱·모나카 총본산(츠루야 하치만)과 500년 황실 양갱의 제왕(토라야), 1883년 단팥죽(메오토 젠자이), 직화 미타라시단고(키야스), 갓 구운 치즈케이크(리쿠로 오지상), 1934년 클래식 다방(마루후쿠 커피점)과 무료 모닝구 토스트로 유명한 코메다 커피·로얄호스트, 그리고 간사이 명물 크루아상과 밀푀유입니다.',
+    description: '일본 다도(茶道)를 집대성한 다성(茶聖) 센노 리큐가 오사카 사카이 상인 가문 출신이었던 만큼, 오사카의 차와 양갱·화과자 문화는 천년의 품격을 자랑합니다. 1850년 창업한 제차 명가 〈츠보이치〉와 도예 작가의 기물에 차를 우려내는 〈와드 카페〉, 1687년 노포의 맥을 잇는 오사카 양갱·모나카 총본산 〈츠루야 하치만〉과 500년 황실 양갱 〈토라야〉, 소설 《메오토 젠자이》의 무대가 된 1883년 부부 단팥죽, 그리고 1934년 스테인드글라스 아래 자체 로스팅기로 진한 커피를 내리는 〈마루후쿠 커피점〉과 모닝구 토스트의 대명사 〈코메다 커피〉까지 달콤한 휴식을 선사합니다.',
     tip: '💡 소중한 분을 위한 선물로는 상온 보관이 길고 품격 있는 〈츠루야 하치만〉·〈토라야〉의 한입 양갱 세트와 〈츠보이치〉의 덖은 호지차·우지 말차 찻잎이 단연 최고입니다.'
   }
 ];
@@ -173,26 +188,40 @@ const categorySections = [
       const secPlaces = foodPlaces.filter(p => p.category === sec.id);
       return (
         <section class="category-section-block" id={`cat-sec-${sec.id}`} data-category-section={sec.id}>
-          <!-- 카테고리 설명 헤더 카드 -->
+          <!-- 카테고리 스토리 & 화보 헤더 카드 -->
           <header class="cat-section-header">
-            <div class="cat-header-top">
-              <div class="cat-title-wrap">
-                <span class="cat-num-badge">FOOD CATEGORY {sec.num}</span>
-                <h3 class="cat-main-title">
-                  <span class="cat-icon">{sec.icon}</span>
-                  <span>{sec.titleKo}</span>
-                </h3>
-                <span class="cat-title-ja">{sec.titleJa}</span>
-              </div>
-              <span class="cat-count-pill">
-                총 <strong class="sec-match-count" data-sec-count={sec.id}>{secPlaces.length}</strong>곳
-              </span>
-            </div>
+            <div class="cat-story-grid">
+              <div class="cat-story-content">
+                <div class="cat-header-top">
+                  <div class="cat-title-wrap">
+                    <span class="cat-num-badge">FOOD STORY & CURATION {sec.num}</span>
+                    <h3 class="cat-main-title">
+                      <span class="cat-icon">{sec.icon}</span>
+                      <span>{sec.titleKo}</span>
+                    </h3>
+                    <span class="cat-title-ja">{sec.titleJa}</span>
+                  </div>
+                  <span class="cat-count-pill">
+                    엄선 <strong class="sec-match-count" data-sec-count={sec.id}>{secPlaces.length}</strong>곳
+                  </span>
+                </div>
 
-            <p class="cat-subtitle">{sec.subtitle}</p>
-            <p class="cat-desc">{sec.description}</p>
-            <div class="cat-tip-bar">
-              <span>{sec.tip}</span>
+                <p class="cat-subtitle">{sec.subtitle}</p>
+                <p class="cat-desc">{sec.description}</p>
+                <div class="cat-tip-bar">
+                  <span>{sec.tip}</span>
+                </div>
+                <div class="cat-story-action">
+                  <button type="button" class="btn-open-story-chapter" data-jump-story={sec.storyChapterId}>
+                    📖 이 음식의 깊은 역사·유래 스토리북에서 읽기 →
+                  </button>
+                </div>
+              </div>
+
+              <figure class="cat-story-figure">
+                <img src={sec.storyImage} alt={sec.titleKo} loading="lazy" class="cat-story-img" />
+                <figcaption class="cat-story-caption">📸 {sec.storyCaption}</figcaption>
+              </figure>
             </div>
           </header>
 
@@ -511,18 +540,79 @@ const categorySections = [
     background: #FFFFFF;
     border: 1px solid #E2DDD3;
     border-left: 6px solid var(--color-vermilion);
-    border-radius: 14px;
+    border-radius: 16px;
     padding: 20px 20px;
     box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
   }
 
   @media (min-width: 768px) {
     .cat-section-header {
       padding: 24px 28px;
     }
+  }
+
+  .cat-story-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .cat-story-grid {
+      grid-template-columns: 1.55fr 1fr;
+      gap: 24px;
+    }
+  }
+
+  .cat-story-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cat-story-figure {
+    margin: 0;
+    background: #FAF6F0;
+    border: 1px solid #E2DDD3;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .cat-story-img {
+    width: 100%;
+    height: 195px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cat-story-caption {
+    padding: 9px 12px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #475569;
+    line-height: 1.45;
+  }
+
+  .cat-story-action {
+    margin-top: 2px;
+  }
+
+  .btn-open-story-chapter {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    background: #1E293B;
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: background 0.15s ease;
+  }
+
+  .btn-open-story-chapter:hover {
+    background: var(--color-vermilion);
   }
 
   .cat-header-top {
@@ -770,5 +860,6 @@ const categorySections = [
     if (companionSelect) companionSelect.addEventListener('change', () => { applyFilters(); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); });
     if (resetBtn) resetBtn.addEventListener('click', () => { resetAll(); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); });
     if (resetEmptyBtn) resetEmptyBtn.addEventListener('click', () => { resetAll(); window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); });
+    window.osakaResetExploreFilters = resetAll;
   })();
 </script>

@@ -1,9 +1,9 @@
 ---
 const tabs = [
-  { id: 'overview', label: '첫화면·도시', shortLabel: '첫화면', icon: '🏠', sub: '빠른포털·부산비교·6대구역' },
-  { id: 'december', label: '12월·연말연시', shortLabel: '12월특집', icon: '🎄', sub: '맥도날드그라코로·12/31축제' },
-  { id: 'stories', label: '미식·역사 이야기', shortLabel: '역사이야기', icon: '📖', sub: '프롤로그~6장 스토리북' },
-  { id: 'explore', label: '맛집·찻집 찾기', shortLabel: '맛집·찻집', icon: '🍽️', sub: '59곳·5대미식카테고리' },
+  { id: 'overview', label: '첫화면·도시', shortLabel: '첫화면', icon: '🏠', sub: '스토리포털·부산비교·6대구역' },
+  { id: 'stories', label: '미식·역사 이야기', shortLabel: '역사이야기', icon: '📖', sub: '프롤로그~6장·화보스토리' },
+  { id: 'december', label: '12월·연말연시', shortLabel: '12월특집', icon: '🎄', sub: '코모다루술통·그라코로·해넘이' },
+  { id: 'explore', label: '맛집·찻집 도감', shortLabel: '맛집·찻집', icon: '🍽️', sub: '59곳·원조노포·5대미식' },
   { id: 'spots', label: '명소·쇼핑·명품', shortLabel: '명소·명품', icon: '🛍️', sub: '27곳·가챠·문구·가방·식도' },
   { id: 'survival', label: '초보 생존·사투리', shortLabel: '생존·사투리', icon: '🚇', sub: '공항·교통·예절·음성방언' }
 ];
@@ -296,6 +296,50 @@ const tabs = [
     }
 
     document.addEventListener('click', (e) => {
+      // 1) 스토리 페이지에서 특정 가게 카드로 점프 (explore 또는 spots 탭의 #card-{id})
+      const jumpPlaceBtn = e.target.closest('[data-jump-place]');
+      if (jumpPlaceBtn) {
+        e.preventDefault();
+        const placeId = jumpPlaceBtn.getAttribute('data-jump-place');
+        if (!placeId) return;
+        const targetCard = document.getElementById('card-' + placeId);
+        if (!targetCard) return;
+
+        const isSpot = targetCard.closest('#panel-spots') !== null;
+        switchTab(isSpot ? 'spots' : 'explore');
+
+        if (isSpot && window.osakaResetSpotsFilters) {
+          window.osakaResetSpotsFilters();
+        } else if (!isSpot && window.osakaResetExploreFilters) {
+          window.osakaResetExploreFilters();
+        }
+
+        setTimeout(() => {
+          document.querySelectorAll('.place-card.jump-highlight').forEach(el => el.classList.remove('jump-highlight'));
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetCard.classList.add('jump-highlight');
+          setTimeout(() => {
+            targetCard.classList.remove('jump-highlight');
+          }, 3200);
+        }, 80);
+        return;
+      }
+
+      // 2) 도감·첫화면에서 특정 스토리 챕터로 점프 (stories 탭의 해당 챕터)
+      const jumpStoryBtn = e.target.closest('[data-jump-story]');
+      if (jumpStoryBtn) {
+        e.preventDefault();
+        const storyId = jumpStoryBtn.getAttribute('data-jump-story');
+        switchTab('stories');
+        if (storyId && window.osakaSelectStoryChapter) {
+          setTimeout(() => {
+            window.osakaSelectStoryChapter(storyId, true);
+          }, 50);
+        }
+        return;
+      }
+
+      // 3) 일반 탭 버튼 전환
       const tabBtn = e.target.closest('[data-tab]');
       if (tabBtn) {
         e.preventDefault();

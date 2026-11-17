@@ -6,7 +6,7 @@ interface Props {
 
 const {
   title = "알면 맛있는 오사카 — 친구처럼 들려주는 오사카 음식·역사·골목 이야기",
-  description = "오사카·일본 여행 초보부터 가족 여행자까지! 400년 음식 역사 스토리텔링, 58곳 엄선 맛집·명소, 초보 생존 가이드와 스마트 찜 바구니"
+  description = "스토리를 먼저 읽고 즐기는 오사카! 400년 음식·역사 화보 스토리텔링, 12월·연말연시 풍습(코모다루·그라코로), 86곳 엄선 맛집·명소 도감, 초보 생존 가이드와 스마트 찜 바구니"
 } = Astro.props;
 ---
 
@@ -180,6 +180,14 @@ const {
       /* 모달 열렸을 때 스크롤 잠금 */
       body.modal-open {
         overflow: hidden;
+      }
+
+      /* 스토리 페이지에서 점프 이동 시 가게 카드 강조 하이라이트 */
+      .place-card.jump-highlight {
+        outline: 3.5px solid #D63B22 !important;
+        box-shadow: 0 0 0 8px rgba(214, 59, 34, 0.22), 0 12px 32px rgba(214, 59, 34, 0.28) !important;
+        transform: translateY(-4px);
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       }
     </style>
   </head>

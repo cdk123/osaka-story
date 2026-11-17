@@ -1,6 +1,5 @@
 ---
 import { places } from '../data/places';
-import PlaceCard from './PlaceCard.astro';
 
 const placesMap = new Map(places.map(p => [p.id, p]));
 
@@ -14,32 +13,38 @@ const mcdMenuItems = [
     price: '단품 ¥440 / 세트 ¥740 전후',
     period: '매년 11월 말 ~ 1월 초 겨울 한정',
     image: '/images/dec/mcd-gracoro.jpg',
-    desc: '1993년 첫 출시 이후 일본인들에게 “그라코로를 먹어야 겨울과 연말이 온 것이 실감 난다”는 찬사를 받는 전설의 시즌 한정 버거입니다. 겉은 바삭한 빵가루 옷을 입히고 속에는 통새우와 마카로니가 들어간 부드럽고 뜨거운 화이트 크림 그라탕을 채웠으며, 일반 참깨번이 아닌 스팀으로 쪄내어 구름처럼 폭신한 버터 번으로 감쌌습니다.',
+    story: '1993년 일본 맥도날드 개발팀이 “추운 겨울날 일본인들이 가장 그리워하는 옛날 경양식집의 ‘크림 고로케’를 햄버거로 만들 수 없을까?”라는 고민 끝에 탄생시킨 걸작입니다. 겉은 바삭한 빵가루 옷을 입히고 속에는 통새우와 마카로니가 들어간 뜨거운 화이트 크림 그라탕을 채웠으며, 일반 참깨번 대신 스팀으로 쪄내어 구름처럼 폭신한 버터 번으로 감쌌습니다. 일본에서는 매년 12월 TV에 “그라코로~♪” CM송이 흘러나와야 비로소 연말이 온 것을 실감한다고 말할 정도입니다.',
+    orderKo: '그라코로 세트 주세요.',
+    orderPronounce: '그라코로 셋토오 오네가이시마스.',
     orderJa: 'グラコロ セットをお願いします。'
   },
   {
     id: 'gracoro-demi',
     badge: '12월 스페셜 프리미엄 버전',
-    nameKo: '농후 데미글라스 & 비프 그라코로',
+    nameKo: '농후 데미글라스 & 타르타르 그라코로',
     nameJa: '濃厚デミ＆タルタルグラコロ',
-    pronounce: '노-코- 데미 그라코로',
+    pronounce: '노-코- 데미 앤 타루타루 그라코로',
     price: '단품 ¥490 / 세트 ¥790 전후',
     period: '12월 겨울 시즌 한정',
     image: '/images/dec/mcd-demi-gracoro.jpg',
-    desc: '기본 그라코로 위에 매년 12월마다 새롭게 업그레이드되는 진한 비프 데미글라스 스튜 소스와 트러플·갈릭 타르타르 소스를 듬뿍 얹은 스페셜 에디션입니다. 화이트 크림 고로케의 고소함과 진한 경양식 데미글라스 소스가 어우러져 일본 양식당 고로케 정식을 먹는 듯한 깊은 풍미를 선사합니다.',
+    story: '기본 그라코로의 인기에 힘입어 매년 12월마다 딱 한 달간 선보이는 겨울 스페셜 버전입니다. 고소한 화이트 크림 고로케 패티 위에 소고기 육즙을 진하게 졸여낸 비프 데미글라스 스튜 소스와 풍미 깊은 타르타르 소스를 듬뿍 얹어, 패스트푸드를 넘어 정통 일본 경양식 노포의 고로케 정식을 먹는 듯한 깊은 감칠맛을 선사합니다.',
+    orderKo: '농후 데미 그라코로 세트 주세요.',
+    orderPronounce: '노-코- 데미노 그라코로 셋토오 오네가이시마스.',
     orderJa: '濃厚デミのグラコロ セットをお願いします。'
   },
   {
     id: 'sankaku-chocopie',
     badge: '겨울 길거리 국민 간식',
     nameKo: '겨울 한정 삼각 초코파이 (흑 · 백 · 시즌맛)',
-    nameJa: '三角チョコパイ 黒 / 季節限定',
-    pronounce: '산카쿠 초코파이',
+    nameJa: '三角チョコパイ 黒 / 白',
+    pronounce: '산카쿠 초코파이 쿠로 / 시로',
     price: '¥160 ~ ¥180',
     period: '늦가을 ~ 12월 말 겨울 한정',
     image: '/images/dec/mcd-chocopie.jpg',
-    desc: '수십 겹으로 얇게 접어 바삭하게 튀겨낸 삼각형 페이스트리 파이 속에 아몬드 알갱이가 씹히는 진하고 따뜻한 초콜릿 크림(또는 화이트 크림·커스터드)이 용암처럼 들어 있는 겨울 대표 디저트입니다. 도톤보리나 우메다를 걷다가 추울 때 하나씩 사 먹기 최고입니다.',
-    orderJa: '三角チョコパイを1つお願いします。'
+    story: '찬 바람이 불기 시작하면 일본 젊은이들과 여행자들이 손에 하나씩 들고 먹는 겨울 길거리 간식의 제왕입니다. 수십 겹으로 얇게 접어 바삭하게 튀겨낸 삼각형 페이스트리 파이 속에 아몬드 알갱이가 씹히는 진하고 따뜻한 초콜릿 크림이 용암처럼 들어 있어, 도톤보리나 미도스지 일루미네이션 거리를 걷다가 언 손을 녹이기에 최고입니다.',
+    orderKo: '삼각 초코파이(검은색 초코) 한 개 주세요.',
+    orderPronounce: '산카쿠 초코파이 쿠로오 히토츠 오네가이시마스.',
+    orderJa: '三角チョコパイ 黒を1つお願いします。'
   },
   {
     id: 'mcgriddles',
@@ -47,80 +52,82 @@ const mcdMenuItems = [
     nameKo: '맥그리들 소시지 에그 (메이플 팬케이크 번)',
     nameJa: 'マックグリドル ソーセージエッグ',
     pronounce: '마쿠그리도루 소-세-지 에구',
-    price: '단품 ¥360 / 아침 콤비·세트 ¥420~¥560',
-    period: '매일 오픈 ~ 오전 10:30 한정 (연말연시 아침 추천)',
+    price: '단품 ¥360 / 아침 세트 ¥560 전후',
+    period: '매일 오픈 ~ 오전 10:30 한정',
     image: '/images/dec/mcd-mcgriddles.jpg',
-    desc: '한국에서도 단종 후 재출시 요청이 끊이지 않는 일본 맥도날드 아침(아사마쿠) 부동의 1위 메뉴입니다. 달콤한 메이플 시럽 알갱이가 박힌 폭신한 핫케이크 번 사이에 짭조름한 소시지 패티, 계란, 체다치즈를 끼워 단짠단짠의 극치를 보여줍니다. 1월 1일 새해 첫날 아침 식사로도 강력 추천합니다.',
+    story: '한국 맥도날드에서는 단종되어 일본 여행 갈 때만 먹을 수 있는 아침(아사마쿠) 부동의 1위 메뉴입니다. 달콤한 메이플 시럽 알갱이가 콕콕 박힌 폭신하고 따뜻한 핫케이크(팬케이크) 번 사이에 짭조름한 후추 향의 소시지 패티, 계란, 체다치즈를 끼워 단짠단짠의 극치를 보여줍니다. 많은 개인 식당이 쉬는 1월 1일 새해 아침 식사로도 완벽합니다.',
+    orderKo: '맥그리들 소시지 에그 세트 주세요.',
+    orderPronounce: '마쿠그리도루 소-세-지 에구 셋토오 오네가이시마스.',
     orderJa: 'マックグリドル ソーセージエッグ セットをお願いします。'
   }
 ];
 
-const newYearTimeline = [
+const decStories = [
   {
-    step: 'STEP 01 · 12월 31일 오후 4시 ~ 밤 11시',
-    tag: '12월 31일 (오미소카 大晦日)',
-    title: '해넘이 메밀국수 ‘토시코시 소바’ & 백화점 데파치카 마감 세일',
-    image: '/images/dec/dec-toshikoshi-soba.jpg',
-    points: [
-      '<strong>토시코시 소바(年越しそば)의 유래:</strong> ① 가늘고 긴 면발처럼 건강하게 장수하고, ② 다른 국수보다 툭 잘 끊어지는 메밀면처럼 올 한 해의 액운과 고생을 싹둑 끊어내며, ③ 옛 금은 세공 장인들이 메밀 반죽으로 금가루를 모았다는 데서 새해 금전운을 모은다는 뜻이 담겨 있습니다.',
-      '<strong>12/31 오후 4~6시 백화점 지하(데파치카) 공략:</strong> 12월 31일에는 한큐·타카시마야·한신 백화점 지하 식품관이 <strong>오후 6시경 조기 폐점</strong>합니다! 마감 1~2시간 전에 방문하면 1년에 단 한 번 파는 일본 명절 찬합 요리 <strong>‘미니 오세치(おせち)’</strong>와 대왕 새우튀김 소바, 와규 스시 도시락을 할인가에 득템해 호텔에서 화려한 연말 파티를 즐길 수 있습니다.'
-    ]
-  },
-  {
-    step: 'STEP 02 · 12월 31일 밤 11시 ~ 1월 3일',
-    tag: '새해 첫 참배 (하츠모데 初詣)',
-    title: '스미요시 타이샤·오사카 텐만구 신년 참배 & 수백 개 야타이(포장마차) 축제',
-    image: '/images/places/sumiyoshi-taisha-hatsumode.jpg',
-    points: [
-      '<strong>230만 명이 모이는 신년 대축제:</strong> 자정이 가까워지면 사찰에서 108번의 제야의 종(조야노 카네)이 울리고, 오사카 시민들은 1,800년 역사의 <strong>〈스미요시 타이샤〉</strong>와 학문의 신 <strong>〈오사카 텐만구〉</strong>로 새해 첫 참배(하츠모데)를 떠납니다.',
-      '<strong>야타이(축제 포장마차) & 오미쿠지:</strong> 신사 앞 참배길에 수백 개의 전통 노점(베이비 카스테라, 사과사탕 링고아메, 야키소바, 타코야키, 따뜻한 감주 아마자케)이 들어서서 일본 영화 속 신년 마츠리 풍경이 그대로 펼쳐집니다. 동전(5엔 또는 50엔)을 던져 소원을 빌고 <strong>새해 운세 제비뽑기(오미쿠지, ¥200)</strong>를 꼭 뽑아보세요!'
-    ]
-  },
-  {
-    step: 'STEP 03 · 1월 1일(원단) ~ 1월 2일 아침',
-    tag: '신년 첫 세일 (하츠우리 初売り & 福袋)',
-    title: '🚨 1월 1일 백화점 휴무 생존법 & ‘후쿠부쿠로(복주머니)’ 오픈런',
-    image: '/images/dec/dec-fukubukuro.jpg',
-    points: [
-      '<strong>1월 1일(원단, 元旦) 휴무 주의보:</strong> 1월 1일 당일에는 한큐·한신·타카시마야·다이마루 등 백화점과 개인 노포 식당들이 대부분 휴점합니다. 1월 1일에는 연중무휴로 문을 여는 <strong>도톤보리 대형 식당(카무쿠라·오사카 오쇼·보테쥬·치보·카니도라쿠)</strong>과 <strong>일본 명문 체인(야요이켄·코메다 커피·로얄호스트·맥도날드)</strong>, 그리고 스미요시 타이샤·미노오 폭포·소라니와 온천으로 동선을 짜세요!',
-      '<strong>후쿠부쿠로(福袋, 복주머니) 전쟁:</strong> 빅카메라·돈키호테·이온몰 등은 <strong>1월 1일 아침</strong>부터, 주요 백화점들은 <strong>1월 2일 아침 오픈과 동시에</strong> 구매 가격의 2~3배 상품이 든 ‘후쿠부쿠로(복주머니 — 의류·문구·찻잎·화과자·가전·캐릭터 굿즈)’를 선착순 판매합니다!'
-    ]
-  },
-  {
-    step: 'STEP 04 · 12월 31일 자정 & 새해 첫날 아침의 전통 술 의식',
-    tag: '연말연시 가족 술통 의식 (鏡開き・樽酒・お屠蘇)',
-    title: '🍶 짚 감은 술통을 깨서 국자로 떠 마시는 ‘타루자케(코모다루) & 카가미비라키’와 새해 약주 ‘오토소’',
+    num: 'STORY 01',
+    kicker: '연말연시 가족 전통주 이야기 · 鏡開き & お屠蘇',
+    title: '왜 일본 가족들은 연말에 짚 감은 술통 뚜껑을 나무 망치로 깨서 마실까?',
+    subtitle: '‘거울을 열어 복을 부르는’ 카가미비라키(鏡開き)와 막내부터 잔을 돌리는 새해 약주 오토소(お屠蘇)',
     image: '/images/dec/dec-komodaru.jpg',
-    points: [
-      '<strong>① 타루자케(樽酒) · 코모다루(菰樽)와 ‘카가미비라키(鏡開き)’:</strong> 일본에서 연말연시나 큰 경사 때 온 가족이 모여 <strong>짚을 두른 둥근 술 항아리·술통(코모다루)</strong>의 나무 뚜껑(보름달과 화합을 상징해 ‘거울 카가미 鏡’라 부름)을 나무 망치로 ‘팍!’ 쳐서 여는 의식을 <strong>‘카가미비라키(거울을 열어 복을 부른다)’</strong>라고 합니다. 삼나무 향이 배어든 사케를 긴 나무 국자(히샤쿠)로 떠서 네모난 편백나무 잔(<strong>마스 枡</strong>)에 담아 나누어 마십니다.',
-      '<strong>② 호텔 객실에서 직접 해보는 ‘미니 코모다루(ミニ鏡開き)’ 구매 팁:</strong> 12월 말 백화점 지하 주류 매장(한큐·타카시마야)이나 난바 빅카메라 2층 주류 코너에 가면, 식탁에 올려놓고 <strong>미니 나무 망치로 직접 뚜껑을 깨고 국자로 떠 마실 수 있는 ‘가정용 미니 코모다루(300ml~1.8L)’</strong>를 연말연시 한정으로 판매합니다! 12월 31일 밤 호텔 방에서 해넘이 소바·오세치와 함께 뚜껑을 여는 순간 평생 잊지 못할 새해 추억이 됩니다.',
-      '<strong>③ 새해 아침 가장 어린 사람부터 마시는 약주 ‘오토소(お屠蘇)’:</strong> 12월 31일 밤 사케와 미림에 계피·산초·진피 등 약재 주머니(토소산)를 담가 두었다가 1월 1일 아침에 마시는 무병장수 약주입니다. “어린 사람의 젊은 기운을 어른에게 전한다”는 뜻으로 <strong>가장 나이가 어린 사람부터 순서대로 연장자에게 잔을 돌리는 독특한 전통</strong>이 있습니다.'
-    ]
+    imageCaption: '볏짚을 감은 삼나무 술통 코모다루(菰樽)와 나무 망치·국자·편백나무 잔(마스)으로 즐기는 카가미비라키',
+    paragraphs: [
+      '일본의 연말연시 풍경에서 가장 인상적인 장면은 온 가족이 볏짚(코모)을 두른 둥근 나무 술 항아리 앞에 모여 나무 망치로 뚜껑을 ‘팍!’ 하고 쳐서 여는 모습입니다. 이 술통을 ‘코모다루(菰樽)’ 또는 ‘타루자케(樽酒)’라 부르는데, 에도 시대 오사카·이타미·나다 지역의 명주를 배에 실어 나르던 삼나무 술통에서 유래했습니다.',
+      '왜 술통 뚜껑을 깨는 것을 “카가미비라키(鏡開き, 거울 열기)”라고 부를까요? 일본의 양조 장인들은 술통의 둥근 나무 뚜껑을 보름달과 가족의 원만한 화합을 상징하는 ‘거울(카가미, 鏡)’이라 불렀습니다. 그리고 새해나 경사스러운 날에는 “깨뜨린다(와루 割る)”라는 부정적인 단어 대신 “거울을 활짝 열어 새로운 복과 건강, 번영의 길을 연다(히라쿠 開く)”는 뜻으로 ‘카가미비라키’라 부르며 다 함께 나무 망치를 내리칩니다. 뚜껑이 열리면 향긋한 삼나무 향이 배어든 사케를 긴 나무 국자(히샤쿠)로 떠서 네모난 편백나무 잔인 ‘마스(枡)’에 담아 나누어 마십니다.',
+      '여기에 새해 첫날 아침(1월 1일)에는 또 하나의 특별한 술이 등장합니다. 바로 무병장수를 기원하는 약주 ‘오토소(お屠蘇, 도소주)’입니다. 12월 31일 밤에 산초·계피·도라지·진피 등 한약재를 넣은 붉은 주머니(토소산)를 사케와 달콤한 미림에 하룻밤 담가 두었다가 1월 1일 아침에 마시는데, 놀랍게도 어른부터 마시는 일반 술자리와 정반대로 “젊고 싱그러운 기운을 어른에게 전해드린다”는 뜻에서 가족 중 가장 나이가 어린 사람부터 먼저 마시고 나이순으로 연장자에게 잔을 올리는 아름다운 전통이 있습니다.'
+    ],
+    actionTip: '💡 12월 31일 호텔 객실에서 직접 해보는 법: 12월 말 백화점 지하 주류 매장(한큐·타카시마야)이나 난바 빅카메라 2층 주류 코너에 가면, 식탁에 올려놓고 미니 나무 망치로 직접 뚜껑을 깨서 국자로 떠 마실 수 있는 ‘가정용 미니 코모다루 세트(ミニ鏡開きセット, 300ml~1.8L)’를 판매합니다! 자정 카운트다운과 함께 일행끼리 미니 술통을 열어보세요.',
+    relatedPlaceIds: ['osaka-sake-jizake', 'mugi-shochu', 'naniwa-suzuki']
+  },
+  {
+    num: 'STORY 02',
+    kicker: '12월 31일(오미소카 大晦日)의 미식 의식',
+    title: '12월 31일 밤 자정 전에 메밀국수를 끊어 먹어야 하는 3가지 이유',
+    subtitle: '해넘이 국수 ‘토시코시 소바(年越しそば)’와 백화점 지하 ‘오세치 요리’ 오후 4시 마감 세일 대작전',
+    image: '/images/dec/dec-toshikoshi-soba.jpg',
+    imageCaption: '12월 31일 저녁, 한 해의 액운을 끊고 장수를 기원하며 먹는 대왕 새우튀김 토시코시 소바',
+    paragraphs: [
+      '한국에서 새해 첫날 아침에 떡국을 먹는다면, 일본에서는 12월 31일(오미소카) 저녁부터 자정 사이에 무조건 ‘토시코시 소바(年越しそば, 해넘이 메밀소바)’를 먹습니다. 에도 시대 상인들 사이에서 시작된 이 풍습에는 세 가지 재미있는 이야기가 담겨 있습니다.',
+      '첫째, 가늘고 길게 뻗은 메밀면처럼 가족 모두가 아프지 않고 길게 장수하라는 기원입니다. 둘째, 메밀면은 밀가루 우동이나 라멘에 비해 젓가락이나 치아로 툭 하고 쉽게 잘 끊어집니다. 그래서 “올 한 해 동안 겪었던 힘든 일, 스트레스, 액운을 새해로 가져가지 않고 오늘 밤 메밀면처럼 싹둑 끊어낸다!”는 통쾌한 의미를 담고 있습니다(이 때문에 자정이 넘기 전에 다 먹어야 액운이 깔끔히 끊어진다고 믿습니다). 셋째, 옛날 금은 세공 장인들이 공방 바닥에 흩어진 금가루를 모을 때 메밀 반죽 덩어리로 굴려 금을 흡착시켰던 데서 유래해 “새해에 금전운을 쓸어 담는다”는 상인들의 소망이 깃들어 있습니다.',
+      '또한 12월 31일 오후는 오사카 백화점 지하 식품관(데파치카)이 1년 중 가장 역동적으로 들썩이는 시간입니다. 일본 주부들은 정월 사흘 동안 불을 쓰지 않고도 가족들이 먹을 수 있도록 화려한 3단 찬합에 검은콩(건강), 청어알(다산), 새우(장수), 밤킨톤(재물운)을 가득 채운 명절 음식 ‘오세치 요리(おせち料理)’를 준비합니다.'
+    ],
+    actionTip: '💡 12월 31일 오후 4시~5시 반 데파치카 마감 세일 치트키: 12월 31일에는 한큐·타카시마야·한신 백화점 지하 식품관이 오후 6시경 조기 폐점합니다! 폐점 1~2시간 전에 가시면 여행자도 부담 없이 맛볼 수 있는 ‘1~2인용 미니 오세치 찬합’과 갓 튀긴 대왕 새우튀김 토시코시 소바, 최고급 와규 도시락을 파격적인 마감 할인가로 살 수 있습니다.',
+    relatedPlaceIds: ['dotonbori-imai', 'matsubaya', 'depachika-bento', 'takoume-honten']
+  },
+  {
+    num: 'STORY 03',
+    kicker: '12월 31일 자정 ~ 1월 3일 신년 대축제 (初詣)',
+    title: '108번의 제야의 종소리와 230만 명이 모이는 신년 포장마차(야타이) 축제',
+    subtitle: '1,800년 역사의 스미요시 타이샤·오사카 텐만구 하츠모데와 새해 운세 제비뽑기 ‘오미쿠지’',
+    image: '/images/places/sumiyoshi-taisha-hatsumode.jpg',
+    imageCaption: '붉은 무지개다리(타이코바시)가 빛나는 스미요시 타이샤의 새해 첫 참배(하츠모데)와 신년 축제 풍경',
+    paragraphs: [
+      '12월 31일 밤 11시 40분경이 되면 오사카의 사찰(시텐노지·호젠지 등)에서 인간의 108번뇌를 씻어내는 ‘제야의 종(조야노 카네, 除夜の鐘)’이 은은하게 울려 퍼집니다. 그리고 자정이 되는 순간, 오사카는 고요한 명절이 아니라 거대한 축제의 도시로 변신합니다. 새해 첫 신사·사찰 방문인 ‘하츠모데(初詣)’가 시작되기 때문입니다.',
+      '오사카 사람들이 가장 사랑하는 하츠모데 성지는 단연 서기 211년에 세워져 1,800년 역사를 자랑하는 ‘스미요시 타이샤(住吉大社 — 오사카 사람들은 애칭으로 스미욧산이라 부름)’와 학문·상업의 신을 모신 ‘오사카 텐만구(大阪天満宮)’입니다. 특히 스미요시 타이샤에는 1월 1일부터 3일까지 사흘 동안 무려 230만 명이 방문합니다.',
+      '여행자에게 하츠모데가 특별한 진짜 이유는 신사 앞 참배길 양옆으로 끝없이 늘어서는 수백 개의 ‘신년 마츠리 야타이(축제 포장마차)’ 때문입니다! 애니메이션에서나 보던 반짝이는 사과사탕(링고아메), 따끈따끈한 베이비 카스테라, 젓가락에 말아 구운 오코노미야키(하시마키), 숯불 야키토리, 그리고 추운 몸을 사르르 녹여주는 달콤하고 구수한 일본 전통 감주(아마자케, 甘酒) 노점들이 연기를 피워 올리며 잊지 못할 새해 첫날을 선물합니다.'
+    ],
+    actionTip: '💡 하츠모데 200% 즐기는 법: ① 텐노지나 에비스초에서 오사카 유일의 100년 노면전차(한카이 전차)를 타고 스미요시 타이샤 정문 앞에 내려 붉은 반원형 다리(타이코바시)를 건너보세요. ② 일본어로 ‘5엔(고엔, 五円)’은 ‘좋은 인연(ご縁)’과 발음이 같아 새해 소원을 빌 때 5엔짜리 동전을 넣으면 가장 좋다고 여깁니다. ③ 신년 운세 제비뽑기 ‘오미쿠지(おみくじ, ¥200)’를 뽑아 대길(大吉)이 나오면 지갑에 간직하고, 흉(凶)이 나오면 신사 지정 나무대에 묶어 액운을 두고 오면 됩니다!',
+    relatedPlaceIds: ['sumiyoshi-taisha-hatsumode', 'awagen-wayo', 'meoto-zenzai']
+  },
+  {
+    num: 'STORY 04',
+    kicker: '1월 1일(원단 元旦) ~ 1월 2일(하츠우리 初売り)의 지혜',
+    title: '에도 시대 포목점에서 시작된 ‘후쿠부쿠로(복주머니)’와 1월 1일 백화점 휴무 생존법',
+    subtitle: '남들이 문 닫힌 가게 앞에서 당황할 때, 연중무휴 오사카 명문 체인과 신년 첫 세일을 즐기는 비결',
+    image: '/images/dec/dec-fukubukuro.jpg',
+    imageCaption: '새해 첫 영업일(하츠우리) 아침마다 펼쳐지는 일본의 전통 복주머니 ‘후쿠부쿠로(福袋)’ 축제',
+    paragraphs: [
+      '일본의 새해 쇼핑 문화를 상징하는 ‘후쿠부쿠로(福袋, 복주머니)’는 놀랍게도 에도 시대 상인들의 기발한 아이디어에서 탄생했습니다. 당시 포목점(기모노 옷감 가게)에서 일 년 동안 옷을 짓고 남은 고급 비단 자투리들을 버리지 않고 큰 주머니에 가득 담아 새해 첫날 싼값에 팔았는데, “열어보는 재미와 함께 복을 한 아름 담아간다”는 소문이 나면서 일본 전국의 새해 풍습으로 자리 잡았습니다.',
+      '오늘날 오사카의 후쿠부쿠로는 단순한 재고 정리가 아니라 각 브랜드가 자존심을 걸고 내놓는 신년 보너스입니다. 구매 가격의 2배~3배가 넘는 의류, 만년필·문구 세트(나가사와·시모지마), 고급 찻잎과 다기(츠보이치·타네야), 캐릭터 굿즈, 가전제품(빅카메라)이 들어있어 1월 1일(복합쇼핑몰·가전매장)과 1월 2일 아침(한큐·한신·타카시마야·다이마루 등 백화점 첫 영업일 ‘하츠우리’)에 진풍경이 벌어집니다.',
+      '여기서 12월 31일 출발 여행자가 반드시 기억해야 할 가장 중요한 사실이 있습니다! 바로 “1월 1일(원단, 元旦) 당일에는 거의 모든 백화점과 오래된 개인 노포 식당들이 문을 닫는다”는 점입니다. 하지만 걱정할 필요가 전혀 없습니다. 오사카에는 한국에 진출하지 않았지만 현지인들이 열광하는 ‘연중무휴 명문 체인점’들과 365일 잠들지 않는 도톤보리 대형 본점들이 1월 1일에도 활짝 문을 열고 기다리고 있기 때문입니다!'
+    ],
+    actionTip: '💡 1월 1일(새해 첫날) 완벽한 하루 동선 추천: 아침에는 〈코메다 커피〉 무료 모닝구 토스트나 〈맥도날드〉 아침 한정 맥그리들로 시작 → 낮에는 노면전차를 타고 〈스미요시 타이샤〉 신년 포장마차 축제 또는 〈미노오 폭포〉 산책 & 〈소라니와 온천〉 → 점심·저녁은 1월 1일에도 100% 영업하는 〈도톤보리 카무쿠라(배추라멘)〉, 〈오사카 오쇼 본점(교자·텐신항)〉, 〈야요이켄(솥밥 정식)〉, 〈보테쥬·치보(모던야키)〉, 〈카니도라쿠(대게 코스)〉를 이용하세요!',
+    relatedPlaceIds: ['kamukura-ramen', 'osaka-ohsho-gyoza', 'yayoiken-kyk-teishoku', 'komeda-royalhost', 'botejyu-honten', 'chibo-dotonbori', 'kani-doraku', 'soraniwa-onsen']
   }
 ];
-
-const winterFeaturedIds = [
-  'sumiyoshi-taisha-hatsumode',
-  'mcdonalds-japan-gracoro',
-  'kamukura-ramen',
-  'osaka-ohsho-gyoza',
-  'yayoiken-kyk-teishoku',
-  'komeda-royalhost',
-  'takoume-honten',
-  'hanakujira',
-  'genpin-fugu',
-  'kani-doraku',
-  'harijyu',
-  'soraniwa-onsen'
-];
-
-const winterPlaces = winterFeaturedIds
-  .map(id => placesMap.get(id))
-  .filter(Boolean);
 ---
 
 <div class="december-view">
-  <!-- 1. 12월 · 연말연시 메인 히어로 배너 -->
+  <!-- 1. 12월 · 연말연시 메인 히어로 배너 (스토리 & 빛의 축제) -->
   <section class="dec-hero-card">
     <div class="dec-hero-visual">
       <img
@@ -130,45 +137,112 @@ const winterPlaces = winterFeaturedIds
       />
       <div class="dec-hero-overlay">
         <div class="dec-badges">
-          <span class="stamp-badge dec-stamp">十二月・年末年始 特集</span>
-          <span class="dec-sub-pill">12월 겨울 한정판 · 12/31~1/3 완벽 공략</span>
+          <span class="stamp-badge dec-stamp">十二月・年末年始 物語</span>
+          <span class="dec-sub-pill">스토리를 알고 즐기는 12월 말 오사카</span>
         </div>
-        <h2 class="dec-hero-title">12월 & 연말연시 오사카에만 있는 특별한 순간들</h2>
+        <h2 class="dec-hero-title">12월 31일, 오사카의 가장 특별한 밤과 새해 이야기</h2>
         <p class="dec-hero-lead">
-          우메다에서 난바까지 4km를 수놓는 미도스지 일루미네이션, 겨울에만 파는 일본 맥도날드 ‘그라코로’, 12월 31일 밤의 해넘이 소바와 스미요시 타이샤 신년 포장마차 대축제, 그리고 1월 1일 휴무일에도 실패 없는 일본 명문 체인점까지 한눈에 정리했습니다.
+          1년 중 오직 이 시기에만 만날 수 있는 일본의 해넘이 풍습과 새해 축제, 겨울 한정 먹거리의 유래를 이야기와 사진으로 먼저 만나보세요. 이야기를 읽은 뒤 아래 연결 버튼을 누르면 해당 가게의 상세 정보로 바로 이동합니다.
         </p>
       </div>
     </div>
 
-    <!-- 12월 겨울 일루미네이션 2대 핵심 요약 바 -->
+    <!-- 12월 겨울밤의 배경: 오사카 2대 일루미네이션 이야기 -->
     <div class="illum-strip-grid">
       <div class="illum-box">
-        <span class="illum-badge">✨ 기네스 세계기록 인증</span>
-        <strong class="illum-title">미도스지 일루미네이션 (11월~12월 31일)</strong>
+        <span class="illum-badge">✨ 기네스 세계기록 인증 · 12월 31일 새벽 1시까지 점등!</span>
+        <strong class="illum-title">미도스지 일루미네이션 (우메다 ↔ 난바 4km 빛의 대로)</strong>
         <p class="illum-desc">
-          우메다(한큐백화점 앞)부터 신사이바시·난바까지 약 4km 대로를 따라 은행나무 수백 그루가 구간별 황금빛·샴페인골드·주홍빛 LED로 빛나는 오사카 겨울밤의 상징입니다. (점등: 17:00~23:00, 12월 31일은 새벽 01:00까지 특별 점등!)
+          오사카의 대동맥인 미도스지 대로를 따라 우메다부터 신사이바시·난바까지 약 4km 구간의 은행나무 수백 그루가 황금빛·샴페인골드·주홍빛으로 물듭니다. 특히 12월 31일 밤에는 새해를 맞이하는 시민들을 위해 자정을 넘겨 새벽 1시까지 빛을 밝힙니다.
         </p>
       </div>
       <div class="illum-box">
-        <span class="illum-badge">🏛️ 수변 미디어 파사드 & 야시장</span>
-        <strong class="illum-title">오사카 빛의 르네상스 (나카노시마 중앙공회당 · ~12월 25일/31일)</strong>
+        <span class="illum-badge">🏛️ 1918년 근대 건축과 물길의 빛 축제</span>
+        <strong class="illum-title">오사카 빛의 르네상스 (나카노시마 수변 공원 & 중앙공회당)</strong>
         <p class="illum-desc">
-          1918년 지어진 붉은 벽돌 중앙공회당 외벽 전체에 화려한 빛의 예술을 투사하고, 나카노시마 강변 산책로를 따라 대만 지우펀풍 초롱불 터널과 겨울 야시장 푸드트럭이 열리는 로맨틱한 겨울 축제입니다.
+          물의 도시 오사카의 상징인 나카노시마 강변과 붉은 벽돌 중앙공회당에서 펼쳐지는 겨울 빛 축제입니다. 강물에 비치는 화려한 미디어 파사드와 수변 산책로를 따라 늘어선 초롱불 터널이 겨울밤 산책의 낭만을 더해줍니다. (👉 <button type="button" class="inline-place-jump" data-jump-place="nakanoshima-culture">나카노시마 중앙공회당 상세 보기 ↗</button>)
         </p>
       </div>
     </div>
   </section>
 
-  <!-- 2. 일본 맥도날드(‘마쿠도’) 12월 겨울 한정판 4대 메뉴 실사 도감 -->
+  <!-- 2. 연말연시 4대 테마 스토리 & 화보 에세이 (가게 카드 중복 없이 스토리와 사진에 집중!) -->
+  <section class="dec-stories-section">
+    {decStories.map((st) => {
+      const linkedPlaces = st.relatedPlaceIds
+        .map(id => placesMap.get(id))
+        .filter(Boolean);
+
+      return (
+        <article class="dec-story-article">
+          <div class="ds-media-col">
+            <img src={st.image} alt={st.title} loading="lazy" class="ds-img" />
+            <p class="ds-caption">📸 {st.imageCaption}</p>
+          </div>
+
+          <div class="ds-content-col">
+            <div class="ds-header">
+              <div class="ds-kicker-row">
+                <span class="ds-num-badge">{st.num}</span>
+                <span class="ds-kicker">{st.kicker}</span>
+              </div>
+              <h3 class="ds-title">{st.title}</h3>
+              <p class="ds-subtitle">{st.subtitle}</p>
+            </div>
+
+            <div class="ds-paragraphs">
+              {st.paragraphs.map((p) => (
+                <p class="ds-para">{p}</p>
+              ))}
+            </div>
+
+            <div class="ds-tip-callout">
+              <p>{st.actionTip}</p>
+            </div>
+
+            <!-- 이 스토리와 연결된 가게 바로가기 칩 (클릭 시 가게 도감 탭의 해당 가게 카드로 이동!) -->
+            {linkedPlaces.length > 0 && (
+              <div class="ds-linked-places">
+                <span class="linked-label">🏪 이 이야기를 현장에서 경험할 수 있는 곳 (클릭 시 매장 상세 이동):</span>
+                <div class="linked-chips-wrap">
+                  {linkedPlaces.map((pl) => (
+                    pl && (
+                      <button
+                        type="button"
+                        class="btn-jump-place-chip"
+                        data-jump-place={pl.id}
+                      >
+                        <span class="chip-thumb-mini">
+                          <img src={pl.image} alt={pl.nameKo} loading="lazy" />
+                        </span>
+                        <span class="chip-text-group">
+                          <strong class="chip-ko">{pl.nameKo}</strong>
+                          <span class="chip-sub">{pl.signatureMenu.split(',')[0].split('(')[0]} →</span>
+                        </span>
+                      </button>
+                    )
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </article>
+      );
+    })}
+  </section>
+
+  <div class="seigaiha-divider"></div>
+
+  <!-- 3. 일본 맥도날드(‘마쿠도’) 12월 한정판 스토리 & 실사 도감 + 한글발음·음성 주문판 -->
   <section class="mcd-special-section">
     <div class="sec-head-box">
       <div class="sec-kicker-row">
-        <span class="stamp-badge">冬季限定 マクド</span>
-        <span class="sec-kicker-text">한국 맥도날드에는 없는 일본 겨울 시즌 한정판</span>
+        <span class="stamp-badge">冬季限定 マクド物語</span>
+        <span class="sec-kicker-text">한국에는 없는 일본 맥도날드 12월의 풍물시</span>
       </div>
-      <h3 class="sec-main-heading">🍔 일본 맥도날드(‘마쿠도’) 12월 한정판 4대 메뉴 실사 도감</h3>
+      <h3 class="sec-main-heading">🍔 왜 일본인들은 12월이 되면 ‘마쿠도’로 달려갈까? — 겨울 한정판 4선 & 실전 주문판</h3>
       <p class="sec-main-sub">
-        오사카 사람들은 맥도날드를 ‘마쿠도(マクド)’라 부릅니다. 12월 말~1월 초 오사카에 간다면 무조건 맛봐야 할 겨울 한정 메뉴 4가지와 일본어 주문 문구입니다.
+        도쿄에서는 맥도날드를 ‘마쿠(マック)’라 부르지만, 오사카 사람들은 억양을 살려 <strong>‘마쿠도(マクド)’</strong>라고 부릅니다. 매년 12월에만 맛볼 수 있는 겨울 한정 메뉴 4가지의 탄생 이야기와, <strong>일본어를 몰라도 그대로 읽거나 들려주면 바로 주문되는 [한국어 뜻 + 한글 발음 + 음성 재생] 카드</strong>입니다.
       </p>
     </div>
 
@@ -191,72 +265,35 @@ const winterPlaces = winterFeaturedIds
               <span class="mcd-meta-pill">🗓️ {item.period}</span>
               <span class="mcd-meta-pill price">💰 {item.price}</span>
             </div>
-            <p class="mcd-desc">{item.desc}</p>
+            <p class="mcd-desc">{item.story}</p>
+
+            <!-- 한국어 뜻 + 큰 한글 발음 + 일본어 원어 + 원어민 음성 듣기 주문 박스 -->
             <div class="mcd-order-box">
-              <span class="order-label">👉 카운터·키오스크 주문 일본어</span>
-              <strong class="order-ja">{item.orderJa}</strong>
+              <div class="order-top-bar">
+                <span class="order-label">🗣️ 카운터 주문 문장 (점원에게 보여주거나 그대로 읽기)</span>
+                <button
+                  type="button"
+                  class="btn-mcd-speak"
+                  data-speak={item.orderJa}
+                  aria-label={`${item.nameKo} 주문 일본어 발음 듣기`}
+                >
+                  🔊 발음 듣기
+                </button>
+              </div>
+              <div class="order-ko-meaning">🇰🇷 “{item.orderKo}”</div>
+              <div class="order-ko-pronounce">🗣️ 발음: <strong>“{item.orderPronounce}”</strong></div>
+              <div class="order-ja-text">🇯🇵 {item.orderJa}</div>
             </div>
           </div>
         </article>
       ))}
     </div>
-  </section>
 
-  <div class="seigaiha-divider"></div>
-
-  <!-- 3. 12월 31일 ~ 1월 3일 타임라인별 실전 공략 -->
-  <section class="ny-timeline-section">
-    <div class="sec-head-box">
-      <div class="sec-kicker-row">
-        <span class="stamp-badge">大晦日・初詣・初売り</span>
-        <span class="sec-kicker-text">12월 31일 ~ 1월 3일 시간대별 완벽 가이드</span>
-      </div>
-      <h3 class="sec-main-heading">🎍 12월 31일 해넘이부터 1월 2일 복주머니까지 — 연말연시 3단계 공략</h3>
-      <p class="sec-main-sub">
-        연말연시 일본의 문화를 알면 남들이 문 닫힌 백화점 앞에서 당황할 때 가장 특별한 명절 축제와 할인을 독차지할 수 있습니다.
-      </p>
-    </div>
-
-    <div class="ny-timeline-list">
-      {newYearTimeline.map((item) => (
-        <article class="ny-step-card">
-          <div class="ny-step-media">
-            <img src={item.image} alt={item.title} loading="lazy" class="ny-step-img" />
-            <span class="ny-step-tag">{item.tag}</span>
-          </div>
-          <div class="ny-step-body">
-            <span class="ny-step-kicker">{item.step}</span>
-            <h4 class="ny-step-title">{item.title}</h4>
-            <div class="ny-points">
-              {item.points.map((pt) => (
-                <p class="ny-point-item" set:html={pt} />
-              ))}
-            </div>
-          </div>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <div class="seigaiha-divider"></div>
-
-  <!-- 4. 12월 겨울 제철 미식 & 연말연시(12/31·1/1) 정상 영업 구원투수 명소 12선 -->
-  <section class="winter-places-section">
-    <div class="sec-head-box">
-      <div class="sec-kicker-row">
-        <span class="stamp-badge">冬季厳選 十二選</span>
-        <span class="sec-kicker-text">연말연시 연중무휴 명문 체인 & 겨울 제철 전골·온천</span>
-      </div>
-      <h3 class="sec-main-heading">🍲 12월 겨울 제철 미식 & 12/31·1/1 정상 영업 구원투수 12선</h3>
-      <p class="sec-main-sub">
-        12월 추위를 녹여주는 참복 전골(테치리)·180년 오뎅·스키야키·대게 코스부터, 12월 31일 밤과 1월 1일에도 든든하게 문을 여는 한국 미진출 일본 명문 체인점까지 모았습니다.
-      </p>
-    </div>
-
-    <div class="winter-places-grid">
-      {winterPlaces.map((place) => (
-        place && <PlaceCard place={place} />
-      ))}
+    <div class="mcd-bottom-link-bar">
+      <span>📍 도톤보리 에비스바시점·난바·우메다 등 오사카 시내 맥도날드 매장 위치와 상세 정보가 궁금하다면?</span>
+      <button type="button" class="btn-mcd-jump" data-jump-place="mcdonalds-japan-gracoro">
+        🏪 일본 맥도날드 매장 상세 카드로 이동 →
+      </button>
     </div>
   </section>
 </div>
@@ -265,7 +302,7 @@ const winterPlaces = winterFeaturedIds
   .december-view {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 36px;
     padding-bottom: 56px;
   }
 
@@ -281,8 +318,8 @@ const winterPlaces = winterFeaturedIds
   .dec-hero-visual {
     position: relative;
     width: 100%;
-    min-height: 250px;
-    max-height: 340px;
+    min-height: 260px;
+    max-height: 350px;
     overflow: hidden;
     display: flex;
     align-items: flex-end;
@@ -340,9 +377,9 @@ const winterPlaces = winterFeaturedIds
   }
 
   .dec-hero-lead {
-    font-size: clamp(0.9rem, 1.4vw, 1rem);
+    font-size: clamp(0.92rem, 1.4vw, 1.02rem);
     color: #E2E8F0;
-    line-height: 1.65;
+    line-height: 1.7;
     max-width: 860px;
   }
 
@@ -379,18 +416,236 @@ const winterPlaces = winterFeaturedIds
 
   .illum-title {
     font-family: var(--font-serif);
-    font-size: 1.05rem;
+    font-size: 1.06rem;
     font-weight: 800;
     color: #0F172A;
   }
 
   .illum-desc {
-    font-size: 0.84rem;
+    font-size: 0.86rem;
     color: #334155;
+    line-height: 1.65;
+  }
+
+  .inline-place-jump {
+    color: var(--color-vermilion-text);
+    font-weight: 800;
+    text-decoration: underline;
+    font-size: 0.84rem;
+  }
+
+  /* 2. 연말연시 4대 테마 스토리 아티클 */
+  .dec-stories-section {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .dec-story-article {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 960px) {
+    .dec-story-article {
+      flex-direction: row;
+      align-items: stretch;
+    }
+  }
+
+  .ds-media-col {
+    width: 100%;
+    background: #1E293B;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 960px) {
+    .ds-media-col {
+      width: 360px;
+    }
+  }
+
+  .ds-img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+    flex: 1;
+  }
+
+  @media (min-width: 960px) {
+    .ds-img {
+      height: 100%;
+      min-height: 320px;
+    }
+  }
+
+  .ds-caption {
+    padding: 10px 14px;
+    font-size: 0.76rem;
+    color: #E2E8F0;
+    background: #0F172A;
+    line-height: 1.45;
+  }
+
+  .ds-content-col {
+    padding: clamp(20px, 3vw, 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+  }
+
+  .ds-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-bottom: 1px solid #F1F5F9;
+    padding-bottom: 14px;
+  }
+
+  .ds-kicker-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .ds-num-badge {
+    background: #1E293B;
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .ds-kicker {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-vermilion-text);
+  }
+
+  .ds-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.35;
+  }
+
+  .ds-subtitle {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #785204;
+    line-height: 1.45;
+  }
+
+  .ds-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ds-para {
+    font-size: 0.95rem;
+    color: #1E293B;
+    line-height: 1.82;
+  }
+
+  .ds-tip-callout {
+    background: #FFFBEB;
+    border: 1px dashed #F59E0B;
+    border-left: 4px solid #D63B22;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    color: #78350F;
+    font-weight: 600;
     line-height: 1.6;
   }
 
-  /* 섹션 공통 헤더 */
+  /* 스토리 하단 관련 가게 점프 칩 */
+  .ds-linked-places {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dashed #E2E8F0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .linked-label {
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: #475569;
+  }
+
+  .linked-chips-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .btn-jump-place-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #F8FAFC;
+    border: 1px solid #CBD5E1;
+    border-radius: 10px;
+    padding: 6px 12px 6px 6px;
+    text-align: left;
+    transition: all 0.15s ease;
+  }
+
+  .btn-jump-place-chip:hover {
+    background: #FFF5F5;
+    border-color: var(--color-vermilion);
+    transform: translateY(-1px);
+  }
+
+  .chip-thumb-mini {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #E2E8F0;
+  }
+
+  .chip-thumb-mini img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .chip-text-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chip-ko {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .chip-sub {
+    font-size: 0.72rem;
+    color: var(--color-vermilion-text);
+    font-weight: 600;
+  }
+
+  /* 3. 맥도날드 12월 한정판 섹션 */
   .sec-head-box {
     display: flex;
     flex-direction: column;
@@ -420,12 +675,11 @@ const winterPlaces = winterFeaturedIds
   }
 
   .sec-main-sub {
-    font-size: 0.9rem;
-    color: #475569;
-    line-height: 1.6;
+    font-size: 0.92rem;
+    color: #334155;
+    line-height: 1.68;
   }
 
-  /* 2. 맥도날드 12월 한정판 4대 메뉴 그리드 */
   .mcd-cards-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -451,7 +705,7 @@ const winterPlaces = winterFeaturedIds
   .mcd-media {
     position: relative;
     width: 100%;
-    height: 215px;
+    height: 220px;
     background: #E2E8F0;
     overflow: hidden;
   }
@@ -482,15 +736,15 @@ const winterPlaces = winterFeaturedIds
   }
 
   .mcd-body {
-    padding: 18px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     flex: 1;
   }
 
   .mcd-ko {
-    font-size: 1.15rem;
+    font-size: 1.18rem;
     font-weight: 800;
     color: #0F172A;
     line-height: 1.3;
@@ -505,13 +759,13 @@ const winterPlaces = winterFeaturedIds
 
   .mcd-ja {
     font-family: var(--font-serif);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     font-weight: 700;
     color: #334155;
   }
 
   .mcd-pronounce {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: #64748B;
   }
 
@@ -536,151 +790,108 @@ const winterPlaces = winterFeaturedIds
   }
 
   .mcd-desc {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: #334155;
-    line-height: 1.65;
+    line-height: 1.72;
   }
 
+  /* 맥도날드 한글발음 + 한국어 뜻 + 일본어 + 음성 주문 박스 */
   .mcd-order-box {
     background: #F8FAFC;
-    border: 1px dashed #CBD5E1;
-    border-left: 3px solid #1E293B;
-    border-radius: 6px;
-    padding: 8px 12px;
+    border: 1.5px solid #CBD5E1;
+    border-left: 4px solid #D63B22;
+    border-radius: 10px;
+    padding: 12px 14px;
     margin-top: auto;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 6px;
+  }
+
+  .order-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
   }
 
   .order-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: #64748B;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #475569;
   }
 
-  .order-ja {
+  .btn-mcd-speak {
+    background: #1E293B;
+    color: #FFFFFF;
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 14px;
+    transition: background 0.15s ease;
+  }
+
+  .btn-mcd-speak:hover {
+    background: var(--color-vermilion);
+  }
+
+  .order-ko-meaning {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: #334155;
+  }
+
+  .order-ko-pronounce {
+    font-size: 0.98rem;
+    color: #B52812;
+    background: #FFF5F5;
+    padding: 6px 10px;
+    border-radius: 6px;
+    line-height: 1.4;
+  }
+
+  .order-ja-text {
     font-family: var(--font-serif);
-    font-size: 0.92rem;
-    font-weight: 800;
+    font-size: 0.9rem;
+    font-weight: 700;
     color: #0F172A;
   }
 
-  /* 3. 연말연시 타임라인 리스트 */
-  .ny-timeline-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .ny-step-card {
+  .mcd-bottom-link-bar {
+    margin-top: 18px;
     background: #FFFFFF;
     border: 1px solid var(--color-border);
-    border-radius: 16px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
-  }
-
-  @media (min-width: 900px) {
-    .ny-step-card {
-      flex-direction: row;
-    }
-  }
-
-  .ny-step-media {
-    position: relative;
-    width: 100%;
-    height: 210px;
-    background: #E2E8F0;
-    flex-shrink: 0;
-    overflow: hidden;
-  }
-
-  @media (min-width: 900px) {
-    .ny-step-media {
-      width: 320px;
-      height: auto;
-      min-height: 100%;
-    }
-  }
-
-  .ny-step-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .ny-step-tag {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: rgba(15, 23, 42, 0.88);
-    color: #FFFFFF;
-    font-size: 0.75rem;
-    font-weight: 800;
-    padding: 4px 10px;
-    border-radius: 6px;
-    backdrop-filter: blur(4px);
-  }
-
-  .ny-step-body {
-    padding: clamp(18px, 2.5vw, 26px);
+    border-radius: 12px;
+    padding: 16px 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    flex: 1;
-  }
-
-  .ny-step-kicker {
-    font-size: 0.76rem;
-    font-weight: 800;
-    color: var(--color-vermilion-text);
-    letter-spacing: 0.4px;
-  }
-
-  .ny-step-title {
-    font-family: var(--font-serif);
-    font-size: clamp(1.15rem, 2vw, 1.35rem);
-    font-weight: 800;
-    color: #0F172A;
-    line-height: 1.35;
-  }
-
-  .ny-points {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .ny-point-item {
+    align-items: flex-start;
+    justify-content: space-between;
     font-size: 0.88rem;
+    font-weight: 600;
     color: #334155;
-    line-height: 1.7;
-    background: #F8FAFC;
-    padding: 10px 14px;
+  }
+
+  @media (min-width: 768px) {
+    .mcd-bottom-link-bar {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .btn-mcd-jump {
+    background: #1E293B;
+    color: #FFFFFF;
+    font-size: 0.82rem;
+    font-weight: 800;
+    padding: 9px 16px;
     border-radius: 8px;
-    border-left: 3px solid #CBD5E1;
+    white-space: nowrap;
+    transition: background 0.15s ease;
   }
 
-  /* 4. 겨울 제철 & 연말연시 구원투수 그리드 */
-  .winter-places-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--card-gap);
-  }
-
-  @media (min-width: 640px) {
-    .winter-places-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .winter-places-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+  .btn-mcd-jump:hover {
+    background: var(--color-vermilion);
   }
 </style>

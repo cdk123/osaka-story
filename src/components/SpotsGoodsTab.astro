@@ -4,12 +4,15 @@ import PlaceCard from './PlaceCard.astro';
 
 const spotsAndGoods = places.filter(p => p.category === 'spot' || p.category === 'craft');
 
-// 명소·쇼핑·장인명품 4대 세부 섹션 분류
+// 명소·쇼핑·장인명품 4대 세부 섹션 분류 및 스토리·화보 해설
 const spotSections = [
   {
     id: 'local-nature',
     num: '01',
     icon: '🍁',
+    storyChapterId: 'ch6-spots',
+    storyImage: '/images/places/minoh-waterfall.jpg',
+    storyCaption: '1,300년 전 수행자들이 참기름에 단풍잎을 튀겨 먹던 유래를 간직한 〈미노오 폭포〉 산책길',
     titleKo: '숨은 로컬 골목 · 단풍 폭포 · 수변 미술관 · 천공 온천',
     titleJa: 'ローカル路地・箕面大滝・中之島・空庭温泉',
     subtitle: '관광객 인파를 벗어나 만나는 1,300년 단풍잎 튀김 계곡, 전쟁을 피한 1920년대 목조 골목, 국보급 도자 미술관과 에도 거리 온천',
@@ -21,6 +24,9 @@ const spotSections = [
     id: 'subculture-stationery',
     num: '02',
     icon: '🎮',
+    storyChapterId: 'ch6-spots',
+    storyImage: '/images/places/hepfive-gacha-forest.jpg',
+    storyCaption: '2,400대 이상의 캡슐토이 머신이 숲을 이루는 우메다 〈가챠가챠노 모리〉와 오사카 문구·캐릭터 성지',
     titleKo: '캐릭터 왕국 · 2,400대 가챠 성지 · 140년 만년필 & 오사카 문구',
     titleJa: 'キャラクター聖地・巨大ガチャの森・老舗万年筆と大阪文具',
     subtitle: '지브리·치이카와·포켓몬 공식 스토어 총집결, 우메다 햅파이브 가챠의 숲, 80색 만년필 잉크 백화점과 6층 문구 도매 빌딩',
@@ -32,6 +38,9 @@ const spotSections = [
     id: 'osaka-craft-leather',
     num: '03',
     icon: '👜',
+    storyChapterId: 'ch6-spots',
+    storyImage: '/images/places/sakai-knives.jpg',
+    storyCaption: '16세기 조총 단조 기술에서 시작해 일본 프로 셰프 점유율 90%를 자랑하는 600년 전통 〈사카이 우치하모노〉',
     titleKo: 'Made in Osaka 로컬 가방·수제 지갑 · 600년 식도 · 주석 차통·다기',
     titleJa: '大阪発バッグ＆革財布・堺打刃物・大阪浪華錫器・天満切子',
     subtitle: '오사카 자체 공방 가방 ‘마스터피스’, 장인의 초소형 가죽지갑 ‘무네카와’, 이름 각인 600년 사카이 주방칼, 뚜껑이 스스로 닫히는 주석 차통과 센슈 타올',
@@ -43,6 +52,9 @@ const spotSections = [
     id: 'osaka-souvenir-sake',
     num: '04',
     icon: '🎁',
+    storyChapterId: 'ch6-spots',
+    storyImage: '/images/places/amidaike-daikoku.jpg',
+    storyCaption: '1805년 창업 이래 “몸과 집안을 일으켜 세운다(興す)”는 행운의 뜻으로 선물하는 오사카 전통 쌀강정 〈아미다보리 오코시〉',
     titleKo: '220년 오사카 전통과자(오코시) · 백화점 한정 명과 · 로컬 명주·보리소주',
     titleJa: '大阪銘菓おこし・デパ地下限定土産・大阪地酒と本格麦焼酎',
     subtitle: '1805년 창업 행운의 쌀강정 ‘오코시’와 G20 정상 공식 과자 ‘와교’, 발효버터 스틱 ‘바통도르’, 170년 시오콘부와 오사카 명주 아키시카·고슈',
@@ -89,20 +101,34 @@ const placesMap = new Map(spotsAndGoods.map(p => [p.id, p]));
       return (
         <section class="sg-section-block" data-sg-section={sec.id}>
           <header class="sg-section-header">
-            <div class="sg-header-top">
-              <div class="sg-title-wrap">
-                <span class="sg-num-badge">THEME {sec.num}</span>
-                <h3 class="sg-main-title">
-                  <span>{sec.icon}</span>
-                  <span>{sec.titleKo}</span>
-                </h3>
-                <span class="sg-title-ja">{sec.titleJa}</span>
+            <div class="sg-story-grid">
+              <div class="sg-story-content">
+                <div class="sg-header-top">
+                  <div class="sg-title-wrap">
+                    <span class="sg-num-badge">STORY & CRAFT {sec.num}</span>
+                    <h3 class="sg-main-title">
+                      <span>{sec.icon}</span>
+                      <span>{sec.titleKo}</span>
+                    </h3>
+                    <span class="sg-title-ja">{sec.titleJa}</span>
+                  </div>
+                  <span class="sg-count-pill">엄선 <strong>{secPlaces.length}</strong>곳</span>
+                </div>
+                <p class="sg-subtitle">{sec.subtitle}</p>
+                <p class="sg-desc">{sec.description}</p>
+                <div class="sg-tip-bar">{sec.tip}</div>
+                <div class="sg-story-action">
+                  <button type="button" class="btn-open-story-chapter" data-jump-story={sec.storyChapterId}>
+                    📖 이 명소·장인 공예의 역사 스토리북에서 읽기 →
+                  </button>
+                </div>
               </div>
-              <span class="sg-count-pill">총 <strong>{secPlaces.length}</strong>곳</span>
+
+              <figure class="sg-story-figure">
+                <img src={sec.storyImage} alt={sec.titleKo} loading="lazy" class="sg-story-img" />
+                <figcaption class="sg-story-caption">📸 {sec.storyCaption}</figcaption>
+              </figure>
             </div>
-            <p class="sg-subtitle">{sec.subtitle}</p>
-            <p class="sg-desc">{sec.description}</p>
-            <div class="sg-tip-bar">{sec.tip}</div>
           </header>
 
           <div class="sg-places-grid">
@@ -121,20 +147,27 @@ const placesMap = new Map(spotsAndGoods.map(p => [p.id, p]));
     const sgChips = document.querySelectorAll('[data-sg-filter]');
     const sgSections = document.querySelectorAll('[data-sg-section]');
 
+    function setSpotsFilter(target) {
+      sgChips.forEach(c => c.classList.toggle('active', c.getAttribute('data-sg-filter') === target));
+      sgSections.forEach(sec => {
+        const secId = sec.getAttribute('data-sg-section');
+        if (target === 'all' || secId === target) {
+          sec.removeAttribute('hidden');
+        } else {
+          sec.setAttribute('hidden', 'true');
+        }
+      });
+    }
+
     sgChips.forEach(chip => {
       chip.addEventListener('click', () => {
         const target = chip.getAttribute('data-sg-filter') || 'all';
-        sgChips.forEach(c => c.classList.toggle('active', c === chip));
-        sgSections.forEach(sec => {
-          const secId = sec.getAttribute('data-sg-section');
-          if (target === 'all' || secId === target) {
-            sec.removeAttribute('hidden');
-          } else {
-            sec.setAttribute('hidden', 'true');
-          }
-        });
+        setSpotsFilter(target);
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       });
     });
+
+    window.osakaResetSpotsFilters = () => setSpotsFilter('all');
   })();
 </script>
 
@@ -243,12 +276,73 @@ const placesMap = new Map(spotsAndGoods.map(p => [p.id, p]));
     background: #FFFFFF;
     border: 1px solid #E2DDD3;
     border-left: 6px solid #1E293B;
-    border-radius: 14px;
+    border-radius: 16px;
     padding: clamp(18px, 2.5vw, 24px);
     box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+  }
+
+  .sg-story-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .sg-story-grid {
+      grid-template-columns: 1.55fr 1fr;
+      gap: 24px;
+    }
+  }
+
+  .sg-story-content {
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
+
+  .sg-story-figure {
+    margin: 0;
+    background: #FAF6F0;
+    border: 1px solid #E2DDD3;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .sg-story-img {
+    width: 100%;
+    height: 195px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .sg-story-caption {
+    padding: 9px 12px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #475569;
+    line-height: 1.45;
+  }
+
+  .sg-story-action {
+    margin-top: 2px;
+  }
+
+  .btn-open-story-chapter {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    background: #1E293B;
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: background 0.15s ease;
+  }
+
+  .btn-open-story-chapter:hover {
+    background: var(--color-vermilion);
   }
 
   .sg-header-top {

@@ -33,53 +33,53 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
     </div>
   </section>
 
-  <!-- 첫화면 핵심 포털: 5대 메인 테마 퀵 진입 대시보드 (콘텐츠 접근성 극대화) -->
+  <!-- 첫화면 핵심 포털: 스토리 우선(Story-First) 6대 메인 테마 대시보드 -->
   <section class="home-portal-section">
     <div class="section-title-wrap">
-      <span class="section-badge">빠른 탐색 포털</span>
-      <h3 class="section-heading">무엇부터 찾아보시겠어요?</h3>
-      <p class="section-sub">원하는 테마 카드를 누르면 해당 페이지로 바로 이동합니다.</p>
+      <span class="section-badge">STORY-FIRST · 스토리부터 읽고 즐기는 오사카</span>
+      <h3 class="section-heading">스토리를 먼저 읽고, 그 이야기가 살아 숨 쉬는 곳으로 떠나보세요</h3>
+      <p class="section-sub">가게 이름만 외우는 여행이 아니라 음식과 풍습에 담긴 유래·화보를 먼저 읽은 뒤, 원클릭으로 실제 매장이나 명소로 이동합니다.</p>
     </div>
 
     <div class="portal-cards-grid">
+      <button type="button" class="portal-card highlight-story" data-tab="stories">
+        <div class="portal-top">
+          <span class="portal-icon">📖</span>
+          <span class="portal-tag hot">STEP 1 · 스토리북</span>
+        </div>
+        <h4 class="portal-title">400년 미식 · 역사 스토리북</h4>
+        <p class="portal-desc">왜 오사카를 ‘천하의 부엌’이라 부를까? 에도 시대 다시마 배, 370년 판초밥, 세계 최초 오므라이스, 개그맨 해장국 니쿠스이까지 단락별 화보로 읽기</p>
+        <span class="portal-cta">이야기 첫 장 펼치기 →</span>
+      </button>
+
       <button type="button" class="portal-card highlight-dec" data-tab="december">
         <div class="portal-top">
           <span class="portal-icon">🎄</span>
-          <span class="portal-tag hot">12월·연말연시 필독</span>
+          <span class="portal-tag hot">STEP 2 · 12월·연말연시 스토리</span>
         </div>
-        <h4 class="portal-title">12월 & 연말연시 특집</h4>
-        <p class="portal-desc">일본 맥도날드 12월 한정 ‘그라코로’ 실사 도감, 미도스지 일루미네이션, 12/31 해넘이 소바·스미요시 신년 축제 & 1/1 휴무 대처법</p>
-        <span class="portal-cta">12월 특집 바로가기 →</span>
+        <h4 class="portal-title">12월 & 연말연시 풍습 · 마쿠도</h4>
+        <p class="portal-desc">짚 감은 술통 ‘코모다루’와 새해 약주 ‘오토소’, 12/31 해넘이 메밀국수 3대 유래, 스미요시 하츠모데, 맥도날드 ‘그라코로’ 한글 발음·음성 주문판</p>
+        <span class="portal-cta">12월 연말연시 스토리 읽기 →</span>
       </button>
 
       <button type="button" class="portal-card" data-tab="explore">
         <div class="portal-top">
           <span class="portal-icon">🍽️</span>
-          <span class="portal-tag">엄선 59곳</span>
+          <span class="portal-tag">엄선 59곳 (중복 0)</span>
         </div>
-        <h4 class="portal-title">오사카 맛집 · 다실 · 디저트</h4>
-        <p class="portal-desc">마츠사카규·스키야키, 오므라이스·카레 원조, 370년 판초밥·키츠네·카스 우동, 180년 오뎅·모던야키, 340년 양갱·차, 일본 명문 체인</p>
-        <span class="portal-cta">5대 미식 카테고리 보기 →</span>
+        <h4 class="portal-title">오사카 맛집 · 다실 · 디저트 도감</h4>
+        <p class="portal-desc">스토리 속 원조 노포와 현역 맛집 총집결! 마츠사카규·스키야키, 오므라이스·카레, 판초밥·키츠네·카스 우동, 180년 오뎅·모던야키, 340년 양갱·차</p>
+        <span class="portal-cta">5대 미식 도감 열기 →</span>
       </button>
 
       <button type="button" class="portal-card" data-tab="spots">
         <div class="portal-top">
           <span class="portal-icon">🛍️</span>
-          <span class="portal-tag">엄선 27곳</span>
+          <span class="portal-tag">엄선 27곳 (중복 0)</span>
         </div>
-        <h4 class="portal-title">명소 · 캐릭터/문구 · 장인명품</h4>
-        <p class="portal-desc">미노오 단풍 폭포·나카자키초 골목, 지브리·치이카와·2,400대 가챠의 숲, 140년 만년필·문구, 오사카 가방·수제 가죽지갑·사카이 식도·주석 차통</p>
-        <span class="portal-cta">4대 명소·쇼핑 테마 보기 →</span>
-      </button>
-
-      <button type="button" class="portal-card" data-tab="stories">
-        <div class="portal-top">
-          <span class="portal-icon">📖</span>
-          <span class="portal-tag">프롤로그~6장</span>
-        </div>
-        <h4 class="portal-title">400년 미식 · 역사 스토리북</h4>
-        <p class="portal-desc">왜 오사카를 ‘천하의 부엌’이라 부를까? 에도 시대 다시마 배부터 1920년대 대오사카 경양식, 전후 개그맨의 해장국까지 책장 넘기듯 읽기</p>
-        <span class="portal-cta">이야기 첫 장 펼치기 →</span>
+        <h4 class="portal-title">명소 · 캐릭터/문구 · 장인명품 도감</h4>
+        <p class="portal-desc">1,300년 단풍잎 튀김 미노오 폭포·나카자키초 골목, 지브리·치이카와·2,400대 가챠의 숲, 140년 만년필·문구, 오사카 가방·수제 지갑·사카이 식도</p>
+        <span class="portal-cta">4대 명소·명품 도감 열기 →</span>
       </button>
 
       <button type="button" class="portal-card" data-tab="survival">
@@ -101,6 +101,87 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
         <p class="portal-desc">마음에 드는 가게의 하트(♥)를 누르면 난바·신사이바시·우메다 권역별로 동선이 자동 정리되며 단톡방으로 1초 만에 공유됩니다.</p>
         <span class="portal-cta">내 찜 바구니 열기 →</span>
       </button>
+    </div>
+  </section>
+
+  <div class="seigaiha-divider"></div>
+
+  <!-- 스토리가 먼저다: 읽고 먹으면 10배 맛있는 대표 스토리 프리뷰 4선 -->
+  <section class="story-teaser-section">
+    <div class="section-title-wrap">
+      <span class="section-badge">대표 스토리 미리보기</span>
+      <h3 class="section-heading">알고 먹으면 10배 맛있는 오사카 4대 비화</h3>
+      <p class="section-sub">음식과 술통 뒤에 숨은 이야기를 먼저 읽고, 지금 영업 중인 진짜 노포로 바로 점프해 보세요.</p>
+    </div>
+
+    <div class="teaser-grid">
+      <article class="teaser-card">
+        <div class="teaser-media">
+          <img src="/images/places/sushiman.jpg" alt="오사카 전통 판초밥 하코즈시" loading="lazy" class="teaser-img" />
+          <span class="teaser-badge">370년 오사카 초밥의 비밀</span>
+        </div>
+        <div class="teaser-body">
+          <h4 class="teaser-title">도쿄가 주먹초밥(니기리)なら, 오사카는 왜 네모난 ‘판초밥(하코즈시)’일까?</h4>
+          <p class="teaser-text">
+            냉장고가 없던 에도 시대, 상인들이 연극을 보거나 귀한 손님에게 선물하기 위해 나무틀(하코)에 초밥과 찐 도미·새우·붕장어를 겹겹이 눌러 담아 보석처럼 썰어낸 예술 초밥입니다.
+          </p>
+          <div class="teaser-actions">
+            <button type="button" class="btn-teaser-story" data-jump-story="ch3-dashi">📖 제3장 스토리 전문 읽기</button>
+            <button type="button" class="btn-teaser-place" data-jump-place="sushiman">🍣 1653년 창업 스시만 보기 →</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="teaser-card">
+        <div class="teaser-media">
+          <img src="/images/dec/dec-komodaru.jpg" alt="짚을 감은 연말연시 술통 코모다루" loading="lazy" class="teaser-img" />
+          <span class="teaser-badge">연말연시 술통의 유래</span>
+        </div>
+        <div class="teaser-body">
+          <h4 class="teaser-title">신사와 가게 앞에 쌓인 ‘짚 감은 술통(코모다루)’과 막내부터 마시는 새해 술</h4>
+          <p class="teaser-text">
+            에도 시대 오사카 이타미·나다의 명주를 배에 실어 도쿄로 보낼 때 삼나무 통이 깨지지 않도록 짚(코모)으로 감싼 데서 유래했습니다. 12월 31일 자정엔 나무망치로 술뚜껑을 깨는 ‘카가미비라키’를 열고 새해 아침엔 약초주 ‘오토소’를 나눕니다.
+          </p>
+          <div class="teaser-actions">
+            <button type="button" class="btn-teaser-story" data-tab="december">🎄 12월 연말연시 스토리 읽기</button>
+            <button type="button" class="btn-teaser-place" data-jump-place="osaka-sake-jizake">🍶 오사카 명주 도감 보기 →</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="teaser-card">
+        <div class="teaser-media">
+          <img src="/images/places/hokkyokusei.jpg" alt="1922년 세계 최초 오므라이스 호쿄쿠세이" loading="lazy" class="teaser-img" />
+          <span class="teaser-badge">1922년 대오사카의 정(情)</span>
+        </div>
+        <div class="teaser-body">
+          <h4 class="teaser-title">전 세계 오므라이스는 왜 1922년 오사카의 작은 양식당에서 탄생했을까?</h4>
+          <p class="teaser-text">
+            소화불량으로 매일 오믈렛과 흰 밥만 시키던 단골손님을 안타깝게 여긴 주방장이 케첩 볶음밥을 얇은 달걀지단으로 감싸 내어준 배려가 인류 최초의 ‘오므라이스(Omu + Rice)’가 되었습니다.
+          </p>
+          <div class="teaser-actions">
+            <button type="button" class="btn-teaser-story" data-jump-story="ch2-yoshoku">📖 제2장 스토리 전문 읽기</button>
+            <button type="button" class="btn-teaser-place" data-jump-place="hokkyokusei">🍳 원조 호쿄쿠세이 보기 →</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="teaser-card">
+        <div class="teaser-media">
+          <img src="/images/places/takoume-honten.jpg" alt="1844년 창업 관서풍 오뎅 타코우메" loading="lazy" class="teaser-img" />
+          <span class="teaser-badge">180년 이어온 황금 씨육수</span>
+        </div>
+        <div class="teaser-body">
+          <h4 class="teaser-title">오사카 사람들은 왜 오뎅을 ‘칸토다키’라 부르며 180년 육수를 지켰을까?</h4>
+          <p class="teaser-text">
+            검은 간장으로 졸이는 도쿄식과 달리, 오사카는 투명한 다시마·고래 혀·참문어 감칠맛으로 끓여냅니다. 1844년 창업한 〈타코우메〉는 제2차 세계대전 공습 속에서도 주석 냄비의 씨육수를 품에 안고 피란해 오늘까지 이어오고 있습니다.
+          </p>
+          <div class="teaser-actions">
+            <button type="button" class="btn-teaser-story" data-jump-story="ch4-konamon">📖 제4장 스토리 전문 읽기</button>
+            <button type="button" class="btn-teaser-place" data-jump-place="takoume-honten">🍢 1844년 타코우메 보기 →</button>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -447,9 +528,131 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
     box-shadow: 0 8px 22px rgba(214, 59, 34, 0.12);
   }
 
+  .portal-card.highlight-story {
+    background: linear-gradient(135deg, #FFFDF9 0%, #FEF3C7 100%);
+    border-color: #B45309;
+  }
+
   .portal-card.highlight-dec {
     background: linear-gradient(135deg, #FFFDF9 0%, #FFF5F5 100%);
     border-color: #D63B22;
+  }
+
+  /* 스토리 티저 4선 그리드 */
+  .teaser-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--card-gap);
+  }
+
+  @media (min-width: 768px) {
+    .teaser-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .teaser-card {
+    background: #FFFFFF;
+    border: 1.5px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+  }
+
+  .teaser-media {
+    position: relative;
+    width: 100%;
+    height: 195px;
+    background: #E2E8F0;
+    overflow: hidden;
+  }
+
+  .teaser-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .teaser-card:hover .teaser-img {
+    transform: scale(1.04);
+  }
+
+  .teaser-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(15, 23, 42, 0.88);
+    color: #FDE68A;
+    font-size: 0.74rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+  }
+
+  .teaser-body {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .teaser-title {
+    font-family: var(--font-serif);
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.38;
+  }
+
+  .teaser-text {
+    font-size: 0.86rem;
+    color: #334155;
+    line-height: 1.65;
+  }
+
+  .teaser-actions {
+    margin-top: auto;
+    padding-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .btn-teaser-story {
+    background: #1E293B;
+    color: #FFFFFF;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 7px 12px;
+    border-radius: 8px;
+    transition: background 0.15s ease;
+  }
+
+  .btn-teaser-story:hover {
+    background: #334155;
+  }
+
+  .btn-teaser-place {
+    background: #FFF5F5;
+    border: 1px solid #FECACA;
+    color: #B52812;
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 7px 12px;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+  }
+
+  .btn-teaser-place:hover {
+    background: #D63B22;
+    border-color: #D63B22;
+    color: #FFFFFF;
   }
 
   .portal-top {
