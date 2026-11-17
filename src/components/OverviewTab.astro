@@ -348,12 +348,15 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
       window.osakaSwitchTab('explore');
     }
     setTimeout(() => {
+      if (window.osakaResetExploreFilters) {
+        window.osakaResetExploreFilters();
+      }
       const areaSelect = document.getElementById('filter-area');
       if (areaSelect && areaVal) {
         areaSelect.value = areaVal;
         areaSelect.dispatchEvent(new Event('change'));
       }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }, 60);
   });
 </script>

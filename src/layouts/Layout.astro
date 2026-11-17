@@ -199,7 +199,7 @@ const {
       if ('caches' in window) {
         caches.keys().then((keys) => {
           keys.forEach((key) => {
-            if (key !== 'osaka-story-v3') {
+            if (key !== 'osaka-story-v4') {
               caches.delete(key);
             }
           });

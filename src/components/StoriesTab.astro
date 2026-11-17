@@ -408,7 +408,11 @@ const chapterMeta: Record<string, {
         const active = btn.getAttribute('data-story-target') === targetId;
         btn.classList.toggle('active', active);
         if (active) {
-          btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          const rail = btn.closest('.chapter-tabs-scroll');
+          if (rail) {
+            const scrollLeft = btn.offsetLeft - (rail.clientWidth / 2) + (btn.clientWidth / 2);
+            rail.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
+          }
         }
       });
 
