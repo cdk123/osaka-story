@@ -94,7 +94,7 @@ export const stories: StoryChapter[] = [
       text: '돈베이 컵라면 옆면의 (W) 한 글자에는 400년 동안 타협하지 않은 간사이 사람들의 국물 자존심이 적혀 있다.',
       author: '오사카 식문화 연구가'
     },
-    featuredPlaceIds: ['gyukatsu-motomura', 'izumo-lucua', 'rikuro-ojisan', 'hakodate-kantaro', 'soraniwa-onsen', 'rikimaru-robatayaki']
+    featuredPlaceIds: ['gyukatsu-motomura', 'izumo-lucua', 'kamukura-ramen', 'osaka-ohsho-gyoza', 'yayoiken-kyk-teishoku', 'komeda-royalhost', 'mcdonalds-japan-gracoro', 'rikuro-ojisan', 'hakodate-kantaro', 'soraniwa-onsen', 'rikimaru-robatayaki']
   },
   {
     id: 'chapter-5',
@@ -107,13 +107,13 @@ export const stories: StoryChapter[] = [
       '오사카는 흔히 번쩍이는 네온사인과 시끄러운 상점가의 도시로만 알려져 있지만, 조금만 시선을 돌리면 놀랍도록 고즈넉하고 아름다운 시간의 결을 만날 수 있습니다. 역사적 거부감이 전혀 없으면서도 가족이나 연인과 함께 조용히 거닐기 좋은 진짜 로컬 명소들이 숨어 있습니다.',
       '우메다에서 전철로 불과 30분 거리인 〈미노오 폭포(箕面大滝)〉는 1,300년 전 수련승들이 나그네에게 대접하던 ‘모미지 덴푸라(1년간 소금에 절인 진짜 단풍잎을 달콤하게 튀긴 단풍잎 튀김)’를 할머니들이 직접 튀겨 파는 세계 유일의 계곡입니다. 숲속 피톤치드를 마시며 완만한 평지 산책로를 걸어 폭포에 다다르면 가슴이 뻥 뚫립니다.',
       '우메다 빌딩 숲에서 걸어서 10분이면 닿는 〈나카자키초(中崎町)〉는 제2차 세계대전 대공습에서 기적적으로 살아남은 1920년대 목조 주택 골목입니다. 좁은 골목마다 작은 도자기 공방과 독립 서점, 아담한 찻집들이 숨어 있어 필름 카메라 감성의 사진을 남기기에 가장 좋습니다.',
-      '물의 도시를 온몸으로 느끼고 싶다면 두 강 사이에 떠 있는 섬 〈나카노시마(中之島)〉로 향하세요. 1918년 지어진 붉은 벽돌의 중앙공회당과 세계 최고의 한국 고려청자·조선백자 컬렉션을 극진히 소장한 동양도자미술관, 그리고 안도 다다오의 ‘어린이 책의 숲’이 수변을 따라 이어집니다. 오사카성 남쪽 언덕길 〈가라호리 상점가〉와 100년 고택을 살린 문화공간 〈렌(練)〉의 에쿠추아 초콜릿 다다미방도 빼놓을 수 없는 보물입니다.'
+      '물의 도시를 온몸으로 느끼고 싶다면 두 강 사이에 떠 있는 섬 〈나카노시마(中之島)〉로 향하세요. 1918년 지어진 붉은 벽돌의 중앙공회당과 세계 최고의 한국 고려청자·조선백자 컬렉션을 극진히 소장한 동양도자미술관, 그리고 안도 다다오의 ‘어린이 책의 숲’이 수변을 따라 이어집니다. 또한 연말연시(12월 31일~1월 3일)에는 1,800년 역사의 〈스미요시 타이샤〉에서 펼쳐지는 새해 첫 참배(하츠모데)와 수백 개의 신년 포장마차 축제가 잊지 못할 장관을 선사합니다.'
     ],
     quote: {
       text: '진짜 오사카의 멋은 화려한 간판 뒤편, 백 년 된 목조 주택의 나무 미닫이문이 삐걱이는 소리 속에 있다.',
       author: '나카자키초 산책 에세이'
     },
-    featuredPlaceIds: ['minoh-waterfall', 'nakazakicho', 'nakanoshima-culture', 'karahori-len', 'wad-cafe', 'shinsaibashi-parco-character', 'hepfive-gacha-forest']
+    featuredPlaceIds: ['minoh-waterfall', 'nakazakicho', 'nakanoshima-culture', 'karahori-len', 'sumiyoshi-taisha-hatsumode', 'wad-cafe', 'shinsaibashi-parco-character', 'hepfive-gacha-forest']
   },
   {
     id: 'chapter-6',
