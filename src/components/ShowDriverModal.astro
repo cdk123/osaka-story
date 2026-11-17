@@ -11,7 +11,7 @@ import { places } from '../data/places';
           <span>🚕 택시 기사님</span>
         </button>
         <button type="button" class="m-tab-btn" data-modal-tab="entrance">
-          <span>🚪 식당 입구 (5인)</span>
+          <span>🚪 식당 입구·좌석</span>
         </button>
         <button type="button" class="m-tab-btn" data-modal-tab="order">
           <span>👉 손가락 주문</span>
@@ -58,54 +58,54 @@ import { places } from '../data/places';
           </p>
         </div>
 
-        <!-- 5인 대가족 택시 주의 배너 -->
+        <!-- 택시 승차 정원 주의 배너 -->
         <div class="taxi-family-warning">
-          <strong class="warn-title">⚠️ 5인 가족 택시 탑승 주의</strong>
+          <strong class="warn-title">⚠️ 일본 택시 탑승 인원 안내</strong>
           <p class="warn-desc">
-            일본 일반 택시(도요타 재팬택시/크라운)는 <strong>최대 4인 탑승</strong>입니다! 5인 가족은 <strong>2대로 분승(3인+2인)</strong>하시거나, Uber 앱에서 <strong>Uber XL(대형 밴)</strong>을 호출하세요.
+            일본 일반 택시(도요타 재팬택시/크라운)는 <strong>최대 4인까지만 탑승 가능</strong>합니다. 5인 이상 일행은 <strong>택시 2대로 나누어 탑승</strong>하시거나, Uber 앱에서 <strong>Uber XL(대형 밴)</strong>을 호출하세요.
           </p>
         </div>
       </section>
 
-      <!-- 2. 식당 입구 탭 (5인 입장 & 자리 분리 치트키) -->
+      <!-- 2. 식당 입구 탭 (입장 & 자리 분리 치트키) -->
       <section id="modal-tab-entrance" class="modal-tab-pane">
         <div class="phrase-card">
           <div class="phrase-header">
-            <span class="badge-role">기본 입장 문의</span>
+            <span class="badge-role">예약 없이 현장 입장 문의</span>
           </div>
-          <p class="phrase-ja-giant">5人です。席は空いていますか？</p>
-          <p class="phrase-pronounce">고닌데스. 세키와 아이테이마스카?</p>
-          <p class="phrase-meaning">5명입니다. 자리 비어있나요?</p>
+          <p class="phrase-ja-giant">予約していないのですが、今入れますか？</p>
+          <p class="phrase-pronounce">요야쿠 시테이나이노데스가, 이마 하이레마스카?</p>
+          <p class="phrase-meaning">예약하지 않았는데, 지금 들어갈 수 있나요? (손가락으로 인원수 표시)</p>
         </div>
 
         <div class="phrase-card highlight-card">
           <div class="phrase-header">
             <span class="badge-role golden">★ 초강력 웨이팅 단축 치트키</span>
           </div>
-          <p class="phrase-ja-giant">席が分かれても大丈夫です。<br />（3人と2人）</p>
-          <p class="phrase-pronounce">세키가 와카레테모 다이죠-부데스 (산닌토 후타리)</p>
-          <p class="phrase-meaning">자리가 따로 떨어져도 괜찮습니다! (3명, 2명 분리 착석 가능)</p>
+          <p class="phrase-ja-giant">席が分かれても大丈夫です。</p>
+          <p class="phrase-pronounce">세키가 와카레테모 다이죠-부데스.</p>
+          <p class="phrase-meaning">자리가 서로 나뉘어 앉아도 괜찮습니다!</p>
           <div class="cheat-explain">
-            💡 5인 한 테이블은 1시간 기다려야 하지만, 3인+2인 분리는 5분 만에 들어가는 경우가 많습니다!
+            💡 다인원 한 테이블은 대기가 길지만, 따로 앉아도 괜찮다고 보여주면 5분 만에 입장하는 경우가 많습니다!
           </div>
         </div>
 
         <div class="phrase-card">
           <div class="phrase-header">
-            <span class="badge-role">부모님 테이블석 요청</span>
+            <span class="badge-role">입식 테이블석 요청</span>
           </div>
-          <p class="phrase-ja-giant">足が悪い家族がいるので、できればテーブル席でお願いします。</p>
-          <p class="phrase-pronounce">아시가 와루이 카조쿠가 이루노데, 데키레바 테-부루세키데 오네가이시마스.</p>
-          <p class="phrase-meaning">다리가 불편한 가족이 있어 가능하면 좌식(방바닥) 대신 입식 테이블석 부탁드립니다.</p>
+          <p class="phrase-ja-giant">できればテーブル席（または掘りごたつ）でお願いします。</p>
+          <p class="phrase-pronounce">데키레바 테-부루세키(마타와 호리고타츠)데 오네가이시마스.</p>
+          <p class="phrase-meaning">가능하면 좌식 방바닥 대신 입식 테이블석(또는 다리를 내리는 좌석)으로 부탁드립니다.</p>
         </div>
 
         <div class="phrase-card">
           <div class="phrase-header">
             <span class="badge-role">예약 확인</span>
           </div>
-          <p class="phrase-ja-giant">予約した [조덕현] です。</p>
-          <p class="phrase-pronounce">요야쿠시타 [이름] 데스.</p>
-          <p class="phrase-meaning">예약자 [내 이름]입니다.</p>
+          <p class="phrase-ja-giant">予約した者です。予約画面を見せます。</p>
+          <p class="phrase-pronounce">요야쿠시타 모노데스. 요야쿠 가멘오 미세마스.</p>
+          <p class="phrase-meaning">예약한 사람입니다. 예약 확인 화면을 보여드리겠습니다.</p>
         </div>
       </section>
 
@@ -132,7 +132,7 @@ import { places } from '../data/places';
 
           <div class="option-item-card">
             <div class="opt-ja">わさび抜きでお願いします。</div>
-            <div class="opt-ko">와사비(고추냉이)는 빼주세요. (14세 동생 초밥 등)</div>
+            <div class="opt-ko">와사비(고추냉이)는 빼고 만들어 주세요.</div>
           </div>
 
           <div class="option-item-card">
