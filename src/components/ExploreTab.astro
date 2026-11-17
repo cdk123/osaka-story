@@ -2,12 +2,14 @@
 import { places } from '../data/places';
 import PlaceCard from './PlaceCard.astro';
 
+const foodPlaces = places.filter(p => p.category !== 'spot' && p.category !== 'craft');
+
 const areaOptions = [
   { value: 'all', label: '권역 전체' },
   { value: 'namba', label: '난바·도톤보리' },
   { value: 'shinsaibashi', label: '신사이바시' },
   { value: 'umeda', label: '우메다 (키타)' },
-  { value: 'other', label: '기타 (오사카성/미노오/베이 등)' }
+  { value: 'other', label: '기타 (혼마치/마츠야마치 등)' }
 ];
 
 const companionOptions = [
@@ -18,7 +20,7 @@ const companionOptions = [
   { value: 'solo', label: '⚡ 혼밥·빠른 한 끼' }
 ];
 
-// 7대 카테고리 마스터 정의 및 카테고리별 상세 해설
+// 5대 순수 미식·찻집 카테고리 마스터 정의 및 카테고리별 상세 해설
 const categorySections = [
   {
     id: 'beef',
@@ -34,10 +36,10 @@ const categorySections = [
     id: 'curry',
     num: '02',
     icon: '🍛',
-    titleKo: '오사카 유래 카레 · 근대 경양식 (요쇼쿠)',
-    titleJa: '大阪スパイスカレー・老舗洋食',
-    subtitle: '1920년대 ‘대오사카 시대’가 탄생시킨 세계 최초의 오므라이스, 달고 매운 오사카식 카레, 호일 함박스테이크',
-    description: '도쿄를 제치고 일본 경제 1위를 기록했던 1920년대 오사카는 서양 요리를 일본식 정(情)으로 재해석한 ‘요쇼쿠(경양식)’의 발상지입니다. 위장 약한 단골을 위해 탄생한 전 세계 오므라이스의 시초(호쿄쿠세이, 1922), 밥에 카레를 미리 비벼 날계란을 얹는 원조 명물 카레(지유켄, 1910), 첫입은 과일처럼 달고 뒷맛은 강렬하게 매운 오사카식 카레(인디안 카레, 1947), 그리고 부풀어 오른 은박지를 찢어 먹는 1897년 전통 함박스테이크(동양정)를 만나보세요.',
+    titleKo: '오사카 유래 카레 · 근대 경양식 · 정식 체인',
+    titleJa: '大阪スパイスカレー・老舗洋食・定食',
+    subtitle: '1920년대 ‘대오사카 시대’가 탄생시킨 세계 최초의 오므라이스, 달고 매운 오사카식 카레, 호일 함박과 일본 정식 체인',
+    description: '도쿄를 제치고 일본 경제 1위를 기록했던 1920년대 오사카는 서양 요리를 일본식 정(情)으로 재해석한 ‘요쇼쿠(경양식)’의 발상지입니다. 위장 약한 단골을 위해 탄생한 전 세계 오므라이스의 시초(호쿄쿠세이, 1922), 밥에 카레를 미리 비벼 날계란을 얹는 원조 명물 카레(지유켄, 1910), 첫입은 과일처럼 달고 뒷맛은 강렬하게 매운 오사카식 카레(인디안 카레, 1947), 부풀어 오른 은박지를 찢어 먹는 함박스테이크(동양정), 그리고 햅쌀밥·다시 육수가 무한 리필되는 정식 체인 야요이켄과 1965년 오사카 탄생 돈카츠 KYK입니다.',
     tip: '💡 동양정(토요테이)은 백화점 도착 즉시 매장 앞 기계(AirWAIT)에서 대기 번호표부터 뽑고 쇼핑하시는 것이 시간을 아끼는 최고 비결입니다.'
   },
   {
@@ -46,8 +48,8 @@ const categorySections = [
     icon: '🍜',
     titleKo: '키츠네·카스 우동 · 판초밥(하코즈시·바테라) · 마무시 장어 · 복어 · 대게',
     titleJa: 'きつね・かすうどん・箱寿司・バッテラ・まむし鰻・てっちり・蟹',
-    subtitle: '1893년 원조 키츠네 우동과 소 곱창 튀김 카스 우동, 370년 전통 판초밥(하코즈시·바테라)과 유부초밥, 숯불 마무시 장어와 참복·대게 코스',
-    description: '에도 시대 북방 무역선이 실어 나른 최상급 홋카이도 다시마는 오사카 국물 문화의 심장입니다. 달콤한 유부를 얹은 키츠네 우동(1893년 원조 마츠바야 & 도톤보리 이마이), 바삭하게 튀긴 소 곱창(아부라카스)에서 고소한 육즙이 우러나는 오사카 남부 향토 명물 카스 우동(카스야 & 류노스), 나무틀에 도미·새우·붕장어·고등어를 눌러 담아 보석처럼 썰어낸 오사카 전통 판초밥(1653년 창업 스시만 & 1831년 창업 타코타케 & 원형 유래 요시노 스시), 다시 국물을 머금은 오사카 유부초밥(마메다), 생장어를 숯불에 바삭하게 구워 밥 사이에 묻는 마무시 장어(본가 시바토), 그리고 복어·대게 풀코스입니다.',
+    subtitle: '1893년 원조 키츠네 우동과 소 곱창 튀김 카스 우동, 370년 전통 판초밥(하코즈시·바테라)과 유부초밥, 숯불 마무시 장어와 참복·대게·배추라멘',
+    description: '에도 시대 북방 무역선이 실어 나른 최상급 홋카이도 다시마는 오사카 국물 문화의 심장입니다. 달콤한 유부를 얹은 키츠네 우동(1893년 원조 마츠바야 & 도톤보리 이마이), 바삭하게 튀긴 소 곱창(아부라카스)에서 고소한 육즙이 우러나는 오사카 남부 향토 명물 카스 우동(카스야 & 류노스), 나무틀에 도미·새우·붕장어·고등어를 눌러 담아 보석처럼 썰어낸 오사카 전통 판초밥(1653년 창업 스시만 & 1831년 창업 타코타케 & 원형 유래 요시노 스시), 다시 국물을 머금은 오사카 유부초밥(마메다), 생장어를 숯불에 바삭하게 구워 밥 사이에 묻는 마무시 장어(본가 시바토), 오사카 발상 배추 콘소메 라멘(카무쿠라), 그리고 복어·대게 풀코스입니다.',
     tip: '💡 오사카 판초밥(하코즈시)의 역사적 원형인 〈요시노 스시 본점〉은 현재 휴업 중이므로, 실제 식사나 테이크아웃은 현역 성업 중인 370년 전통 〈스시만(한신·타카시마야)〉 또는 195년 전통 〈타코타케(마츠야마치 본점)〉를 방문하세요!'
   },
   {
@@ -56,8 +58,8 @@ const categorySections = [
     icon: '🥟',
     titleKo: '오사카 코나몬(모던야키·네기야키) · 180년 오뎅·도테야키 · 만두 · 도시락',
     titleJa: '粉もん・モダン焼き・関東煮おでん・どて焼き・豚まん・名物弁当',
-    subtitle: '마요네즈와 야키소바를 넣은 모던야키 원조, 180년 씨육수 관서풍 오뎅과 백된장 도테야키, 파 폭탄 네기야키, 551 부타만과 명물 벤또',
-    description: '오사카 서민들의 활력이 응축된 철판·분식·야식 문화입니다. 1946년 세계 최초로 화이트 마요네즈와 야키소바 면을 넣은 모던야키를 탄생시킨 원조(보테쥬 총본점 & 치보), 1844년 창업해 180년간 씨육수를 이어온 일본 최고령 관서풍 다시 오뎅과 백된장 소힘줄 조림 도테야키(타코우메 본점 & 하나쿠지라), 대파 폭탄 네기야키(야마모토)와 산마 100% 오코노미야키(미즈노), 국물 타코야키 아카시야키, 쿠시카츠 다루마, 551 호라이 부타만, 2m 거대 주걱 화로구이와 백화점 데파치카 명품 벤또를 모았습니다.',
+    subtitle: '마요네즈와 야키소바를 넣은 모던야키 원조, 180년 씨육수 관서풍 오뎅과 백된장 도테야키, 파 폭탄 네기야키, 551 부타만과 오사카 오쇼 교자',
+    description: '오사카 서민들의 활력이 응축된 철판·분식·야식 문화입니다. 1946년 세계 최초로 화이트 마요네즈와 야키소바 면을 넣은 모던야키를 탄생시킨 원조(보테쥬 총본점 & 치보), 1844년 창업해 180년간 씨육수를 이어온 일본 최고령 관서풍 다시 오뎅과 백된장 소힘줄 조림 도테야키(타코우메 본점 & 하나쿠지라), 대파 폭탄 네기야키(야마모토)와 산마 100% 오코노미야키(미즈노), 국물 타코야키 아카시야키, 쿠시카츠 다루마, 551 호라이 부타만과 오사카 오쇼 도톤보리 본점(야키교자·텐신항), 일본 맥도날드 겨울 한정 그라코로, 2m 거대 주걱 화로구이와 백화점 데파치카 명품 벤또를 모았습니다.',
     tip: '💡 551 호라이 부타만(만두)은 육가공품 검역 규정상 한국으로 반입할 수 없으므로 반드시 오사카 호텔 야식이나 귀국 전 공항에서 따뜻할 때 다 드시고 오세요!'
   },
   {
@@ -66,29 +68,9 @@ const categorySections = [
     icon: '🍵',
     titleKo: '정통 차·다실 · 340년 양갱·화과자 · 레트로 킷사텐 · 베이커리',
     titleJa: '日本茶茶寮・老舗羊羹・和菓子・純喫茶・関西ベーカリー',
-    subtitle: '다도 성인 센노 리큐 고향의 1850년 제차 명가, 340년 오사카 양갱 총본산과 황실 양갱, 1883년 부부 단팥죽과 1934년 킷사텐 핫케이크',
-    description: '일본 다도(茶道)를 완성한 다성(茶聖) 센노 리큐가 오사카 사카이 상인 출신이었던 만큼, 오사카의 차와 다식(양갱·화과자) 문화는 깊이가 남다릅니다. 1850년 사카이에서 창업한 차 명가(츠보이치 제차 본포)와 작가의 도자기 다완에 차를 우려 마시는 현대 다실(와드 카페), 340년 계보를 잇는 오사카 정통 양갱·모나카 총본산(츠루야 하치만)과 500년 황실 양갱의 제왕(토라야), 1883년 단팥죽(메오토 젠자이), 직화 미타라시단고(키야스), 갓 구운 치즈케이크(리쿠로 오지상), 1934년 클래식 다방(마루후쿠 커피점), 그리고 간사이 명물 크루아상과 밀푀유입니다.',
+    subtitle: '다도 성인 센노 리큐 고향의 1850년 제차 명가, 340년 오사카 양갱 총본산과 황실 양갱, 1883년 부부 단팥죽과 1934년 킷사텐·모닝구 다방',
+    description: '일본 다도(茶道)를 완성한 다성(茶聖) 센노 리큐가 오사카 사카이 상인 출신이었던 만큼, 오사카의 차와 다식(양갱·화과자) 문화는 깊이가 남다릅니다. 1850년 사카이에서 창업한 차 명가(츠보이치 제차 본포)와 작가의 도자기 다완에 차를 우려 마시는 현대 다실(와드 카페), 340년 계보를 잇는 오사카 정통 양갱·모나카 총본산(츠루야 하치만)과 500년 황실 양갱의 제왕(토라야), 1883년 단팥죽(메오토 젠자이), 직화 미타라시단고(키야스), 갓 구운 치즈케이크(리쿠로 오지상), 1934년 클래식 다방(마루후쿠 커피점)과 무료 모닝구 토스트로 유명한 코메다 커피·로얄호스트, 그리고 간사이 명물 크루아상과 밀푀유입니다.',
     tip: '💡 소중한 분을 위한 선물로는 상온 보관이 길고 품격 있는 〈츠루야 하치만〉·〈토라야〉의 한입 양갱 세트와 〈츠보이치〉의 덖은 호지차·우지 말차 찻잎이 단연 최고입니다.'
-  },
-  {
-    id: 'spot',
-    num: '06',
-    icon: '🍁',
-    titleKo: '숨은 로컬 명소 · 캐릭터·가챠 성지 · 천공 온천 · 명문 가이세키',
-    titleJa: 'ローカル名所・キャラクター＆ガチャ聖地・空庭温泉・懐石',
-    subtitle: '1,300년 단풍잎 튀김 계곡, 1920년대 목조 골목, 지브리·치이카와·포켓몬 캐릭터 왕국과 2,400대 가챠의 숲, 천공 온천',
-    description: '오사카의 깊은 자연·골목부터 서브컬처 성지까지 아우르는 공간입니다. 1년간 절인 진짜 단풍잎을 튀겨 파는 미노오 폭포 산책길, 전쟁 대공습을 피한 1920년대 목조 골목 나카자키초, 1918년 중앙공회당과 세계 최고 고려청자·조선백자 미술관이 있는 나카노시마, 100년 언덕길 가라호리 상점가, 지브리·치이카와·포켓몬 공식 스토어가 집결한 신사이바시 파르코·다이마루와 우메다 햅파이브 2,400대 캡슐토이(가챠)의 숲, 그리고 유카타 온천과 정통 가이세키입니다.',
-    tip: '💡 우메다 햅파이브나 난바 마루이의 가챠샵에서는 오사카에서만 뽑을 수 있는 ‘551 호라이·리쿠로 오지상·도톤보리 간판 미니어처 가챠’를 꼭 찾아보세요!'
-  },
-  {
-    id: 'craft',
-    num: '07',
-    icon: '🔪',
-    titleKo: '장인 명품 · 로컬 가방·가죽지갑 · 140년 문구·만년필 · 전통과자·명주',
-    titleJa: '大阪伝統工芸・大阪発バッグ＆革財布・老舗文具・銘菓と地酒',
-    subtitle: '사카이 수제 식도, Made in Osaka 로컬 가방(마스터피스) & 수제 가죽지갑(무네카와), 140년 만년필·문구 백화점, 주석 차통과 전통 오코시·명주',
-    description: '흔한 공산품 대신 평생 곁에 두고 쓸 오사카의 진짜 명품들입니다. 이름을 각인해 주는 600년 사카이 수제 주방칼, 오사카 자체 공장에서 만드는 대표 로컬 가방 브랜드 ‘마스터피스(master-piece)’, 오사카 가죽 장인이 손바느질로 완성하는 초소형 수제 가죽지갑 ‘무네카와(Munekawa) & 쿠아트로 가츠’, 80색 만년필 잉크를 시필하는 140년 역사의 ‘나가사와 문구센터’와 6층 문구 도매 빌딩 ‘시모지마(고쿠요·사쿠라 크레파스 본고장)’, 뚜껑이 스스로 닫히는 나니와 주석 차통·다기, 덴마 키리코 컷글라스, 센슈 타올, 그리고 220년 전통 과자 ‘아미다보리 오코시’와 G20 공식 선물 ‘아와겐 와교’, 로컬 명주·보리소주입니다.',
-    tip: '💡 마스터피스 오사카 플래그십 스토어와 나가사와 문구센터에서는 여권 제시 시 면세(Tax Free) 혜택과 오사카 점포 한정 모델을 만날 수 있습니다.'
   }
 ];
 ---
@@ -97,14 +79,14 @@ const categorySections = [
   <!-- 1. 상단 페이지 안내 및 큐레이션 가이드 배너 -->
   <section class="explore-intro-banner">
     <div class="intro-top-row">
-      <span class="stamp-badge">厳選八十六選 · 엄선 {places.length}선</span>
-      <span class="intro-sub-pill">100년 노포 · 한국 미진출 명문 체인 · 12/31 연말연시 한정판 완비</span>
+      <span class="stamp-badge">美食・茶寮 · 엄선 {foodPlaces.length}선</span>
+      <span class="intro-sub-pill">오사카 원조 요리 · 100~370년 노포 · 한국 미진출 명문 체인</span>
     </div>
     <h2 class="explore-page-title">
-      오사카에서 유래한 원조 명물부터 100년 노포·장인 명품까지
+      오사카에서 꼭 먹어야 할 미식 · 다실 · 디저트 5대 카테고리
     </h2>
     <p class="explore-page-desc">
-      단순히 유명한 식당을 나열하지 않고, <strong>‘왜 오사카에서 이 음식과 장소를 경험해야 하는가’</strong>를 기준으로 <strong>7대 카테고리 총 {places.length}곳</strong>을 분류했습니다. 아래 카테고리별 해설을 읽으며 취향과 동선에 맞는 코스를 골라보세요.
+      관광지와 쇼핑 명소를 별도 메뉴(<strong>[🛍️ 명소·쇼핑·명품]</strong>)로 분리하여, 이 페이지에서는 오직 <strong>‘먹고 마시는 즐거움({foodPlaces.length}곳)’</strong>만 5대 카테고리로 깔끔하게 탐색할 수 있습니다.
     </p>
 
     <div class="explore-usage-guide">
@@ -123,16 +105,16 @@ const categorySections = [
     </div>
   </section>
 
-  <!-- 2. 스마트 필터 & 카테고리 바로가기 바 (Sticky) -->
+  <!-- 2. 스마트 필터 & 카테고리 바로가기 바 -->
   <section class="filter-sticky-bar" id="explore-filter-bar">
     <!-- 카테고리 원터치 칩 레일 -->
     <div class="cat-chips-rail" aria-label="카테고리 선택">
       <button type="button" class="cat-quick-chip active" data-cat-chip="all">
-        <span>전체 7대 카테고리</span>
-        <span class="chip-cnt">{places.length}</span>
+        <span>전체 5대 미식 카테고리</span>
+        <span class="chip-cnt">{foodPlaces.length}</span>
       </button>
       {categorySections.map((sec) => {
-        const cnt = places.filter(p => p.category === sec.id).length;
+        const cnt = foodPlaces.filter(p => p.category === sec.id).length;
         return (
           <button type="button" class="cat-quick-chip" data-cat-chip={sec.id}>
             <span>{sec.icon} {sec.titleKo.split(' · ')[0]}</span>
@@ -165,9 +147,8 @@ const categorySections = [
           ))}
         </select>
 
-        <!-- 기존 스크립트 호환용 카테고리 select (칩과 양방향 동기화) -->
         <select id="filter-category" class="filter-select" aria-label="카테고리 선택">
-          <option value="all">카테고리 전체 (7종)</option>
+          <option value="all">미식 카테고리 전체 (5종)</option>
           {categorySections.map(sec => (
             <option value={sec.id}>{sec.icon} {sec.titleKo}</option>
           ))}
@@ -180,23 +161,23 @@ const categorySections = [
         </select>
 
         <button type="button" id="btn-reset-filters" class="btn-reset-filters" title="필터 초기화">
-          🔄 초기화 (<span id="matching-count">{places.length}</span>곳)
+          🔄 초기화 (<span id="matching-count">{foodPlaces.length}</span>곳)
         </button>
       </div>
     </div>
   </section>
 
-  <!-- 3. 7대 카테고리별 섹션 & 카테고리 해설 + 장소 카드 그리드 -->
+  <!-- 3. 5대 미식 카테고리별 섹션 & 카테고리 해설 + 장소 카드 그리드 -->
   <div class="category-sections-container" id="explore-places-grid">
     {categorySections.map((sec) => {
-      const secPlaces = places.filter(p => p.category === sec.id);
+      const secPlaces = foodPlaces.filter(p => p.category === sec.id);
       return (
         <section class="category-section-block" id={`cat-sec-${sec.id}`} data-category-section={sec.id}>
           <!-- 카테고리 설명 헤더 카드 -->
           <header class="cat-section-header">
             <div class="cat-header-top">
               <div class="cat-title-wrap">
-                <span class="cat-num-badge">CATEGORY {sec.num}</span>
+                <span class="cat-num-badge">FOOD CATEGORY {sec.num}</span>
                 <h3 class="cat-main-title">
                   <span class="cat-icon">{sec.icon}</span>
                   <span>{sec.titleKo}</span>
@@ -228,10 +209,10 @@ const categorySections = [
     <!-- 검색/필터 결과 없을 때 -->
     <div id="no-results-box" class="no-results-box" hidden>
       <span class="no-res-icon">🏮</span>
-      <h4 class="no-res-title">선택하신 조건에 맞는 장소를 찾지 못했습니다.</h4>
-      <p class="no-res-desc">권역이나 동행자 필터를 ‘전체’로 완화하거나 검색어를 비워보세요.</p>
+      <h4 class="no-res-title">선택하신 조건에 맞는 맛집·찻집을 찾지 못했습니다.</h4>
+      <p class="no-res-desc">권역이나 동행자 필터를 ‘전체’로 완화하거나, 관광지·쇼핑·명품은 [🛍️ 명소·쇼핑·명품] 탭에서 확인해 보세요.</p>
       <button type="button" id="btn-reset-filters-empty" class="btn-reset-filters large">
-        🔄 모든 필터 초기화하고 전체 58곳 보기
+        🔄 모든 필터 초기화하고 전체 보기
       </button>
     </div>
   </div>

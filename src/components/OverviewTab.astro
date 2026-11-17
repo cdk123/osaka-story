@@ -33,6 +33,79 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
     </div>
   </section>
 
+  <!-- 첫화면 핵심 포털: 5대 메인 테마 퀵 진입 대시보드 (콘텐츠 접근성 극대화) -->
+  <section class="home-portal-section">
+    <div class="section-title-wrap">
+      <span class="section-badge">빠른 탐색 포털</span>
+      <h3 class="section-heading">무엇부터 찾아보시겠어요?</h3>
+      <p class="section-sub">원하는 테마 카드를 누르면 해당 페이지로 바로 이동합니다.</p>
+    </div>
+
+    <div class="portal-cards-grid">
+      <button type="button" class="portal-card highlight-dec" data-tab="december">
+        <div class="portal-top">
+          <span class="portal-icon">🎄</span>
+          <span class="portal-tag hot">12월·연말연시 필독</span>
+        </div>
+        <h4 class="portal-title">12월 & 연말연시 특집</h4>
+        <p class="portal-desc">일본 맥도날드 12월 한정 ‘그라코로’ 실사 도감, 미도스지 일루미네이션, 12/31 해넘이 소바·스미요시 신년 축제 & 1/1 휴무 대처법</p>
+        <span class="portal-cta">12월 특집 바로가기 →</span>
+      </button>
+
+      <button type="button" class="portal-card" data-tab="explore">
+        <div class="portal-top">
+          <span class="portal-icon">🍽️</span>
+          <span class="portal-tag">엄선 59곳</span>
+        </div>
+        <h4 class="portal-title">오사카 맛집 · 다실 · 디저트</h4>
+        <p class="portal-desc">마츠사카규·스키야키, 오므라이스·카레 원조, 370년 판초밥·키츠네·카스 우동, 180년 오뎅·모던야키, 340년 양갱·차, 일본 명문 체인</p>
+        <span class="portal-cta">5대 미식 카테고리 보기 →</span>
+      </button>
+
+      <button type="button" class="portal-card" data-tab="spots">
+        <div class="portal-top">
+          <span class="portal-icon">🛍️</span>
+          <span class="portal-tag">엄선 27곳</span>
+        </div>
+        <h4 class="portal-title">명소 · 캐릭터/문구 · 장인명품</h4>
+        <p class="portal-desc">미노오 단풍 폭포·나카자키초 골목, 지브리·치이카와·2,400대 가챠의 숲, 140년 만년필·문구, 오사카 가방·수제 가죽지갑·사카이 식도·주석 차통</p>
+        <span class="portal-cta">4대 명소·쇼핑 테마 보기 →</span>
+      </button>
+
+      <button type="button" class="portal-card" data-tab="stories">
+        <div class="portal-top">
+          <span class="portal-icon">📖</span>
+          <span class="portal-tag">프롤로그~6장</span>
+        </div>
+        <h4 class="portal-title">400년 미식 · 역사 스토리북</h4>
+        <p class="portal-desc">왜 오사카를 ‘천하의 부엌’이라 부를까? 에도 시대 다시마 배부터 1920년대 대오사카 경양식, 전후 개그맨의 해장국까지 책장 넘기듯 읽기</p>
+        <span class="portal-cta">이야기 첫 장 펼치기 →</span>
+      </button>
+
+      <button type="button" class="portal-card" data-tab="survival">
+        <div class="portal-top">
+          <span class="portal-icon">🚇</span>
+          <span class="portal-tag">초보 필수</span>
+        </div>
+        <h4 class="portal-title">공항·교통 생존팁 & 오사카 사투리</h4>
+        <p class="portal-desc">간사이공항→시내 이동, 지하철 컨택리스·택시 요령, 노렌·한자 간판 해독, 식당 예절 6계명, 원어민 음성 사투리 10선 & 인생샷 포토존</p>
+        <span class="portal-cta">생존 가이드 보기 →</span>
+      </button>
+
+      <button type="button" class="portal-card" data-tab="picks">
+        <div class="portal-top">
+          <span class="portal-icon">♥</span>
+          <span class="portal-tag">동선 자동정리</span>
+        </div>
+        <h4 class="portal-title">내 찜 바구니 & 카톡 공유</h4>
+        <p class="portal-desc">마음에 드는 가게의 하트(♥)를 누르면 난바·신사이바시·우메다 권역별로 동선이 자동 정리되며 단톡방으로 1초 만에 공유됩니다.</p>
+        <span class="portal-cta">내 찜 바구니 열기 →</span>
+      </button>
+    </div>
+  </section>
+
+  <div class="seigaiha-divider"></div>
+
   <!-- 6대 구역 인터랙티브 가이드 (실사 사진 + 구역별 맛집 바로가기 연동) -->
   <section class="districts-section">
     <div class="section-title-wrap">
@@ -334,6 +407,95 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
     color: #64748B;
     line-height: 1.45;
     margin-top: auto;
+  }
+
+  /* 첫화면 6대 포털 대시보드 그리드 */
+  .portal-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--card-gap);
+  }
+
+  @media (min-width: 640px) {
+    .portal-cards-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .portal-cards-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .portal-card {
+    background: #FFFFFF;
+    border: 1.5px solid var(--color-border);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .portal-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-vermilion);
+    box-shadow: 0 8px 22px rgba(214, 59, 34, 0.12);
+  }
+
+  .portal-card.highlight-dec {
+    background: linear-gradient(135deg, #FFFDF9 0%, #FFF5F5 100%);
+    border-color: #D63B22;
+  }
+
+  .portal-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .portal-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+  }
+
+  .portal-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: #F1F5F9;
+    color: #334155;
+  }
+
+  .portal-tag.hot {
+    background: #D63B22;
+    color: #FFFFFF;
+  }
+
+  .portal-title {
+    font-family: var(--font-serif);
+    font-size: 1.18rem;
+    font-weight: 800;
+    color: #0F172A;
+  }
+
+  .portal-desc {
+    font-size: 0.84rem;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  .portal-cta {
+    margin-top: auto;
+    padding-top: 6px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--color-vermilion-text);
   }
 
   /* 섹션 공통 헤더 */

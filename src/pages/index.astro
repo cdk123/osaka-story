@@ -3,8 +3,10 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Navigation from '../components/Navigation.astro';
 import OverviewTab from '../components/OverviewTab.astro';
+import DecemberTab from '../components/DecemberTab.astro';
 import StoriesTab from '../components/StoriesTab.astro';
 import ExploreTab from '../components/ExploreTab.astro';
+import SpotsGoodsTab from '../components/SpotsGoodsTab.astro';
 import SurvivalTab from '../components/SurvivalTab.astro';
 import PicksTab from '../components/PicksTab.astro';
 import ShowDriverModal from '../components/ShowDriverModal.astro';
@@ -17,30 +19,40 @@ import ShowDriverModal from '../components/ShowDriverModal.astro';
   <!-- 나무 명패 탭바 & 모바일 하단바 -->
   <Navigation />
 
-  <!-- 메인 5대 탭 패널 컨테이너 -->
+  <!-- 메인 6대 탭 + 내 찜 바구니 패널 컨테이너 -->
   <main class="main-content-wrap">
     <div class="container main-container">
-      <!-- 1. 오사카 한눈에 -->
+      <!-- 1. 첫화면 · 오사카 한눈에 -->
       <section id="panel-overview" class="tab-panel" role="tabpanel" aria-labelledby="tab-overview">
         <OverviewTab />
       </section>
 
-      <!-- 2. 미식·역사 이야기 -->
+      <!-- 2. 12월 · 연말연시 특집 -->
+      <section id="panel-december" class="tab-panel hidden-panel" hidden role="tabpanel" aria-labelledby="tab-december">
+        <DecemberTab />
+      </section>
+
+      <!-- 3. 미식·역사 이야기 -->
       <section id="panel-stories" class="tab-panel hidden-panel" hidden role="tabpanel" aria-labelledby="tab-stories">
         <StoriesTab />
       </section>
 
-      <!-- 3. 맛집·명소 찾기 -->
+      <!-- 4. 맛집·찻집 찾기 -->
       <section id="panel-explore" class="tab-panel hidden-panel" hidden role="tabpanel" aria-labelledby="tab-explore">
         <ExploreTab />
       </section>
 
-      <!-- 4. 초보 생존·사투리 -->
+      <!-- 5. 명소·쇼핑·장인명품 -->
+      <section id="panel-spots" class="tab-panel hidden-panel" hidden role="tabpanel" aria-labelledby="tab-spots">
+        <SpotsGoodsTab />
+      </section>
+
+      <!-- 6. 초보 생존·사투리 -->
       <section id="panel-survival" class="tab-panel hidden-panel" hidden role="tabpanel" aria-labelledby="tab-survival">
         <SurvivalTab />
       </section>
 
-      <!-- 5. 내 찜 바구니 -->
+      <!-- 7. 내 찜 바구니 -->
       <section id="panel-picks" class="tab-panel hidden-panel" hidden role="tabpanel" aria-labelledby="tab-picks">
         <PicksTab />
       </section>

@@ -1,0 +1,343 @@
+---
+import { places } from '../data/places';
+import PlaceCard from './PlaceCard.astro';
+
+const spotsAndGoods = places.filter(p => p.category === 'spot' || p.category === 'craft');
+
+// 명소·쇼핑·장인명품 4대 세부 섹션 분류
+const spotSections = [
+  {
+    id: 'local-nature',
+    num: '01',
+    icon: '🍁',
+    titleKo: '숨은 로컬 골목 · 단풍 폭포 · 수변 미술관 · 천공 온천',
+    titleJa: 'ローカル路地・箕面大滝・中之島・空庭温泉',
+    subtitle: '관광객 인파를 벗어나 만나는 1,300년 단풍잎 튀김 계곡, 전쟁을 피한 1920년대 목조 골목, 국보급 도자 미술관과 에도 거리 온천',
+    description: '번잡한 도톤보리에서 한 걸음만 벗어나면 오사카의 깊은 시간과 자연이 펼쳐집니다. 1년간 소금에 절인 진짜 단풍잎을 튀겨 파는 세계 유일의 미노오 폭포 산책길, 제2차 세계대전 공습 때 기적적으로 살아남은 1920년대 목조 주택 골목 나카자키초, 1918년 붉은 벽돌 중앙공회당과 세계 최고 고려청자·조선백자 컬렉션을 소장한 나카노시마, 100년 언덕길 가라호리 상점가, 유카타를 입고 거니는 소라니와 온천, 그리고 연말연시 230만 명이 찾는 스미요시 타이샤입니다.',
+    tip: '💡 오전에는 미노오 폭포나 나카자키초 골목을 산책하고, 해 질 녘 나카노시마 수변 야경이나 소라니와 온천으로 이어지는 동선이 가장 여유롭습니다.',
+    placeIds: ['minoh-waterfall', 'nakazakicho', 'nakanoshima-culture', 'karahori-len', 'soraniwa-onsen', 'sumiyoshi-taisha-hatsumode', 'umeno-hana', 'tempura-makino', 'epais-kitashinchi']
+  },
+  {
+    id: 'subculture-stationery',
+    num: '02',
+    icon: '🎮',
+    titleKo: '캐릭터 왕국 · 2,400대 가챠 성지 · 140년 만년필 & 오사카 문구',
+    titleJa: 'キャラクター聖地・巨大ガチャの森・老舗万年筆と大阪文具',
+    subtitle: '지브리·치이카와·포켓몬 공식 스토어 총집결, 우메다 햅파이브 가챠의 숲, 80색 만년필 잉크 백화점과 6층 문구 도매 빌딩',
+    description: '오사카는 서브컬처와 문구의 수도입니다. 신사이바시 파르코 6층과 다이마루 9층을 구름다리로 연결해 지브리·치이카와·포켓몬·점프 공식 스토어를 한 번에 도는 캐릭터 왕국, 2,000대 이상의 캡슐토이 머신에서 오사카 맛집 미니어처를 뽑는 햅파이브 가챠가챠노 모리, 간사이의 풍경을 80색 만년필 잉크로 조색한 1882년 창업 나가사와 문구센터, 그리고 캠퍼스 노트(고쿠요)·사쿠라 크레파스의 본고장답게 6층 전체가 문구로 가득 찬 시모지마 본점입니다.',
+    tip: '💡 가챠샵에서는 귀국 전 남은 100엔 동전으로 ‘551 호라이·리쿠로 오지상·도톤보리 간판 미니어처’ 등 오사카 한정 가챠를 꼭 뽑아보세요!',
+    placeIds: ['shinsaibashi-parco-character', 'hepfive-gacha-forest', 'nagasawa-stationery', 'shimojima-hands-osaka']
+  },
+  {
+    id: 'osaka-craft-leather',
+    num: '03',
+    icon: '👜',
+    titleKo: 'Made in Osaka 로컬 가방·수제 지갑 · 600년 식도 · 주석 차통·다기',
+    titleJa: '大阪発バッグ＆革財布・堺打刃物・大阪浪華錫器・天満切子',
+    subtitle: '오사카 자체 공방 가방 ‘마스터피스’, 장인의 초소형 가죽지갑 ‘무네카와’, 이름 각인 600년 사카이 주방칼, 뚜껑이 스스로 닫히는 주석 차통과 센슈 타올',
+    description: '평생 곁에 두고 쓸 오사카 장인 정신의 결정체입니다. 도쿄의 포터에 맞서 오사카 자체 공장에서 만드는 대표 로컬 가방 브랜드 ‘마스터피스(master-piece)’, 오사카 가죽 장인이 손바느질로 완성하는 미니 지갑 ‘무네카와(Munekawa) & 쿠아트로 가츠’, 즉석에서 이름을 새겨주는 600년 사카이 수제 주방칼과 도구야스지 상점가, 1/100mm 정밀 가공으로 뚜껑이 스스로 스르륵 닫히는 나니와 주석 차통·다기·술잔, 만화경처럼 빛나는 덴마 키리코 컷글라스, 1초 흡수 센슈 타올입니다.',
+    tip: '💡 사카이 수제 주방칼은 기내 휴대 반입이 절대 불가하므로 출국 시 반드시 부치는 짐(위탁수하물 캐리어)에 넣으셔야 합니다!',
+    placeIds: ['masterpiece-osaka', 'munekawa-leather', 'sakai-knives', 'doguyasuji-street', 'naniwa-suzuki', 'osaka-tea-ware', 'tenma-kiriko', 'senshu-towel']
+  },
+  {
+    id: 'osaka-souvenir-sake',
+    num: '04',
+    icon: '🎁',
+    titleKo: '220년 오사카 전통과자(오코시) · 백화점 한정 명과 · 로컬 명주·보리소주',
+    titleJa: '大阪銘菓おこし・デパ地下限定土産・大阪地酒と本格麦焼酎',
+    subtitle: '1805년 창업 행운의 쌀강정 ‘오코시’와 G20 정상 공식 과자 ‘와교’, 발효버터 스틱 ‘바통도르’, 170년 시오콘부와 오사카 명주 아키시카·고슈',
+    description: '오사카 상인들이 거래처와 가족의 번창을 기원하며 선물하던 특급 먹거리 기념품입니다. “몸과 집안을 일으켜 세운다(興す)”는 뜻의 1805년 창업 ‘아미다보리 오코시(전통 생강 강정 & 모던 크런치 폰폰 자포네)’, 오사카 G20 정상회의 공식 선물로 채택된 아와겐의 통아몬드 생크림 커피 오코시 ‘와교(和洋)’, 글리코사의 백화점 한정 발효버터 스틱 ‘바통도르’, 1848년 창업 오구라야 야마모토의 밥도둑 염장 다시마 ‘시오콘부’, 그리고 오사카 로컬 사케(아키시카·고슈)와 구수한 보리소주(카네하치·나카나카)입니다.',
+    tip: '💡 주류는 한국 입국 시 1인당 2병(합계 2L 이하, $400 이하)까지 면세 혜택을 받을 수 있습니다.',
+    placeIds: ['amidaike-daikoku', 'awagen-wayo', 'baton-dor', 'oguraya-yamamoto', 'osaka-sake-jizake', 'mugi-shochu']
+  }
+];
+
+const placesMap = new Map(spotsAndGoods.map(p => [p.id, p]));
+---
+
+<div class="spots-goods-view">
+  <!-- 1. 상단 페이지 안내 배너 -->
+  <section class="sg-intro-banner">
+    <div class="sg-top-row">
+      <span class="stamp-badge">名所・買物・匠人 · 엄선 {spotsAndGoods.length}선</span>
+      <span class="sg-sub-pill">로컬 골목 · 캐릭터/가챠 · 오사카 가방/지갑/문구 · 600년 장인 명품</span>
+    </div>
+    <h2 class="sg-page-title">
+      오사카에서 꼭 가봐야 할 명소 & 평생 소장할 쇼핑·장인 명품
+    </h2>
+    <p class="sg-page-desc">
+      식도락 사이사이에 일정을 풍성하게 채워줄 <strong>숨은 로컬 산책 코스와 온천</strong>부터, <strong>캐릭터 왕국·2,400대 가챠샵·140년 문구 백화점</strong>, 그리고 <strong>Made in Osaka 가방·수제 가죽지갑·사카이 식도·주석 차통·전통 명과</strong>까지 4대 테마로 정리했습니다.
+    </p>
+
+    <!-- 4대 섹션 원터치 필터 칩 -->
+    <div class="sg-chips-rail" aria-label="명소·쇼핑 카테고리 선택">
+      <button type="button" class="sg-chip active" data-sg-filter="all">
+        <span>전체 ({spotsAndGoods.length}곳)</span>
+      </button>
+      {spotSections.map((sec) => (
+        <button type="button" class="sg-chip" data-sg-filter={sec.id}>
+          <span>{sec.icon} {sec.titleKo.split(' · ')[0]} ({sec.placeIds.length})</span>
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <!-- 2. 4대 세부 섹션 및 카드 그리드 -->
+  <div class="sg-sections-container">
+    {spotSections.map((sec) => {
+      const secPlaces = sec.placeIds.map(id => placesMap.get(id)).filter(Boolean);
+      return (
+        <section class="sg-section-block" data-sg-section={sec.id}>
+          <header class="sg-section-header">
+            <div class="sg-header-top">
+              <div class="sg-title-wrap">
+                <span class="sg-num-badge">THEME {sec.num}</span>
+                <h3 class="sg-main-title">
+                  <span>{sec.icon}</span>
+                  <span>{sec.titleKo}</span>
+                </h3>
+                <span class="sg-title-ja">{sec.titleJa}</span>
+              </div>
+              <span class="sg-count-pill">총 <strong>{secPlaces.length}</strong>곳</span>
+            </div>
+            <p class="sg-subtitle">{sec.subtitle}</p>
+            <p class="sg-desc">{sec.description}</p>
+            <div class="sg-tip-bar">{sec.tip}</div>
+          </header>
+
+          <div class="sg-places-grid">
+            {secPlaces.map((place) => (
+              place && <PlaceCard place={place} />
+            ))}
+          </div>
+        </section>
+      );
+    })}
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    const sgChips = document.querySelectorAll('[data-sg-filter]');
+    const sgSections = document.querySelectorAll('[data-sg-section]');
+
+    sgChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const target = chip.getAttribute('data-sg-filter') || 'all';
+        sgChips.forEach(c => c.classList.toggle('active', c === chip));
+        sgSections.forEach(sec => {
+          const secId = sec.getAttribute('data-sg-section');
+          if (target === 'all' || secId === target) {
+            sec.removeAttribute('hidden');
+          } else {
+            sec.setAttribute('hidden', 'true');
+          }
+        });
+      });
+    });
+  })();
+</script>
+
+<style>
+  .spots-goods-view {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-bottom: 56px;
+  }
+
+  .sg-intro-banner {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-top: 4px solid #1E293B;
+    border-radius: 16px;
+    padding: clamp(20px, 3vw, 28px);
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sg-top-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .sg-sub-pill {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #475569;
+    background: #F1F5F9;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .sg-page-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.35;
+  }
+
+  .sg-page-desc {
+    font-size: 0.92rem;
+    color: #334155;
+    line-height: 1.65;
+  }
+
+  .sg-chips-rail {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-top: 4px;
+  }
+
+  .sg-chips-rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sg-chip {
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid #CBD5E1;
+    background: #F8FAFC;
+    color: #334155;
+    font-size: 0.82rem;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+
+  .sg-chip:hover {
+    border-color: var(--color-vermilion);
+    color: #0F172A;
+  }
+
+  .sg-chip.active {
+    background: #1E293B;
+    border-color: #1E293B;
+    color: #FFFFFF;
+  }
+
+  .sg-sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+
+  .sg-section-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sg-section-block[hidden] {
+    display: none !important;
+  }
+
+  .sg-section-header {
+    background: #FFFFFF;
+    border: 1px solid #E2DDD3;
+    border-left: 6px solid #1E293B;
+    border-radius: 14px;
+    padding: clamp(18px, 2.5vw, 24px);
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sg-header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .sg-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .sg-num-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--color-vermilion-text);
+    letter-spacing: 0.6px;
+  }
+
+  .sg-main-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+    font-weight: 800;
+    color: #0F172A;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.3;
+  }
+
+  .sg-title-ja {
+    font-family: var(--font-serif);
+    font-size: 0.84rem;
+    color: #64748B;
+    font-weight: 600;
+  }
+
+  .sg-count-pill {
+    background: #1E293B;
+    color: #FFFFFF;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .sg-subtitle {
+    font-size: 0.94rem;
+    font-weight: 700;
+    color: #785204;
+    line-height: 1.45;
+  }
+
+  .sg-desc {
+    font-size: 0.88rem;
+    color: #334155;
+    line-height: 1.7;
+  }
+
+  .sg-tip-bar {
+    background: #FFFBEB;
+    border: 1px dashed #FCD34D;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    color: #78350F;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .sg-places-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--card-gap);
+  }
+
+  @media (min-width: 640px) {
+    .sg-places-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .sg-places-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

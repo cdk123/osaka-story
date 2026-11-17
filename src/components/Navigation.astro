@@ -1,14 +1,15 @@
 ---
 const tabs = [
-  { id: 'overview', label: '오사카 한눈에', shortLabel: '한눈에', icon: '🗺️', sub: '부산비교·6대구역·시장' },
+  { id: 'overview', label: '첫화면·도시', shortLabel: '첫화면', icon: '🏠', sub: '빠른포털·부산비교·6대구역' },
+  { id: 'december', label: '12월·연말연시', shortLabel: '12월특집', icon: '🎄', sub: '맥도날드그라코로·12/31축제' },
   { id: 'stories', label: '미식·역사 이야기', shortLabel: '역사이야기', icon: '📖', sub: '프롤로그~6장 스토리북' },
-  { id: 'explore', label: '맛집·명소 찾기', shortLabel: '맛집·명소', icon: '🔍', sub: '86곳·7대카테고리·해설' },
-  { id: 'survival', label: '초보 생존·사투리', shortLabel: '생존·사투리', icon: '🚇', sub: '공항·교통·예절·방언' },
-  { id: 'picks', label: '내 찜 바구니', shortLabel: '내 찜', icon: '♥', sub: '권역동선·카톡공유', badge: true }
+  { id: 'explore', label: '맛집·찻집 찾기', shortLabel: '맛집·찻집', icon: '🍽️', sub: '59곳·5대미식카테고리' },
+  { id: 'spots', label: '명소·쇼핑·명품', shortLabel: '명소·명품', icon: '🛍️', sub: '27곳·가챠·문구·가방·식도' },
+  { id: 'survival', label: '초보 생존·사투리', shortLabel: '생존·사투리', icon: '🚇', sub: '공항·교통·예절·음성방언' }
 ];
 ---
 
-<!-- 태블릿 & 데스크톱 상단 나무 명패(木札) 탭바 -->
+<!-- 태블릿 & 데스크톱 상단 나무 명패(木札) 6대 탭바 -->
 <nav class="desktop-nav" aria-label="메인 네비게이션">
   <div class="container">
     <div class="kifuda-tab-bar" role="tablist">
@@ -26,14 +27,13 @@ const tabs = [
             <strong class="tab-title">{tab.label}</strong>
             <span class="tab-sub">{tab.sub}</span>
           </div>
-          {tab.badge && <span class="picks-counter-badge" id="desktop-picks-counter">0</span>}
         </button>
       ))}
     </div>
   </div>
 </nav>
 
-<!-- 모바일 하단 고정 탭바 -->
+<!-- 모바일 하단 고정 6대 탭바 -->
 <nav class="mobile-bottom-nav" aria-label="모바일 하단 네비게이션">
   <div class="mobile-tabs-wrap" role="tablist">
     {tabs.map((tab) => (
@@ -47,7 +47,6 @@ const tabs = [
       >
         <span class="m-icon">{tab.icon}</span>
         <span class="m-label">{tab.shortLabel}</span>
-        {tab.badge && <span class="picks-counter-badge mobile" id="mobile-picks-counter">0</span>}
       </button>
     ))}
   </div>
@@ -61,7 +60,7 @@ const tabs = [
     backdrop-filter: blur(10px);
     border-top: 3px solid #1E293B;
     border-bottom: 2px solid #D6C7B2;
-    padding: 10px 0;
+    padding: 9px 0;
     box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
   }
 
@@ -76,17 +75,16 @@ const tabs = [
 
   .kifuda-tab-bar {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 6px;
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 1150px) {
     .kifuda-tab-bar {
-      gap: 12px;
+      gap: 10px;
     }
   }
 
-  /* 태블릿(768px~1099px): 세로 중앙 정렬로 글자 잘림 없이 쾌적하게 표시 */
   .kifuda-tab {
     position: relative;
     display: flex;
@@ -94,7 +92,7 @@ const tabs = [
     align-items: center;
     justify-content: center;
     gap: 4px;
-    padding: 8px 6px;
+    padding: 8px 4px;
     background: #F7EFE3;
     border: 1.5px solid #C8B297;
     border-radius: 8px;
@@ -104,13 +102,12 @@ const tabs = [
     text-align: center;
   }
 
-  /* 데스크톱(1100px~): 가로 명패 레이아웃 + 부제(sub) 노출 */
-  @media (min-width: 1100px) {
+  @media (min-width: 1180px) {
     .kifuda-tab {
       flex-direction: row;
       justify-content: flex-start;
-      gap: 10px;
-      padding: 10px 14px;
+      gap: 8px;
+      padding: 9px 11px;
       text-align: left;
     }
   }
@@ -129,14 +126,14 @@ const tabs = [
   }
 
   .tab-icon {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     line-height: 1;
     flex-shrink: 0;
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 1180px) {
     .tab-icon {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
     }
   }
 
@@ -147,22 +144,21 @@ const tabs = [
   }
 
   .tab-title {
-    font-size: 0.84rem;
+    font-size: 0.8rem;
     font-weight: 800;
     line-height: 1.25;
     white-space: nowrap;
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 1180px) {
     .tab-title {
-      font-size: 0.94rem;
+      font-size: 0.88rem;
     }
   }
 
-  /* 태블릿에서는 부제 숨김(글자 잘림 방지), 데스크톱에서만 노출 */
   .tab-sub {
     display: none;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     color: #78716C;
     margin-top: 2px;
     white-space: nowrap;
@@ -170,7 +166,7 @@ const tabs = [
     text-overflow: ellipsis;
   }
 
-  @media (min-width: 1100px) {
+  @media (min-width: 1180px) {
     .tab-sub {
       display: block;
     }
@@ -181,25 +177,7 @@ const tabs = [
     opacity: 0.85;
   }
 
-  .picks-counter-badge {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    background: var(--color-vermilion);
-    color: #FFFFFF;
-    font-size: 0.7rem;
-    font-weight: 800;
-    min-width: 18px;
-    height: 18px;
-    border-radius: 9px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  }
-
-  /* 모바일 하단 고정 탭바 */
+  /* 모바일 하단 고정 6대 탭바 */
   .mobile-bottom-nav {
     display: block;
     position: fixed;
@@ -222,7 +200,7 @@ const tabs = [
 
   .mobile-tabs-wrap {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     height: 60px;
   }
 
@@ -243,42 +221,37 @@ const tabs = [
   }
 
   .m-icon {
-    font-size: 1.2rem;
+    font-size: 1.12rem;
     line-height: 1;
   }
 
   .m-label {
-    font-size: 0.7rem;
-    letter-spacing: -0.3px;
-    white-space: nowrap;
-  }
-
-  .picks-counter-badge.mobile {
-    top: 4px;
-    right: calc(50% - 20px);
     font-size: 0.65rem;
-    min-width: 16px;
-    height: 16px;
+    letter-spacing: -0.4px;
+    white-space: nowrap;
   }
 </style>
 
 <script is:inline>
-  // 5대 탭 전환 및 새 탭 상단 즉시 이동 제어
+  // 6대 메인 탭 + 내 찜 바구니 전환 및 최상단 즉시 이동 제어
   (function() {
     let currentTab = 'overview';
+    const validTabs = ['overview', 'december', 'stories', 'explore', 'spots', 'survival', 'picks'];
 
     function initTabFromUrl() {
       const urlParams = new URLSearchParams(window.location.search);
       const tabParam = urlParams.get('tab');
-      const validTabs = ['overview', 'stories', 'explore', 'survival', 'picks'];
       if (tabParam && validTabs.includes(tabParam)) {
         return tabParam;
+      }
+      if (urlParams.get('picks')) {
+        return 'picks';
       }
       return 'overview';
     }
 
     function switchTab(targetTabId, updateHistory = true) {
-      if (!targetTabId) return;
+      if (!targetTabId || !validTabs.includes(targetTabId)) return;
 
       // 1. 탭 패널 표시/숨김 토글
       const panels = document.querySelectorAll('.tab-panel');
@@ -322,18 +295,18 @@ const tabs = [
       window.dispatchEvent(new CustomEvent('osaka_tab_change', { detail: { tab: targetTabId } }));
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const navButtons = document.querySelectorAll('[data-tab]');
-      navButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          const targetTab = btn.getAttribute('data-tab');
-          if (targetTab) {
-            switchTab(targetTab);
-          }
-        });
-      });
+    document.addEventListener('click', (e) => {
+      const tabBtn = e.target.closest('[data-tab]');
+      if (tabBtn) {
+        e.preventDefault();
+        const targetTab = tabBtn.getAttribute('data-tab');
+        if (targetTab) {
+          switchTab(targetTab);
+        }
+      }
+    });
 
+    document.addEventListener('DOMContentLoaded', () => {
       const initialTab = initTabFromUrl();
       switchTab(initialTab, false);
     });

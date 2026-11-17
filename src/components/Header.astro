@@ -15,6 +15,12 @@
       </div>
 
       <div class="header-actions">
+        <button type="button" data-tab="picks" class="header-picks-btn" aria-label="내 찜 바구니 열기">
+          <span class="picks-heart">♥</span>
+          <span class="picks-label">내 찜</span>
+          <span class="picks-badge-num" id="header-picks-counter">0</span>
+        </button>
+
         <button id="toggle-large-text" class="large-text-btn" aria-label="큰 글씨 토글">
           <span class="btn-icon">가+</span>
           <span class="btn-label">큰 글씨</span>
@@ -125,8 +131,41 @@
   .header-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     flex-shrink: 0;
+  }
+
+  .header-picks-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    padding: 5px 11px;
+    border-radius: 20px;
+    background: var(--color-vermilion);
+    color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(214, 59, 34, 0.35);
+    transition: all 0.15s ease;
+  }
+
+  .header-picks-btn:hover {
+    background: #B52812;
+    transform: translateY(-1px);
+  }
+
+  .picks-badge-num {
+    background: #FFFFFF;
+    color: #D63B22;
+    font-size: 0.72rem;
+    font-weight: 900;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
   }
 
   .share-btn {

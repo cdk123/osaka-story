@@ -380,11 +380,13 @@
 
     // 카운터 뱃지 갱신
     function updateCounters() {
+      const headerCounter = document.getElementById('header-picks-counter');
       const desktopCounter = document.getElementById('desktop-picks-counter');
       const mobileCounter = document.getElementById('mobile-picks-counter');
       const totalNum = document.getElementById('picks-total-num');
 
       const count = myPicks.length;
+      if (headerCounter) headerCounter.textContent = count;
       if (desktopCounter) desktopCounter.textContent = count;
       if (mobileCounter) mobileCounter.textContent = count;
       if (totalNum) totalNum.textContent = count;
