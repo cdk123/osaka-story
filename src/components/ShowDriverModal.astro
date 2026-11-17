@@ -383,7 +383,7 @@ import { places } from '../data/places';
     line-height: 1.4;
   }
 
-  .korean-sub {
+  :global(.korean-sub) {
     font-weight: 500;
     font-size: 0.82rem;
     color: #92400E;
@@ -484,7 +484,7 @@ import { places } from '../data/places';
     gap: 8px;
   }
 
-  .signature-item {
+  :global(.signature-item) {
     background: #F0FDF4;
     border: 1.5px solid #86EFAC;
     border-radius: 8px;
@@ -492,17 +492,20 @@ import { places } from '../data/places';
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
   }
 
-  .sig-ja {
+  :global(.sig-ja) {
     font-size: 1.25rem;
     font-weight: 900;
     color: #14532D;
+    line-height: 1.35;
   }
 
-  .sig-ko {
+  :global(.sig-ko) {
     font-size: 0.85rem;
     color: #15803D;
+    margin-top: 3px;
   }
 
   .order-options-group {

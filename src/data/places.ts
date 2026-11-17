@@ -1239,7 +1239,7 @@ export const places: Place[] = [
     nameJa: '喜八洲総本舗',
     nameKana: '키야스 소혼포',
     branchKo: '우메다 한큐백화점 지하 / 주오구',
-    branchJa: '阪急う메다店',
+    branchJa: '阪急うめだ本店',
     category: 'cafe',
     categoryLabel: '찻집·빵·디저트',
     area: 'umeda',

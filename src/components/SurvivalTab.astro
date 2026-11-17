@@ -1140,7 +1140,7 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
 </style>
 
 <script is:inline>
-  // Web Speech API (ja-JP) 발음 듣기 스크립트
+  // Web Speech API (ja-JP) 발음 듣기 스크립트 (전역 [data-speak] 통합 처리)
   document.addEventListener('click', (e) => {
     const speakBtn = e.target.closest('[data-speak]');
     if (speakBtn) {
@@ -1150,17 +1150,26 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
 
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel(); // 이전 재생 취소
+        // 이전에 재생 중이던 다른 버튼들 원래 텍스트로 복원
+        document.querySelectorAll('[data-speak][data-orig-html]').forEach((btn) => {
+          btn.innerHTML = btn.getAttribute('data-orig-html');
+        });
+
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'ja-JP';
         utterance.rate = 0.9; // 약간 또박또박한 속도
 
-        const origText = speakBtn.innerHTML;
+        if (!speakBtn.hasAttribute('data-orig-html')) {
+          speakBtn.setAttribute('data-orig-html', speakBtn.innerHTML);
+        }
+        const origHtml = speakBtn.getAttribute('data-orig-html');
         speakBtn.textContent = '🔊 재생 중...';
+
         utterance.onend = () => {
-          speakBtn.innerHTML = origText;
+          if (origHtml) speakBtn.innerHTML = origHtml;
         };
         utterance.onerror = () => {
-          speakBtn.innerHTML = origText;
+          if (origHtml) speakBtn.innerHTML = origHtml;
         };
 
         window.speechSynthesis.speak(utterance);

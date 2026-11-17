@@ -50,7 +50,7 @@
     <span class="empty-icon">🏮</span>
     <h4 class="empty-title">아직 찜한 장소가 없습니다.</h4>
     <p class="empty-desc">
-      [맛집·명소 찾기]나 [미식·역사 이야기]에서 마음에 드는 가게 카드의 하트(♥)를 눌러보세요!
+      [맛집·찻집 도감]이나 [명소·쇼핑·명품]에서 마음에 드는 가게 카드의 하트(♥)를 눌러보세요!
     </p>
     <button type="button" id="btn-go-explore" class="btn-primary-action">
       🔍 맛집·명소 둘러보러 가기
@@ -454,6 +454,8 @@
             if (originalCard) {
               const clone = originalCard.cloneNode(true);
               clone.id = `picked-card-${place.id}`;
+              clone.style.display = '';
+              clone.classList.remove('jump-highlight');
               grid.appendChild(clone);
             }
           });
