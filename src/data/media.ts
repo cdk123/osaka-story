@@ -62,14 +62,14 @@ export const mediaWorks: MediaWork[] = [
 export const photoSpots: PhotoSpot[] = [
   {
     id: 'spot-hozenji',
-    titleKo: '호젠지 요코초 젖은 돌바닥 & 붉은 초롱불',
-    locationKo: '난바 호젠지 사찰 및 메오토 젠자이 앞',
-    bestTime: '해 질 녘 17:30 ~ 19:00 (가게들이 초롱불을 켤 때)',
-    tip: '호젠지 절 이끼 불상(미즈카케 후도묘오)에 국자로 물을 끼얹은 뒤, 물기가 반짝이는 돌바닥 위에 선 일행의 뒷모습을 초롱불과 함께 담으세요.',
-    sceneDesc: '시끌벅적한 도톤보리에서 한 발짝만 들어서면 마법처럼 조용해지는 100년 돌바닥 골목입니다. 주황빛 초롱과 어우러져 가장 일본다운 서정을 선사합니다.',
-    image: '/images/places/meoto-zenzai.jpg',
-    placeId: 'meoto-zenzai',
-    placeLabel: '호젠지 요코초 메오토 젠자이 보기 →'
+    titleKo: '호젠지 요코초 젖은 돌바닥 & 초록 이끼 부동명왕',
+    locationKo: '난바 호젠지 사찰 미즈카케 후도손 및 메오토 젠자이 앞',
+    bestTime: '해 질 녘 17:30 ~ 19:00 (사찰에 촛불과 초롱불이 켜질 때)',
+    tip: '호젠지 절의 초록 이끼 불상(미즈카케 후도손)에 국자로 물을 끼얹은 뒤, 촛불과 붉은 휘장 앞에서 소원을 비는 뒷모습을 담으세요.',
+    sceneDesc: '시끌벅적한 도톤보리에서 한 발짝만 들어서면 마법처럼 조용해지는 1637년 고찰과 100년 돌바닥 골목입니다.',
+    image: '/images/places/hozenji-bunraku.jpg',
+    placeId: 'hozenji-bunraku',
+    placeLabel: '호젠지 이끼 불상 상세 보기 →'
   },
   {
     id: 'spot-nakazakicho',
@@ -122,7 +122,7 @@ export const specialThemes = [
     titleKo: '전 세계 ‘회전초밥’의 발상지 오사카',
     subtitle: '1958년 맥주 공장 컨베이어 벨트에서 탄생한 미식 혁명',
     content: '1958년 오사카 히가시오사카에서 시라이시 요시아키가 아사히 맥주 스이타 공장의 병맥주 컨베이어 벨트를 보고 "초밥을 벨트에 얹어 돌리면 서민들도 싼값에 마음껏 먹을 수 있겠구나!"라며 발명했습니다. 오늘날 하코다테 칸타로(그랑프론트)와 다이키 수산은 그 역사적 자부심을 이어가는 프리미엄 회전초밥 명점입니다.',
-    image: '/images/places/hakodate-kantaro.jpg',
+    image: '/images/places/kaitenzushi-belt.jpg',
     placeId: 'hakodate-kantaro',
     placeLabel: '하코다테 칸타로 회전초밥 보기 →'
   },
@@ -146,7 +146,7 @@ export const specialThemes = [
     titleKo: '동서 국물 전쟁! 편의점 & 로컬 마트 야식학',
     subtitle: '서일본 한정 돈베이 (W) vs 동일본 (E) & 오하요 브륄레',
     content: '일본 1위 컵라면 닛신 돈베이 유부우동은 도쿄판(E)과 오사카판(W)의 육수가 완전히 다릅니다! 편의점 컵라면 옆면에서 작은 (W) 표시를 확인해 보세요. 홋카이도 다시마와 연간장으로 맑게 우려낸 천하의 부엌 국물이 담겨 있습니다. 여기에 윗면 설탕을 톡 깨먹는 오하요 브륄레 아이스크림과 쫀득한 로손 모찌롤이 더해지면 밤이 달콤해집니다.',
-    image: '/images/places/matsubaya.jpg',
+    image: '/images/places/dotonbori-imai.jpg',
     placeId: 'matsubaya',
     placeLabel: '1893년 원조 키츠네 우동 마츠바야 보기 →'
   },
