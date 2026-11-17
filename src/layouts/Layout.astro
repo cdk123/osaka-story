@@ -186,11 +186,22 @@ const {
   <body>
     <slot />
 
-    <!-- PWA Service Worker Registration Script -->
+    <!-- PWA Service Worker Registration & Legacy Cache Cleanup Script -->
     <script is:inline>
+      if ('caches' in window) {
+        caches.keys().then((keys) => {
+          keys.forEach((key) => {
+            if (key !== 'osaka-story-v3') {
+              caches.delete(key);
+            }
+          });
+        });
+      }
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(err => {
+          navigator.serviceWorker.register('/sw.js').then((reg) => {
+            reg.update();
+          }).catch((err) => {
             console.log('SW registration failed: ', err);
           });
         });
