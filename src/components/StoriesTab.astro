@@ -124,6 +124,38 @@ const chapterMeta: Record<string, {
       { img: '/images/places/masterpiece-osaka.jpg', caption: '오사카 자체 공방 장인들이 만드는 로컬 가방 브랜드 마스터피스와 수제 가죽지갑·140년 만년필 문구' },
       { img: '/images/places/amidaike-daikoku.jpg', caption: '출세와 번창을 기원하며 1805년부터 선물하던 오사카 전통 쌀강정 오코시와 G20 공식 선물 와교' }
     ]
+  },
+  'chapter-7': {
+    shortTab: '7장 · 거리 미스터리 & 세계 최초 발명품',
+    heroImg: '/images/places/cupnoodles-museum-ikeda.jpg',
+    subheadings: [
+      '굴 삶은 국물에서 탄생한 ‘글리코 러닝맨’과 상인이 사재로 판 인공 운하 도톤보리',
+      '1945년 공습 불바다에서 홀로 살아남은 호젠지 사찰 ‘초록 이끼 부동명왕’',
+      '미국 화가의 꿈에서 태어나 발바닥이 닳도록 사랑받는 신세카이 복신 ‘빌리켄’',
+      '인스턴트 라면·자동개찰구·캡슐호텔·회전초밥 — 인류의 일상을 바꾼 오사카 발명품'
+    ],
+    paraPhotos: [
+      { img: '/images/city/hero-osaka.jpg', caption: '1612년 야스이 도톤이 사재로 개척한 인공 운하 도톤보리와 300m 트랙을 질주하는 글리코 러닝맨' },
+      { img: '/images/places/hozenji-bunraku.jpg', caption: '전쟁의 잿더미 속에서 홀로 살아남아 80년간 참배객들이 끼얹은 물줄기에 초록 이끼 갑옷을 입은 미즈카케 후도손' },
+      { img: '/images/places/tsutenkaku-billiken.jpg', caption: '1912년 파리 에펠탑을 모티브로 세운 츠텐카쿠와 발바닥을 간지럽히면 소원을 들어주는 빌리켄' },
+      { img: '/images/places/cupnoodles-museum-ikeda.jpg', caption: '1958년 오사카 이케다시의 작은 뒷마당 오두막에서 인류 최초의 인스턴트 라면을 발명한 컵누들 뮤지엄 오사카 이케다' }
+    ]
+  },
+  'chapter-8': {
+    shortTab: '8장 · 다도 혁명 · 건축 · 분라쿠 예술혼',
+    heroImg: '/images/places/nakanoshima-culture.jpg',
+    subheadings: [
+      '도요토미 히데요시의 황금 다실에 맞선 사카이 상인 센노 리큐의 ‘두 평짜리 흙벽 다실’',
+      '전 재산을 기부해 세운 나카노시마 중앙공회당과 복서 출신 건축가 안도 다다오의 ‘푸른 사과’',
+      '인형 하나에 세 명의 장인이 영혼을 불어넣는 유네스코 무형유산 ‘분라쿠(文楽)’',
+      '오사카 목욕탕(센토) 욕조의 비밀과 목욕 후 허리에 손을 얹고 마시는 병우유'
+    ],
+    paraPhotos: [
+      { img: '/images/places/wad-cafe.jpg', caption: '“다실 안에서는 장군도 상인도 평등하다” — 오사카 사카이 상인 센노 리큐가 완성한 와비사비 다도의 정신' },
+      { img: '/images/places/nakanoshima-culture.jpg', caption: '주식 중개인 이와모토 에이노스케가 전 재산을 오사카 시민에게 기부해 세운 1918년 나카노시마 중앙공회당과 안도 다다오 건축' },
+      { img: '/images/places/hozenji-bunraku.jpg', caption: '1684년 도톤보리에서 시작되어 유네스코 인류무형문화유산으로 등재된 3인 조종 인형극 분라쿠와 호젠지 골목' },
+      { img: '/images/places/soraniwa-onsen.jpg', caption: '이웃과 걸터앉아 담소를 나누던 오사카 목욕탕 문화와 목욕 후 마시는 얼음장 같은 유리병 우유' }
+    ]
   }
 };
 ---
@@ -134,14 +166,14 @@ const chapterMeta: Record<string, {
     <div class="intro-left">
       <span class="stamp-badge">大阪物語 · 스토리 매거진</span>
       <div class="intro-texts">
-        <h2 class="intro-title">스토리를 먼저 읽고 찾아가는 오사카 400년 미식·장인 이야기</h2>
+        <h2 class="intro-title">스토리를 먼저 읽고 찾아가는 오사카 400년 미식·역사·문화·발명 이야기</h2>
         <p class="intro-desc">
-          가게 이름만 외워서 가는 여행 대신, 그 음식과 물건이 왜 오사카에서 탄생했는지 이야기와 사진으로 먼저 만나보세요. 이야기 하단의 가게 버튼을 누르면 해당 매장 상세 정보로 바로 연결됩니다.
+          단순한 맛집 나열을 넘어, 오사카의 음식과 길거리 동상·인스턴트 라면 발명·다도와 건축·인형극이 어떻게 탄생했는지 이야기와 사진으로 먼저 만나보세요. 하단 연결 버튼을 누르면 해당 명소·매장 상세 카드로 바로 이동합니다.
         </p>
       </div>
     </div>
     <button type="button" id="btn-toggle-all-chapters" class="btn-view-mode" data-mode="single">
-      📖 7개 장 전체 한꺼번에 펼치기
+      📖 9개 장 전체 한꺼번에 펼치기
     </button>
   </section>
 
@@ -169,7 +201,7 @@ const chapterMeta: Record<string, {
         data-story-index={stories.length}
       >
         <span class="tab-idx">別冊</span>
-        <span class="tab-label">4대 알짜 비화</span>
+        <span class="tab-label">6대 알짜 비화</span>
       </button>
     </div>
   </nav>
@@ -325,7 +357,7 @@ const chapterMeta: Record<string, {
                   data-story-target="special-appendix"
                 >
                   <span class="pager-dir">다음 이야기 →</span>
-                  <strong class="pager-title">별책부록: 놓치면 아쉬운 오사카 4대 알짜 비화</strong>
+                  <strong class="pager-title">별책부록: 놓치면 아쉬운 오사카 6대 알짜 비화</strong>
                 </button>
               )}
             </footer>
@@ -334,7 +366,7 @@ const chapterMeta: Record<string, {
       );
     })}
 
-    <!-- 별책부록: 4대 알짜 테마 패널 -->
+    <!-- 별책부록: 6대 알짜 테마 패널 -->
     <article
       class="story-chapter-panel hidden-chapter"
       id="story-panel-special-appendix"
@@ -348,8 +380,8 @@ const chapterMeta: Record<string, {
             <span class="ch-num-pill">별책부록</span>
             <span class="ch-period-pill">알면 아는 척하기 딱 좋은 비하인드</span>
           </div>
-          <h3 class="ch-title">놓치면 아쉬운 오사카 4대 알짜 미식·문화 비화</h3>
-          <p class="ch-subtitle">회전초밥 발상지 비화 · 제빵의 수도 간사이 · 에도 거리 온천 · 편의점 동서 국물 전쟁</p>
+          <h3 class="ch-title">놓치면 아쉬운 오사카 6대 알짜 미식·문화·거리 비화</h3>
+          <p class="ch-subtitle">회전초밥 발상지 · 제빵의 수도 간사이 · 에도 거리 온천 · 동서 국물 전쟁 · 도톤보리 커널 샌더스의 저주 · 상인 인사법</p>
         </div>
       </div>
 
@@ -382,7 +414,7 @@ const chapterMeta: Record<string, {
             data-story-target={stories[stories.length - 1].id}
           >
             <span class="pager-dir">← 이전 이야기</span>
-            <strong class="pager-title">제6장: 손끝에 깃든 혼, 장인의 명품</strong>
+            <strong class="pager-title">제8장: 권력에 맞선 다도 혁명, 안도 다다오, 그리고 분라쿠·센토 문화</strong>
           </button>
           <button
             type="button"
@@ -458,7 +490,7 @@ const chapterMeta: Record<string, {
           toggleAllBtn.textContent = '📕 한 장씩 책장 넘겨보기 모드로 전환';
           toggleAllBtn.classList.add('expanded');
         } else {
-          toggleAllBtn.textContent = '📖 7개 장 전체 한꺼번에 펼치기';
+          toggleAllBtn.textContent = '📖 9개 장 전체 한꺼번에 펼치기';
           toggleAllBtn.classList.remove('expanded');
           const currentActive = document.querySelector('.chapter-tab-btn.active')?.getAttribute('data-story-target') || 'prologue';
           selectChapter(currentActive, false);
