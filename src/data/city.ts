@@ -29,6 +29,8 @@ export interface TraditionalMarket {
   access: string;
   image: string;
   googleQuery: string;
+  placeId?: string;
+  placeLabel?: string;
 }
 
 export interface SpecialtyItem {
@@ -39,6 +41,8 @@ export interface SpecialtyItem {
   originArea: string;
   tip: string;
   image: string;
+  placeId?: string;
+  placeLabel?: string;
 }
 
 export const busanComparison = {
@@ -160,7 +164,9 @@ export const markets: TraditionalMarket[] = [
     signatureFoods: ['통가리비 버터간장구이', '킹크랩 다리 구이', '생성게알(우니)', '생딸기 다이후쿠 모찌', '복어회'],
     access: '오사카메트로 사카이스지선·센니치마에선 닛폰바시역 10번 출구 도보 2분',
     image: '/images/places/kuromon-market.jpg',
-    googleQuery: '黒門市場 大阪'
+    googleQuery: '黒門市場 大阪',
+    placeId: 'kuromon-market',
+    placeLabel: '구로몬 시장 미식 가이드 카드 보기 →'
   },
   {
     nameKo: '키즈 도매시장 (기즈 이치바)',
@@ -170,7 +176,9 @@ export const markets: TraditionalMarket[] = [
     signatureFoods: ['새벽 갓 뜬 카이센동', '두툼한 장어구이 덮밥', '계란말이 노포의 다시마키 타마고'],
     access: '오사카메트로 미도스지선·요츠바시선 다이코쿠초역 1번 출구 도보 3분',
     image: '/images/city/market-kizu.jpg',
-    googleQuery: '大阪木津卸売市場'
+    googleQuery: '大阪木津卸売市場',
+    placeId: 'honke-shibato',
+    placeLabel: '300년 마무시 장어 본가 시바토 보기 →'
   },
   {
     nameKo: '덴진바시스지 상점가',
@@ -180,7 +188,9 @@ export const markets: TraditionalMarket[] = [
     signatureFoods: ['나카무라야 고로케 (달콤 바삭)', '권총 라멘', '옛날식 킷사텐 토스트', '수제 어묵'],
     access: '오사카메트로 사카이스지선 오기마치역 / 미나미모리마치역 직결',
     image: '/images/city/market-tenjinbashi.jpg',
-    googleQuery: '天神橋筋商店街 大阪'
+    googleQuery: '天神橋筋商店街 大阪',
+    placeId: 'sumiyoshi-taisha-hatsumode',
+    placeLabel: '오사카 텐만구 & 스미요시 축제 보기 →'
   }
 ];
 
@@ -192,7 +202,9 @@ export const specialties: SpecialtyItem[] = [
     originArea: '오사카 남부 센슈(泉州) 지방',
     descriptionKo: '사과나 배처럼 수분이 가득 차 있어 손으로 쥐어짜면 맑은 즙이 뚝뚝 떨어지는 기적의 가지입니다. 떫은맛이 전혀 없어 칼을 대지 않고 손으로 찢어 생으로 먹거나 쌀겨에 절여 먹습니다.',
     tip: '오사카 로컬 이자카야나 일식집에서 메뉴판에 ‘水茄子’가 보이면 무조건 주문해 보세요. 아삭하고 달콤한 채즙에 깜짝 놀라게 됩니다.',
-    image: '/images/city/spec-mizunasu.jpg'
+    image: '/images/city/spec-mizunasu.jpg',
+    placeId: 'takoume-honten',
+    placeLabel: '180년 노포 타코우메 본점 보기 →'
   },
   {
     nameKo: '오사카만 3대 명품 해산물',
@@ -201,7 +213,9 @@ export const specialties: SpecialtyItem[] = [
     originArea: '오사카만 및 세토내해 연안',
     descriptionKo: '오사카만은 플랑크톤이 풍부해 육질이 차지고 단단한 ‘참문어(마다코)’, 뼈를 잘게 발라내는 섬세한 칼질로 여름을 나는 ‘갯장어(하모)’, 그리고 겨울 미식의 제왕 ‘참복(토라후구)’의 천국입니다.',
     tip: '오사카 타코야키가 특별히 쫄깃한 비결이 바로 이 오사카만의 참문어 전통 덕분입니다.',
-    image: '/images/city/spec-seafood.jpg'
+    image: '/images/city/spec-seafood.jpg',
+    placeId: 'genpin-fugu',
+    placeLabel: '참복 요리 명가 겐핀 복어 보기 →'
   },
   {
     nameKo: '시오콘부 (염장 숙성 다시마)',
@@ -210,7 +224,9 @@ export const specialties: SpecialtyItem[] = [
     originArea: '오사카 주오구 / 신사이바시 (오구라야 야마모토 등)',
     descriptionKo: '홋카이도에서 들여온 최상급 다시마를 오사카 특제 양념 간장과 미림에 졸여 겉에 하얀 소금 결정이 피어나도록 건조한 천연 밥도둑입니다.',
     tip: '갓 지은 흰 쌀밥에 두세 가닥만 얹어도 다른 반찬이 필요 없으며, 뜨거운 물을 부어 먹는 오차즈케용으로 최고입니다.',
-    image: '/images/places/oguraya-yamamoto.jpg'
+    image: '/images/places/oguraya-yamamoto.jpg',
+    placeId: 'oguraya-yamamoto',
+    placeLabel: '1848년 창업 오구라야 야마모토 보기 →'
   },
   {
     nameKo: '노세 왕밤 (노세 쿠리)',
@@ -218,8 +234,10 @@ export const specialties: SpecialtyItem[] = [
     category: '임산물·과일',
     originArea: '오사카 북부 노세(能勢) 청정 산간 지역',
     descriptionKo: '알이 크고 당도가 높아 에도 시대 쇼군에게 진상되던 유서 깊은 밤 품종 ‘긴요세(銀寄)’의 원산지입니다. 몽블랑과 밤 양갱, 가을 화과자의 핵심 재료로 쓰입니다.',
-    tip: '가을철 백화점 화과자 코너에서 노세산 밤을 사용한 밤 다이후쿠나 양갱을 만나면 놓치지 마세요.',
-    image: '/images/city/spec-chestnut.jpg'
+    tip: '가을·겨울철 백화점 화과자 코너에서 노세산 밤을 사용한 밤 다이후쿠나 밤 양갱을 만나면 놓치지 마세요.',
+    image: '/images/city/spec-chestnut.jpg',
+    placeId: 'tsuruya-hachiman',
+    placeLabel: '340년 양갱 총본산 츠루야 하치만 보기 →'
   },
   {
     nameKo: '사카이 식도 & 센슈 타올 & 나니와 주석기',
@@ -228,6 +246,8 @@ export const specialties: SpecialtyItem[] = [
     originArea: '사카이시, 센슈, 오사카시',
     descriptionKo: '칼날에 이름이 새겨지는 600년 전통의 프로 셰프 칼, 빨지 않고 바로 써도 1초 만에 물기를 흡수하는 천연 온천수 세척 타올, 술의 잡미를 없애주는 주석 술잔은 오사카 장인 정신의 3대 정점입니다.',
     tip: '식도는 기내 반입이 절대 불가하므로 반드시 위탁 수하물 캐리어에 넣어야 하며, 주석 잔은 면세점에서 찾기 어려우므로 백화점 7층 공예 코너에서 구매하세요.',
-    image: '/images/places/sakai-knives.jpg'
+    image: '/images/places/sakai-knives.jpg',
+    placeId: 'sakai-knives',
+    placeLabel: '600년 전통 사카이 수제 주방칼 보기 →'
   }
 ];

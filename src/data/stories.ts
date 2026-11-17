@@ -37,7 +37,7 @@ export const stories: StoryChapter[] = [
       text: '오사카의 국물은 코가 아니라 혀끝과 목구멍 전체로 마시는 홋카이도 바다와 다시마의 역사다.',
       author: '오사카 미식사 기록'
     },
-    featuredPlaceIds: ['dotonbori-imai', 'matsubaya', 'sushiman', 'takotake', 'yoshino-sushi', 'mameda-inari', 'honke-shibato', 'takoume-honten', 'hanakujira', 'tsuboichi-tea', 'tsuruya-hachiman', 'toraya-yokan', 'meoto-zenzai', 'kiyasu-sohonpo']
+    featuredPlaceIds: ['dotonbori-imai', 'matsubaya', 'udon-bo', 'sushiman', 'takotake', 'yoshino-sushi', 'mameda-inari', 'honke-shibato', 'takoume-honten', 'hanakujira', 'umeno-hana', 'tsuboichi-tea', 'tsujirihei', 'tsuruya-hachiman', 'toraya-yokan', 'meoto-zenzai', 'kiyasu-sohonpo']
   },
   {
     id: 'chapter-2',
@@ -56,7 +56,7 @@ export const stories: StoryChapter[] = [
       text: '손님의 약한 위장을 가엽게 여긴 요리사의 다정한 배려가 세계 최초의 오므라이스를 빚어냈다.',
       author: '호쿄쿠세이 100년 사사(社史)'
     },
-    featuredPlaceIds: ['hokkyokusei', 'jiyuken', 'indian-curry', 'harijyu', 'touyou-tei', 'marufuku-coffee']
+    featuredPlaceIds: ['hokkyokusei', 'jiyuken', 'indian-curry', 'harijyu', 'touyou-tei', 'epais-kitashinchi', 'marufuku-coffee', 'moncher-dojima']
   },
   {
     id: 'chapter-3',
@@ -75,7 +75,7 @@ export const stories: StoryChapter[] = [
       text: '면 뺄 힘도 없던 숙취 개그맨의 넉살 좋은 투정이 오사카의 영혼을 울리는 국물이 되었다.',
       author: '치토세 창업 일화'
     },
-    featuredPlaceIds: ['chitose', 'kasuya-hozenji', 'ryunosu-namba', 'botejyu-honten', 'chibo-dotonbori', 'kushikatsu-daruma', 'negiyaki-yamamoto', 'horai-551', 'genpin-fugu', 'kani-doraku', 'takoyaki-wanaka']
+    featuredPlaceIds: ['chitose', 'kasuya-hozenji', 'ryunosu-namba', 'botejyu-honten', 'chibo-dotonbori', 'mizuno', 'negiyaki-yamamoto', 'kushikatsu-daruma', 'horai-551', 'takoyaki-wanaka', 'bubutei', 'hanshin-ikayaki', 'genpin-fugu', 'kani-doraku']
   },
   {
     id: 'chapter-4',
@@ -94,7 +94,7 @@ export const stories: StoryChapter[] = [
       text: '돈베이 컵라면 옆면의 (W) 한 글자에는 400년 동안 타협하지 않은 간사이 사람들의 국물 자존심이 적혀 있다.',
       author: '오사카 식문화 연구가'
     },
-    featuredPlaceIds: ['gyukatsu-motomura', 'izumo-lucua', 'kamukura-ramen', 'osaka-ohsho-gyoza', 'yayoiken-kyk-teishoku', 'komeda-royalhost', 'mcdonalds-japan-gracoro', 'rikuro-ojisan', 'hakodate-kantaro', 'soraniwa-onsen', 'rikimaru-robatayaki']
+    featuredPlaceIds: ['matsusakagyu-m', 'gyukatsu-motomura', 'romantei', 'izumo-lucua', 'kamukura-ramen', 'tempura-makino', 'osaka-ohsho-gyoza', 'yayoiken-kyk-teishoku', 'komeda-royalhost', 'mcdonalds-japan-gracoro', 'hotto-motto-kamadoya', 'depachika-bento', 'kuromon-market', 'rikuro-ojisan', 'gojodo', 'grenier', 'le-croissant', 'hakodate-kantaro', 'daiki-suisan', 'soraniwa-onsen', 'rikimaru-robatayaki']
   },
   {
     id: 'chapter-5',
@@ -132,6 +132,6 @@ export const stories: StoryChapter[] = [
       text: '장인의 손끝에서 탄생한 칼 한 자루, 가죽 지갑 하나, 만년필 한 자루는 여행이 끝난 뒤에도 평생 일상 속에서 오사카의 온기를 전한다.',
       author: '간사이 전통 공예 장인 열전'
     },
-    featuredPlaceIds: ['sakai-knives', 'masterpiece-osaka', 'munekawa-leather', 'nagasawa-stationery', 'shimojima-hands-osaka', 'naniwa-suzuki', 'osaka-tea-ware', 'tenma-kiriko', 'senshu-towel', 'amidaike-daikoku', 'awagen-wayo', 'baton-dor', 'taneya', 'oguraya-yamamoto', 'gokan-kitahama']
+    featuredPlaceIds: ['sakai-knives', 'doguyasuji-street', 'masterpiece-osaka', 'munekawa-leather', 'nagasawa-stationery', 'shimojima-hands-osaka', 'naniwa-suzuki', 'osaka-tea-ware', 'tenma-kiriko', 'senshu-towel', 'amidaike-daikoku', 'awagen-wayo', 'baton-dor', 'taneya', 'oguraya-yamamoto', 'gokan-kitahama', 'osaka-sake-jizake', 'mugi-shochu']
   }
 ];

@@ -65,7 +65,7 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
       <button type="button" class="portal-card" data-tab="explore">
         <div class="portal-top">
           <span class="portal-icon">🍽️</span>
-          <span class="portal-tag">엄선 59곳 (중복 0)</span>
+          <span class="portal-tag">엄선 62곳 (중복 0)</span>
         </div>
         <h4 class="portal-title">오사카 맛집 · 다실 · 디저트 도감</h4>
         <p class="portal-desc">스토리 속 원조 노포와 현역 맛집 총집결! 마츠사카규·스키야키, 오므라이스·카레, 판초밥·키츠네·카스 우동, 180년 오뎅·모던야키, 340년 양갱·차</p>
@@ -75,7 +75,7 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
       <button type="button" class="portal-card" data-tab="spots">
         <div class="portal-top">
           <span class="portal-icon">🛍️</span>
-          <span class="portal-tag">엄선 27곳 (중복 0)</span>
+          <span class="portal-tag">엄선 24곳 (중복 0)</span>
         </div>
         <h4 class="portal-title">명소 · 캐릭터/문구 · 장인명품 도감</h4>
         <p class="portal-desc">1,300년 단풍잎 튀김 미노오 폭포·나카자키초 골목, 지브리·치이카와·2,400대 가챠의 숲, 140년 만년필·문구, 오사카 가방·수제 지갑·사카이 식도</p>
@@ -294,6 +294,11 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
                 <span class="access-icon">🚇</span>
                 <span>{m.access}</span>
               </div>
+              {m.placeId && (
+                <button type="button" class="btn-teaser-place" data-jump-place={m.placeId}>
+                  🏪 {m.placeLabel || '관련 매장 상세 보기 →'}
+                </button>
+              )}
             </div>
           </article>
         );
@@ -331,6 +336,11 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
               <strong class="tip-badge">💡 현지 팁</strong>
               <span>{item.tip}</span>
             </div>
+            {item.placeId && (
+              <button type="button" class="btn-teaser-place" data-jump-place={item.placeId}>
+                🏪 {item.placeLabel || '관련 노포·명점 보기 →'}
+              </button>
+            )}
           </div>
         </article>
       ))}
