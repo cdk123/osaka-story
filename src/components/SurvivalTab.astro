@@ -1,73 +1,29 @@
 ---
 import { airportRoutes, transitTips, signboards, etiquetteRules } from '../data/survival';
 import { dialects } from '../data/dialect';
-import { mediaWorks, photoSpots, specialThemes } from '../data/media';
+import { mediaWorks, photoSpots } from '../data/media';
 ---
 
 <div class="survival-view">
-  <!-- 0. 12월 31일(오미소카) ~ 1월 3일(쇼가츠) 연말연시 오사카 특별 가이드 & 생존 특보 -->
-  <section class="newyear-special-banner">
-    <div class="ny-header">
-      <div class="ny-badge-row">
-        <span class="stamp-badge ny-stamp">年末年始 特集 · 12/31~1/3</span>
-        <span class="ny-pill">연말연시 오사카 여행자 필독</span>
-      </div>
-      <h3 class="ny-title">🎍 12월 31일 ~ 1월 3일 연말연시 오사카 특별 이벤트 & 생존 법칙</h3>
-      <p class="ny-lead">
-        일본에서 12월 31일(오미소카, 大晦日)부터 1월 3일(쇼가츠, 正月)까지는 1년 중 가장 크고 화려한 명절입니다. 이 시기에만 경험할 수 있는 3대 전통 문화와 식당·백화점 휴무일 대처법을 미리 확인하세요!
+  <!-- 0. 12월·연말연시 여행자를 위한 전용 탭 안내 바로가기 바 (중복 제거) -->
+  <section class="newyear-shortcut-bar">
+    <div class="nys-left">
+      <span class="stamp-badge ny-stamp">🎄 12월·연말연시 안내</span>
+      <p class="nys-text">
+        <strong>12월 31일~1월 3일 오사카 여행자라면?</strong> 짚 감은 술통(코모다루)·해넘이 소바·스미요시 신년 축제·백화점 휴무 생존법과 일본 맥도날드 ‘그라코로’ 주문 가이드는 전용 탭에서 사진과 함께 보실 수 있습니다.
       </p>
     </div>
-
-    <div class="ny-cards-grid">
-      <div class="ny-card">
-        <div class="ny-card-top">
-          <span class="ny-date-tag">12월 31일 밤 (大晦日)</span>
-          <h4 class="ny-card-title">🍜 해넘이 메밀소바 ‘토시코시 소바’ & 데파치카 마감 세일</h4>
-        </div>
-        <p class="ny-card-desc">
-          일본인들은 12월 31일 저녁에 가늘고 긴 메밀면처럼 <strong>‘장수’</strong>하고, 잘 끊어지는 메밀처럼 <strong>‘올해의 액운을 싹둑 끊어낸다’</strong>는 뜻으로 반드시 <strong>토시코시 소바(年越しそば)</strong>를 먹습니다.
-        </p>
-        <div class="ny-tip-box">
-          <strong>💡 실전 팁:</strong> 12월 31일에는 백화점 지하 식품관(한큐·타카시마야·한신)이 <strong>오후 6시경 조기 폐점</strong>합니다! 오후 4~5시쯤 방문하면 1년에 단 한 번 파는 명절 찬합 <strong>‘미니 오세치 요리(おせち)’와 새우튀김 소바</strong>를 할인된 가격에 득템할 수 있습니다.
-        </div>
-      </div>
-
-      <div class="ny-card">
-        <div class="ny-card-top">
-          <span class="ny-date-tag">12/31 자정 ~ 1월 3일 (初詣)</span>
-          <h4 class="ny-card-title">⛩️ 스미요시 타이샤·오사카 텐만구 신년 참배 & 포장마차 대축제</h4>
-        </div>
-        <p class="ny-card-desc">
-          새해 첫 참배인 <strong>‘하츠모데(初詣)’</strong>를 위해 1,800년 역사의 <strong>〈스미요시 타이샤〉</strong>와 <strong>〈오사카 텐만구〉</strong>, <strong>〈시텐노지〉</strong>에 수백만 명이 모이며, 신사 앞 거리에 수백 개의 <strong>전통 축제 포장마차(야타이)</strong>가 불을 밝힙니다.
-        </p>
-        <div class="ny-tip-box">
-          <strong>💡 실전 팁:</strong> 12월 31일 밤에는 오사카 지하철과 사철이 새벽까지 연장·종야 운행하는 노선이 많습니다. 신사에서 <strong>새해 운세 뽑기(오미쿠지, ¥200)</strong>를 해보고 포장마차에서 갓 구운 베이비 카스테라와 따뜻한 감주(아마자케)를 맛보세요!
-        </div>
-      </div>
-
-      <div class="ny-card">
-        <div class="ny-card-top">
-          <span class="ny-date-tag">1월 1일 ~ 1월 2일 (元旦·初売り)</span>
-          <h4 class="ny-card-title">🛍️ 1월 1일 백화점 휴무 생존법 & ‘후쿠부쿠로(복주머니)’</h4>
-        </div>
-        <p class="ny-card-desc">
-          <strong>1월 1일(원단)에는 한큐·한신·타카시마야 등 주요 백화점과 개인 노포 식당들이 휴무</strong>입니다. 대신 <strong>1월 1일(쇼핑몰·가전) 및 1월 2일 아침(백화점 첫 세일 하츠우리)</strong>에는 가격의 2~3배 상품이 든 <strong>‘후쿠부쿠로(福袋, 복주머니)’</strong>가 풀립니다!
-        </p>
-        <div class="ny-tip-box">
-          <strong>💡 1월 1일 식사 구원투수:</strong> 개인 노포가 쉬는 1월 1일에는 연중무휴로 문을 여는 <strong>도톤보리 대형 명소(카무쿠라 배추라멘, 보테쥬, 치보, 오사카 오쇼, 카니도라쿠)</strong>와 한국 미진출 명문 체인(<strong>야요이켄, 코메다 커피, 로얄호스트, 맥도날드 겨울 한정 ‘그라코로’</strong>)을 공략하세요!
-        </div>
-      </div>
-    </div>
+    <button type="button" class="btn-nys-go" data-tab="december">
+      🎄 12월·연말연시 특집 보러가기 →
+    </button>
   </section>
-
-  <div class="seigaiha-divider"></div>
 
   <!-- 1. 간사이 공항 → 시내 이동 3대장 -->
   <section class="survival-section">
     <div class="sec-title-wrap">
       <span class="stamp-badge">공항 입국</span>
       <h3 class="sec-title">간사이 공항에서 시내 들어가는 3대 방법</h3>
-      <p class="sec-sub">숙소 위치와 동행자(가족 수)에 맞춰 가장 편한 이동 수단을 선택하세요.</p>
+      <p class="sec-sub">숙소 위치와 일행 인원수에 맞춰 가장 편한 이동 수단을 선택하세요.</p>
     </div>
 
     <div class="airport-grid">
@@ -257,6 +213,11 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
             <blockquote class="media-quote">
               <p>{work.quoteOrScene}</p>
             </blockquote>
+            {work.placeId && (
+              <button type="button" class="btn-survival-place-jump" data-jump-place={work.placeId}>
+                🏪 {work.placeLabel || '배경 명소·가게 상세 보기 →'}
+              </button>
+            )}
           </div>
         </div>
       ))}
@@ -270,7 +231,7 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
     <div class="sec-title-wrap">
       <span class="stamp-badge">인생 사진</span>
       <h3 class="sec-title">흔하지 않은 오사카 인생샷 포토존 5선</h3>
-      <p class="sec-sub">관광객 인파 없이 가족·연인과 고즈넉한 추억을 남기는 감성 촬영지</p>
+      <p class="sec-sub">관광객 인파 없이 일행과 고즈넉한 추억을 남기는 감성 촬영지</p>
     </div>
 
     <div class="photospot-grid">
@@ -291,28 +252,12 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
               <strong class="ptip-label">📸 촬영 팁:</strong>
               <span class="ptip-text">{spot.tip}</span>
             </div>
+            {spot.placeId && (
+              <button type="button" class="btn-survival-place-jump" data-jump-place={spot.placeId}>
+                📍 {spot.placeLabel || '이 명소 상세 카드 보기 →'}
+              </button>
+            )}
           </div>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <div class="seigaiha-divider"></div>
-
-  <!-- 8. 놓치면 아쉬운 알짜 테마 4선 -->
-  <section class="survival-section">
-    <div class="sec-title-wrap">
-      <span class="stamp-badge">심층 탐구</span>
-      <h3 class="sec-title">놓치면 아쉬운 오사카 미식·문화 알짜 테마</h3>
-      <p class="sec-sub">회전초밥 발상지, 베이커리 수도 간사이, 소라니와 온천 병우유, 편의점 돈베이 W 야식학</p>
-    </div>
-
-    <div class="themes-grid">
-      {specialThemes.map((thm) => (
-        <div class="theme-card">
-          <h4 class="thm-title">{thm.titleKo}</h4>
-          <span class="thm-sub">{thm.subtitle}</span>
-          <p class="thm-desc">{thm.content}</p>
         </div>
       ))}
     </div>
@@ -327,30 +272,32 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
     padding-bottom: 50px;
   }
 
-  /* 연말연시 특집 배너 */
-  .newyear-special-banner {
+  /* 12월·연말연시 전용 탭 바로가기 바 */
+  .newyear-shortcut-bar {
     background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
     color: #FFFFFF;
-    border: 2px solid #D63B22;
-    border-radius: 18px;
-    padding: clamp(20px, 3vw, 32px);
-    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.18);
+    border: 1.5px solid #D63B22;
+    border-radius: 14px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 12px;
   }
 
-  .ny-header {
+  @media (min-width: 768px) {
+    .newyear-shortcut-bar {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .nys-left {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-  }
-
-  .ny-badge-row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
+    align-items: flex-start;
+    gap: 6px;
   }
 
   .ny-stamp {
@@ -359,91 +306,52 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
     border-color: #FFFFFF;
   }
 
-  .ny-pill {
-    font-size: 0.76rem;
-    font-weight: 700;
-    color: #FCD34D;
-    background: rgba(252, 211, 77, 0.15);
-    border: 1px solid rgba(252, 211, 77, 0.4);
-    padding: 3px 10px;
-    border-radius: 20px;
-  }
-
-  .ny-title {
-    font-family: var(--font-serif);
-    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
-    font-weight: 800;
-    color: #FFFFFF;
-    line-height: 1.35;
-  }
-
-  .ny-lead {
-    font-size: 0.92rem;
+  .nys-text {
+    font-size: 0.86rem;
     color: #E2E8F0;
-    line-height: 1.65;
+    line-height: 1.55;
   }
 
-  .ny-cards-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
+  .btn-nys-go {
+    align-self: flex-start;
+    flex-shrink: 0;
+    background: #D63B22;
+    color: #FFFFFF;
+    font-size: 0.82rem;
+    font-weight: 800;
+    padding: 9px 16px;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: background 0.15s ease;
   }
 
-  @media (min-width: 1024px) {
-    .ny-cards-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+  @media (min-width: 768px) {
+    .btn-nys-go {
+      align-self: center;
     }
   }
 
-  .ny-card {
-    background: rgba(255, 255, 255, 0.97);
-    color: #1E293B;
-    border-radius: 14px;
-    padding: 18px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  .btn-nys-go:hover {
+    background: #B52812;
   }
 
-  .ny-card-top {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .ny-date-tag {
-    align-self: flex-start;
-    font-size: 0.72rem;
-    font-weight: 800;
-    color: #FFFFFF;
-    background: #D63B22;
-    padding: 2px 8px;
-    border-radius: 4px;
-  }
-
-  .ny-card-title {
-    font-family: var(--font-serif);
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: #0F172A;
-    line-height: 1.35;
-  }
-
-  .ny-card-desc {
-    font-size: 0.84rem;
-    color: #334155;
-    line-height: 1.6;
-  }
-
-  .ny-tip-box {
-    background: #FFFBEB;
-    border: 1px dashed #F59E0B;
-    border-radius: 8px;
-    padding: 10px 12px;
-    font-size: 0.78rem;
-    color: #78350F;
-    line-height: 1.5;
+  .btn-survival-place-jump {
     margin-top: auto;
+    align-self: flex-start;
+    background: #FFF5F5;
+    border: 1px solid #FECACA;
+    color: #B52812;
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 7px 12px;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+  }
+
+  .btn-survival-place-jump:hover {
+    background: var(--color-vermilion);
+    border-color: var(--color-vermilion);
+    color: #FFFFFF;
   }
 
   .survival-section {

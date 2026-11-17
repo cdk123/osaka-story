@@ -81,6 +81,8 @@ export interface MediaWork {
   description: string;
   quoteOrScene: string;
   image: string;
+  placeId?: string;
+  placeLabel?: string;
 }
 
 export interface PhotoSpot {
@@ -91,4 +93,6 @@ export interface PhotoSpot {
   tip: string;
   sceneDesc: string;
   image: string;
+  placeId?: string;
+  placeLabel?: string;
 }

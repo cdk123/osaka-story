@@ -357,10 +357,20 @@ const chapterMeta: Record<string, {
         <div class="special-themes-grid">
           {specialThemes.map((t, tIdx) => (
             <div class="special-theme-card">
+              {t.image && (
+                <div class="theme-thumb-wrap">
+                  <img src={t.image} alt={t.titleKo} loading="lazy" class="theme-thumb-img" />
+                </div>
+              )}
               <span class="theme-num">STORY THEME 0{tIdx + 1}</span>
               <h4 class="theme-title">{t.titleKo}</h4>
               <p class="theme-sub">{t.subtitle}</p>
               <p class="theme-body">{t.content}</p>
+              {t.placeId && (
+                <button type="button" class="btn-theme-jump" data-jump-place={t.placeId}>
+                  🏪 {t.placeLabel || '관련 매장 상세 보기 →'}
+                </button>
+              )}
             </div>
           ))}
         </div>
@@ -1158,5 +1168,40 @@ const chapterMeta: Record<string, {
     font-size: 0.92rem;
     font-weight: 800;
     line-height: 1.35;
+  }
+
+  .theme-thumb-wrap {
+    width: 100%;
+    height: 165px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #E2E8F0;
+    margin-bottom: 6px;
+  }
+
+  .theme-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .btn-theme-jump {
+    margin-top: auto;
+    align-self: flex-start;
+    padding: 7px 12px;
+    border-radius: 8px;
+    background: #FFF5F5;
+    border: 1px solid #FECACA;
+    color: #B52812;
+    font-size: 0.78rem;
+    font-weight: 800;
+    transition: all 0.15s ease;
+  }
+
+  .btn-theme-jump:hover {
+    background: var(--color-vermilion);
+    border-color: var(--color-vermilion);
+    color: #FFFFFF;
   }
 </style>
