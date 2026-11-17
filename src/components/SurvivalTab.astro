@@ -304,16 +304,25 @@ import { mediaWorks, photoSpots, specialThemes } from '../data/media';
     }
   }
 
-  /* 공항 3대장 (태블릿 2단 -> 데스크톱 3단) */
+  /* 공항 3대장 (태블릿 2단 + 3번째 풀와이드 -> 데스크톱 3단) */
   .airport-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--card-gap);
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 640px) and (max-width: 1023px) {
     .airport-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .airport-grid > .airport-card:nth-child(3):last-child {
+      grid-column: 1 / -1;
+    }
+    .transit-grid > .transit-card:nth-child(3):last-child {
+      grid-column: 1 / -1;
+    }
+    .photospot-grid > .photo-card:nth-child(5):last-child {
+      grid-column: 1 / -1;
     }
   }
 

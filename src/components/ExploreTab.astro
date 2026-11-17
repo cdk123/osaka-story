@@ -331,25 +331,22 @@ const categorySections = [
     flex-shrink: 0;
   }
 
-  /* 2. 스마트 필터 & 카테고리 칩 바 (Sticky) */
+  /* 2. 스마트 필터 & 카테고리 칩 바 (이중 Sticky 해제 — 스크롤 시 화면 가림 및 상단 메뉴 걸림 원천 제거) */
   .filter-sticky-bar {
-    position: sticky;
-    top: var(--sticky-sub-top);
-    z-index: 30;
-    background: rgba(255, 255, 255, 0.97);
-    backdrop-filter: blur(10px);
+    background: #FFFFFF;
     border: 1px solid var(--color-border);
-    border-radius: 14px;
-    padding: 12px 14px;
-    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    padding: 16px 16px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
   }
 
   @media (min-width: 768px) {
     .filter-sticky-bar {
-      padding: 14px 18px;
+      padding: 18px 22px;
+      gap: 14px;
     }
   }
 

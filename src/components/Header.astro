@@ -46,6 +46,15 @@
     box-shadow: 0 4px 16px rgba(15, 23, 42, 0.15);
   }
 
+  /* 태블릿·데스크톱에서는 스크롤 시 로고 헤더가 자연스럽게 올라가고 5대 명패 탭바만 상단(top: 0)에 깔끔하게 고정되도록 설정 */
+  @media (min-width: 768px) {
+    .noren-header {
+      position: relative;
+      z-index: 45;
+      box-shadow: none;
+    }
+  }
+
   .noren-curtain {
     padding: 12px 0 10px 0;
     border-bottom: 2px solid #0F172A;
