@@ -17,7 +17,7 @@
       <div class="header-actions">
         <button type="button" id="tab-picks" data-tab="picks" class="header-picks-btn" aria-label="내 찜 바구니 열기">
           <span class="picks-heart">♥</span>
-          <span class="picks-label">내 찜</span>
+          <span class="picks-label"><span class="hide-xs">내 </span>찜</span>
           <span class="picks-badge-num" id="header-picks-counter">0</span>
         </button>
 
@@ -62,7 +62,7 @@
   }
 
   .noren-curtain {
-    padding: 12px 0 10px 0;
+    padding: 9px 0 8px 0;
     border-bottom: 2px solid #0F172A;
   }
 
@@ -70,7 +70,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 8px;
   }
 
   .header-brand {
@@ -81,13 +81,14 @@
   .logo-link {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 7px;
     text-decoration: none;
   }
 
   .lantern-icon {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     line-height: 1;
+    flex-shrink: 0;
     filter: drop-shadow(0 2px 4px rgba(214, 59, 34, 0.5));
   }
 
@@ -98,9 +99,9 @@
   }
 
   .sub-title {
-    font-size: 0.72rem;
+    font-size: 0.66rem;
     color: #94A3B8;
-    letter-spacing: -0.2px;
+    letter-spacing: -0.3px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -108,12 +109,31 @@
 
   .main-title {
     font-family: var(--font-serif);
-    font-size: 1.25rem;
+    font-size: 1.08rem;
     font-weight: 800;
     color: #FFFFFF;
     letter-spacing: -0.5px;
     line-height: 1.2;
+    white-space: nowrap;
     margin: 0;
+  }
+
+  @media (min-width: 640px) {
+    .header-container {
+      gap: 12px;
+    }
+    .logo-link {
+      gap: 10px;
+    }
+    .lantern-icon {
+      font-size: 1.8rem;
+    }
+    .main-title {
+      font-size: 1.25rem;
+    }
+    .sub-title {
+      font-size: 0.72rem;
+    }
   }
 
   @media (min-width: 768px) {
@@ -131,22 +151,51 @@
   .header-actions {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     flex-shrink: 0;
+  }
+
+  .hide-xs {
+    display: none;
+  }
+
+  .header-actions :global(.btn-label) {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .header-actions {
+      gap: 6px;
+    }
+    .hide-xs {
+      display: inline;
+    }
+    .header-actions :global(.btn-label) {
+      display: inline;
+    }
   }
 
   .header-picks-btn {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    font-size: 0.82rem;
+    gap: 4px;
+    font-size: 0.76rem;
     font-weight: 800;
-    padding: 5px 11px;
+    padding: 5px 8px;
     border-radius: 20px;
     background: var(--color-vermilion);
     color: #FFFFFF;
+    white-space: nowrap;
     box-shadow: 0 2px 8px rgba(214, 59, 34, 0.35);
     transition: all 0.15s ease;
+  }
+
+  @media (min-width: 640px) {
+    .header-picks-btn {
+      gap: 5px;
+      font-size: 0.82rem;
+      padding: 5px 11px;
+    }
   }
 
   .header-picks-btn:hover {
@@ -172,13 +221,21 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.82rem;
-    padding: 4px 12px;
+    font-size: 0.76rem;
+    padding: 5px 9px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #F8FAFC;
     background: rgba(255, 255, 255, 0.08);
+    white-space: nowrap;
     transition: all 0.2s ease;
+  }
+
+  @media (min-width: 640px) {
+    .share-btn {
+      font-size: 0.82rem;
+      padding: 4px 12px;
+    }
   }
 
   .share-btn:hover {

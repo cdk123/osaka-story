@@ -163,13 +163,20 @@ const {
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        font-size: 0.82rem;
-        padding: 5px 12px;
+        font-size: 0.76rem;
+        padding: 5px 9px;
         border-radius: 20px;
         border: 1px solid rgba(255, 255, 255, 0.3);
         color: #FFFFFF;
         background: rgba(255, 255, 255, 0.12);
+        white-space: nowrap;
         transition: all 0.2s ease;
+      }
+      @media (min-width: 640px) {
+        .large-text-btn {
+          font-size: 0.82rem;
+          padding: 5px 12px;
+        }
       }
       .large-text-btn.active {
         background: var(--color-vermilion);
@@ -199,7 +206,7 @@ const {
       if ('caches' in window) {
         caches.keys().then((keys) => {
           keys.forEach((key) => {
-            if (key !== 'osaka-story-v5') {
+            if (key !== 'osaka-story-v6') {
               caches.delete(key);
             }
           });

@@ -204,29 +204,53 @@ import { places } from '../data/places';
 
   .modal-header {
     background: #1E293B;
-    padding: 10px 14px;
+    padding: 8px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 6px;
     flex-shrink: 0;
   }
 
   .modal-tabs {
-    display: flex;
-    gap: 6px;
-    overflow-x: auto;
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
   }
 
   .m-tab-btn {
-    padding: 6px 12px;
+    padding: 6px 3px;
     border-radius: 6px;
-    font-size: 0.84rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    color: #94A3B8;
+    letter-spacing: -0.4px;
+    color: #CBD5E1;
     background: rgba(255, 255, 255, 0.08);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     transition: all 0.15s ease;
+  }
+
+  @media (min-width: 520px) {
+    .modal-header {
+      padding: 10px 14px;
+      gap: 8px;
+    }
+    .modal-tabs {
+      display: flex;
+      gap: 6px;
+    }
+    .m-tab-btn {
+      padding: 6px 12px;
+      font-size: 0.84rem;
+      letter-spacing: 0;
+    }
   }
 
   .m-tab-btn.active {
