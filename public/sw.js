@@ -1,5 +1,5 @@
 // PWA Service Worker for Osaka Story (Network-First for HTML/CSS, Cache-First for Images)
-const CACHE_NAME = 'osaka-story-v6';
+const CACHE_NAME = 'osaka-story-v7';
 const ASSETS_TO_CACHE = [
   '/manifest.webmanifest',
   '/favicon.svg',

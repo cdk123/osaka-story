@@ -539,9 +539,10 @@ const chapterMeta: Record<string, {
   .intro-title {
     font-family: var(--font-serif);
     font-size: clamp(1.2rem, 2.2vw, 1.45rem);
-    font-weight: 800;
+    font-weight: 700;
+    letter-spacing: -0.02em;
     color: #0F172A;
-    line-height: 1.3;
+    line-height: 1.35;
   }
 
   .intro-desc {
@@ -557,7 +558,7 @@ const chapterMeta: Record<string, {
     border: 1px solid #CBD5E1;
     color: #1E293B;
     font-size: 0.82rem;
-    font-weight: 700;
+    font-weight: 500;
     padding: 9px 16px;
     border-radius: 8px;
     white-space: nowrap;
@@ -626,7 +627,7 @@ const chapterMeta: Record<string, {
 
   .tab-idx {
     font-family: var(--font-serif);
-    font-weight: 800;
+    font-weight: 600;
     font-size: 0.76rem;
     padding: 2px 6px;
     border-radius: 4px;
@@ -640,7 +641,11 @@ const chapterMeta: Record<string, {
   }
 
   .tab-label {
-    font-weight: 700;
+    font-weight: 500;
+  }
+
+  .chapter-tab-btn.active .tab-label {
+    font-weight: 600;
   }
 
   .chapters-reader-container {
@@ -715,7 +720,7 @@ const chapterMeta: Record<string, {
     color: #FFFFFF;
     font-family: var(--font-serif);
     font-size: 0.78rem;
-    font-weight: 800;
+    font-weight: 600;
     padding: 3px 10px;
     border-radius: 4px;
   }
@@ -724,7 +729,7 @@ const chapterMeta: Record<string, {
     background: rgba(255, 255, 255, 0.18);
     color: #F8FAFC;
     font-size: 0.78rem;
-    font-weight: 600;
+    font-weight: 400;
     padding: 3px 10px;
     border-radius: 4px;
     backdrop-filter: blur(4px);
@@ -733,16 +738,17 @@ const chapterMeta: Record<string, {
   .ch-title {
     font-family: var(--font-serif);
     font-size: clamp(1.4rem, 2.6vw, 1.9rem);
-    font-weight: 800;
+    font-weight: 700;
+    letter-spacing: -0.02em;
     color: #FFFFFF;
-    line-height: 1.35;
+    line-height: 1.38;
   }
 
   .ch-subtitle {
     font-size: clamp(0.92rem, 1.5vw, 1.05rem);
     color: #FCD34D;
-    font-weight: 600;
-    line-height: 1.45;
+    font-weight: 500;
+    line-height: 1.48;
   }
 
   .ch-body-inner {
@@ -765,15 +771,15 @@ const chapterMeta: Record<string, {
 
   .lead-kicker {
     font-size: 0.76rem;
-    font-weight: 800;
+    font-weight: 600;
     color: var(--color-vermilion-text);
   }
 
   .ch-lead-text {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500;
     color: #1E293B;
-    line-height: 1.68;
+    line-height: 1.72;
   }
 
   /* 단락별 스토리 + 스토리 화보 사진 2단 조판 */
@@ -822,9 +828,10 @@ const chapterMeta: Record<string, {
     gap: 10px;
     font-family: var(--font-serif);
     font-size: clamp(1.1rem, 1.9vw, 1.25rem);
-    font-weight: 800;
+    font-weight: 600;
+    letter-spacing: -0.015em;
     color: #0F172A;
-    line-height: 1.4;
+    line-height: 1.42;
   }
 
   .subhead-num {
@@ -838,7 +845,7 @@ const chapterMeta: Record<string, {
     color: #FFFFFF;
     font-family: var(--font-sans);
     font-size: 0.78rem;
-    font-weight: 800;
+    font-weight: 600;
     flex-shrink: 0;
   }
 
@@ -879,10 +886,10 @@ const chapterMeta: Record<string, {
   .figure-caption {
     padding: 9px 12px;
     font-size: 0.76rem;
-    font-weight: 600;
+    font-weight: 400;
     color: #475569;
     background: #FFFFFF;
-    line-height: 1.45;
+    line-height: 1.5;
   }
 
   /* 인용구 박스 */
@@ -908,9 +915,9 @@ const chapterMeta: Record<string, {
   .quote-text {
     font-family: var(--font-serif);
     font-size: 1.05rem;
-    font-weight: 700;
+    font-weight: 500;
     color: #785204;
-    line-height: 1.65;
+    line-height: 1.7;
     margin-bottom: 6px;
     position: relative;
     z-index: 1;
@@ -967,7 +974,7 @@ const chapterMeta: Record<string, {
     background: var(--color-vermilion);
     color: #FFFFFF;
     font-size: 0.72rem;
-    font-weight: 700;
+    font-weight: 600;
     padding: 3px 8px;
     border-radius: 4px;
     white-space: nowrap;
@@ -976,7 +983,7 @@ const chapterMeta: Record<string, {
   .deck-title {
     font-family: var(--font-serif);
     font-size: 1rem;
-    font-weight: 800;
+    font-weight: 600;
     color: #0F172A;
     line-height: 1.35;
   }
@@ -984,7 +991,7 @@ const chapterMeta: Record<string, {
   .deck-hint {
     font-size: 0.76rem;
     color: #64748B;
-    font-weight: 600;
+    font-weight: 400;
   }
 
   .jump-chips-grid {
@@ -1060,7 +1067,7 @@ const chapterMeta: Record<string, {
 
   .jp-ko {
     font-size: 0.88rem;
-    font-weight: 800;
+    font-weight: 600;
     color: #0F172A;
     white-space: nowrap;
     overflow: hidden;
@@ -1069,7 +1076,7 @@ const chapterMeta: Record<string, {
 
   .jp-area {
     font-size: 0.66rem;
-    font-weight: 700;
+    font-weight: 500;
     padding: 1px 5px;
     border-radius: 4px;
     background: #F1F5F9;
@@ -1096,7 +1103,7 @@ const chapterMeta: Record<string, {
 
   .jp-arrow {
     font-size: 0.74rem;
-    font-weight: 800;
+    font-weight: 600;
     color: var(--color-vermilion-text);
     flex-shrink: 0;
   }
@@ -1126,20 +1133,20 @@ const chapterMeta: Record<string, {
 
   .theme-num {
     font-size: 0.72rem;
-    font-weight: 800;
+    font-weight: 600;
     color: var(--color-vermilion-text);
   }
 
   .theme-title {
     font-family: var(--font-serif);
     font-size: 1.12rem;
-    font-weight: 800;
+    font-weight: 600;
     color: #0F172A;
   }
 
   .theme-sub {
     font-size: 0.82rem;
-    font-weight: 700;
+    font-weight: 500;
     color: #785204;
   }
 
@@ -1202,7 +1209,7 @@ const chapterMeta: Record<string, {
 
   .pager-dir {
     font-size: 0.76rem;
-    font-weight: 700;
+    font-weight: 500;
     color: #64748B;
   }
 
@@ -1212,7 +1219,7 @@ const chapterMeta: Record<string, {
 
   .pager-title {
     font-size: 0.92rem;
-    font-weight: 800;
+    font-weight: 600;
     line-height: 1.35;
   }
 
@@ -1241,7 +1248,7 @@ const chapterMeta: Record<string, {
     border: 1px solid #FECACA;
     color: #B52812;
     font-size: 0.78rem;
-    font-weight: 800;
+    font-weight: 600;
     transition: all 0.15s ease;
   }
 

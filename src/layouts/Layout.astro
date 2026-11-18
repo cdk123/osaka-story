@@ -28,10 +28,12 @@ const {
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/images/city/hero-osaka.jpg" />
     
-    <!-- Google Fonts: Shippori Mincho & Noto Serif JP & Pretendard -->
+    <!-- Fonts: Pretendard Variable + Noto Serif KR + Shippori Mincho -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700;900&family=Shippori+Mincho:wght@600;700;800&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&family=Noto+Serif+JP:wght@500;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet" />
     
     <style is:global>
       :root {
@@ -48,8 +50,8 @@ const {
         --color-wood: #D4A373;
         --color-wood-dark: #8C531B;
         
-        --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-        --font-serif: 'Shippori Mincho', 'Noto Serif JP', 'Batang', serif;
+        --font-sans: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+        --font-serif: 'Noto Serif KR', 'Shippori Mincho', 'Noto Serif JP', 'Batang', serif;
         
         --font-scale: 100%;
         --container-max: 1280px;
@@ -89,13 +91,21 @@ const {
 
       body {
         font-family: var(--font-sans);
+        font-weight: 400;
         background-color: var(--color-bg);
         color: var(--color-text);
-        line-height: 1.68;
+        line-height: 1.72;
+        letter-spacing: -0.01em;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
         word-break: keep-all;
         overflow-wrap: break-word;
         overflow-x: hidden;
         min-height: 100vh;
+      }
+
+      strong, b {
+        font-weight: 600;
       }
 
       /* 배경 잔잔한 화지 질감 */
@@ -137,7 +147,7 @@ const {
         align-items: center;
         justify-content: center;
         font-family: var(--font-serif);
-        font-weight: 800;
+        font-weight: 600;
         font-size: 0.76rem;
         line-height: 1;
         padding: 4px 8px;
@@ -181,7 +191,7 @@ const {
       .large-text-btn.active {
         background: var(--color-vermilion);
         border-color: var(--color-vermilion);
-        font-weight: 700;
+        font-weight: 600;
       }
 
       /* 모달 열렸을 때 스크롤 잠금 */
@@ -206,7 +216,7 @@ const {
       if ('caches' in window) {
         caches.keys().then((keys) => {
           keys.forEach((key) => {
-            if (key !== 'osaka-story-v6') {
+            if (key !== 'osaka-story-v7') {
               caches.delete(key);
             }
           });
