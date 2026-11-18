@@ -176,8 +176,10 @@ const decStories = [
       return (
         <article class="dec-story-article">
           <div class="ds-media-col">
-            <img src={st.image} alt={st.title} loading="lazy" class="ds-img" />
-            <p class="ds-caption">📸 {st.imageCaption}</p>
+            <figure class="ds-figure">
+              <img src={st.image} alt={st.title} loading="lazy" class="ds-img" />
+              <figcaption class="ds-caption">📸 {st.imageCaption}</figcaption>
+            </figure>
           </div>
 
           <div class="ds-content-col">
@@ -460,16 +462,33 @@ const decStories = [
 
   .ds-media-col {
     width: 100%;
-    background: #0F172A;
+    background: #FFFDF9;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     flex-shrink: 0;
   }
 
   @media (min-width: 960px) {
     .ds-media-col {
-      width: 380px;
+      width: 400px;
+      padding: 28px 0 28px 28px;
+    }
+  }
+
+  .ds-figure {
+    margin: 0;
+    background: #F8FAFC;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 960px) {
+    .ds-figure {
+      border: 1px solid #E2DDD3;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(15, 23, 42, 0.06);
     }
   }
 
@@ -485,8 +504,10 @@ const decStories = [
   .ds-caption {
     padding: 10px 14px;
     font-size: 0.76rem;
-    color: #E2E8F0;
-    background: #0F172A;
+    font-weight: 600;
+    color: #475569;
+    background: #FFFFFF;
+    border-top: 1px solid #F1F5F9;
     line-height: 1.45;
   }
 
