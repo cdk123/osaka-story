@@ -17,7 +17,9 @@ export interface CityDistrict {
   color: string;
   image: string;
   googleQuery: string;
-  exploreArea: 'umeda' | 'namba' | 'shinsaibashi' | 'other';
+  jumpTab: 'explore' | 'spots';
+  jumpFilter: string;
+  jumpLabel: string;
 }
 
 export interface TraditionalMarket {
@@ -59,7 +61,7 @@ export const busanComparison = {
     },
     {
       label: '인구 비교',
-      osakaCity: '약 278만 명 (주간 활동인구 370만+)',
+      osakaCity: '약 278만 명 (주간 활동인구 370만 이상)',
       osakaPrefecture: '약 880만 명 (일본 2위 대도시권)',
       busanCompare: '부산(약 330만 명)과 거주 인구는 비슷하나, 낮에는 인근 교토·고베에서 수백만 명이 유입',
       note: '도쿄 다음으로 거대한 일본 경제의 핵심 심장부입니다.'
@@ -86,7 +88,9 @@ export const districts: CityDistrict[] = [
     color: '#1E293B',
     image: '/images/city/district-kita.jpg',
     googleQuery: '梅田 大阪駅 グランフロント大阪',
-    exploreArea: 'umeda'
+    jumpTab: 'explore',
+    jumpFilter: 'umeda',
+    jumpLabel: '이 구역 맛집 보기 →'
   },
   {
     id: 'minami',
@@ -99,7 +103,9 @@ export const districts: CityDistrict[] = [
     color: '#D63B22',
     image: '/images/city/district-minami.jpg',
     googleQuery: '道頓堀 難波 心斎橋',
-    exploreArea: 'namba'
+    jumpTab: 'explore',
+    jumpFilter: 'namba',
+    jumpLabel: '이 구역 맛집 보기 →'
   },
   {
     id: 'chuo-tanimachi',
@@ -112,7 +118,9 @@ export const districts: CityDistrict[] = [
     color: '#785204',
     image: '/images/city/district-chuo.jpg',
     googleQuery: '大阪城公園 空堀商店街',
-    exploreArea: 'other'
+    jumpTab: 'explore',
+    jumpFilter: 'other',
+    jumpLabel: '이 구역 맛집 보기 →'
   },
   {
     id: 'tennoji-shinsekai',
@@ -125,7 +133,9 @@ export const districts: CityDistrict[] = [
     color: '#B8860B',
     image: '/images/city/district-tennoji.jpg',
     googleQuery: '新世界 通天閣 天王寺',
-    exploreArea: 'other'
+    jumpTab: 'spots',
+    jumpFilter: 'local-nature',
+    jumpLabel: '이 구역 명소 보기 →'
   },
   {
     id: 'bay-area',
@@ -138,7 +148,9 @@ export const districts: CityDistrict[] = [
     color: '#2563EB',
     image: '/images/places/soraniwa-onsen.jpg',
     googleQuery: '空庭温泉 OSAKA BAY TOWER 大阪港',
-    exploreArea: 'other'
+    jumpTab: 'spots',
+    jumpFilter: 'local-nature',
+    jumpLabel: '이 구역 명소 보기 →'
   },
   {
     id: 'hokusetsu-senshu',
@@ -151,7 +163,9 @@ export const districts: CityDistrict[] = [
     color: '#15803D',
     image: '/images/places/minoh-waterfall.jpg',
     googleQuery: '箕面大滝 箕面公園',
-    exploreArea: 'other'
+    jumpTab: 'spots',
+    jumpFilter: 'all',
+    jumpLabel: '이 구역 명소·명품 보기 →'
   }
 ];
 

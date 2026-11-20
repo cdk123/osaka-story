@@ -116,13 +116,13 @@ const chapterMeta: Record<string, {
       '전국시대 조총과 일본도를 벼리던 대장장이 도시, 사카이(堺)의 주방칼',
       '술과 차의 맛을 돋우는 나니와 주석기(스즈키)·덴마 키리코·센슈 타올',
       'Made in Osaka 로컬 가방(마스터피스)·수제 가죽지갑(무네카와)·140년 문구',
-      '“집안을 일으킨다(興す)” 220년 전통과자 오코시·G20 와교·백화점 명과'
+      '“집안을 일으킨다(興す)” 220년 전통과자 오코시·G20 와요·백화점 명과'
     ],
     paraPhotos: [
       { img: '/images/places/sakai-knives.jpg', caption: '일본 프로 셰프의 90%가 사용하며 장인이 수작업으로 벼려낸 600년 전통 사카이 단조 화식도(和包丁)' },
       { img: '/images/places/naniwa-suzuki.jpg', caption: '물이 정화되고 술과 차의 잡미를 없애주는 오사카 국가 지정 전통공예 나니와 주석기(大阪浪華錫器)' },
       { img: '/images/places/masterpiece-osaka.jpg', caption: '오사카 자체 공방 장인들이 만드는 로컬 가방 브랜드 마스터피스 플래그십 스토어' },
-      { img: '/images/places/amidaike-daikoku.jpg', caption: '출세와 번창을 기원하며 1805년부터 선물하던 오사카 전통 쌀강정 오코시와 G20 공식 선물 와교' }
+      { img: '/images/places/amidaike-daikoku.jpg', caption: '출세와 번창을 기원하며 1805년부터 선물하던 오사카 전통 쌀강정 오코시와 G20 공식 선물 와요' }
     ]
   },
   'chapter-7': {
@@ -145,7 +145,7 @@ const chapterMeta: Record<string, {
     shortTab: '8장 · 다도 혁명 · 건축 · 분라쿠 예술혼',
     heroImg: '/images/places/nakanoshima-culture.jpg',
     subheadings: [
-      '도요토미 히데요시의 황금 다실에 맞선 사카이 상인 센노 리큐의 ‘두 평짜리 흙벽 다실’',
+      '도요토미 히데요시의 황금 다실에 맞선 사카이 상인 센노 리큐의 ‘약 한 평(다다미 2장) 흙벽 다실’',
       '전 재산을 기부해 세운 나카노시마 중앙공회당과 복서 출신 건축가 안도 다다오의 ‘푸른 사과’',
       '인형 하나에 세 명의 장인이 영혼을 불어넣는 유네스코 무형유산 ‘분라쿠(文楽)’',
       '오사카 목욕탕(센토) 욕조의 비밀과 목욕 후 허리에 손을 얹고 마시는 병우유'
@@ -173,7 +173,7 @@ const chapterMeta: Record<string, {
       </div>
     </div>
     <button type="button" id="btn-toggle-all-chapters" class="btn-view-mode" data-mode="single">
-      📖 9개 장 전체 한꺼번에 펼치기
+      📖 전체 10편(프롤로그~8장·별책) 한꺼번에 펼치기
     </button>
   </section>
 
@@ -228,7 +228,7 @@ const chapterMeta: Record<string, {
             <img
               src={meta?.heroImg || '/images/city/hero-osaka.jpg'}
               alt={ch.title}
-              loading={idx === 0 ? 'eager' : 'lazy'}
+              loading="lazy"
               class="ch-hero-img"
             />
             <div class="ch-hero-overlay">
@@ -437,15 +437,7 @@ const chapterMeta: Record<string, {
     const toggleAllBtn = document.getElementById('btn-toggle-all-chapters');
     let isAllExpanded = false;
 
-    function selectChapter(targetId, scrollToReader = true) {
-      if (isAllExpanded) {
-        const targetEl = document.getElementById(`story-panel-${targetId}`);
-        if (targetEl) {
-          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        return;
-      }
-
+    function syncChapterTabActive(targetId) {
       tabBtns.forEach(btn => {
         const active = btn.getAttribute('data-story-target') === targetId;
         btn.classList.toggle('active', active);
@@ -457,6 +449,18 @@ const chapterMeta: Record<string, {
           }
         }
       });
+    }
+
+    function selectChapter(targetId, scrollToReader = true) {
+      syncChapterTabActive(targetId);
+
+      if (isAllExpanded) {
+        const targetEl = document.getElementById(`story-panel-${targetId}`);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        return;
+      }
 
       panels.forEach(panel => {
         const match = panel.getAttribute('data-chapter-panel') === targetId;
@@ -482,6 +486,7 @@ const chapterMeta: Record<string, {
     if (toggleAllBtn) {
       toggleAllBtn.addEventListener('click', () => {
         isAllExpanded = !isAllExpanded;
+        toggleAllBtn.setAttribute('data-mode', isAllExpanded ? 'all' : 'single');
         if (isAllExpanded) {
           panels.forEach(p => {
             p.classList.add('active-chapter');
@@ -490,7 +495,7 @@ const chapterMeta: Record<string, {
           toggleAllBtn.textContent = '📕 한 장씩 책장 넘겨보기 모드로 전환';
           toggleAllBtn.classList.add('expanded');
         } else {
-          toggleAllBtn.textContent = '📖 9개 장 전체 한꺼번에 펼치기';
+          toggleAllBtn.textContent = '📖 전체 10편(프롤로그~8장·별책) 한꺼번에 펼치기';
           toggleAllBtn.classList.remove('expanded');
           const currentActive = document.querySelector('.chapter-tab-btn.active')?.getAttribute('data-story-target') || 'prologue';
           selectChapter(currentActive, false);
@@ -532,8 +537,16 @@ const chapterMeta: Record<string, {
 
   .intro-left {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 8px;
+  }
+
+  @media (min-width: 768px) {
+    .intro-left {
+      flex-direction: row;
+      gap: 12px;
+    }
   }
 
   .intro-title {
@@ -1225,7 +1238,8 @@ const chapterMeta: Record<string, {
 
   .theme-thumb-wrap {
     width: 100%;
-    height: 165px;
+    aspect-ratio: 800 / 520;
+    height: auto;
     border-radius: 10px;
     overflow: hidden;
     background: #E2E8F0;

@@ -50,7 +50,7 @@
     <span class="empty-icon">🏮</span>
     <h4 class="empty-title">아직 찜한 장소가 없습니다.</h4>
     <p class="empty-desc">
-      [맛집·찻집 도감]이나 [명소·쇼핑·명품]에서 마음에 드는 가게 카드의 하트(♥)를 눌러보세요!
+      [맛집·찻집 도감]이나 [명소·문화·명품]에서 마음에 드는 가게 카드의 하트(♥)를 눌러보세요!
     </p>
     <button type="button" id="btn-go-explore" class="btn-primary-action">
       🔍 맛집·명소 둘러보러 가기
@@ -359,11 +359,40 @@
     let myPicks = [];
     let pendingSharedPicks = [];
 
+    function getValidIdSet() {
+      const list = window.__OSAKA_PLACES_DATA__ || [];
+      return new Set(list.map(p => p.id));
+    }
+
+    function sanitizePicks(ids) {
+      const validIds = getValidIdSet();
+      const seen = new Set();
+      const result = [];
+      ids.forEach(id => {
+        if (id && (validIds.size === 0 || validIds.has(id)) && !seen.has(id)) {
+          seen.add(id);
+          result.push(id);
+        }
+      });
+      return result;
+    }
+
+    function cleanPicksParamFromUrl() {
+      try {
+        const url = new URL(window.location.href);
+        if (url.searchParams.has('picks')) {
+          url.searchParams.delete('picks');
+          window.history.replaceState(window.history.state, '', url.toString());
+        }
+      } catch(e) {}
+    }
+
     // 로컬 스토리지에서 찜 목록 로드
     function loadPicks() {
       try {
         const stored = localStorage.getItem(STORAGE_KEY);
-        myPicks = stored ? JSON.parse(stored) : [];
+        const parsed = stored ? JSON.parse(stored) : [];
+        myPicks = Array.isArray(parsed) ? sanitizePicks(parsed) : [];
       } catch(e) {
         myPicks = [];
       }
@@ -381,14 +410,10 @@
     // 카운터 뱃지 갱신
     function updateCounters() {
       const headerCounter = document.getElementById('header-picks-counter');
-      const desktopCounter = document.getElementById('desktop-picks-counter');
-      const mobileCounter = document.getElementById('mobile-picks-counter');
       const totalNum = document.getElementById('picks-total-num');
 
       const count = myPicks.length;
       if (headerCounter) headerCounter.textContent = count;
-      if (desktopCounter) desktopCounter.textContent = count;
-      if (mobileCounter) mobileCounter.textContent = count;
       if (totalNum) totalNum.textContent = count;
     }
 
@@ -406,7 +431,6 @@
     // 찜 바구니 탭 뷰 렌더링 (권역별 자동 그룹핑)
     function renderPicksView() {
       const emptyState = document.getElementById('picks-empty-state');
-      const groupedContainer = document.getElementById('picks-grouped-container');
       const placesList = window.__OSAKA_PLACES_DATA__ || [];
       const placesMap = new Map(placesList.map(p => [p.id, p]));
 
@@ -449,7 +473,6 @@
           if (countEl) countEl.textContent = items.length;
           grid.innerHTML = '';
           items.forEach(place => {
-            // 원본 카드를 복제하거나 생성
             const originalCard = document.getElementById(`card-${place.id}`);
             if (originalCard) {
               const clone = originalCard.cloneNode(true);
@@ -546,8 +569,12 @@
       const incomingPicks = urlParams.get('picks');
       if (!incomingPicks) return;
 
-      const items = incomingPicks.split(',').filter(Boolean);
-      if (items.length === 0) return;
+      const rawItems = incomingPicks.split(',').filter(Boolean);
+      const items = sanitizePicks(rawItems);
+      if (items.length === 0) {
+        cleanPicksParamFromUrl();
+        return;
+      }
 
       pendingSharedPicks = items;
 
@@ -555,6 +582,7 @@
       if (myPicks.length === 0) {
         myPicks = [...pendingSharedPicks];
         savePicks();
+        cleanPicksParamFromUrl();
         return;
       }
 
@@ -575,9 +603,10 @@
 
     if (mergeBtn) {
       mergeBtn.addEventListener('click', () => {
-        myPicks = Array.from(new Set([...myPicks, ...pendingSharedPicks]));
+        myPicks = sanitizePicks([...myPicks, ...pendingSharedPicks]);
         savePicks();
-        banner.setAttribute('hidden', 'true');
+        if (banner) banner.setAttribute('hidden', 'true');
+        cleanPicksParamFromUrl();
         alert('친구의 찜 목록이 내 찜에 안전하게 합쳐졌습니다!');
       });
     }
@@ -587,7 +616,8 @@
         if (confirm('기존 내 찜 목록을 지우고 친구의 찜 목록으로 완전히 교체하시겠습니까?')) {
           myPicks = [...pendingSharedPicks];
           savePicks();
-          banner.setAttribute('hidden', 'true');
+          if (banner) banner.setAttribute('hidden', 'true');
+          cleanPicksParamFromUrl();
           alert('친구의 찜 목록으로 교체되었습니다!');
         }
       });
@@ -595,7 +625,8 @@
 
     if (ignoreBtn) {
       ignoreBtn.addEventListener('click', () => {
-        banner.setAttribute('hidden', 'true');
+        if (banner) banner.setAttribute('hidden', 'true');
+        cleanPicksParamFromUrl();
       });
     }
 

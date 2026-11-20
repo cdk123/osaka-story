@@ -1,7 +1,7 @@
 {
   "name": "알면 맛있는 오사카 — 미식·역사·골목 스마트 가이드북",
   "short_name": "맛있는오사카",
-  "description": "친구처럼 들려주는 오사카 음식·역사·골목 이야기 및 50+ 맛집·명소 스마트 가이드",
+  "description": "친구처럼 들려주는 오사카 음식·역사·골목 이야기 및 엄선 89곳 맛집·명소 스마트 가이드",
   "start_url": "/?source=pwa",
   "display": "standalone",
   "background_color": "#FBF8F3",
@@ -9,10 +9,22 @@
   "orientation": "portrait-primary",
   "icons": [
     {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
       "src": "/icons/icon-192.svg",
       "sizes": "192x192",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-512.svg",

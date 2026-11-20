@@ -142,7 +142,7 @@ export const places: Place[] = [
     phone: '06-6241-1129',
     openHours: '11:30~21:00',
     googleQuery: '浪漫亭 心斎橋本店',
-    officialUrl: 'https://okayama-food.co.jp/romantei/',
+    officialUrl: 'https://www.roman-gp.com/',
     image: '/images/places/romantei.jpg',
     fingerOrderItems: [
       { nameJa: '黒毛和牛ひつまぶし (特上)', nameKo: '흑우 와규 히츠마부시 (특상)' },
@@ -397,7 +397,6 @@ export const places: Place[] = [
     phone: '06-6231-7181',
     openHours: '역사 보존 기록 (현역 방문은 스시만·타코타케 이용)',
     googleQuery: '吉野鮨 本店 大阪',
-    officialUrl: 'https://www.yoshino-sushi.co.jp/',
     image: '/images/places/yoshino-sushi.jpg',
     fingerOrderItems: [
       { nameJa: '箱寿司 (二段折)', nameKo: '하코즈시 (2단 상자 초밥)' }
@@ -445,12 +444,12 @@ export const places: Place[] = [
     nameKo: '타코타케 (1831년 창업 하코즈시·바테라 노포)',
     nameJa: 'たこ竹',
     nameKana: '타코타케',
-    branchKo: '마츠야마치 본점 (현역 성업 중)',
+    branchKo: '미나미모리마치 본점 (현역 성업 중)',
     branchJa: '本店',
     category: 'noodle',
     categoryLabel: '우동·초밥·장어',
     area: 'other',
-    areaLabel: '주오·혼마치',
+    areaLabel: '기타구·미나미모리마치',
     companions: ['family', 'adult', 'solo'],
     badges: ['老舗', '名物', '匠人'],
     survivalBadges: [
@@ -458,18 +457,17 @@ export const places: Place[] = [
       { label: '바테라(고등어 다시마 판초밥) 명물', type: 'hack', tooltip: '오사카 발상 바테라 초밥의 진수를 맛볼 수 있는 곳' },
       { label: '매장 내 테이블 식사 가능', type: 'seat', tooltip: '고즈넉한 매장 내 테이블에서 바로 식사 가능' }
     ],
-    station: '마츠야마치역 3번 출구 도보 4분 / 나가호리바시역 도보 7분 (가라호리 인근)',
+    station: '오사카메트로 사카이스지선·다니마치선 미나미모리마치역 9번 출구 도보 7분 / JR 오사카텐만구역 도보 7분',
     rating: 4.5,
     priceRange: '¥1,500 ~ ¥3,500',
     signatureMenu: '하코즈시(상자초밥), 바테라(고등어 백판다시마 판초밥), 보즈시(장어 봉초밥)',
     story: '1831년(덴포 2년) 창업해 200년 가까이 오사카 전통 누름초밥의 명맥을 지키고 있는 현역 노포입니다. 특히 포르투갈어 "보트(Bateira)"에서 유래한 오사카 명물 "바테라(초절임 고등어 위에 반투명한 백판 다시마를 얹어 나무틀에 눌러 썬 판초밥)"와 새우·장어·도미 상자초밥을 장인이 직접 눌러 내어줍니다.',
-    tip: '가라호리 상점가와 가까워 산책 코스로 묶기 좋습니다. 바테라(고등어 판초밥)와 하코즈시(상자초밥)가 함께 나오는 모둠 세트를 주문하면 오사카 전통 초밥의 두 가지 매력을 한 번에 비교할 수 있습니다.',
-    addressJa: '大阪府大阪市中央区松屋町4-18',
-    addressKo: '오사카시 주오구 마츠야마치 4-18',
-    phone: '06-6761-0510',
-    openHours: '10:30~19:00 (수요일 휴무)',
-    googleQuery: '大阪寿司 たこ竹 松屋町',
-    officialUrl: 'http://www.takotake.co.jp/',
+    tip: '오사카 텐만구·덴진바시스지 상점가와 가까워 산책 코스로 묶기 좋습니다. 바테라(고등어 판초밥)와 하코즈시(상자초밥)가 함께 나오는 모둠 세트를 주문하면 오사카 전통 초밥의 두 가지 매력을 한 번에 비교할 수 있습니다.',
+    addressJa: '大阪府大阪市北区松ケ枝町1-29 貴王松ヶ枝ビル 1F',
+    addressKo: '오사카시 기타구 마츠가에초 1-29 기오 마츠가에 빌딩 1F',
+    phone: '06-6881-2200',
+    openHours: '11:00~20:00',
+    googleQuery: 'たこ竹 大阪市北区松ケ枝町',
     image: '/images/places/takotake.jpg',
     fingerOrderItems: [
       { nameJa: '箱寿司 (えび・鯛・穴子・玉子)', nameKo: '하코즈시 (새우·도미·장어·계란 상자초밥)' },
@@ -607,8 +605,8 @@ export const places: Place[] = [
     signatureMenu: '생참치 초밥 5관 세트, 연어 아부리 초밥',
     story: '자체 수산물 유통망을 통해 매일 아침 직송되는 신선한 생선을 합리적인 가격에 제공하는 오사카 서민들의 대표 회전초밥 브랜드입니다.',
     tip: '매장에서 정기적으로 생참치 해체쇼가 열립니다. 가성비 있게 가족 모두가 배불리 초밥을 먹고 싶을 때 가장 든든한 선택입니다.',
-    addressJa: '大阪府大阪市中央区道頓堀1-4-15',
-    addressKo: '오사카시 주오구 도톤보리 1-4-15',
+    addressJa: '大阪府大阪市中央区道頓堀1-7-24 四海樓道頓堀ビル 1F',
+    addressKo: '오사카시 주오구 도톤보리 1-7-24 시카이로 도톤보리 빌딩 1F',
     phone: '06-6214-1001',
     openHours: '11:00~22:30',
     googleQuery: '大起水産回転寿司 道頓堀店',
@@ -841,7 +839,7 @@ export const places: Place[] = [
     nameKo: '네기야키 야마모토',
     nameJa: 'ねぎ焼やまもと',
     nameKana: '네기야키 야마모토',
-    branchKo: '우메다 본점 / 우메다 에스토점',
+    branchKo: '우메다 에스토점 (본점은 주소十三)',
     branchJa: '梅田エスト店',
     category: 'bento',
     categoryLabel: '도시락·만두',
@@ -901,7 +899,7 @@ export const places: Place[] = [
     phone: '06-6631-0127',
     openHours: '10:00~22:00',
     googleQuery: 'たこ焼道楽 わなか 千日前本店',
-    officialUrl: 'http://takoyaki-wanaka.com/',
+    officialUrl: 'https://takoyaki-wanaka.com/',
     image: '/images/places/takoyaki-wanaka.jpg',
     fingerOrderItems: [
       { nameJa: 'おおいり (4種の味盛り合わせ)', nameKo: '오이리 (4가지 맛 세트)' },
@@ -1238,7 +1236,7 @@ export const places: Place[] = [
     nameKo: '키야스 총본점 (미타라시단고)',
     nameJa: '喜八洲総本舗',
     nameKana: '키야스 소혼포',
-    branchKo: '우메다 한큐백화점 지하 / 주오구',
+    branchKo: '우메다 한큐백화점 지하 / 주소(十三) 본점',
     branchJa: '阪急うめだ本店',
     category: 'cafe',
     categoryLabel: '찻집·빵·디저트',
@@ -1262,7 +1260,7 @@ export const places: Place[] = [
     phone: '06-6361-1381',
     openHours: '10:00~20:00',
     googleQuery: '喜八洲総本舗 阪急うめだ本店',
-    officialUrl: 'https://www.kiyasu.com/',
+    officialUrl: 'http://www.kiyasu.jp/',
     image: '/images/places/kiyasu-sohonpo.jpg',
     fingerOrderItems: [
       { nameJa: 'みたらし団子 (5本入り・焦げ目多め)', nameKo: '미타라시단고 5개 (불향 바짝 구움)' }
@@ -1317,7 +1315,7 @@ export const places: Place[] = [
     companions: ['family', 'youth'],
     badges: ['名物', '匠人'],
     survivalBadges: [
-      { label: '보석 같은 과일 다이후쿠', type: 'hack', tooltip: '딸기·바나나·블루베리·밤이 한 알에 든 고노하나(鴻池花火)' },
+      { label: '보석 같은 5종 과일 다이후쿠', type: 'hack', tooltip: '파인애플·바나나·오렌지·블루베리·산딸기가 한 알에 든 코노이케 하나비(鴻池花火)' },
       { label: 'SNS 비주얼 최강', type: 'notice', tooltip: '반으로 가르면 밤하늘 불꽃놀이처럼 터지는 단면' },
       { label: '당일 냉장 섭취', type: 'notice', tooltip: '신선한 생크림과 생과일이 들어있어 호텔 냉장 보관 필수' }
     ],
@@ -1325,14 +1323,14 @@ export const places: Place[] = [
     rating: 4.7,
     priceRange: '¥420 (1개) / 세트 ¥2,000~¥3,500',
     signatureMenu: '코노이케 하나비 (鴻池花火, 5가지 과일과 크림이 든 불꽃 다이후쿠)',
-    story: '오사카 히가시오사카에서 탄생해 백화점 팝업마다 완판을 기록하는 신흥 화과자 명가입니다. 전통 찹쌀떡 안에 5가지 생과일(딸기, 블루베리, 오렌지, 바나나, 밤)과 생크림, 팥앙금을 환상적인 밸런스로 담아냈습니다.',
+    story: '오사카 히가시오사카에서 탄생해 백화점 팝업마다 완판을 기록하는 신흥 화과자 명가입니다. 전통 찹쌀떡 안에 5가지 생과일(파인애플, 바나나, 오렌지, 블루베리, 프랑보와즈)과 생크림, 팥앙금을 환상적인 밸런스로 담아냈습니다.',
     tip: '실로 떡 가운데를 묶어 쓱 당기면 단면이 밤하늘 불꽃놀이처럼 화려하게 펼쳐집니다. 보는 순간 누구나 탄성을 지르는 예술적인 과일 모찌입니다.',
     addressJa: '大阪府大阪市中央区心斎橋筋1-7-1 大丸心斎橋店 本館 B1F',
     addressKo: '오사카시 주오구 신사이바시스지 1-7-1 다이마루 B1F',
     phone: '06-6271-1231',
     openHours: '10:00~20:00',
     googleQuery: '五條堂 大丸心斎橋店',
-    officialUrl: 'https://gojodo.jp/',
+    officialUrl: 'https://gojodosweets.com/',
     image: '/images/places/gojodo.jpg',
     fingerOrderItems: [
       { nameJa: '鴻池花火 (4個入り)', nameKo: '코노이케 하나비 불꽃 다이후쿠 (4개입)' }
@@ -1390,7 +1388,7 @@ export const places: Place[] = [
     survivalBadges: [
       { label: '등록문화재 1923년 근대 석조 건물', type: 'notice', tooltip: '옛 은행 건물을 개조한 웅장하고 클래식한 2층 살롱' },
       { label: '에에몬치이 (검은콩 쌀 마들렌)', type: 'hack', tooltip: '오사카 공항·역 매진 1위 최고급 기념품' },
-      { label: '2층 찻집 살롱 5인석', type: 'seat', tooltip: '테이블에서 실물 디저트 쟁반을 보고 고르는 유럽식 서비스' }
+      { label: '2층 찻집 살롱 테이블석', type: 'seat', tooltip: '테이블에서 실물 디저트 쟁반을 보고 고르는 유럽식 서비스' }
     ],
     station: '기타하마역 2번 출구 바로 앞',
     rating: 4.8,
@@ -1544,10 +1542,10 @@ export const places: Place[] = [
     tip: '숟가락으로 윗면의 단단한 카라멜 층을 "탁!" 깨뜨려 크림과 함께 떠먹은 뒤 파이를 베어 물면 바삭함과 부드러움의 향연이 펼쳐집니다.',
     addressJa: '大阪府大阪市北区角田町8-47 阪急グランドビル 1F',
     addressKo: '오사카시 기타구 가쿠다초 8-47 한큐그랜드빌딩 1F',
-    phone: '06-6360-6180',
+    phone: '06-6360-6655',
     openHours: '10:00~20:00',
     googleQuery: 'Grenier 梅田',
-    officialUrl: 'https://patisserie-grenier.com/',
+    officialUrl: 'https://grenier.base.shop/',
     image: '/images/places/grenier.jpg',
     fingerOrderItems: [
       { nameJa: 'ブリュレミルフィーユ', nameKo: '브륄레 밀푀유' },
@@ -1588,7 +1586,7 @@ export const places: Place[] = [
     officialUrl: 'https://solaniwa.com/',
     image: '/images/places/soraniwa-onsen.jpg',
     fingerOrderItems: [
-      { nameJa: '入館料 (大人5名)', nameKo: '입관료 (성인 5인)' },
+      { nameJa: '入館料 (大人○名)', nameKo: '입관료 (성인 인원수는 손가락으로 표시)' },
       { nameJa: 'ビン牛乳 (コーヒー / フルーツ)', nameKo: '유리병 우유 (커피우유 / 과일우유)' }
     ]
   },
@@ -1693,7 +1691,7 @@ export const places: Place[] = [
     officialUrl: 'https://www.moco.or.jp/',
     image: '/images/places/nakanoshima-culture.jpg',
     fingerOrderItems: [
-      { nameJa: '観覧券 (大人5名)', nameKo: '전시 관람권 (성인 5인)' }
+      { nameJa: '観覧券 (大人○名)', nameKo: '전시 관람권 (성인 인원수는 손가락으로 표시)' }
     ]
   },
   {
@@ -1745,7 +1743,7 @@ export const places: Place[] = [
     companions: ['family', 'adult'],
     badges: ['名物', '老舗'],
     survivalBadges: [
-      { label: '5인 프라이빗 다다미방', type: 'seat', tooltip: '가족 단독 개별실에서 조용하고 격조 높은 식사' },
+      { label: '프라이빗 다다미 개별실', type: 'seat', tooltip: '일행 단독 개별실에서 조용하고 격조 높은 식사' },
       { label: '정갈하고 속 편한 웰빙 가이세키', type: 'age', tooltip: '신선한 콩으로 만든 갓 걷어낸 유바와 두부 요리' },
       { label: '사전 예약 필수', type: 'wait', tooltip: '룸 예약은 2주 전 권장' }
     ],
@@ -1939,7 +1937,7 @@ export const places: Place[] = [
     phone: '06-6361-1381',
     openHours: '10:00~20:00',
     googleQuery: '大阪浪華錫器 阪急うめだ本店',
-    officialUrl: 'https://www.osakasuzuki.co.jp/',
+    officialUrl: 'http://www.osakasuzuki.co.jp/',
     image: '/images/places/naniwa-suzuki.jpg',
     fingerOrderItems: [
       { nameJa: '錫製 ビアタンブラー', nameKo: '주석 맥주 텀블러' },
@@ -1974,7 +1972,7 @@ export const places: Place[] = [
     phone: '06-6882-6288',
     openHours: '10:00~18:00',
     googleQuery: '天満切子 ギャラリー',
-    officialUrl: 'https://tenmakiriko.com/',
+    officialUrl: 'https://temmakiriko.com/',
     image: '/images/places/tenma-kiriko.jpg',
     fingerOrderItems: [
       { nameJa: '天満切子 ロックグラス', nameKo: '덴마 키리코 온더락 크리스탈 잔' }
@@ -1989,8 +1987,8 @@ export const places: Place[] = [
     branchJa: '髙島屋大阪店 / 阪急うめだ本店',
     category: 'craft',
     categoryLabel: '장인명품·기념품',
-    area: 'other',
-    areaLabel: '센슈·남부',
+    area: 'namba',
+    areaLabel: '난바·도톤보리',
     companions: ['family', 'adult'],
     badges: ['元祖', '匠人'],
     survivalBadges: [
@@ -2079,7 +2077,7 @@ export const places: Place[] = [
     phone: '06-6251-0326',
     openHours: '09:00~18:00',
     googleQuery: '小倉屋山本 本店',
-    officialUrl: 'https://ogurayayamamoto.co.jp/',
+    officialUrl: 'https://risukeno.jp/',
     image: '/images/places/oguraya-yamamoto.jpg',
     fingerOrderItems: [
       { nameJa: 'えびすめ (木箱入り・ご贈答)', nameKo: '에비스메 원조 시오콘부 (목함 선물세트)' },
@@ -2585,7 +2583,7 @@ export const places: Place[] = [
   },
   {
     id: 'amidaike-daikoku',
-    nameKo: '아미다보리 오코시 본포 (1805년 창업 오사카 전통 쌀강정 과자)',
+    nameKo: '아미다이케 다이코쿠 (1805년 창업 오사카 전통 쌀강정 오코시)',
     nameJa: 'あみだ池大黒',
     nameKana: '아미다이케 다이코쿠',
     branchKo: '난바 본점 / 우메다 한큐·난바 타카시마야점 (현역 성업 중)',
@@ -2629,7 +2627,7 @@ export const places: Place[] = [
     category: 'craft',
     categoryLabel: '장인명품·기념품',
     area: 'other',
-    areaLabel: '주오·혼마치',
+    areaLabel: '스미요시·남부',
     companions: ['family', 'adult'],
     badges: ['名物', '老舗', '匠人'],
     survivalBadges: [
@@ -2639,18 +2637,18 @@ export const places: Place[] = [
     station: '난카이 본선 스미요시타이샤역 또는 한카이 노면전차 스미요시토리이마에역 도보 3분',
     rating: 4.7,
     priceRange: '¥1,000 ~ ¥3,500',
-    signatureMenu: '명물 와교 (和洋 — 통아몬드 & 퍼프 쌀 생크림 커피 캐러멜 오코시)',
-    story: '1950년 창업해 오사카 전통 쌀과자(오코시)를 세계적인 명품 디저트로 승화시킨 노포입니다. 오사카 G20 정상회의 공식 다과 및 선물로 선정된 대표작 "와교(和洋)"는 고소한 통아몬드와 바삭한 쌀 퍼프를 신선한홋카이도 생크림과 은은한 원두커피 향으로 얇게 감싸 구워내어, 한 번 입에 대면 멈출 수 없는 중독성을 자랑합니다.',
+    signatureMenu: '명물 와요 (和洋 — 통아몬드 & 퍼프 쌀 생크림 커피 캐러멜 오코시)',
+    story: '1950년 창업해 오사카 전통 쌀과자(오코시)를 세계적인 명품 디저트로 승화시킨 노포입니다. 오사카 G20 정상회의 공식 다과 및 선물로 선정된 대표작 "와요(和洋)"는 고소한 통아몬드와 바삭한 쌀 퍼프를 신선한 홋카이도 생크림과 은은한 원두커피 향으로 얇게 감싸 구워내어, 한 번 입에 대면 멈출 수 없는 중독성을 자랑합니다.',
     tip: '오사카에서 가장 오래된 신사인 스미요시 타이샤 바로 옆에 본점이 있으며, 커피나 녹차, 위스키 안주로도 기가 막히게 어울려 소중한 분을 위한 품격 있는 선물로 최고입니다.',
     addressJa: '大阪府大阪市住吉区上住吉1-2-3',
     addressKo: '오사카시 스미요시구 가미스미요시 1-2-3',
     phone: '06-6671-0246',
-    openHours: '10:00~17:00 (토·일·공휴일 휴무)',
+    openHours: '09:30~16:30 (토·일·공휴일 휴무)',
     googleQuery: '粟玄 和洋 大阪 住吉',
     officialUrl: 'https://awagen.jp/',
     image: '/images/places/awagen-wayo.jpg',
     fingerOrderItems: [
-      { nameJa: '名物 和洋 (わよう・G20採用銘菓)', nameKo: '명물 와교 (통아몬드 생크림 커피 오코시)' },
+      { nameJa: '名物 和洋 (わよう・G20採用銘菓)', nameKo: '명물 와요 (통아몬드 생크림 커피 오코시)' },
       { nameJa: '金の森・抹茶 (おこし詰合せ)', nameKo: '킨노모리·말차 전통 오코시 세트' }
     ]
   },
@@ -2693,11 +2691,11 @@ export const places: Place[] = [
   },
   {
     id: 'hepfive-gacha-forest',
-    nameKo: '가챠가챠노 모리 & 가샤폰 반다이 (2,400대 초대형 가챠 성지)',
-    nameJa: 'ガチャガチャの森 & ガシャポンバンダイ (梅田 HEP FIVE)',
-    nameKana: '가챠가챠노 모리 & 가샤폰 반다이',
-    branchKo: '우메다 햅파이브(HEP FIVE) / 난바 마루이점 (현역 성업 중)',
-    branchJa: '梅田HEP FIVE店 / なんばマルイ店',
+    nameKo: '가샤폰의 백화점 & 가챠가챠노 모리 (2,400대 초대형 가챠 성지)',
+    nameJa: 'ガシャポンのデパート & ガチャガチャの森 (梅田 HEP FIVE・茶屋町)',
+    nameKana: '가샤폰노 데파토 & 가챠가챠노 모리',
+    branchKo: '우메다 햅파이브 8·9F(반다이) / 우메다 차야마치점(모리) · 난바 마루이',
+    branchJa: '梅田HEP FIVE 8・9F / 梅田茶屋町店 / なんばマルイ店',
     category: 'spot',
     categoryLabel: '로컬명소·온천',
     area: 'umeda',
@@ -2705,21 +2703,21 @@ export const places: Place[] = [
     companions: ['youth', 'family', 'solo'],
     badges: ['名物'],
     survivalBadges: [
-      { label: '캡슐토이 머신 2,000대+ 압도적 규모', type: 'notice', tooltip: '미로처럼 끝없이 펼쳐진 일본 최대급 가챠(캡슐토이) 전문 매장' },
+      { label: '캡슐토이 머신 2,400대+ 압도적 규모', type: 'notice', tooltip: '미로처럼 끝없이 펼쳐진 일본 최대급 가챠(캡슐토이) 전문 매장' },
       { label: '오사카 로컬 맛집 실사 미니어처 가챠', type: 'hack', tooltip: '551 호라이 만두, 리쿠로 오지상, 카니도라쿠 간판 등 오사카 명물 가챠 인기' },
       { label: '1,000엔권 지폐 동전교환기 다수 구비', type: 'cash', tooltip: '100엔 동전이 없어도 매장 곳곳의 교환기에서 즉시 환전 가능' }
     ],
-    station: '우메다역 도보 3분 (붉은 대관람차 빌딩 HEP FIVE 7층·9층 / 난바 마루이 7층)',
+    station: '우메다역 도보 3분 (HEP FIVE 8층·9층 가샤폰의 백화점 / 인근 차야마치 가챠가챠노 모리 · 난바 마루이 7층)',
     rating: 4.6,
     priceRange: '¥300 ~ ¥500 (1회당 100엔 동전 3~5개)',
     signatureMenu: '오사카 로컬 기업 콜라보 미니어처 가챠, 산리오·애니메이션 한정 피규어, 식품 정밀 미니어처',
-    story: '100엔 동전 몇 개를 넣고 레버를 돌리는 순간의 설렘! 우메다의 상징인 붉은 대관람차 빌딩 햅파이브(HEP FIVE)와 난바 마루이에는 천장까지 쌓인 2,000여 대의 캡슐토이 머신이 숲을 이루는 "가챠가챠노 모리"와 반다이 공식 "가샤폰 백화점"이 자리해 있습니다.',
+    story: '100엔 동전 몇 개를 넣고 레버를 돌리는 순간의 설렘! 우메다의 상징인 붉은 대관람차 빌딩 햅파이브(HEP FIVE) 8~9층의 반다이남코 공식 "가샤폰의 백화점·오피셜 숍"과 인근 차야마치 및 난바 마루이의 "가챠가챠노 모리"에는 수천 대의 캡슐토이 머신이 숲을 이루고 있습니다.',
     tip: '귀국 전 남은 100엔짜리 동전을 가장 즐겁게 소진할 수 있는 곳입니다. 특히 오사카에서만 볼 수 있는 "오사카 명물 로컬 가챠(한신 타이거즈, 도톤보리 네온 간판, 타코야키 철판 미니어처)" 코너를 꼭 찾아보세요!',
-    addressJa: '大阪府大阪市北区角田町5-15 HEP FIVE 9F (および なんばマルイ 7F)',
-    addressKo: '오사카시 기타구 가쿠다초 5-15 햅파이브 9층 (및 난바 마루이 7층)',
+    addressJa: '大阪府大阪市北区角田町5-15 HEP FIVE 8F・9F (および 梅田茶屋町・なんばマルイ 7F)',
+    addressKo: '오사카시 기타구 가쿠다초 5-15 햅파이브 8·9층 (및 우메다 차야마치·난바 마루이 7층)',
     phone: '06-6313-8101',
     openHours: '11:00~21:00',
-    googleQuery: 'ガチャガチャの森 梅田HEP FIVE店',
+    googleQuery: 'ガシャポンのデパート HEP FIVE',
     officialUrl: 'https://www.gachagachanomori.com/',
     image: '/images/places/hepfive-gacha-forest.jpg',
     fingerOrderItems: [
@@ -2779,12 +2777,12 @@ export const places: Place[] = [
     survivalBadges: [
       { label: '오사카는 ‘고쿠요·사쿠라 크레파스’의 고향!', type: 'notice', tooltip: '캠퍼스 노트(고쿠요)와 사쿠라 크레파스는 모두 오사카에서 창업한 로컬 기업' },
       { label: '6층 규모 도매가 문구·스탬프·레트로 지류 천국', type: 'hack', tooltip: '1920년 창업 시모지마 빌딩에서 시중가보다 저렴하게 일본 문구 대량 득템' },
-      { label: '쇼와 레트로 ‘스톱페리’ 오리지널 굿즈', type: 'hack', tooltip: '70년대 일본 문방구 감성의 고양이·백조 포장지 및 문구 시리즈 원조' }
+      { label: '쇼와 레트로 ‘스톱페일’ 오리지널 굿즈', type: 'hack', tooltip: '70년대 일본 문방구 감성의 고양이·백조 포장지 및 문구 시리즈 원조' }
     ],
     station: '신사이바시역 1번 출구 또는 혼마치역 12번 출구 도보 5분',
     rating: 4.6,
     priceRange: '¥200 ~ ¥3,000',
-    signatureMenu: '사쿠라 크레파스(오사카 본사) 한정 문구·틴케이스, 고쿠요(오사카 본사) 원조 장부 노트, 시모지마 쇼와 레트로 스톱페리 문구·스탬프',
+    signatureMenu: '사쿠라 크레파스(오사카 본사) 한정 문구·틴케이스, 고쿠요(오사카 본사) 원조 장부 노트, 시모지마 쇼와 레트로 스톱페일 문구·스탬프',
     story: '국민 공책 "캠퍼스 노트"를 만든 일본 1위 문구사 〈고쿠요(KOKUYO)〉가 1905년 오사카 상인들의 회계 장부 표지 공장에서 출발했고, 전 세계 미술학도들이 쓰는 〈사쿠라 크레파스〉 역시 1921년 오사카에서 탄생했다는 사실을 아시나요? 상인의 도시 오사카 센바에 위치한 6층 규모의 〈시모지마 본점〉과 난바 로프트·우메다 한즈에서는 오사카 태생 문구 브랜드들의 진수를 만날 수 있습니다.',
     tip: '시모지마 신사이바시점은 원래 상인들에게 종이·문구를 공급하던 도매 빌딩이지만 일반 여행자도 1개부터 도매가로 살 수 있습니다. 오사카 기업 사쿠라 크레파스의 귀여운 틴케이스 굿즈와 고쿠요 한정 노트는 가볍고 센스 있는 선물로 최고입니다.',
     addressJa: '大阪府大阪市中央区北久宝寺町3-3-8 (シモジマ心斎橋店)',
@@ -2796,7 +2794,7 @@ export const places: Place[] = [
     image: '/images/places/shimojima-hands-osaka.jpg',
     fingerOrderItems: [
       { nameJa: 'サクラクレパス 大阪限定グッズ', nameKo: '사쿠라 크레파스 오사카 한정 문구 굿즈' },
-      { nameJa: 'ストップペイル (レトロ文具)・コクヨノート', nameKo: '스톱페리 레트로 문구 · 고쿠요 노트' }
+      { nameJa: 'ストップペイル (レトロ文具)・コクヨノート', nameKo: '스톱페일 레트로 문구 · 고쿠요 노트' }
     ]
   },
   {
@@ -2882,7 +2880,7 @@ export const places: Place[] = [
     category: 'spot',
     categoryLabel: '로컬명소·온천',
     area: 'other',
-    areaLabel: '주오·혼마치',
+    areaLabel: '스미요시·텐만',
     companions: ['family', 'youth', 'adult', 'solo'],
     badges: ['名物', '絶景', '老舗'],
     survivalBadges: [
@@ -2982,7 +2980,7 @@ export const places: Place[] = [
   },
   {
     id: 'yayoiken-kyk-teishoku',
-    nameKo: '야요이켄 & 돈카츠 KYK (오사카 발상 정통 가정식·돈카츠 명문 체인)',
+    nameKo: '야요이켄 & 돈카츠 KYK (일본 대표 정식 · 오사카 발상 돈카츠 명문 체인)',
     nameJa: 'やよい軒 & とんかつ KYK',
     nameKana: '야요이켄 & 톤카츠 케이와이케이',
     branchKo: '난바·신사이바시·우메다 한큐삼번가 (현역 성업 중)',
@@ -3184,11 +3182,11 @@ export const places: Place[] = [
     priceRange: '입장 무료 / 마이 컵누들 팩토리 체험 ¥500',
     signatureMenu: '세상에 하나뿐인 ‘나만의 컵누들 만들기(마이 컵누들 팩토리)’, 1958년 발명 오두막 재현관 & 800종 라면 터널',
     story: '오늘날 전 세계 인류가 매년 1,200억 개씩 먹는 ‘인스턴트 라면’과 ‘컵라면’이 바로 오사카에서 발명되었다는 사실을 아시나요? 1958년 오사카부 이케다시의 작은 집 뒷마당에 세운 3평짜리 나무 오두막에서, 창업자 안도 모모후쿠는 하루 4시간씩만 자며 1년간 실패를 거듭하다가 아내가 부엌에서 채소 덴푸라를 기름에 튀기는 모습을 보고 “면을 기름에 튀기면 수분이 순식간에 빠져나가 구멍이 생기고, 뜨거운 물만 부으면 그 구멍으로 물이 스며들어 2분 만에 원래의 면으로 돌아온다!”는 ‘순간유열건조법’을 발견해 인류 최초의 라면 〈치킨라멘〉을 탄생시켰습니다.',
-    tip: '요코하마 컵누들 뮤지엄은 입장료도 유료이고 사전 예약 경쟁이 치열하지만, 진짜 발상지인 〈오사카 이케다 본관〉은 입장료가 완전 무료이며 예약 없이 현장에서 바로 ¥500에 나만의 컵누들을 만들고 에어패키지 풍선 가방에 넣어 메고 나올 수 있습니다! (※ 12/30~1/1 연말연시 휴관일만 피해서 방문하세요.)',
+    tip: '요코하마 컵누들 뮤지엄은 입장료도 유료이고 사전 예약 경쟁이 치열하지만, 진짜 발상지인 〈오사카 이케다 본관〉은 입장료가 완전 무료이며 예약 없이 현장에서 바로 ¥500에 나만의 컵누들을 만들고 에어패키지 풍선 가방에 넣어 메고 나올 수 있습니다! (※ 2026~2027 연말연시 휴관일 12/28~1/2만 피해서 방문하세요.)',
     addressJa: '大阪府池田市満寿美町8-25',
     addressKo: '오사카부 이케다시 마스미초 8-25',
     phone: '072-752-3484',
-    openHours: '09:30~16:30 (입장 마감 15:30 / 화요일 및 연말연시 12/30~1/1 휴관)',
+    openHours: '09:30~16:30 (입장 마감 15:30 / 화요일 및 연말연시 12/28~1/2 휴관)',
     googleQuery: 'カップヌードルミュージアム 大阪池田',
     officialUrl: 'https://www.cupnoodles-museum.jp/ja/osaka_ikeda/',
     image: '/images/places/cupnoodles-museum-ikeda.jpg',

@@ -270,12 +270,17 @@ const tabs = [
         }
       });
 
-      // 2. 네비게이션 버튼 활성화 클래스 토글
+      // 2. 네비게이션 버튼 활성화 클래스 토글 (ARIA 규칙 준수)
       const navButtons = document.querySelectorAll('[data-tab]');
       navButtons.forEach(btn => {
         const matches = btn.getAttribute('data-tab') === targetTabId;
-        btn.classList.toggle('active', matches);
-        btn.setAttribute('aria-selected', matches ? 'true' : 'false');
+        if (btn.getAttribute('role') === 'tab') {
+          btn.classList.toggle('active', matches);
+          btn.setAttribute('aria-selected', matches ? 'true' : 'false');
+        } else if (btn.id === 'tab-picks') {
+          btn.classList.toggle('active', matches);
+          btn.setAttribute('aria-pressed', matches ? 'true' : 'false');
+        }
       });
 
       currentTab = targetTabId;

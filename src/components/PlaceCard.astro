@@ -89,6 +89,12 @@ const googleLocalInfoUrl = `https://www.google.com/maps/search/?api=1&query=${en
         <span class="pin-icon">🚇</span>
         <span>{place.station}</span>
       </div>
+      {place.openHours && (
+        <div class="open-hours-row">
+          <span class="pin-icon">🕒</span>
+          <span>{place.openHours}</span>
+        </div>
+      )}
     </header>
 
     <!-- 현장 생존 배지 (룸, 대기, 현금, 마감, 위탁수하물 등) -->
@@ -265,6 +271,13 @@ const googleLocalInfoUrl = `https://www.google.com/maps/search/?api=1&query=${en
     gap: 4px;
   }
 
+  .media-overlay-top :global(.stamp-badge) {
+    background: rgba(255, 255, 255, 0.94);
+    border-color: #D63B22;
+    color: #B52812;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.28);
+  }
+
   .btn-pick {
     position: absolute;
     top: 10px;
@@ -376,6 +389,15 @@ const googleLocalInfoUrl = `https://www.google.com/maps/search/?api=1&query=${en
     font-size: 0.78rem;
     color: #475569;
     margin-top: 2px;
+  }
+
+  .open-hours-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    font-size: 0.76rem;
+    color: #475569;
+    line-height: 1.4;
   }
 
   /* 생존 칩 리스트 */

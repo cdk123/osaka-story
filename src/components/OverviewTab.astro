@@ -9,6 +9,7 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
       <img
         src={busanComparison.heroImage}
         alt="물의 도시 오사카 도톤보리 야경"
+        fetchpriority="high"
         class="hero-banner-img"
       />
       <div class="hero-banner-overlay">
@@ -157,7 +158,7 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
         <div class="teaser-body">
           <h4 class="teaser-title">도요토미 히데요시의 황금 다실에 맞선 오사카 상인 ‘센노 리큐’와 복서 출신 건축가 ‘안도 다다오’</h4>
           <p class="teaser-text">
-            무사도 칼을 풀고 기어들어오게 만든 사카이 상인 센노 리큐의 두 평짜리 다실 혁명, 전 재산 100만 엔을 시민에게 기부해 세운 나카노시마 중앙공회당, 그리고 프로 복서에서 세계 건축 거장이 된 안도 다다오의 발자취입니다.
+            무사도 칼을 풀고 기어들어오게 만든 사카이 상인 센노 리큐의 약 한 평(다다미 2장)짜리 다실 혁명, 전 재산 100만 엔을 시민에게 기부해 세운 나카노시마 중앙공회당, 그리고 복서에서 세계 건축 거장이 된 안도 다다오의 발자취입니다.
           </p>
           <div class="teaser-actions">
             <button type="button" class="btn-teaser-story" data-jump-story="chapter-8">📖 제8장 문화·건축 읽기</button>
@@ -273,9 +274,10 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
                 <button
                   type="button"
                   class="btn-district-explore"
-                  data-jump-explore-area={d.exploreArea}
+                  data-jump-district-tab={d.jumpTab}
+                  data-jump-district-filter={d.jumpFilter}
                 >
-                  이 구역 맛집 보기 →
+                  {d.jumpLabel}
                 </button>
               </div>
             </div>
@@ -383,22 +385,29 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
 </div>
 
 <script is:inline>
-  // 구역 카드에서 [이 구역 맛집 보기] 클릭 시 맛집·명소 찾기 탭으로 이동 후 해당 권역 자동 필터링
+  // 구역 카드에서 [이 구역 맛집/명소 보기] 클릭 시 해당 탭으로 이동 후 권역·테마 자동 필터링
   document.addEventListener('click', (e) => {
-    const jumpBtn = e.target.closest('[data-jump-explore-area]');
+    const jumpBtn = e.target.closest('[data-jump-district-tab]');
     if (!jumpBtn) return;
-    const areaVal = jumpBtn.getAttribute('data-jump-explore-area');
+    const targetTab = jumpBtn.getAttribute('data-jump-district-tab') || 'explore';
+    const filterVal = jumpBtn.getAttribute('data-jump-district-filter') || 'all';
     if (window.osakaSwitchTab) {
-      window.osakaSwitchTab('explore');
+      window.osakaSwitchTab(targetTab);
     }
     setTimeout(() => {
-      if (window.osakaResetExploreFilters) {
-        window.osakaResetExploreFilters();
-      }
-      const areaSelect = document.getElementById('filter-area');
-      if (areaSelect && areaVal) {
-        areaSelect.value = areaVal;
-        areaSelect.dispatchEvent(new Event('change'));
+      if (targetTab === 'spots') {
+        if (window.osakaSetSpotsFilter) {
+          window.osakaSetSpotsFilter(filterVal);
+        }
+      } else {
+        if (window.osakaResetExploreFilters) {
+          window.osakaResetExploreFilters();
+        }
+        const areaSelect = document.getElementById('filter-area');
+        if (areaSelect && filterVal) {
+          areaSelect.value = filterVal;
+          areaSelect.dispatchEvent(new Event('change'));
+        }
       }
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }, 60);
@@ -993,6 +1002,9 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
     }
     .specialties-grid > .specialty-card:nth-child(5):last-child {
       grid-column: 1 / -1;
+      max-width: 520px;
+      width: 100%;
+      justify-self: center;
     }
   }
 
@@ -1115,27 +1127,14 @@ import { busanComparison, districts, markets, specialties } from '../data/city';
     box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
   }
 
-  @media (min-width: 1024px) {
-    .specialty-card {
-      flex-direction: row;
-    }
-  }
-
   .spec-media {
     position: relative;
     width: 100%;
-    height: 185px;
+    aspect-ratio: 800 / 520;
+    height: auto;
     background: #E2E8F0;
     flex-shrink: 0;
     overflow: hidden;
-  }
-
-  @media (min-width: 1024px) {
-    .spec-media {
-      width: 210px;
-      height: auto;
-      min-height: 100%;
-    }
   }
 
   .spec-cat-floating {

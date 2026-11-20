@@ -1,19 +1,36 @@
 ---
 import { places } from '../data/places';
+
+const modalPlacesData = places.map(p => ({
+  id: p.id,
+  nameKo: p.nameKo,
+  nameJa: p.nameJa,
+  branchKo: p.branchKo,
+  branchJa: p.branchJa,
+  area: p.area,
+  areaLabel: p.areaLabel,
+  addressJa: p.addressJa,
+  addressKo: p.addressKo,
+  phone: p.phone,
+  openHours: p.openHours,
+  taxiNote: p.taxiNote,
+  signatureMenu: p.signatureMenu,
+  fingerOrderItems: p.fingerOrderItems
+}));
 ---
 
-<div id="driver-modal-overlay" class="modal-overlay" hidden aria-hidden="true" role="dialog" aria-modal="true">
+<div id="driver-modal-overlay" class="modal-overlay" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-place-name-ko">
   <div class="modal-window">
     <!-- 모달 상단 헤더 -->
     <header class="modal-header">
       <div class="modal-tabs" role="tablist">
-        <button type="button" class="m-tab-btn active" data-modal-tab="taxi">
+        <button type="button" class="m-tab-btn active" role="tab" aria-selected="true" aria-controls="modal-tab-taxi" data-modal-tab="taxi">
           <span>🚕 택시 기사님</span>
         </button>
-        <button type="button" class="m-tab-btn" data-modal-tab="entrance">
+        <button type="button" class="m-tab-btn" role="tab" aria-selected="false" aria-controls="modal-tab-entrance" data-modal-tab="entrance">
           <span>🚪 식당 입구·좌석</span>
         </button>
-        <button type="button" class="m-tab-btn" data-modal-tab="order">
+        <button type="button" class="m-tab-btn" role="tab" aria-selected="false" aria-controls="modal-tab-order" data-modal-tab="order">
           <span>👉 손가락 주문</span>
         </button>
       </div>
@@ -23,9 +40,9 @@ import { places } from '../data/places';
     </header>
 
     <!-- 모달 본문 영역 (순백 고대비 특대형 텍스트) -->
-    <main class="modal-content">
+    <div class="modal-content" id="driver-modal-content">
       <!-- 1. 택시 탭 -->
-      <section id="modal-tab-taxi" class="modal-tab-pane active">
+      <section id="modal-tab-taxi" class="modal-tab-pane active" role="tabpanel">
         <div class="lead-phrase-box">
           <p class="japanese-lead">運転手さん、ここまでお願いします。</p>
           <span class="korean-lead">기사님, 여기로 가주세요.</span>
@@ -40,10 +57,15 @@ import { places } from '../data/places';
           <div class="addr-row">
             <span class="addr-label">住所 (주소)</span>
             <span class="addr-value" id="modal-place-address-ja">大阪府大阪市中央区難波1-1-19</span>
+            <span class="addr-sub-ko" id="modal-place-address-ko">오사카시 주오구 난바 1-1-19</span>
           </div>
           <div class="addr-row">
             <span class="addr-label">電話 (전화)</span>
             <span class="addr-value phone" id="modal-place-phone">06-6211-2917</span>
+          </div>
+          <div class="addr-row">
+            <span class="addr-label">営業時間 (영업시간)</span>
+            <span class="addr-sub-ko" id="modal-place-hours">12:00~15:00 / 17:00~23:00</span>
           </div>
           <button type="button" id="btn-copy-address" class="btn-copy-addr">
             📋 일본어 주소 & 상호 복사
@@ -68,7 +90,7 @@ import { places } from '../data/places';
       </section>
 
       <!-- 2. 식당 입구 탭 (입장 & 자리 분리 치트키) -->
-      <section id="modal-tab-entrance" class="modal-tab-pane">
+      <section id="modal-tab-entrance" class="modal-tab-pane" role="tabpanel">
         <div class="phrase-card">
           <div class="phrase-header">
             <span class="badge-role">예약 없이 현장 입장 문의</span>
@@ -110,7 +132,7 @@ import { places } from '../data/places';
       </section>
 
       <!-- 3. 손가락 주문판 탭 -->
-      <section id="modal-tab-order" class="modal-tab-pane">
+      <section id="modal-tab-order" class="modal-tab-pane" role="tabpanel">
         <div class="order-lead-box">
           <p class="phrase-ja-giant">これをお願いします。</p>
           <span class="korean-lead">손가락으로 메뉴를 가리키며: “이걸로 주세요.”</span>
@@ -156,7 +178,7 @@ import { places } from '../data/places';
           </div>
         </div>
       </section>
-    </main>
+    </div>
 
     <!-- 모달 하단 닫기 바 -->
     <footer class="modal-footer">
@@ -168,7 +190,7 @@ import { places } from '../data/places';
 </div>
 
 <!-- 장소 데이터 클라이언트 스크립트용 인라인 JSON -->
-<script define:vars={{ placesData: places }}>
+<script define:vars={{ placesData: modalPlacesData }}>
   window.__OSAKA_PLACES_DATA__ = placesData;
 </script>
 
@@ -325,6 +347,7 @@ import { places } from '../data/places';
     color: #000000;
     line-height: 1.25;
     letter-spacing: -0.02em;
+    overflow-wrap: anywhere;
   }
 
   .giant-name-ko {
@@ -348,6 +371,7 @@ import { places } from '../data/places';
     display: flex;
     flex-direction: column;
     gap: 2px;
+    min-width: 0;
   }
 
   .addr-label {
@@ -361,6 +385,14 @@ import { places } from '../data/places';
     font-weight: 600;
     color: #0F172A;
     line-height: 1.35;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .addr-sub-ko {
+    font-size: 0.84rem;
+    color: #475569;
+    line-height: 1.45;
   }
 
   .addr-value.phone {
@@ -395,6 +427,8 @@ import { places } from '../data/places';
     gap: 8px;
     font-size: 0.95rem;
     color: #78350F;
+    min-width: 0;
+    max-width: 100%;
   }
 
   .driver-note-icon {
@@ -404,7 +438,11 @@ import { places } from '../data/places';
 
   .driver-note-text {
     font-weight: 600;
-    line-height: 1.4;
+    line-height: 1.45;
+    flex: 1;
+    min-width: 0;
+    word-break: normal;
+    overflow-wrap: anywhere;
   }
 
   :global(.korean-sub) {
@@ -470,6 +508,8 @@ import { places } from '../data/places';
     font-weight: 700;
     color: #000000;
     line-height: 1.3;
+    word-break: normal;
+    overflow-wrap: anywhere;
   }
 
   .phrase-pronounce {
@@ -524,6 +564,8 @@ import { places } from '../data/places';
     font-weight: 700;
     color: #14532D;
     line-height: 1.35;
+    word-break: normal;
+    overflow-wrap: anywhere;
   }
 
   :global(.sig-ko) {
@@ -556,6 +598,8 @@ import { places } from '../data/places';
     font-size: 1.15rem;
     font-weight: 700;
     color: #000000;
+    word-break: normal;
+    overflow-wrap: anywhere;
   }
 
   .opt-ko {
@@ -585,53 +629,89 @@ import { places } from '../data/places';
 <script is:inline>
   (function() {
     const overlay = document.getElementById('driver-modal-overlay');
+    const modalContent = document.getElementById('driver-modal-content');
     const closeBtn = document.getElementById('close-driver-modal');
     const closeBottomBtn = document.getElementById('close-driver-modal-btn');
     const tabButtons = document.querySelectorAll('[data-modal-tab]');
     const tabPanes = document.querySelectorAll('.modal-tab-pane');
+    let lastFocusedEl = null;
+
+    function selectModalTab(targetTab) {
+      tabButtons.forEach(b => {
+        const active = b.getAttribute('data-modal-tab') === targetTab;
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      tabPanes.forEach(p => {
+        p.classList.toggle('active', p.id === `modal-tab-${targetTab}`);
+      });
+      if (modalContent) modalContent.scrollTop = 0;
+    }
 
     function openModalWithPlace(placeId) {
       const placesList = window.__OSAKA_PLACES_DATA__ || [];
       const place = placesList.find(p => p.id === placeId) || placesList[0];
       if (!place) return;
 
-      // 데이터 주입
+      lastFocusedEl = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+      // 데이터 주입 (안전한 DOM API 사용)
       const nameJaEl = document.getElementById('modal-place-name-ja');
       const nameKoEl = document.getElementById('modal-place-name-ko');
       const addrJaEl = document.getElementById('modal-place-address-ja');
+      const addrKoEl = document.getElementById('modal-place-address-ko');
       const phoneEl = document.getElementById('modal-place-phone');
+      const hoursEl = document.getElementById('modal-place-hours');
       const taxiNoteEl = document.getElementById('modal-place-taxi-note');
       const fingerContainer = document.getElementById('modal-finger-order-container');
 
-      if (nameJaEl) nameJaEl.textContent = `${place.nameJa} ${place.branchJa}`;
+      const fullNameJa = [place.nameJa, place.branchJa].filter(Boolean).join(' ');
+      if (nameJaEl) nameJaEl.textContent = fullNameJa;
       if (nameKoEl) nameKoEl.textContent = `${place.nameKo} (${place.branchKo || place.areaLabel})`;
       if (addrJaEl) addrJaEl.textContent = place.addressJa || '大阪府大阪市中央区';
-      if (phoneEl) phoneEl.textContent = place.phone || '06-XXXX-XXXX';
+      if (addrKoEl) addrKoEl.textContent = place.addressKo || '';
+      if (phoneEl) phoneEl.textContent = place.phone || '-';
+      if (hoursEl) hoursEl.textContent = place.openHours || '-';
 
       if (taxiNoteEl) {
-        if (place.taxiNote) {
-          taxiNoteEl.innerHTML = `${place.taxiNote}<br><span class="korean-sub">골목 진입이 어려우면 근처 큰길가에서 내려주셔도 됩니다.</span>`;
-        } else {
-          taxiNoteEl.innerHTML = `近くの大きな通りでおろしていただいても大丈夫です。<br><span class="korean-sub">골목 진입이 어려우면 근처 큰길가에서 내려주셔도 됩니다.</span>`;
-        }
+        taxiNoteEl.textContent = '';
+        const jaLine = document.createTextNode(
+          place.taxiNote || '近くの大きな通りでおろしていただいても大丈夫です。'
+        );
+        const br = document.createElement('br');
+        const subSpan = document.createElement('span');
+        subSpan.className = 'korean-sub';
+        subSpan.textContent = '골목 진입이 어려우면 근처 큰길가에서 내려주셔도 됩니다.';
+        taxiNoteEl.appendChild(jaLine);
+        taxiNoteEl.appendChild(br);
+        taxiNoteEl.appendChild(subSpan);
       }
 
       // 추천 메뉴 리스트 주입
       if (fingerContainer) {
-        fingerContainer.innerHTML = '';
+        fingerContainer.textContent = '';
         const items = place.fingerOrderItems || [
           { nameJa: place.signatureMenu, nameKo: place.signatureMenu }
         ];
         items.forEach(item => {
           const div = document.createElement('div');
           div.className = 'signature-item';
-          div.innerHTML = `
-            <div>
-              <div class="sig-ja">${item.nameJa}</div>
-              <div class="sig-ko">${item.nameKo}</div>
-            </div>
-            <span style="font-size:1.4rem;">👉</span>
-          `;
+          const textWrap = document.createElement('div');
+          textWrap.style.minWidth = '0';
+          const jaDiv = document.createElement('div');
+          jaDiv.className = 'sig-ja';
+          jaDiv.textContent = item.nameJa || '';
+          const koDiv = document.createElement('div');
+          koDiv.className = 'sig-ko';
+          koDiv.textContent = item.nameKo || '';
+          textWrap.appendChild(jaDiv);
+          textWrap.appendChild(koDiv);
+          const handSpan = document.createElement('span');
+          handSpan.style.fontSize = '1.4rem';
+          handSpan.style.flexShrink = '0';
+          handSpan.textContent = '👉';
+          div.appendChild(textWrap);
+          div.appendChild(handSpan);
           fingerContainer.appendChild(div);
         });
       }
@@ -639,8 +719,9 @@ import { places } from '../data/places';
       // 주소 복사 버튼 갱신
       const copyBtn = document.getElementById('btn-copy-address');
       if (copyBtn) {
+        copyBtn.textContent = '📋 일본어 주소 & 상호 복사';
         copyBtn.onclick = async () => {
-          const textToCopy = `${place.nameJa} ${place.branchJa}\n${place.addressJa}\nTEL: ${place.phone}`;
+          const textToCopy = `${fullNameJa}\n${place.addressJa}\nTEL: ${place.phone}`;
           try {
             await navigator.clipboard.writeText(textToCopy);
             copyBtn.textContent = '✅ 복사 완료!';
@@ -653,16 +734,22 @@ import { places } from '../data/places';
         };
       }
 
-      // 모달 표시
+      // 항상 첫 번째 탭(택시)으로 초기화 후 모달 표시
+      selectModalTab('taxi');
       overlay.removeAttribute('hidden');
       overlay.setAttribute('aria-hidden', 'false');
       document.body.classList.add('modal-open');
+      if (closeBtn) closeBtn.focus();
     }
 
     function closeModal() {
       overlay.setAttribute('hidden', 'true');
       overlay.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('modal-open');
+      if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
+        lastFocusedEl.focus();
+        lastFocusedEl = null;
+      }
     }
 
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
@@ -675,10 +762,7 @@ import { places } from '../data/places';
     tabButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const targetTab = btn.getAttribute('data-modal-tab');
-        tabButtons.forEach(b => b.classList.toggle('active', b === btn));
-        tabPanes.forEach(p => {
-          p.classList.toggle('active', p.id === `modal-tab-${targetTab}`);
-        });
+        if (targetTab) selectModalTab(targetTab);
       });
     });
 

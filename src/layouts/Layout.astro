@@ -6,8 +6,10 @@ interface Props {
 
 const {
   title = "알면 맛있는 오사카 — 친구처럼 들려주는 오사카 음식·역사·골목 이야기",
-  description = "스토리를 먼저 읽고 즐기는 오사카! 400년 음식·역사 화보 스토리텔링, 12월·연말연시 풍습(코모다루·그라코로), 86곳 엄선 맛집·명소 도감, 초보 생존 가이드와 스마트 찜 바구니"
+  description = "스토리를 먼저 읽고 즐기는 오사카! 400년 음식·역사 화보 스토리텔링, 12월·연말연시 풍습(코모다루·그라코로), 89곳 엄선 맛집·명소 도감, 초보 생존 가이드와 스마트 찜 바구니"
 } = Astro.props;
+
+const siteOrigin = Astro.site?.toString().replace(/\/$/, '') || 'https://osaka-story.sonagicreative.workers.dev';
 ---
 
 <!doctype html>
@@ -16,6 +18,7 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content="#1E293B" />
     <meta name="generator" content={Astro.generator} />
@@ -26,7 +29,18 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/city/hero-osaka.jpg" />
+    <meta property="og:url" content={`${siteOrigin}/`} />
+    <meta property="og:image" content={`${siteOrigin}/images/city/hero-osaka.jpg`} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- FOUC 방지: 큰 글씨 모드 초기 즉시 적용 -->
+    <script is:inline>
+      try {
+        if (localStorage.getItem('osaka_large_text') === 'true') {
+          document.documentElement.classList.add('large-text');
+        }
+      } catch (e) {}
+    </script>
     
     <!-- Fonts: Pretendard Variable + Noto Serif KR + Shippori Mincho -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -40,12 +54,9 @@ const {
         --color-bg: #FBF8F3;
         --color-card: #FFFFFF;
         --color-text: #1E293B;
-        --color-text-muted: #64748B;
         --color-noren: #1E293B;
         --color-vermilion: #D63B22;
         --color-vermilion-text: #B52812;
-        --color-gold: #B8860B;
-        --color-gold-text: #785204;
         --color-border: #E2DDD3;
         --color-wood: #D4A373;
         --color-wood-dark: #8C531B;
@@ -56,21 +67,7 @@ const {
         --font-scale: 100%;
         --container-max: 1280px;
         --container-pad: clamp(16px, 4vw, 44px);
-        --section-gap: clamp(24px, 3.5vw, 40px);
         --card-gap: clamp(16px, 2.2vw, 24px);
-        --sticky-sub-top: 62px;
-      }
-
-      @media (min-width: 768px) {
-        :root {
-          --sticky-sub-top: 126px;
-        }
-      }
-
-      @media (min-width: 1100px) {
-        :root {
-          --sticky-sub-top: 136px;
-        }
       }
 
       html.large-text {
@@ -100,7 +97,7 @@ const {
         -moz-osx-font-smoothing: grayscale;
         word-break: keep-all;
         overflow-wrap: break-word;
-        overflow-x: hidden;
+        overflow-x: clip;
         min-height: 100vh;
       }
 
@@ -216,7 +213,7 @@ const {
       if ('caches' in window) {
         caches.keys().then((keys) => {
           keys.forEach((key) => {
-            if (key !== 'osaka-story-v7') {
+            if (key !== 'osaka-story-v8') {
               caches.delete(key);
             }
           });
@@ -230,12 +227,6 @@ const {
             console.log('SW registration failed: ', err);
           });
         });
-      }
-
-      // 큰 글씨 모드 복원
-      const savedLargeText = localStorage.getItem('osaka_large_text');
-      if (savedLargeText === 'true') {
-        document.documentElement.classList.add('large-text');
       }
     </script>
   </body>

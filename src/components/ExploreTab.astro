@@ -9,7 +9,7 @@ const areaOptions = [
   { value: 'namba', label: '난바·도톤보리' },
   { value: 'shinsaibashi', label: '신사이바시' },
   { value: 'umeda', label: '우메다 (키타)' },
-  { value: 'other', label: '기타 (혼마치/마츠야마치 등)' }
+  { value: 'other', label: '기타 (혼마치/미나미모리마치 등)' }
 ];
 
 const companionOptions = [
@@ -59,7 +59,7 @@ const categorySections = [
     titleJa: 'きつね・かすうどん・箱寿司・バッテラ・まむし鰻・てっちり・蟹',
     subtitle: '1893년 원조 키츠네 우동과 소 곱창 튀김 카스 우동, 370년 전통 판초밥(하코즈시·바테라)과 유부초밥, 숯불 마무시 장어와 참복·대게·배추라멘',
     description: '에도 시대 홋카이도에서 오사카로 직항하던 북방 무역선 ‘키타마에부네’는 최상급 다시마를 실어 날랐고, 이는 황금빛 ‘나니와 다시(육수)’ 문화를 꽃피웠습니다. 우동 곁들이 유부를 손님들이 국물에 얹어 먹는 것을 보고 탄생한 원조 키츠네 우동(마츠바야, 1893), 소 곱창을 저온에서 바삭하게 튀겨 고소한 육즙을 우려내는 오사카 남부 향토 명물 카스 우동(카스야 & 류노스), 나무 상자에 초밥과 도미·새우·붕장어를 눌러 담아 모자이크 보석처럼 썰어내는 370년 전통 판초밥 하코즈시(스시만·타코타케·요시노 스시), 그리고 밥 사이에 숯불 장어를 묻어 뜸 들이는 관서식 마무시 장어(본가 시바토)가 오사카 미식의 정수를 보여줍니다.',
-    tip: '💡 오사카 판초밥(하코즈시)의 역사적 원형인 〈요시노 스시 본점〉은 현재 휴업 중이므로, 실제 식사나 테이크아웃은 현역 성업 중인 370년 전통 〈스시만(한신·타카시마야)〉 또는 195년 전통 〈타코타케(마츠야마치 본점)〉를 방문하세요!'
+    tip: '💡 오사카 판초밥(하코즈시)의 역사적 원형인 〈요시노 스시 본점〉은 현재 휴업 중이므로, 실제 식사나 테이크아웃은 현역 성업 중인 370년 전통 〈스시만(한신·타카시마야)〉 또는 195년 전통 〈타코타케(미나미모리마치 본점)〉를 방문하세요!'
   },
   {
     id: 'bento',
@@ -771,6 +771,18 @@ const categorySections = [
       });
     }
 
+    function getCardSearchText(card) {
+      if (card.dataset.cachedSearch !== undefined) {
+        return card.dataset.cachedSearch;
+      }
+      const fields = card.querySelectorAll(
+        '.area-chip, .stamp-group, .place-name-ko, .place-name-ja, .place-name-kana, .station-walk, .open-hours-row, .survival-badges-list, .menu-highlight, .story-box'
+      );
+      const text = Array.from(fields).map(el => el.textContent || '').join(' ').toLowerCase();
+      card.dataset.cachedSearch = text;
+      return text;
+    }
+
     function applyFilters() {
       const query = (searchInput?.value || '').trim().toLowerCase();
       const area = areaSelect?.value || 'all';
@@ -791,7 +803,7 @@ const categorySections = [
           const cardArea = card.getAttribute('data-area') || '';
           const cardCat = card.getAttribute('data-category') || '';
           const cardComps = (card.getAttribute('data-companions') || '').split(',');
-          const textContent = card.textContent.toLowerCase();
+          const textContent = query ? getCardSearchText(card) : '';
 
           const matchArea = area === 'all' || cardArea === area;
           const matchCat = cat === 'all' || cardCat === cat;
