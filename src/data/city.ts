@@ -124,11 +124,11 @@ export const districts: CityDistrict[] = [
   },
   {
     id: 'tennoji-shinsekai',
-    nameKo: '덴노지 · 신세카이 (츠텐카쿠)',
+    nameKo: '텐노지 · 신세카이 (츠텐카쿠)',
     nameJa: '天王寺・新世界',
     characterKo: '쇼와 레트로의 원초적 에너지와 300m 초고층 아베노 하루카스의 대비',
     highlights: ['츠텐카쿠 전망대 & 빌리켄 신상', '원조 쿠시카츠 거리', '아베노 하루카스 300 전망대', '시텐노지 1400년 사찰'],
-    subwayStations: ['덴노지역', '에비스초역', '도부츠엔마에역'],
+    subwayStations: ['텐노지역', '에비스초역', '도부츠엔마에역'],
     description: '1912년 파리의 에펠탑을 모티브로 세워진 츠텐카쿠 탑과 서민들의 꼬치튀김(쿠시카츠)이 탄생한 레트로의 성지 신세카이, 그리고 건너편에 일본 최고 높이의 초현대 빌딩 아베노 하루카스가 극적인 시간 여행을 선사합니다.',
     color: '#B8860B',
     image: '/images/city/district-tennoji.jpg',

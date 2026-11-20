@@ -667,7 +667,12 @@ const modalPlacesData = places.map(p => ({
 
       const fullNameJa = [place.nameJa, place.branchJa].filter(Boolean).join(' ');
       if (nameJaEl) nameJaEl.textContent = fullNameJa;
-      if (nameKoEl) nameKoEl.textContent = `${place.nameKo} (${place.branchKo || place.areaLabel})`;
+      if (nameKoEl) {
+        const branchLabel = place.branchKo || place.areaLabel;
+        nameKoEl.textContent = /[()]/.test(branchLabel)
+          ? `${place.nameKo} — ${branchLabel}`
+          : `${place.nameKo} (${branchLabel})`;
+      }
       if (addrJaEl) addrJaEl.textContent = place.addressJa || '大阪府大阪市中央区';
       if (addrKoEl) addrKoEl.textContent = place.addressKo || '';
       if (phoneEl) phoneEl.textContent = place.phone || '-';
@@ -721,7 +726,10 @@ const modalPlacesData = places.map(p => ({
       if (copyBtn) {
         copyBtn.textContent = '📋 일본어 주소 & 상호 복사';
         copyBtn.onclick = async () => {
-          const textToCopy = `${fullNameJa}\n${place.addressJa}\nTEL: ${place.phone}`;
+          const hasValidPhone = place.phone && place.phone !== '-';
+          const textToCopy = hasValidPhone
+            ? `${fullNameJa}\n${place.addressJa}\nTEL: ${place.phone}`
+            : `${fullNameJa}\n${place.addressJa}`;
           try {
             await navigator.clipboard.writeText(textToCopy);
             copyBtn.textContent = '✅ 복사 완료!';

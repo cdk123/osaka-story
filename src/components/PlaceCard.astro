@@ -62,7 +62,7 @@ const googleLocalInfoUrl = `https://www.google.com/maps/search/?api=1&query=${en
             title={`${place.nameKo} 구글 공식 로컬 정보 보기`}
           >
             {place.nameKo}
-            {place.branchKo && <span class="branch-ko">({place.branchKo})</span>}
+            {place.branchKo && <span class="branch-ko">{/[()]/.test(place.branchKo) ? `— ${place.branchKo}` : `(${place.branchKo})`}</span>}
           </a>
         </h3>
         <div class="rating-badge" title={`구글 로컬 평점 ${place.rating}`}>

@@ -213,7 +213,7 @@ const siteOrigin = Astro.site?.toString().replace(/\/$/, '') || 'https://osaka-s
       if ('caches' in window) {
         caches.keys().then((keys) => {
           keys.forEach((key) => {
-            if (key !== 'osaka-story-v8') {
+            if (key !== 'osaka-story-v9') {
               caches.delete(key);
             }
           });
